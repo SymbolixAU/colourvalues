@@ -26,4 +26,8 @@ hello <- function() {
 #   rcpp = { RcppViridis:::colour_test()  }
 # )
 
-
+# a == magma
+# B == inferno
+# c == plasma
+# d == viridis
+# E == cividis

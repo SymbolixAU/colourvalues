@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // colour_test
-Rcpp::NumericMatrix colour_test();
+Rcpp::List colour_test();
 RcppExport SEXP _RcppViridis_colour_test() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
