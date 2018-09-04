@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include "RcppViridis.hpp"
 #include "RcppViridisMagma.hpp"
 #include "RcppViridisInferno.hpp"
 #include "RcppViridisPlasma.hpp"
@@ -30,7 +31,15 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 
-Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palette ) {
+// Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette ) {
+//
+// }
+//
+// Rcpp::StringVector colour_variable_hex( Rcpp::IntegerVector x, std::string palette ) {
+//
+// }
+
+Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette ) {
 
   int n = x.size();
 
@@ -83,11 +92,14 @@ Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palet
     // mat_colours(i, 1) = round( spline_green( this_x ) * 255);
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
-    r = round( spline_red( this_x ) * 255 ) ;
-    g = round( spline_green( this_x ) * 255 );
-    b = round( spline_blue( this_x ) * 255 );
-
-    hex_strings[i] = ConvertRGBtoHex(r, g, b);
+    if ( R_IsNA( this_x) ) {
+      hex_strings[i] = RcppViridis::NA_HEX_COLOUR;
+    } else {
+      r = round( spline_red( this_x ) * 255 ) ;
+      g = round( spline_green( this_x ) * 255 );
+      b = round( spline_blue( this_x ) * 255 );
+      hex_strings[i] = ConvertRGBtoHex(r, g, b);
+    }
   }
   return hex_strings;
 }
@@ -98,7 +110,7 @@ Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palet
  * Colours variables
  */
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_variable_rgb( Rcpp::NumericVector x, std::string palette) {
-  return colour_variable_rgb( x, palette );
+Rcpp::StringVector rcpp_colour_variable_hex( Rcpp::NumericVector x, std::string palette) {
+  return colour_variable_hex( x, palette );
 }
 
