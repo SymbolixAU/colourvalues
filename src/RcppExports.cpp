@@ -5,21 +5,21 @@
 
 using namespace Rcpp;
 
-// colour_variable_rgb
-Rcpp::StringVector colour_variable_rgb(Rcpp::NumericVector x, std::string palette);
-RcppExport SEXP _RcppViridis_colour_variable_rgb(SEXP xSEXP, SEXP paletteSEXP) {
+// rcpp_colour_variable_rgb
+Rcpp::StringVector rcpp_colour_variable_rgb(Rcpp::NumericVector x, std::string palette);
+RcppExport SEXP _RcppViridis_rcpp_colour_variable_rgb(SEXP xSEXP, SEXP paletteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
-    rcpp_result_gen = Rcpp::wrap(colour_variable_rgb(x, palette));
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_variable_rgb(x, palette));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RcppViridis_colour_variable_rgb", (DL_FUNC) &_RcppViridis_colour_variable_rgb, 2},
+    {"_RcppViridis_rcpp_colour_variable_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_variable_rgb, 2},
     {NULL, NULL, 0}
 };
 

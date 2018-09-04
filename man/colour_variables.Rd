@@ -4,7 +4,8 @@
 \alias{colour_variables}
 \title{Colour Variables}
 \usage{
-colour_variables(x, palette = c("viridis", "inferno", "plasma", "magma"))
+colour_variables(x, palette = c("viridis", "inferno", "plasma", "magma",
+  "cividis"))
 }
 \description{
 Colour Variables

@@ -9,12 +9,13 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  out.height = 200
 )
 ```
 # RcppViridis
 
-RcppViridis is designed to map viridis colours to variables
+RcppViridis is designed to map viridis colours to variables, and quickly!
 
 ## Installation
 
@@ -49,3 +50,12 @@ df <- data.frame(a = 10, x = 1:256)
 df$col <- colour_variables(df$x, palette = "inferno")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
+
+```{r}
+df <- data.frame(a = 10, x = 1:256)
+df$col <- colour_variables(df$x, palette = "cividis")
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+
+

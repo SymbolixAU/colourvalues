@@ -3,6 +3,7 @@
 #include "RcppViridisInferno.hpp"
 #include "RcppViridisPlasma.hpp"
 #include "RcppViridisViridis.hpp"
+#include "RcppViridisCividis.hpp"
 
 using namespace Rcpp;
 using namespace viridis;
@@ -10,11 +11,6 @@ using namespace viridis;
 //[[Rcpp::depends(BH)]]
 
 #include <boost/math/interpolators/cubic_b_spline.hpp>
-
-
-unsigned long rgbaToHex(int r, int g, int b, int a) {
-  return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
-}
 
 // https://www.dreamincode.net/forums/topic/58058-converting-rgb-to-hex/
 std::string ConvertRGBtoHex(int num) {
@@ -34,15 +30,7 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 
-
-
-/*
- * colour variable
- *
- * Colours variables
- */
-// [[Rcpp::export]]
-Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palette) {
+Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palette ) {
   int n = x.size();
   Rcpp::NumericMatrix mat_colours(n, 3);
 
@@ -73,6 +61,10 @@ Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palet
     red = magma::magma_red;
     green = magma::magma_green;
     blue = magma::magma_blue;
+  } else if ( palette == "cividis" ) {
+    red = cividis::cividis_red;
+    green = cividis::cividis_green;
+    blue = cividis::cividis_blue;
   } else {
     Rcpp::stop("unknown palette");
   }
@@ -97,7 +89,16 @@ Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palet
 
     hex_strings[i] = ConvertRGBtoHex(r, g, b);
   }
-
   return hex_strings;
+}
+
+/*
+ * colour variable
+ *
+ * Colours variables
+ */
+// [[Rcpp::export]]
+Rcpp::StringVector rcpp_colour_variable_rgb( Rcpp::NumericVector x, std::string palette) {
+  return colour_variable_rgb( x, palette );
 }
 
