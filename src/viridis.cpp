@@ -31,8 +31,8 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
 }
 
 Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palette ) {
+
   int n = x.size();
-  Rcpp::NumericMatrix mat_colours(n, 3);
 
   Rcpp::StringVector hex_strings(n);
 
@@ -83,9 +83,9 @@ Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palet
     // mat_colours(i, 1) = round( spline_green( this_x ) * 255);
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
-    r = round( spline_red( this_x ) * 255) ;
-    g = round( spline_green( this_x ) * 255);
-    b = round( spline_blue( this_x ) * 255);
+    r = round( spline_red( this_x ) * 255 ) ;
+    g = round( spline_green( this_x ) * 255 );
+    b = round( spline_blue( this_x ) * 255 );
 
     hex_strings[i] = ConvertRGBtoHex(r, g, b);
   }
