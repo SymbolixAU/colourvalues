@@ -7,6 +7,20 @@
 colour_variables(x, palette = c("viridis", "inferno", "plasma", "magma",
   "cividis"))
 }
+\arguments{
+\item{x}{vector of values to map to a colour}
+
+\item{palette}{palette to use}
+}
 \description{
-Colour Variables
+maps a colours to variables
+}
+\examples{
+
+colour_variables(x = 1:5)
+colour_variables(x = 1:5, palette = "inferno")
+colour_variables(x = 1:5, palette = "plasma")
+colour_variables(x = 1:5, palette = "magma")
+colour_variables(x = 1:5, palette = "cividis")
+
 }

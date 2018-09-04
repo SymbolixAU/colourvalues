@@ -1,8 +1,20 @@
 #' Colour Variables
 #'
-#' @param x
-#' @param palette
+#' maps a colours to variables
+#'
+#' @param x vector of values to map to a colour
+#' @param palette palette to use
+#'
+#' @examples
+#'
+#' colour_variables(x = 1:5)
+#' colour_variables(x = 1:5, palette = "inferno")
+#' colour_variables(x = 1:5, palette = "plasma")
+#' colour_variables(x = 1:5, palette = "magma")
+#' colour_variables(x = 1:5, palette = "cividis")
+#'
 #' @export
 colour_variables <- function( x, palette = c("viridis","inferno","plasma","magma","cividis") ) {
+  palette <- match.arg(palette)
   rcpp_colour_variable_rgb(x, palette)
 }
