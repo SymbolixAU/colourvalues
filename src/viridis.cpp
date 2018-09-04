@@ -12,6 +12,29 @@ using namespace viridis;
 #include <boost/math/interpolators/cubic_b_spline.hpp>
 
 
+unsigned long rgbaToHex(int r, int g, int b, int a) {
+  return ((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (a & 0xff);
+}
+
+// https://www.dreamincode.net/forums/topic/58058-converting-rgb-to-hex/
+std::string ConvertRGBtoHex(int num) {
+  static std::string hexDigits = "0123456789ABCDEF";
+  std::string rgb;
+  for (int i=(3*2) - 1; i>=0; i--) {
+    rgb += hexDigits[((num >> i*4) & 0xF)];
+  }
+  return rgb;
+}
+
+std::string ConvertRGBtoHex(int r, int g, int b) {
+  int rgbNum = ((r & 0xff) << 16)
+  | ((g & 0xff) << 8)
+  | (b & 0xff);
+
+  return '#' + ConvertRGBtoHex(rgbNum);
+}
+
+
 
 /*
  * colour variable
@@ -19,11 +42,11 @@ using namespace viridis;
  * Colours variables
  */
 // [[Rcpp::export]]
-Rcpp::List colour_variable( Rcpp::NumericVector x, std::string palette) {
+Rcpp::StringVector colour_variable_rgb( Rcpp::NumericVector x, std::string palette) {
   int n = x.size();
-  Rcpp::NumericVector result_red(n);
-  Rcpp::NumericVector result_green(n);
-  Rcpp::NumericVector result_blue(n);
+  Rcpp::NumericMatrix mat_colours(n, 3);
+
+  Rcpp::StringVector hex_strings(n);
 
   double max_x = max(x);
   double scale_x = 255 / max_x;
@@ -59,28 +82,22 @@ Rcpp::List colour_variable( Rcpp::NumericVector x, std::string palette) {
   boost::math::cubic_b_spline< double > spline_blue( blue.begin(), blue.end(), 0, 1 );
 
   double this_x;
-  // int r, g, b;
+  int r, g, b;
+  std::string hex_str;
 
   for( i = 0; i < n; i ++ ) {
     this_x = x[i] * scale_x;
-    result_red[i] = round( spline_red( this_x ) * 255) ;
-    result_green[i] = round( spline_green( this_x ) * 255);
-    result_blue[i] = round( spline_blue( this_x ) * 255);
+    // mat_colours(i, 0) = round( spline_red( this_x ) * 255) ;
+    // mat_colours(i, 1) = round( spline_green( this_x ) * 255);
+    // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
-    // r = round( spline_red( this_x ) * 255) ;
-    // g = round( spline_green( this_x ) * 255);
-    // b = round( spline_blue( this_x ) * 255);
+    r = round( spline_red( this_x ) * 255) ;
+    g = round( spline_green( this_x ) * 255);
+    b = round( spline_blue( this_x ) * 255);
 
-
+    hex_strings[i] = ConvertRGBtoHex(r, g, b);
   }
-  return Rcpp::List::create(
-    _["r"] = result_red,
-    _["g"] = result_green,
-    _["b"] = result_blue
-  );
 
-
-
+  return hex_strings;
 }
 
-// TODO(convert to RGB [0,255], & HEX)
