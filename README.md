@@ -1,4 +1,9 @@
 
+[![Travis-CI Build
+Status](https://travis-ci.org/SymbolixAU/RcppViridis.svg?branch=master)](https://travis-ci.org/SymbolixAU/RcppViridis)
+[![Coverage
+status](https://codecov.io/gh/SymbolixAU/RcppViridis/branch/master/graph/badge.svg)](https://codecov.io/github/SymbolixAU/RcppViridis?branch=master)
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # RcppViridis
