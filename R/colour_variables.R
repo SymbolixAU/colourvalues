@@ -7,7 +7,7 @@
 #'
 #' @examples
 #'
-#' colour_variables(x = 1:5)
+#' colour_variables(x = 1:5) ## default is "viridis"
 #' colour_variables(x = 1:5, palette = "inferno")
 #' colour_variables(x = 1:5, palette = "plasma")
 #' colour_variables(x = 1:5, palette = "magma")

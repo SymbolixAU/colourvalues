@@ -30,6 +30,7 @@ devtools::install_github("SymbolixAU/RcppViridis")
 ```
 ## Example
 
+
 ```{r}
 df <- data.frame(a = 10, x = 1:256)
 df$col <- colour_variables(df$x, palette = "viridis")
