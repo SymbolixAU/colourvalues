@@ -171,5 +171,11 @@ const Rcpp::NumericVector plasma_blue = {
   0.131325517
 };
 
+const Rcpp::List plasma = Rcpp::List::create(
+  _["r"] = plasma_red,
+  _["g"] = plasma_green,
+  _["b"] = plasma_blue
+);
+
 } // namepsace plasma
 #endif

@@ -171,6 +171,12 @@ const Rcpp::NumericVector inferno_blue = {
   0.644924005
 };
 
+const Rcpp::List inferno = Rcpp::List::create(
+  _["r"] = inferno_red,
+  _["g"] = inferno_green,
+  _["b"] = inferno_blue
+);
+
 } // namespace inferno
 
 #endif

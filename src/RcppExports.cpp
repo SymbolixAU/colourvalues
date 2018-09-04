@@ -5,19 +5,21 @@
 
 using namespace Rcpp;
 
-// colour_test
-Rcpp::List colour_test();
-RcppExport SEXP _RcppViridis_colour_test() {
+// colour_variable
+Rcpp::List colour_variable(Rcpp::NumericVector x, std::string palette);
+RcppExport SEXP _RcppViridis_colour_variable(SEXP xSEXP, SEXP paletteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(colour_test());
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
+    rcpp_result_gen = Rcpp::wrap(colour_variable(x, palette));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RcppViridis_colour_test", (DL_FUNC) &_RcppViridis_colour_test, 0},
+    {"_RcppViridis_colour_variable", (DL_FUNC) &_RcppViridis_colour_variable, 2},
     {NULL, NULL, 0}
 };
 

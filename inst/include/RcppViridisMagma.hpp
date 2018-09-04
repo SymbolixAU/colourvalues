@@ -169,5 +169,12 @@ Rcpp::NumericVector magma_blue = {
   0.712242232, 0.719648627, 0.727076773, 0.734536205, 0.742001547,
   0.749504188
 };
+
+const Rcpp::List magma = Rcpp::List::create(
+  _["r"] = magma_red,
+  _["g"] = magma_green,
+  _["b"] = magma_blue
+);
+
 } // namespace magma
 #endif
