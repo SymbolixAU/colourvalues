@@ -4,8 +4,7 @@
 \alias{colour_variables}
 \title{Colour Variables}
 \usage{
-colour_variables(x, palette = c("viridis", "inferno", "plasma", "magma",
-  "cividis"))
+colour_variables(x, palette = "viridis")
 }
 \arguments{
 \item{x}{vector of values to map to a colour}

@@ -5,21 +5,34 @@
 
 using namespace Rcpp;
 
-// rcpp_colour_variable_hex
-Rcpp::StringVector rcpp_colour_variable_hex(Rcpp::NumericVector x, std::string palette);
-RcppExport SEXP _RcppViridis_rcpp_colour_variable_hex(SEXP xSEXP, SEXP paletteSEXP) {
+// rcpp_colour_num_variable_hex
+Rcpp::StringVector rcpp_colour_num_variable_hex(Rcpp::NumericVector x, std::string palette);
+RcppExport SEXP _RcppViridis_rcpp_colour_num_variable_hex(SEXP xSEXP, SEXP paletteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_colour_variable_hex(x, palette));
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_num_variable_hex(x, palette));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_colour_str_variable_hex
+Rcpp::StringVector rcpp_colour_str_variable_hex(Rcpp::StringVector x, std::string palette);
+RcppExport SEXP _RcppViridis_rcpp_colour_str_variable_hex(SEXP xSEXP, SEXP paletteSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_variable_hex(x, palette));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RcppViridis_rcpp_colour_variable_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_variable_hex, 2},
+    {"_RcppViridis_rcpp_colour_num_variable_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_variable_hex, 2},
+    {"_RcppViridis_rcpp_colour_str_variable_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_variable_hex, 2},
     {NULL, NULL, 0}
 };
 

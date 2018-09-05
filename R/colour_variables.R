@@ -14,7 +14,18 @@
 #' colour_variables(x = 1:5, palette = "cividis")
 #'
 #' @export
-colour_variables <- function( x, palette = c("viridis","inferno","plasma","magma","cividis") ) {
-  palette <- match.arg(palette)
-  rcpp_colour_variable_hex(x, palette)
+colour_variables <- function( x, palette = "viridis" ) {
+  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
+  UseMethod("colour_variables")
 }
+
+#' @export
+colour_variables.character <- function(x, palette = "viridis" ) {
+  rcpp_colour_str_variable_hex(x, palette)
+}
+
+#' @export
+colour_variables.default <- function(x, palette = "viridis" ) {
+  rcpp_colour_num_variable_hex(x, palette)
+}
+

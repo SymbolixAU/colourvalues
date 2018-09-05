@@ -31,11 +31,27 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 
+void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
+  int int_s = NA_INTEGER;
+  std::replace( out.begin(), out.end(), na_value, int_s);
+}
+
 Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette ) {
 
+  bool anyNa = any(is_na(x));
+  Rcpp::StringVector lvls = sort_unique( x );
+  Rcpp::IntegerVector out = match(x, lvls);
 
+  if ( anyNa ) {
+    int na_value = max( out );
+    replace_nas(out, na_value);
+  }
 
+  Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
+
+  return colour_variable_hex( out_nv, palette );
 }
+
 
 Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette ) {
 
@@ -108,7 +124,12 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
  * Colours variables
  */
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_variable_hex( Rcpp::NumericVector x, std::string palette) {
+Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::string palette) {
+  return colour_variable_hex( x, palette );
+}
+
+// [[Rcpp::export]]
+Rcpp::StringVector rcpp_colour_str_variable_hex( Rcpp::StringVector x, std::string palette) {
   return colour_variable_hex( x, palette );
 }
 
