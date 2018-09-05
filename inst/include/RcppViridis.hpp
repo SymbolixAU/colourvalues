@@ -1,14 +1,14 @@
 #ifndef RCPP_VIRIDIS_H
 #define RCPP_VIRIDIS_H
 
-#include <regex>
+//#include <regex>
 #include <Rcpp.h>
 using namespace Rcpp;
 
 namespace RcppViridis {
 
   //static const std::string DEFAULT_NA_HEX_COLOUR = "#808080";
-  static const std::regex HEX_COLOUR_REGEX("^#(?:[0-9a-fA-F]{3}){1,2}$|^#(?:[0-9a-fA-F]{4}){1,2}$");
+  //static const std::regex HEX_COLOUR_REGEX("^#(?:[0-9a-fA-F]{3}){1,2}$|^#(?:[0-9a-fA-F]{4}){1,2}$");
 
 }; // namespace viridis
 
