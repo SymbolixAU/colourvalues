@@ -4,12 +4,14 @@
 \alias{colour_variables}
 \title{Colour Variables}
 \usage{
-colour_variables(x, palette = "viridis")
+colour_variables(x, palette = "viridis", na_colour = "#808080")
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
 
 \item{palette}{palette to use}
+
+\item{na_colour}{hex string}
 }
 \description{
 maps a colours to variables

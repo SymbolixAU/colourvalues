@@ -13,23 +13,6 @@ using namespace viridis;
 
 #include <boost/math/interpolators/cubic_b_spline.hpp>
 
-// https://www.dreamincode.net/forums/topic/58058-converting-rgb-to-hex/
-std::string ConvertRGBtoHex(int num) {
-  static std::string hexDigits = "0123456789ABCDEF";
-  std::string rgb;
-  for (int i=(3*2) - 1; i>=0; i--) {
-    rgb += hexDigits[((num >> i*4) & 0xF)];
-  }
-  return rgb;
-}
-
-std::string ConvertRGBtoHex(int r, int g, int b) {
-  int rgbNum = ((r & 0xff) << 16)
-  | ((g & 0xff) << 8)
-  | (b & 0xff);
-
-  return '#' + ConvertRGBtoHex(rgbNum);
-}
 
 void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
   int int_s = NA_INTEGER;
@@ -107,7 +90,7 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
     if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
-      hex_strings[i] = RcppViridis::NA_HEX_COLOUR;
+      hex_strings[i] = RcppViridis::DEFAULT_NA_HEX_COLOUR;
     } else {
       r = round( spline_red( this_x ) * 255 ) ;
       g = round( spline_green( this_x ) * 255 );
