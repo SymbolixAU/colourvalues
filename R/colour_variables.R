@@ -25,11 +25,6 @@ colour_variables.character <- function( x, palette = "viridis", na_colour = "#80
   rcpp_colour_str_variable_hex( x, palette, na_colour )
 }
 
-#' #' @export
-#' colour_variables.Date <- function( x, palette = "viridis", na_colour = "#808080" ) {
-#'   rcpp_colour_dte_variable_hex( x, palette, na_colour )
-#' }
-
 #' @export
 colour_variables.default <- function( x, palette = "viridis", na_colour = "#808080" ) {
   rcpp_colour_num_variable_hex( x, palette, na_colour )

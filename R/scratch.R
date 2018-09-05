@@ -85,6 +85,6 @@
 # ## these two should be equal?
 #
 # ## TODO
-# colour_variables(as.Date(c("2018-01-01","2018-01-01","2018-01-02") ) )
+# colour_variables(as.Date(c("2018-01-01","2018-01-01","2018-01-02", NA) ) )
 # colour_variables( factor(c(1,2,3,1,2,3)) )
 #
