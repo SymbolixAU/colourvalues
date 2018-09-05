@@ -12,9 +12,11 @@ test_that("NAs Numerics are handled", {
   expect_true("#808080" %in% colour_variables(c(1,2,NA,4)))
   expect_true(sum("#808080" == colour_variables(c(1, NA)))==1)
   expect_true(sum("#808080" == colour_variables(c(1,NA,NaN,Inf,-Inf,1))) == 4)
+  expect_true("#000000" == colour_variables(NA, na_colour = "#000000"))
 })
 
 test_that("NA Characters are handled", {
-  ## TODO
-  #expect_true(colour_variables(NA_character_) == "#808080")
+  expect_true(colour_variables(NA_character_) == "#808080")
+  expect_true(sum("#808080" == colour_variables(c(1,"a",NA)) ) == 1)
+  expect_true(sum("#808080" == colour_variables(c("a",NA, "d","f",NA))) == 2)
 })

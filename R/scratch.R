@@ -20,6 +20,7 @@
 #
 # x <- c("a",NA, "d","f",NA)
 # myFactor( x )
+# colour_variables( x )
 #
 # x <- c(1, NA, NaN, Inf, 2)
 # colour_variables(x)

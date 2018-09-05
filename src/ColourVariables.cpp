@@ -19,7 +19,7 @@ void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
   std::replace( out.begin(), out.end(), na_value, int_s);
 }
 
-Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette ) {
+Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette, std::string na_colour ) {
 
   bool anyNa = any(is_na(x));
   Rcpp::StringVector lvls = sort_unique( x );
@@ -32,13 +32,16 @@ Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palett
 
   Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
 
-  return colour_variable_hex( out_nv, palette );
+  return colour_variable_hex( out_nv, palette, na_colour );
 }
 
 
-Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette ) {
+Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour ) {
 
   int n = x.size();
+  if(!is_hex_colour(na_colour)) {
+    Rcpp::stop("invalid NA Colour");
+  }
 
   Rcpp::StringVector hex_strings(n);
 
@@ -90,7 +93,7 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
     if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
-      hex_strings[i] = RcppViridis::DEFAULT_NA_HEX_COLOUR;
+      hex_strings[i] = na_colour;
     } else {
       r = round( spline_red( this_x ) * 255 ) ;
       g = round( spline_green( this_x ) * 255 );
@@ -107,12 +110,12 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
  * Colours variables
  */
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::string palette) {
-  return colour_variable_hex( x, palette );
+Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour) {
+  return colour_variable_hex( x, palette, na_colour );
 }
 
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_str_variable_hex( Rcpp::StringVector x, std::string palette) {
-  return colour_variable_hex( x, palette );
+Rcpp::StringVector rcpp_colour_str_variable_hex( Rcpp::StringVector x, std::string palette, std::string na_colour) {
+  return colour_variable_hex( x, palette, na_colour );
 }
 

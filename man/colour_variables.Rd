@@ -11,7 +11,7 @@ colour_variables(x, palette = "viridis", na_colour = "#808080")
 
 \item{palette}{palette to use}
 
-\item{na_colour}{hex string}
+\item{na_colour}{hex string colour to use for NA values}
 }
 \description{
 maps a colours to variables

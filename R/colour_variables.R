@@ -4,7 +4,7 @@
 #'
 #' @param x vector of values to map to a colour
 #' @param palette palette to use
-#' @param na_colour hex string
+#' @param na_colour hex string colour to use for NA values
 #'
 #' @examples
 #'
@@ -22,11 +22,11 @@ colour_variables <- function( x, palette = "viridis", na_colour = "#808080") {
 
 #' @export
 colour_variables.character <- function(x, palette = "viridis", na_colour = "#808080") {
-  rcpp_colour_str_variable_hex(x, palette)
+  rcpp_colour_str_variable_hex(x, palette, na_colour)
 }
 
 #' @export
 colour_variables.default <- function(x, palette = "viridis", na_colour = "#808080" ) {
-  rcpp_colour_num_variable_hex(x, palette)
+  rcpp_colour_num_variable_hex(x, palette, na_colour)
 }
 
