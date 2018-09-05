@@ -93,23 +93,27 @@ See for yourself
 library(microbenchmark)
 library(ggplot2)
 library(scales)
+library(viridisLite)
 
 n <- 1e4
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
   RcppViridis = { RcppViridis::colour_variables(x = df$x) },
-  scales = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  sclaes2 = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
 m
 # Unit: milliseconds
 #         expr        min         lq       mean     median         uq
-#  RcppViridis   1.607608   1.718504   1.794033   1.752147   1.817238
-#       scales 638.290248 694.100944 723.357659 721.268412 760.871100
+#  RcppViridis   1.608349   1.674193   1.766332   1.735261   1.803886
+#      scales1 625.917051 677.423758 722.045525 715.883733 760.865123
+#      sclaes2   3.063856   3.146888   3.514221   3.416008   3.671189
 #         max neval
-#    2.188736    25
-#  804.561984    25
+#    2.106551    25
+#  872.150447    25
+#    5.707653    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.

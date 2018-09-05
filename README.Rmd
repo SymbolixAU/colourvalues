@@ -97,13 +97,15 @@ See for yourself
 library(microbenchmark)
 library(ggplot2)
 library(scales)
+library(viridisLite)
 
 n <- 1e4
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
   RcppViridis = { RcppViridis::colour_variables(x = df$x) },
-  scales = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  sclaes2 = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
 m

@@ -20,5 +20,6 @@ RoxygenNote: 6.0.1
 Suggests: 
     covr,
     microbenchmark,
+    ggplot2,
     scales,
     testthat

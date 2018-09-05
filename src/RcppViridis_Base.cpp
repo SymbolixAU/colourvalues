@@ -27,7 +27,7 @@ Rcpp::NumericVector m_rescale( Rcpp::NumericVector x ) {
 	Rcpp::NumericVector rng = m_range(x);
 	Rcpp::NumericVector diff_from = m_diff(rng); // should only be one value!
 
-	double this_diff = std::max(1.0, diff_from[0]);
+	double this_diff = std::max(1.0, diff_from[0]);  // TODO(is this right? what am I doing?)
 
 	int i = 0;
 
