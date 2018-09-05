@@ -12,7 +12,7 @@ namespace RcppViridis {
 
 }; // namespace viridis
 
-bool is_hex_colour(std::string hex);
+// bool is_hex_colour(std::string hex);
 
 std::string ConvertRGBtoHex(int num);
 

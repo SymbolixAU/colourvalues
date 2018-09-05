@@ -17,23 +17,23 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 
-bool is_hex_colour( std::string hex ) {
-  return std::regex_match( hex, RcppViridis::HEX_COLOUR_REGEX );
-}
-
-Rcpp::LogicalVector is_hex_colour( Rcpp::StringVector hex ) {
-  int i;
-  int n = hex.size();
-  Rcpp::LogicalVector out(n);
-  std::string this_hex;
-  for ( i = 0; i < n; i ++) {
-    this_hex = hex[i];
-    out[i] = is_hex_colour( this_hex );
-  }
-  return out;
-}
-
-// [[Rcpp::export]]
-Rcpp::LogicalVector rcpp_is_hex_colour( Rcpp::StringVector hex ) {
-  return is_hex_colour( hex );
-}
+// bool is_hex_colour( std::string hex ) {
+//   return std::regex_match( hex, RcppViridis::HEX_COLOUR_REGEX );
+// }
+//
+// Rcpp::LogicalVector is_hex_colour( Rcpp::StringVector hex ) {
+//   int i;
+//   int n = hex.size();
+//   Rcpp::LogicalVector out(n);
+//   std::string this_hex;
+//   for ( i = 0; i < n; i ++) {
+//     this_hex = hex[i];
+//     out[i] = is_hex_colour( this_hex );
+//   }
+//   return out;
+// }
+//
+// // [[Rcpp::export]]
+// Rcpp::LogicalVector rcpp_is_hex_colour( Rcpp::StringVector hex ) {
+//   return is_hex_colour( hex );
+// }

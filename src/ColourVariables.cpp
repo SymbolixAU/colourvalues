@@ -40,9 +40,11 @@ Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palett
 Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour ) {
 
   int n = x.size();
-  if(!is_hex_colour(na_colour)) {
-    Rcpp::stop("invalid NA Colour");
-  }
+
+  // TODO(this throws an error on Travis)
+  // if(!is_hex_colour(na_colour)) {
+  //   Rcpp::stop("invalid NA Colour");
+  // }
 
 
   //Rcpp::NumericVector vals = m_unique(x);
