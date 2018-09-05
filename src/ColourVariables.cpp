@@ -1,5 +1,6 @@
 #include <Rcpp.h>
 #include "RcppViridis.hpp"
+#include "RcppViridis_Base.hpp"
 #include "RcppViridisMagma.hpp"
 #include "RcppViridisInferno.hpp"
 #include "RcppViridisPlasma.hpp"
@@ -43,10 +44,16 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
     Rcpp::stop("invalid NA Colour");
   }
 
+
+  //Rcpp::NumericVector vals = m_unique(x);
+  Rcpp::NumericVector scaledVals = m_rescale(x);
   Rcpp::StringVector hex_strings(n);
 
+  /*
   double max_x = max( na_omit( x ) ) ;
   double scale_x = 255 / max_x;
+  */
+
   int i = 0;
 
   // TODO(allow user to select start and end points of the vectors)
@@ -87,10 +94,12 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
   std::string hex_str;
 
   for( i = 0; i < n; i ++ ) {
-    this_x = x[i] * scale_x;
+    //this_x = x[i] * scale_x;
     // mat_colours(i, 0) = round( spline_red( this_x ) * 255) ;
     // mat_colours(i, 1) = round( spline_green( this_x ) * 255);
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
+
+    this_x = scaledVals[i] * 255;
 
     if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
       hex_strings[i] = na_colour;
@@ -118,4 +127,12 @@ Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::str
 Rcpp::StringVector rcpp_colour_str_variable_hex( Rcpp::StringVector x, std::string palette, std::string na_colour) {
   return colour_variable_hex( x, palette, na_colour );
 }
+
+// [[Rcpp::export]]
+Rcpp::StringVector rcpp_colour_dte_variable_hex( Rcpp::DateVector x, std::string palette, std::string na_colour) {
+  Rcpp::NumericVector y = as< Rcpp::NumericVector>(x);
+  return colour_variable_hex( y, palette, na_colour );
+}
+
+
 

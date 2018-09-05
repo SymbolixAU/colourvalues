@@ -13,10 +13,7 @@ std::string ConvertRGBtoHex(int num) {
 }
 
 std::string ConvertRGBtoHex(int r, int g, int b) {
-  int rgbNum = ((r & 0xff) << 16)
-  | ((g & 0xff) << 8)
-  | (b & 0xff);
-
+  int rgbNum = ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 

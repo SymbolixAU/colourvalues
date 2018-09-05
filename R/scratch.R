@@ -1,3 +1,31 @@
+## Benchmarks
+
+# library(scales)
+# library(microbenchmark)
+# x <- 1:1e5
+# n <- length(x)
+# microbenchmark(
+#   scales = { x <- scales::col_numeric(viridisLite::viridis(n), domain = x)(x)  },
+#   rcpp = { y <- RcppViridis::colour_variables(x) },
+#   times = 1
+# )
+
+
+# df <- data.frame(a = 10, x = 1:10)
+# df$col <- mapview:::zcolColors(df$x)
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+# df$col <- RcppViridis::colour_variables(df$x)
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+#
+# df <- data.frame(a = 10, x = c(1:5,NA,7,NA,9,10))
+# df$col2 = mapview:::zcolColors(df$x, na.color = "#00FF00")
+# barplot(height = df$a, col = df$col2, border = NA, space = 0)
+#
+# df$col2 <- RcppViridis::colour_variables(df$x, na_colour = "#00FF00")
+# barplot(height = df$a, col = df$col2, border = NA, space = 0)
+
 #
 # library(Rcpp)
 #
