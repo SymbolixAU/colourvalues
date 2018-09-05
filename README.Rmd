@@ -19,23 +19,41 @@ knitr::opts_chunk$set(
 
 library(RcppViridis)
 ```
+
 # RcppViridis
 
-RcppViridis is designed to map viridis colours to variables, and quickly!
 
-All functionality is written in `Rcpp` and I have exposed functions in header files for use by other packages. 
+### What does it do?
 
+It maps viridis colours to variables, and quickly!
 
-## Installation
+### How do I install it?
 
 Install the development version from [GitHub](https://github.com/SymbolixAU/RcppViridis) with:
 
-``` r
+```r
 # install.packages("devtools")
 devtools::install_github("SymbolixAU/RcppViridis")
 ```
-## Example
 
+---
+
+### How can I make use of it in my package?
+
+**Rcpp**
+
+All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package.
+
+**R**
+
+If you're not using `Rcpp`, just `Import` this package like you would any other. 
+
+## Do you have any examples?
+
+Of course!
+
+
+#### 256 numbers mapped to a colour
 
 ```{r}
 df <- data.frame(a = 10, x = 1:256)
@@ -43,29 +61,54 @@ df$col <- colour_variables(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+#### 256 numbers on a non-linear scale
+
 ```{r}
-df <- data.frame(a = 10, x = 1:256)
-df$col <- colour_variables(df$x, palette = "plasma")
+df <- data.frame(a = 10, x = c((1:256)**3))
+df$col <- colour_variables(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-```{r}
-df <- data.frame(a = 10, x = 1:256)
-df$col <- colour_variables(df$x, palette = "magma")
-barplot(height = df$a, col = df$col, border = NA, space = 0)
-```
+#### 1000 random numbers
 
 ```{r}
-df <- data.frame(a = 10, x = 1:256)
+df <- data.frame(a = 10, x = rnorm(n = 1000))
 df$col <- colour_variables(df$x, palette = "inferno")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+Eurgh!
+
 ```{r}
-df <- data.frame(a = 10, x = 1:256)
-df$col <- colour_variables(df$x, palette = "cividis")
+df <- df[with(df, order(x)), ]
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+That's better!
+
+
+---
+
+### What's the performance like?
+
+See for yourself
+
+```{r, out.height=400}
+library(microbenchmark)
+library(ggplot2)
+library(scales)
+
+n <- 1e4
+df <- data.frame(x = rnorm(n = n))
+
+m <- microbenchmark(
+  RcppViridis = { RcppViridis::colour_variables(x = df$x) },
+  scales = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  times = 25
+)
+m
+
+autoplot(m)
+```
 
 
