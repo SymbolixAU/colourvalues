@@ -31,13 +31,11 @@ std::string ConvertRGBtoHex(int r, int g, int b) {
   return '#' + ConvertRGBtoHex(rgbNum);
 }
 
-// Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette ) {
-//
-// }
-//
-// Rcpp::StringVector colour_variable_hex( Rcpp::IntegerVector x, std::string palette ) {
-//
-// }
+Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette ) {
+
+
+
+}
 
 Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette ) {
 
@@ -45,7 +43,7 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
 
   Rcpp::StringVector hex_strings(n);
 
-  double max_x = max(x);
+  double max_x = max( na_omit( x ) ) ;
   double scale_x = 255 / max_x;
   int i = 0;
 
@@ -92,7 +90,7 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
     // mat_colours(i, 1) = round( spline_green( this_x ) * 255);
     // mat_colours(i, 2) = round( spline_blue( this_x ) * 255);
 
-    if ( R_IsNA( this_x) ) {
+    if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
       hex_strings[i] = RcppViridis::NA_HEX_COLOUR;
     } else {
       r = round( spline_red( this_x ) * 255 ) ;
