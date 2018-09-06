@@ -20,7 +20,7 @@ void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
   std::replace( out.begin(), out.end(), na_value, int_s);
 }
 
-Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palette, std::string na_colour ) {
+Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, std::string palette, std::string na_colour ) {
 
   bool anyNa = any(is_na(x));
   Rcpp::StringVector lvls = sort_unique( x );
@@ -33,11 +33,11 @@ Rcpp::StringVector colour_variable_hex( Rcpp::StringVector x, std::string palett
 
   Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
 
-  return colour_variable_hex( out_nv, palette, na_colour );
+  return colour_value_hex( out_nv, palette, na_colour );
 }
 
 
-Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour ) {
+Rcpp::StringVector colour_value_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour ) {
 
   int n = x.size();
 
@@ -121,19 +121,19 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
  * Colours values
  */
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour) {
-  return colour_variable_hex( x, palette, na_colour );
+Rcpp::StringVector rcpp_colour_num_value_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour) {
+  return colour_value_hex( x, palette, na_colour );
 }
 
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_str_variable_hex( Rcpp::StringVector x, std::string palette, std::string na_colour) {
-  return colour_variable_hex( x, palette, na_colour );
+Rcpp::StringVector rcpp_colour_str_value_hex( Rcpp::StringVector x, std::string palette, std::string na_colour) {
+  return colour_value_hex( x, palette, na_colour );
 }
 
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_dte_variable_hex( Rcpp::DateVector x, std::string palette, std::string na_colour) {
+Rcpp::StringVector rcpp_colour_dte_value_hex( Rcpp::DateVector x, std::string palette, std::string na_colour) {
   Rcpp::NumericVector y = as< Rcpp::NumericVector>(x);
-  return colour_variable_hex( y, palette, na_colour );
+  return colour_value_hex( y, palette, na_colour );
 }
 
 

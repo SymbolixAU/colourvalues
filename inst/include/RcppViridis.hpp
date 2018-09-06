@@ -18,6 +18,6 @@ std::string ConvertRGBtoHex(int num);
 
 std::string ConvertRGBtoHex(int r, int g, int b);
 
-Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour );
+Rcpp::StringVector colour_value_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour );
 
 #endif

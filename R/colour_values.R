@@ -30,11 +30,11 @@ color_values <- colour_values
 
 #' @export
 colour_values.character <- function( x, palette = "viridis", na_colour = "#808080" ) {
-  rcpp_colour_str_variable_hex( x, palette, na_colour )
+  rcpp_colour_str_value_hex( x, palette, na_colour )
 }
 
 #' @export
 colour_values.default <- function( x, palette = "viridis", na_colour = "#808080" ) {
-  rcpp_colour_num_variable_hex( x, palette, na_colour )
+  rcpp_colour_num_value_hex( x, palette, na_colour )
 }
 
