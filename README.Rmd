@@ -91,9 +91,9 @@ That's better!
 
 ### What's the performance like?
 
-See for yourself
 
-**1million numeric values**
+
+**1 million numeric values**
 
 ```{r, out.height=400}
 library(microbenchmark)
@@ -101,12 +101,11 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e5
+n <- 1e6
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
   RcppViridis = { RcppViridis::colour_variables(x = df$x) },
-  #scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )

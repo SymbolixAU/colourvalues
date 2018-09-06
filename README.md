@@ -87,9 +87,7 @@ That’s better\!
 
 ### What’s the performance like?
 
-See for yourself
-
-**1million numeric values**
+**1 million numeric values**
 
 ``` r
 library(microbenchmark)
@@ -97,20 +95,19 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e5
+n <- 1e6
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
   RcppViridis = { RcppViridis::colour_variables(x = df$x) },
-  #scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 16.94017 18.41406 22.70647 19.53906 21.42708 81.87077    25
-#       scales 30.38855 32.81765 34.80106 34.23917 35.79918 42.48078    25
+#  RcppViridis 167.0503 173.1342 182.9626 176.6451 185.4215 247.2992    25
+#       scales 280.6652 302.0834 322.4607 323.1510 334.0339 384.7117    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -138,8 +135,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 164.6202 174.8827 182.8471 181.6971 191.8520 196.9878    25
-#       scales 310.7330 317.9445 344.8455 336.1873 376.2448 399.5739    25
+#  RcppViridis 164.1425 168.6360 173.6380 174.0330 176.3976 187.7963    25
+#       scales 293.7640 304.5998 326.4161 312.2175 360.0056 373.3169    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
