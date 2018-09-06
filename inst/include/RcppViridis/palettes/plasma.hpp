@@ -1,10 +1,12 @@
-#ifndef R_RCPP_VIRIDIS_PLASMA_H
-#define R_RCPP_VIRIDIS_PLASMA_H
+#ifndef R_RCPP_VIRIDIS_HEADERS_PLASMA_H
+#define R_RCPP_VIRIDIS_HEADERS_PLASMA_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace plasma {
+namespace rcppviridis {
+
+namespace palette {
 
 const Rcpp::NumericVector plasma_red = {
   0.0503832136, 0.0635363639, 0.0753531234, 0.0862217979, 0.0963786097,
@@ -177,5 +179,6 @@ const Rcpp::List plasma = Rcpp::List::create(
   _["b"] = plasma_blue
 );
 
-} // namepsace plasma
+} // namespace palette
+} // namepsace rcppviridis
 #endif

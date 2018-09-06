@@ -1,10 +1,12 @@
-#ifndef R_RCPP_VIRIDIS_CIVIDIS_H
-#define R_RCPP_VIRIDIS_CIVIDIS_H
+#ifndef R_RCPP_VIRIDIS_HEADERS_CIVIDIS_H
+#define R_RCPP_VIRIDIS_HEADERS_CIVIDIS_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace cividis {
+namespace rcppviridis {
+
+namespace palette {
 
 const Rcpp::NumericVector cividis_red = {
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -115,7 +117,8 @@ const Rcpp::List cvidis = Rcpp::List::create(
   _["b"] = cividis_blue
 );
 
-} // namespace cividis
+} // namespace palette
+} // namepsace rcppviridis
 
 #endif
 
