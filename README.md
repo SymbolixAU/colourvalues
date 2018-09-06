@@ -89,34 +89,60 @@ That’s better\!
 
 See for yourself
 
+**1million numeric values**
+
 ``` r
 library(microbenchmark)
 library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e4
+n <- 1e5
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
   RcppViridis = { RcppViridis::colour_variables(x = df$x) },
-  scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
-  sclaes2 = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
+  #scales1 = { scales::col_numeric(palette = viridisLite::viridis(n), domain = unique(df$x))(df$x) },
+  scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
 m
 # Unit: milliseconds
-#         expr        min         lq       mean     median         uq
-#  RcppViridis   1.608349   1.674193   1.766332   1.735261   1.803886
-#      scales1 625.917051 677.423758 722.045525 715.883733 760.865123
-#      sclaes2   3.063856   3.146888   3.514221   3.416008   3.671189
-#         max neval
-#    2.106551    25
-#  872.150447    25
-#    5.707653    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 16.94017 18.41406 22.70647 19.53906 21.42708 81.87077    25
+#       scales 30.38855 32.81765 34.80106 34.23917 35.79918 42.48078    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="400" />
+
+**1 million characters (26 unique values)**
+
+``` r
+library(microbenchmark)
+library(ggplot2)
+library(scales)
+library(viridisLite)
+
+n <- 1e6
+x <- sample(x = letters, size = n, replace = TRUE)
+df <- data.frame(x = x)
+
+m <- microbenchmark(
+  RcppViridis = { x <- RcppViridis::colour_variables(x = df$x) },
+  scales = { y <- col_factor(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = unique(df$x))(df$x) },
+  times = 25
+)
+m
+# Unit: milliseconds
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 164.6202 174.8827 182.8471 181.6971 191.8520 196.9878    25
+#       scales 310.7330 317.9445 344.8455 336.1873 376.2448 399.5739    25
+
+autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="400" />

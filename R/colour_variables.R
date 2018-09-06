@@ -20,6 +20,10 @@ colour_variables <- function( x, palette = "viridis", na_colour = "#808080" ) {
   UseMethod("colour_variables")
 }
 
+#' @describeIn colour_variables
+#' @export
+color_variables <- colour_variables
+
 #' @export
 colour_variables.character <- function( x, palette = "viridis", na_colour = "#808080" ) {
   rcpp_colour_str_variable_hex( x, palette, na_colour )

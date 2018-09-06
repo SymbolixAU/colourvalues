@@ -2,6 +2,7 @@
 
 S3method(colour_variables,character)
 S3method(colour_variables,default)
+export(color_variables)
 export(colour_variables)
 importFrom(Rcpp,sourceCpp)
 useDynLib(RcppViridis, .registration = TRUE)
