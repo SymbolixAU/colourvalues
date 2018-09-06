@@ -57,15 +57,17 @@ devtools::install_github("SymbolixAU/RcppViridis")
 
 -----
 
-<!-- ### How can I make use of it in my package? -->
+### How can I make use of it in my package?
 
-<!-- **Rcpp** -->
+**Rcpp**
 
-<!-- All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package. -->
+All functions are written in `Rcpp`. I have exposed some of them in
+header files so you can `LinkTo` them in your package.
 
-<!-- **R** -->
+**R**
 
-<!-- If you're not using `Rcpp`, just `Import` this package like you would any other.  -->
+If you’re not using `Rcpp`, just `Import` this package like you would
+any other.
 
 ## Do you have any examples?
 
@@ -135,10 +137,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 313.6006 329.2112 351.4338 342.7467 354.1284 477.8900    25
-#       scales 631.5426 684.7519 732.0164 742.4434 791.0694 837.7403    25
+#  RcppViridis 154.6260 157.2320 166.2654 160.8195 162.3025 207.9602    25
+#       scales 280.6819 291.2765 307.8709 297.5451 329.1665 341.9430    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="400" />
@@ -163,10 +166,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 323.0909 348.7706 366.1742 354.0921 364.1317 520.7156    25
-#       scales 642.6057 688.9781 745.2099 723.2052 820.0173 870.9324    25
+#  RcppViridis 159.4078 160.1498 166.8688 162.8281 169.8106 220.8565    25
+#       scales 286.0344 297.1043 317.3707 301.4791 350.6136 357.5126    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="400" />
