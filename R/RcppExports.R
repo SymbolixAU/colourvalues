@@ -9,7 +9,3 @@ rcpp_colour_str_value_hex <- function(x, palette, na_colour) {
     .Call(`_RcppViridis_rcpp_colour_str_value_hex`, x, palette, na_colour)
 }
 
-rcpp_colour_dte_value_hex <- function(x, palette, na_colour) {
-    .Call(`_RcppViridis_rcpp_colour_dte_value_hex`, x, palette, na_colour)
-}
-

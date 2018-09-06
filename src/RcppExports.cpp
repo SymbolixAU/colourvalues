@@ -31,24 +31,10 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_colour_dte_value_hex
-Rcpp::StringVector rcpp_colour_dte_value_hex(Rcpp::DateVector x, std::string palette, std::string na_colour);
-RcppExport SEXP _RcppViridis_rcpp_colour_dte_value_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::DateVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
-    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_colour_dte_value_hex(x, palette, na_colour));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppViridis_rcpp_colour_num_value_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_hex, 3},
     {"_RcppViridis_rcpp_colour_str_value_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_hex, 3},
-    {"_RcppViridis_rcpp_colour_dte_value_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_dte_value_hex, 3},
     {NULL, NULL, 0}
 };
 

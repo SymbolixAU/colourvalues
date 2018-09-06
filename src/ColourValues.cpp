@@ -7,12 +7,11 @@
 #include "RcppViridisViridis.hpp"
 #include "RcppViridisCividis.hpp"
 
+//[[Rcpp::depends(BH)]]
+#include <boost/math/interpolators/cubic_b_spline.hpp>
+
 using namespace Rcpp;
 using namespace viridis;
-
-//[[Rcpp::depends(BH)]]
-
-#include <boost/math/interpolators/cubic_b_spline.hpp>
 
 
 void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
@@ -50,11 +49,6 @@ Rcpp::StringVector colour_value_hex( Rcpp::NumericVector x, std::string palette,
   //Rcpp::NumericVector vals = m_unique(x);
   Rcpp::NumericVector scaledVals = m_rescale(x);
   Rcpp::StringVector hex_strings(n);
-
-  /*
-  double max_x = max( na_omit( x ) ) ;
-  double scale_x = 255 / max_x;
-  */
 
   int i = 0;
 
@@ -128,12 +122,6 @@ Rcpp::StringVector rcpp_colour_num_value_hex( Rcpp::NumericVector x, std::string
 // [[Rcpp::export]]
 Rcpp::StringVector rcpp_colour_str_value_hex( Rcpp::StringVector x, std::string palette, std::string na_colour) {
   return colour_value_hex( x, palette, na_colour );
-}
-
-// [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_dte_value_hex( Rcpp::DateVector x, std::string palette, std::string na_colour) {
-  Rcpp::NumericVector y = as< Rcpp::NumericVector>(x);
-  return colour_value_hex( y, palette, na_colour );
 }
 
 

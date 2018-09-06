@@ -62,15 +62,15 @@ devtools::install_github("SymbolixAU/RcppViridis")
 
 ---
 
-### How can I make use of it in my package?
+<!-- ### How can I make use of it in my package? -->
 
-**Rcpp**
+<!-- **Rcpp** -->
 
-All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package.
+<!-- All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package. -->
 
-**R**
+<!-- **R** -->
 
-If you're not using `Rcpp`, just `Import` this package like you would any other. 
+<!-- If you're not using `Rcpp`, just `Import` this package like you would any other.  -->
 
 ## Do you have any examples?
 
