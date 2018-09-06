@@ -22,10 +22,34 @@ library(RcppViridis)
 
 # RcppViridis
 
+---
 
 ### What does it do?
 
 It maps viridis colours to variables, and quickly!
+
+### Why did you build it?
+
+I'm aware there are other methods for mapping colours to values. And which do it quick too. But I can never remember them, and I find the interfaces a bit cumbersome. For example,  `scales::col_numeric(palette = viridisLite::viridis(5), domain = range(1:5))(1:5)`.
+
+I wanted **one** function which will work on **one** argument. 
+
+```{r}
+colour_values(1:5)
+colour_values(letters[1:5])
+```
+
+---
+
+### Why do you spell colour with a 'u'?
+
+Because it's correct, and [R tells us to](http://developer.r-project.org/Rds.html)
+
+> For consistency, aim to use British (rather than American) spelling
+
+But don't worry, `color_values(1:5)` works as well
+
+---
 
 ### How do I install it?
 
@@ -57,7 +81,7 @@ Of course!
 
 ```{r}
 df <- data.frame(a = 10, x = 1:256)
-df$col <- colour_variables(df$x, palette = "viridis")
+df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -65,7 +89,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 ```{r}
 df <- data.frame(a = 10, x = c((1:256)**3))
-df$col <- colour_variables(df$x, palette = "viridis")
+df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -73,7 +97,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 ```{r}
 df <- data.frame(a = 10, x = rnorm(n = 1000))
-df$col <- colour_variables(df$x, palette = "inferno")
+df$col <- colour_values(df$x, palette = "inferno")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -105,7 +129,7 @@ n <- 1e6
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
-  RcppViridis = { RcppViridis::colour_variables(x = df$x) },
+  RcppViridis = { RcppViridis::colour_values(x = df$x) },
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
@@ -128,7 +152,7 @@ x <- sample(x = letters, size = n, replace = TRUE)
 df <- data.frame(x = x)
 
 m <- microbenchmark(
-  RcppViridis = { x <- RcppViridis::colour_variables(x = df$x) },
+  RcppViridis = { x <- RcppViridis::colour_values(x = df$x) },
   scales = { y <- col_factor(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = unique(df$x))(df$x) },
   times = 25
 )

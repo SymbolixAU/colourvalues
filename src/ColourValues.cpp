@@ -116,9 +116,9 @@ Rcpp::StringVector colour_variable_hex( Rcpp::NumericVector x, std::string palet
 }
 
 /*
- * colour variable
+ * colour values
  *
- * Colours variables
+ * Colours values
  */
 // [[Rcpp::export]]
 Rcpp::StringVector rcpp_colour_num_variable_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour) {
