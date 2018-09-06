@@ -12,10 +12,12 @@ Encoding: UTF-8
 LazyData: true
 LinkingTo: 
     Rcpp,
-    BH
+    BH,
+    RcppViridisHeaders
 Imports: 
     Rcpp,
-    BH
+    BH,
+    RcppViridisHeaders
 RoxygenNote: 6.0.1
 Suggests: 
     covr,

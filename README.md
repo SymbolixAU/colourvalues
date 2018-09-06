@@ -135,11 +135,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 160.5173 161.4925 171.0076 163.6721 167.7869 208.9288    25
-#       scales 277.7687 294.1758 309.9100 299.5600 328.8986 339.2970    25
+#  RcppViridis 313.6006 329.2112 351.4338 342.7467 354.1284 477.8900    25
+#       scales 631.5426 684.7519 732.0164 742.4434 791.0694 837.7403    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="400" />
@@ -164,11 +163,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 164.2044 166.9651 173.2650 170.5938 175.3815 226.3252    25
-#       scales 289.9452 300.6418 319.4861 303.9463 352.7916 363.7996    25
+#  RcppViridis 323.0909 348.7706 366.1742 354.0921 364.1317 520.7156    25
+#       scales 642.6057 688.9781 745.2099 723.2052 820.0173 870.9324    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="400" />

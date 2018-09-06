@@ -1,10 +1,12 @@
-#ifndef R_RCPP_VIRIDIS_INFERNO_H
-#define R_RCPP_VIRIDIS_INFERNO_H
+#ifndef R_RCPP_VIRIDIS_HEADERS_INFERNO_H
+#define R_RCPP_VIRIDIS_HEADERS_INFERNO_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace inferno {
+namespace rcppviridis {
+
+namespace palette {
 
 const Rcpp::NumericVector inferno_red = {
   0.00146159096, 0.00226726368, 0.00329899092, 0.00454690615,
@@ -177,6 +179,7 @@ const Rcpp::List inferno = Rcpp::List::create(
   _["b"] = inferno_blue
 );
 
-} // namespace inferno
+} // namespace palette
+} // namepsace rcppviridis
 
 #endif
