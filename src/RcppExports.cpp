@@ -31,10 +31,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_convert_hex_to_rgb
+Rcpp::IntegerVector rcpp_convert_hex_to_rgb(std::string hex);
+RcppExport SEXP _RcppViridis_rcpp_convert_hex_to_rgb(SEXP hexSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type hex(hexSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_convert_hex_to_rgb(hex));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppViridis_rcpp_colour_num_value_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_hex, 3},
     {"_RcppViridis_rcpp_colour_str_value_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_hex, 3},
+    {"_RcppViridis_rcpp_convert_hex_to_rgb", (DL_FUNC) &_RcppViridis_rcpp_convert_hex_to_rgb, 1},
     {NULL, NULL, 0}
 };
 

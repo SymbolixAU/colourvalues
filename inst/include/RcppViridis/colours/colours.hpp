@@ -21,6 +21,8 @@ namespace colours {
 
     int n = x.size();
 
+    // TODO(verify sequence %[0,255])
+
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
@@ -62,6 +64,9 @@ namespace colours {
       Rcpp::stop("unknown palette");
     }
 
+    // TODO(index palettes on palette_sequence)
+
+
     boost::math::cubic_b_spline< double > spline_red( red.begin(), red.end(), 0, 1 );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, 1 );
     boost::math::cubic_b_spline< double > spline_blue( blue.begin(), blue.end(), 0, 1 );
@@ -84,6 +89,14 @@ namespace colours {
       }
     }
     return hex_strings;
+  }
+
+  Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, Function palette, std::string na_colour ) {
+
+    // TODO(call palette convert to RGB, interpolate, convert to hex)
+
+
+    return "";
   }
 
 

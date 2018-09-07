@@ -15,4 +15,8 @@ Rcpp::StringVector rcpp_colour_str_value_hex( Rcpp::StringVector x, std::string 
 }
 
 
+// [[Rcpp::export]]
+Rcpp::IntegerVector rcpp_convert_hex_to_rgb( std::string hex ) {
+  return rcppviridis::convert::convert_hex_to_rgb( hex );
+}
 
