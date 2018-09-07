@@ -39,6 +39,8 @@ colour_values(1:5)
 colour_values(letters[1:5])
 ```
 
+I also want it available at the `src` (C/C++) level for linking to other packages. 
+
 ---
 
 ### Why do you spell colour with a 'u'?

@@ -32,6 +32,9 @@ colour_values(letters[1:5])
 # [1] "#440154" "#3B528B" "#21908C" "#5DC963" "#FDE725"
 ```
 
+I also want it available at the `src` (C/C++) level for linking to other
+packages.
+
 -----
 
 ### Why do you spell colour with a ‘u’?
@@ -137,8 +140,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 154.6260 157.2320 166.2654 160.8195 162.3025 207.9602    25
-#       scales 280.6819 291.2765 307.8709 297.5451 329.1665 341.9430    25
+#  RcppViridis 156.3121 157.6026 164.2105 161.4159 164.6127 214.2123    25
+#       scales 281.7432 290.6219 312.1168 304.1135 336.7931 353.4342    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -166,8 +169,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 159.4078 160.1498 166.8688 162.8281 169.8106 220.8565    25
-#       scales 286.0344 297.1043 317.3707 301.4791 350.6136 357.5126    25
+#  RcppViridis 159.8629 162.9811 174.3503 166.6251 175.4693 247.6141    25
+#       scales 291.5197 299.1487 317.6759 302.8680 350.7016 376.1092    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
