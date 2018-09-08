@@ -20,7 +20,7 @@ maps colours to values
 The palette can either be
 \itemize{
   \item{String - }{"viridis", "inferno", "plasma", "magma", "cividis"}
-  \item{Matrix - }{3 columns representing the red, green and blue values in the range [0,1]}
+  \item{Matrix - }{At least 5 rows, and 3 columns representing the red, green and blue values in the range [0,1]}
 }
 }
 \examples{
