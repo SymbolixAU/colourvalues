@@ -48,4 +48,3 @@ test_that("posix values mapped to colours", {
   expect_true(all(colour_values(c(NA,d,NA)) == colour_values(c(NA,1,1,2,NA))))
 })
 
-
