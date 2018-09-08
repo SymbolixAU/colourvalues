@@ -17,7 +17,9 @@
 namespace rcppviridis {
 namespace colours {
 
-  Rcpp::StringVector colour_value_hex( Rcpp::NumericVector x, std::string palette, std::string na_colour ) {
+  Rcpp::StringVector colour_value_hex(
+      Rcpp::NumericVector x, std::string palette,
+      std::string na_colour ) {
 
     int n = x.size();
 
@@ -110,7 +112,6 @@ namespace colours {
       int na_value = max( out );
       rcppviridis::utils::replace_nas(out, na_value);
     }
-
     Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
 
     return colour_value_hex( out_nv, palette, na_colour );
