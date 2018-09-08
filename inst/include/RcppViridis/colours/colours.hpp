@@ -17,6 +17,45 @@
 namespace rcppviridis {
 namespace colours {
 
+  void resolve_palette(
+      Rcpp::NumericVector& red,
+      Rcpp::NumericVector& green,
+      Rcpp::NumericVector& blue ) {
+
+  }
+
+  void resolve_palette(
+      std::string& palette,
+      Rcpp::NumericVector& red,
+      Rcpp::NumericVector& green,
+      Rcpp::NumericVector& blue ) {
+
+    if( palette == "viridis" ) {
+      red = rcppviridis::palette::viridis_red;
+      green = rcppviridis::palette::viridis_green;
+      blue = rcppviridis::palette::viridis_blue;
+    } else if ( palette == "inferno" ) {
+      red = rcppviridis::palette::inferno_red;
+      green = rcppviridis::palette::inferno_green;
+      blue = rcppviridis::palette::inferno_blue;
+    } else if ( palette == "plasma" ) {
+      red = rcppviridis::palette::plasma_red;
+      green = rcppviridis::palette::plasma_green;
+      blue = rcppviridis::palette::plasma_blue;
+    } else if ( palette == "magma" ) {
+      red = rcppviridis::palette::magma_red;
+      green = rcppviridis::palette::magma_green;
+      blue = rcppviridis::palette::magma_blue;
+    } else if ( palette == "cividis" ) {
+      red = rcppviridis::palette::cividis_red;
+      green = rcppviridis::palette::cividis_green;
+      blue = rcppviridis::palette::cividis_blue;
+    } else {
+      Rcpp::stop("unknown palette");
+    }
+
+  }
+
   Rcpp::StringVector colour_value_hex(
     Rcpp::NumericVector x,
     Rcpp::NumericVector red,
@@ -33,7 +72,6 @@ namespace colours {
     double step = 256 / colours;
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
-    // - step is 1 because it's rows of vector
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
     boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
@@ -63,8 +101,6 @@ namespace colours {
       std::string palette,
       std::string na_colour ) {
 
-    int n = x.size();
-
     // TODO(verify sequence %[0,255])
 
     // TODO(this throws an error on Travis)
@@ -72,36 +108,13 @@ namespace colours {
     //   Rcpp::stop("invalid NA Colour");
     // }
 
-    int i = 0;
-
     // TODO(allow user to select start and end points of the vectors)
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
 
-    if( palette == "viridis" ) {
-      red = rcppviridis::palette::viridis_red;
-      green = rcppviridis::palette::viridis_green;
-      blue = rcppviridis::palette::viridis_blue;
-    } else if ( palette == "inferno" ) {
-      red = rcppviridis::palette::inferno_red;
-      green = rcppviridis::palette::inferno_green;
-      blue = rcppviridis::palette::inferno_blue;
-    } else if ( palette == "plasma" ) {
-      red = rcppviridis::palette::plasma_red;
-      green = rcppviridis::palette::plasma_green;
-      blue = rcppviridis::palette::plasma_blue;
-    } else if ( palette == "magma" ) {
-      red = rcppviridis::palette::magma_red;
-      green = rcppviridis::palette::magma_green;
-      blue = rcppviridis::palette::magma_blue;
-    } else if ( palette == "cividis" ) {
-      red = rcppviridis::palette::cividis_red;
-      green = rcppviridis::palette::cividis_green;
-      blue = rcppviridis::palette::cividis_blue;
-    } else {
-      Rcpp::stop("unknown palette");
-    }
+    resolve_palette( palette, red, green, blue );
+
 
     // TODO(index palettes on palette_sequence)
     return colour_value_hex(x, red, green, blue, na_colour);
@@ -115,6 +128,18 @@ namespace colours {
   //   return "";
   // }
 
+  Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
+    bool anyNa = any( is_na( x ));
+    Rcpp::StringVector lvls = sort_unique( x );
+    Rcpp::IntegerVector out = match( x, lvls );
+
+    if ( anyNa ) {
+      int na_value = max( out );
+      rcppviridis::utils::replace_nas( out, na_value );
+    }
+    return as< Rcpp::NumericVector >( out );
+  }
+
   Rcpp::StringVector colour_value_hex(
       Rcpp::StringVector x,
       Rcpp::NumericVector red,
@@ -122,15 +147,7 @@ namespace colours {
       Rcpp::NumericVector blue,
       std::string na_colour ) {
 
-    bool anyNa = any(is_na(x));
-    Rcpp::StringVector lvls = sort_unique( x );
-    Rcpp::IntegerVector out = match(x, lvls);
-
-    if ( anyNa ) {
-      int na_value = max( out );
-      rcppviridis::utils::replace_nas(out, na_value);
-    }
-    Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
+    Rcpp::NumericVector out_nv = resolve_string_vector( x );
 
     return colour_value_hex( out_nv, red, green, blue, na_colour );
   }
@@ -140,17 +157,25 @@ namespace colours {
       std::string palette,
       std::string na_colour ) {
 
-    bool anyNa = any(is_na(x));
-    Rcpp::StringVector lvls = sort_unique( x );
-    Rcpp::IntegerVector out = match(x, lvls);
+    // TODO(verify sequence %[0,255])
 
-    if ( anyNa ) {
-      int na_value = max( out );
-      rcppviridis::utils::replace_nas(out, na_value);
-    }
-    Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
+    // TODO(this throws an error on Travis)
+    // if(!is_hex_colour(na_colour)) {
+    //   Rcpp::stop("invalid NA Colour");
+    // }
 
-    return colour_value_hex( out_nv, palette, na_colour );
+    // TODO(allow user to select start and end points of the vectors)
+    Rcpp::NumericVector red(256);
+    Rcpp::NumericVector green(256);
+    Rcpp::NumericVector blue(256);
+
+    resolve_palette( palette, red, green, blue );
+
+    return colour_value_hex( x, red, green, blue, na_colour );
+
+    // Rcpp::NumericVector out_nv = resolve_string_vector( x );
+    //
+    // return colour_value_hex( out_nv, palette, na_colour );
   }
 
 } // namespace colours
