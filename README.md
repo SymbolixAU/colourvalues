@@ -29,7 +29,7 @@ I wanted **one** function which will work on **one** argument.
 colour_values(1:5)
 # [1] "#440154" "#3B528B" "#21908C" "#5DC963" "#FDE725"
 colour_values(letters[1:5])
-# [1] "#440154" "#3B528B" "#21908C" "#5DC963" "#FDE725"
+# [1] "#26003C" "#1C5173" "#028F74" "#3EC74A" "#DFE60C"
 ```
 
 I also want it available at the `src` (C/C++) level for linking to other
@@ -156,9 +156,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median        uq      max neval
-#  RcppViridis 305.0620 325.6746 579.6459 346.7598  696.9596 1529.404    25
-#       scales 618.0078 687.9432 983.3619 746.2501 1074.3857 2632.472    25
+#         expr     min       lq     mean   median       uq       max neval
+#  RcppViridis 289.901 314.9536 371.1635 331.3848 415.6811  527.2107    25
+#       scales 624.317 699.5991 781.9409 726.7011 803.3193 1271.7726    25
 
 autoplot(m)
 ```
@@ -184,9 +184,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean    median        uq      max neval
-#  RcppViridis 409.3059 428.7086  615.074  447.2256  534.3492 2411.654    25
-#       scales 827.8212 868.1436 1197.380 1083.3522 1364.2112 2602.235    25
+#         expr      min       lq     mean   median       uq       max neval
+#  RcppViridis 317.4109 328.8033 348.2146 337.1124 353.5806  458.2732    25
+#       scales 614.4710 636.4315 730.5384 678.3475 786.4750 1130.5774    25
 
 autoplot(m)
 ```

@@ -17,11 +17,18 @@
 namespace rcppviridis {
 namespace colours {
 
+  // if palette is a string; it's using in-built palettes; nothing to do
+  // if palette is function or vectors, force rescaling
+
   void resolve_palette(
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
       Rcpp::NumericVector& blue ) {
 
+    // TODO(ensure in range [0,1])
+    rcppviridis::scale::rescale( red );
+    rcppviridis::scale::rescale( green );
+    rcppviridis::scale::rescale( blue );
   }
 
   void resolve_palette(
@@ -53,21 +60,20 @@ namespace colours {
     } else {
       Rcpp::stop("unknown palette");
     }
-
   }
 
-  Rcpp::StringVector colour_value_hex(
-    Rcpp::NumericVector x,
-    Rcpp::NumericVector red,
-    Rcpp::NumericVector green,
-    Rcpp::NumericVector blue,
-    std::string na_colour
+  Rcpp::StringVector colour_values_to_hex(
+      Rcpp::NumericVector x,
+      Rcpp::NumericVector red,
+      Rcpp::NumericVector green,
+      Rcpp::NumericVector blue,
+      std::string na_colour
   ) {
-
     int n = x.size();
     double colours = red.size();
 
-    Rcpp::NumericVector scaledVals = rcppviridis::scale::rescale(x);
+    //Rcpp::NumericVector scaledVals = rcppviridis::scale::rescale(x);
+    rcppviridis::scale::rescale(x);
     Rcpp::StringVector hex_strings(n);
     double step = 256 / colours;
 
@@ -82,7 +88,7 @@ namespace colours {
 
     for( i = 0; i < n; i ++ ) {
 
-      this_x = scaledVals[i] * 255;
+      this_x = x[i] * 255;
 
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
         hex_strings[i] = na_colour;
@@ -94,6 +100,18 @@ namespace colours {
       }
     }
     return hex_strings;
+  }
+
+  // in this function the colour vectors will already be scaled [0,1]
+  Rcpp::StringVector colour_value_hex(
+    Rcpp::NumericVector x,
+    Rcpp::NumericVector red,
+    Rcpp::NumericVector green,
+    Rcpp::NumericVector blue,
+    std::string na_colour
+  ) {
+    resolve_palette( red, green, blue );
+    return colour_values_to_hex( x, red, green, blue, na_colour );
   }
 
   Rcpp::StringVector colour_value_hex(
@@ -115,9 +133,9 @@ namespace colours {
 
     resolve_palette( palette, red, green, blue );
 
-
     // TODO(index palettes on palette_sequence)
-    return colour_value_hex(x, red, green, blue, na_colour);
+
+    return colour_values_to_hex(x, red, green, blue, na_colour);
   }
 
   // Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, Function palette, std::string na_colour ) {
@@ -147,9 +165,10 @@ namespace colours {
       Rcpp::NumericVector blue,
       std::string na_colour ) {
 
+    resolve_palette( red, green, blue );
     Rcpp::NumericVector out_nv = resolve_string_vector( x );
 
-    return colour_value_hex( out_nv, red, green, blue, na_colour );
+    return colour_values_to_hex( out_nv, red, green, blue, na_colour );
   }
 
   Rcpp::StringVector colour_value_hex(
@@ -172,10 +191,6 @@ namespace colours {
     resolve_palette( palette, red, green, blue );
 
     return colour_value_hex( x, red, green, blue, na_colour );
-
-    // Rcpp::NumericVector out_nv = resolve_string_vector( x );
-    //
-    // return colour_value_hex( out_nv, palette, na_colour );
   }
 
 } // namespace colours
