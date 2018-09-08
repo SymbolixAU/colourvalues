@@ -115,6 +115,21 @@ That's better!
 
 ---
 
+## Do I have to use the in-built palettes?
+
+No, you can use your own specified as a matrix of red, gree, blue columns in the range [0,1]
+
+```{r}
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+
+---
+
 ### What's the performance like?
 
 

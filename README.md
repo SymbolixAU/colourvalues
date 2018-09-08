@@ -119,6 +119,23 @@ That’s better\!
 
 -----
 
+## Do I have to use the in-built palettes?
+
+No, you can use your own specified as a matrix of red, gree, blue
+columns in the range \[0,1\]
+
+``` r
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
+
+-----
+
 ### What’s the performance like?
 
 **1 million numeric values**
@@ -139,14 +156,14 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 306.7244 322.5769 336.2357 327.3333 346.0465 389.6694    25
-#       scales 632.1039 650.4934 704.5773 689.9535 743.1749 819.2093    25
+#         expr      min       lq     mean   median        uq      max neval
+#  RcppViridis 305.0620 325.6746 579.6459 346.7598  696.9596 1529.404    25
+#       scales 618.0078 687.9432 983.3619 746.2501 1074.3857 2632.472    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -167,11 +184,11 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 330.7300 343.2935 378.9668 362.3715 391.2799 482.3071    25
-#       scales 606.7393 647.2586 705.9739 669.4606 778.1346 859.6777    25
+#         expr      min       lq     mean    median        uq      max neval
+#  RcppViridis 409.3059 428.7086  615.074  447.2256  534.3492 2411.654    25
+#       scales 827.8212 868.1436 1197.380 1083.3522 1364.2112 2602.235    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="400" />
