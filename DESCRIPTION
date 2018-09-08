@@ -22,4 +22,5 @@ Suggests:
     microbenchmark,
     ggplot2,
     scales,
-    testthat
+    testthat,
+    viridisLite

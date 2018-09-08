@@ -18,7 +18,49 @@ namespace rcppviridis {
 namespace colours {
 
   Rcpp::StringVector colour_value_hex(
-      Rcpp::NumericVector x, std::string palette,
+    Rcpp::NumericVector x,
+    Rcpp::NumericVector red,
+    Rcpp::NumericVector green,
+    Rcpp::NumericVector blue,
+    std::string na_colour
+  ) {
+
+    int n = x.size();
+    double colours = red.size();
+
+    Rcpp::NumericVector scaledVals = rcppviridis::scale::rescale(x);
+    Rcpp::StringVector hex_strings(n);
+    double step = 256 / colours;
+
+    // cublic_b_spoine :: vec.start, vec.end, start.time, step
+    // - step is 1 because it's rows of vector
+    boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
+    boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
+    boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
+
+    double this_x;
+    int i, r, g, b;
+    std::string hex_str;
+
+    for( i = 0; i < n; i ++ ) {
+
+      this_x = scaledVals[i] * 255;
+
+      if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
+        hex_strings[i] = na_colour;
+      } else {
+        r = round( spline_red( this_x ) * 255 ) ;
+        g = round( spline_green( this_x ) * 255 );
+        b = round( spline_blue( this_x ) * 255 );
+        hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b);
+      }
+    }
+    return hex_strings;
+  }
+
+  Rcpp::StringVector colour_value_hex(
+      Rcpp::NumericVector x,
+      std::string palette,
       std::string na_colour ) {
 
     int n = x.size();
@@ -29,11 +71,6 @@ namespace colours {
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
     // }
-
-
-    //Rcpp::NumericVector vals = m_unique(x);
-    Rcpp::NumericVector scaledVals = rcppviridis::scale::rescale(x);
-    Rcpp::StringVector hex_strings(n);
 
     int i = 0;
 
@@ -67,42 +104,41 @@ namespace colours {
     }
 
     // TODO(index palettes on palette_sequence)
+    return colour_value_hex(x, red, green, blue, na_colour);
+  }
 
+  // Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, Function palette, std::string na_colour ) {
+  //
+  //   // TODO(call palette convert to RGB, interpolate, convert to hex)
+  //
+  //
+  //   return "";
+  // }
 
-    boost::math::cubic_b_spline< double > spline_red( red.begin(), red.end(), 0, 1 );
-    boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, 1 );
-    boost::math::cubic_b_spline< double > spline_blue( blue.begin(), blue.end(), 0, 1 );
+  Rcpp::StringVector colour_value_hex(
+      Rcpp::StringVector x,
+      Rcpp::NumericVector red,
+      Rcpp::NumericVector green,
+      Rcpp::NumericVector blue,
+      std::string na_colour ) {
 
-    double this_x;
-    int r, g, b;
-    std::string hex_str;
+    bool anyNa = any(is_na(x));
+    Rcpp::StringVector lvls = sort_unique( x );
+    Rcpp::IntegerVector out = match(x, lvls);
 
-    for( i = 0; i < n; i ++ ) {
-
-      this_x = scaledVals[i] * 255;
-
-      if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
-        hex_strings[i] = na_colour;
-      } else {
-        r = round( spline_red( this_x ) * 255 ) ;
-        g = round( spline_green( this_x ) * 255 );
-        b = round( spline_blue( this_x ) * 255 );
-        hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b);
-      }
+    if ( anyNa ) {
+      int na_value = max( out );
+      rcppviridis::utils::replace_nas(out, na_value);
     }
-    return hex_strings;
+    Rcpp::NumericVector out_nv = as< Rcpp::NumericVector >(out);
+
+    return colour_value_hex( out_nv, red, green, blue, na_colour );
   }
 
-  Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, Function palette, std::string na_colour ) {
-
-    // TODO(call palette convert to RGB, interpolate, convert to hex)
-
-
-    return "";
-  }
-
-
-  Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, std::string palette, std::string na_colour ) {
+  Rcpp::StringVector colour_value_hex(
+      Rcpp::StringVector x,
+      std::string palette,
+      std::string na_colour ) {
 
     bool anyNa = any(is_na(x));
     Rcpp::StringVector lvls = sort_unique( x );

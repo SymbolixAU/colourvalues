@@ -9,19 +9,45 @@ colour_values(x, palette = "viridis", na_colour = "#808080")
 \arguments{
 \item{x}{vector of values to map to a colour}
 
-\item{palette}{palette to use}
+\item{palette}{colour palette. See details and examples}
 
 \item{na_colour}{hex string colour to use for NA values}
 }
 \description{
 maps colours to values
 }
+\details{
+The palette can either be
+\itemize{
+  \item{String - }{"viridis", "inferno", "plasma", "magma", "cividis"}
+  \item{Matrix - }{At least 5 rows, and 3 columns representing the red, green and blue values in the range [0,1]}
+}
+}
 \examples{
 
+## in-built palettes
 colour_values(x = 1:5) ## default is "viridis"
 colour_values(x = 1:5, palette = "inferno")
 colour_values(x = 1:5, palette = "plasma")
 colour_values(x = 1:5, palette = "magma")
 colour_values(x = 1:5, palette = "cividis")
+
+## matrix palette
+r <- seq(0, 1, length.out = 20)
+g <- seq(0.75, 0.1, length.out = 20)
+b <- seq(0, 0.5, length.out = 20)
+m <- cbind(r,g,b)
+
+df <- data.frame(a = 10, x = 1:20)
+df$col <- colour_values(df$x, palette = m)
+
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+
 
 }

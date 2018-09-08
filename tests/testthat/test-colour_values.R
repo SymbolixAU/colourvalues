@@ -48,4 +48,8 @@ test_that("posix values mapped to colours", {
   expect_true(all(colour_values(c(NA,d,NA)) == colour_values(c(NA,1,1,2,NA))))
 })
 
-
+test_that("matrix palette accepted", {
+  x <- rep(1, 5)
+  m <- cbind(x,x,x)
+  expect_true(all(colour_values(1:5, palette = m) == "#FFFFFF"))
+})

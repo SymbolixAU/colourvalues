@@ -10,7 +10,7 @@ color_values(x, palette = "viridis", na_colour = "#808080")
 \arguments{
 \item{x}{vector of values to map to a colour}
 
-\item{palette}{palette to use}
+\item{palette}{colour palette. See details and examples}
 
 \item{na_colour}{hex string colour to use for NA values}
 }
