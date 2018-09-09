@@ -27,7 +27,6 @@ namespace colours_hex {
     double colours = red.size();
 
     //resolve_na_colour( na_colour );
-    // TODO(user-supplied default na_alpha)
     na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
 
     rcppviridis::scale::rescale(x);
@@ -82,8 +81,6 @@ namespace colours_hex {
       std::string na_colour,
       Rcpp::NumericVector alpha) {
 
-    // TODO(verify sequence %[0,255])
-
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
@@ -93,25 +90,14 @@ namespace colours_hex {
     Rcpp::NumericVector alpha_full( x_size );
     rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
 
-    // TODO(allow user to select start and end points of the vectors)
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
 
-    // TODO(index palettes on palette_sequence)
-
     return colour_values_to_hex(x, red, green, blue, alpha_full, na_colour);
   }
-
-  // Rcpp::StringVector colour_value_hex( Rcpp::StringVector x, Function palette, std::string na_colour ) {
-  //
-  //   // TODO(call palette convert to RGB, interpolate, convert to hex)
-  //
-  //
-  //   return "";
-  // }
 
   Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
     bool anyNa = any( is_na( x ));
@@ -147,8 +133,6 @@ namespace colours_hex {
       std::string na_colour,
       Rcpp::NumericVector alpha ) {
 
-    // TODO(verify sequence %[0,255])
-
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
@@ -157,8 +141,6 @@ namespace colours_hex {
     Rcpp::NumericVector alpha_full( x_size );
     rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
 
-    // TODO(allow user to select start and end points of the vectors)
-    // TODO(allow user to set a per-value (x) alpha )
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
