@@ -87,7 +87,12 @@ test_that("alpha values applied", {
   expect_true(all(substr(colour_values(1:5, alpha = 0.25),8,9) == "40"))
   expect_true(all(substr(colour_values(1:5, alpha = 0.75),8,9) == "BF"))
 
+  expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
+
   expect_error(colour_values(1:5, alpha = 1:5),"alpha must be a single value")
+
+  expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
+  expect_true(all(substr( colour_values(letters, alpha = 0),8,9 ) == "00"))
 })
 
 

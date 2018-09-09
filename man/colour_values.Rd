@@ -40,17 +40,27 @@ r <- seq(0, 1, length.out = 20)
 g <- seq(0.75, 0.1, length.out = 20)
 b <- seq(0, 0.5, length.out = 20)
 m <- cbind(r,g,b)
-
 df <- data.frame(a = 10, x = 1:20)
 df$col <- colour_values(df$x, palette = m)
-
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 n <- 100
-m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n )
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 
+## with an alpha column on the palette
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
+m <- cbind(m, seq(0, 255, length.out = 100))
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+## single alpha value for all colours
+df <- data.frame(a = 10, x = 1:255)
+df$col <- colour_values(df$x, alpha = 50)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 }
