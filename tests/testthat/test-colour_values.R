@@ -86,6 +86,9 @@ test_that("alpha values applied", {
   ## individual values for each value
   expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255)),8,9) == c("00","80","40","C0","FF")))
 
+  ## alpha scaled according to numeric variable
+  colour_values(1:5, alpha = 256:260)
+
 })
 
 test_that("rgb matrix returned", {

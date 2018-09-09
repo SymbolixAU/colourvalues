@@ -12,12 +12,13 @@ namespace palette_utils {
 
     int alpha_size = alpha.size();
 
-    if ( !( alpha_size == 1 || alpha_size == x_size) ){
+    if ( !( alpha_size == 1 || alpha_size == x_size ) ){
         Rcpp::stop("alpha must either be a single value, or the same length as x");
       }
     if ( alpha_size > 1 ) {
-      // fill  alpha_full
       alpha_full = alpha;
+      rcppviridis::scale::rescale( alpha_full );
+      alpha = alpha * 255;
     } else {
       alpha_full.fill( alpha[0] );
     }
@@ -32,27 +33,10 @@ namespace palette_utils {
       Rcpp::NumericVector& blue,
       Rcpp::NumericVector& alpha ) {
 
-    //double scale = 1 / 255;
-    // red = red * scale;
-    // blue = blue * scale;
-    // green = green * scale;
-    //alpha = alpha * scale;
-    // TODO(ensure in range [0,1])
-
     // RGB palettes are scaled so they can be interpolated
     rcppviridis::scale::rescale( red );
     rcppviridis::scale::rescale( green );
     rcppviridis::scale::rescale( blue );
-
-    // alpha value remains in [0,255]
-
-    //rcppviridis::scale::rescale( alpha );
-    // alpha doesn't get scaled, just converted to [0,1];
-    //alpha = alpha * scale;
-
-    //red = red * scale;
-    //green = green * scale;
-    //blue = blue * scale;
   }
 
   /*
