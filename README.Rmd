@@ -121,12 +121,35 @@ No, you can use your own specified as a matrix of red, gree, blue columns in the
 
 ```{r}
 n <- 100
-m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+
+## Do you support 'alpha' values
+
+Yep. Either supply a single alpha value for all the colours
+
+```{r}
+## single alpha value for all colours
+df <- data.frame(a = 10, x = 1:255)
+df$col <- colour_values(df$x, alpha = 50)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+Or include the alpha value as a 4th column in the palette matrix
+
+```{r}
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
+## alpha values
+m <- cbind(m, seq(0, 255, length.out = 100))
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
 
 ---
 

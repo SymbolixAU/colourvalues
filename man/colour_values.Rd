@@ -4,7 +4,7 @@
 \alias{colour_values}
 \title{Colour Values}
 \usage{
-colour_values(x, palette = "viridis", na_colour = "#808080")
+colour_values(x, palette = "viridis", na_colour = "#808080FF", alpha = 1)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -12,6 +12,9 @@ colour_values(x, palette = "viridis", na_colour = "#808080")
 \item{palette}{colour palette. See details and examples}
 
 \item{na_colour}{hex string colour to use for NA values}
+
+\item{alpha}{optional. Single value in [0,1] applied to all colours.
+Defaults to 1. If a matrix palette is supplied this argument is ignored.}
 }
 \description{
 maps colours to values
@@ -20,7 +23,7 @@ maps colours to values
 The palette can either be
 \itemize{
   \item{String - }{"viridis", "inferno", "plasma", "magma", "cividis"}
-  \item{Matrix - }{At least 5 rows, and 3 columns representing the red, green and blue values in the range [0,1]}
+  \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
 }
 }
 \examples{
@@ -44,7 +47,7 @@ df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 n <- 100
-m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)

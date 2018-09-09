@@ -27,9 +27,9 @@ I wanted **one** function which will work on **one** argument.
 
 ``` r
 colour_values(1:5)
-# [1] "#440154" "#3B528B" "#21908C" "#5DC963" "#FDE725"
+# [1] "#44015401" "#3B528B01" "#21908C01" "#5DC96301" "#FDE72501"
 colour_values(letters[1:5])
-# [1] "#26003C" "#1C5173" "#028F74" "#3EC74A" "#DFE60C"
+# [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 ```
 
 I also want it available at the `src` (C/C++) level for linking to other
@@ -126,13 +126,40 @@ columns in the range \[0,1\]
 
 ``` r
 n <- 100
-m <- grDevices::colorRamp(c("red", "green"))( (0:n)/n ) / 255
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
+
+## Do you support ‘alpha’ values
+
+Yep. Either supply a single alpha value for all the colours
+
+``` r
+## single alpha value for all colours
+df <- data.frame(a = 10, x = 1:255)
+df$col <- colour_values(df$x, alpha = 50)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
+
+Or include the alpha value as a 4th column in the palette matrix
+
+``` r
+n <- 100
+m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
+## alpha values
+m <- cbind(m, seq(0, 255, length.out = 100))
+df <- data.frame(a = 10, x = 1:n)
+df$col <- colour_values(df$x, palette = m)
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
 
 -----
 
@@ -156,14 +183,14 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr     min       lq     mean   median       uq       max neval
-#  RcppViridis 289.901 314.9536 371.1635 331.3848 415.6811  527.2107    25
-#       scales 624.317 699.5991 781.9409 726.7011 803.3193 1271.7726    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 314.1773 325.5425 337.5898 330.9963 337.9147 494.0678    25
+#       scales 614.3333 639.2441 694.2414 670.1903 732.2109 881.9264    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -184,11 +211,11 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq       max neval
-#  RcppViridis 317.4109 328.8033 348.2146 337.1124 353.5806  458.2732    25
-#       scales 614.4710 636.4315 730.5384 678.3475 786.4750 1130.5774    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 331.7393 348.2373 372.4549 355.1732 368.4722 510.2288    25
+#       scales 621.1769 637.6999 688.5643 665.3922 703.2521 838.5596    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
