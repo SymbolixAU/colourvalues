@@ -78,10 +78,14 @@ test_that("alpha values applied", {
 
   expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
 
-  expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must be a single value")
+  expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
   expect_true(all(substr( colour_values(letters, alpha = 0),8,9) == "00"))
+
+  ## individual values for each value
+  expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255)),8,9) == c("00","80","40","C0","FF")))
+
 })
 
 test_that("rgb matrix returned", {

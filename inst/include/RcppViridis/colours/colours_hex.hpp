@@ -85,13 +85,14 @@ namespace colours_hex {
     //   Rcpp::stop("invalid NA Colour");
     // }
 
-    rcppviridis::palette_utils::validate_alpha( alpha );
+    int x_size = x.size();
+    Rcpp::NumericVector alpha_full( x_size );
+    rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
 
     // TODO(allow user to select start and end points of the vectors)
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha_full(x.size(), alpha[0]);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
 
@@ -119,20 +120,6 @@ namespace colours_hex {
     }
     return as< Rcpp::NumericVector >( out );
   }
-
-  // Rcpp::StringVector colour_value_hex(
-  //     Rcpp::StringVector x,
-  //     Rcpp::NumericVector red,
-  //     Rcpp::NumericVector green,
-  //     Rcpp::NumericVector blue,
-  //     Rcpp::NumericVector alpha,
-  //     std::string na_colour ) {
-  //
-  //   rcppviridis::palette_utils::resolve_palette( red, green, blue, alpha );
-  //   Rcpp::NumericVector out_nv = resolve_string_vector( x );
-  //
-  //   return colour_values_to_hex( out_nv, red, green, blue, alpha, na_colour );
-  // }
 
   Rcpp::StringVector colour_value_hex (
       Rcpp::StringVector x,
@@ -162,13 +149,15 @@ namespace colours_hex {
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
     // }
-    rcppviridis::palette_utils::validate_alpha( alpha );
+    int x_size = x.size();
+    Rcpp::NumericVector alpha_full( x_size );
+    rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
 
     // TODO(allow user to select start and end points of the vectors)
+    // TODO(allow user to set a per-value (x) alpha )
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha_full(x.size(), alpha[0]);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
     Rcpp::NumericVector out_nv = resolve_string_vector( x );

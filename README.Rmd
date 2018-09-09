@@ -154,6 +154,15 @@ df$col <- colour_values(df$x, alpha = 50)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+Or use a vector of values the same lenght as `x`
+
+```{r}
+df <- data.frame(a = 10, x = 1:260)
+df$col <- colour_values(df$x, alpha = rep(seq(0,255, by = 5),5))
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+```
+
 Or include the alpha value as a 4th column in the palette matrix
 
 ```{r}

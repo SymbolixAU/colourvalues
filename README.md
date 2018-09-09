@@ -164,6 +164,16 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
 
+Or use a vector of values the same lenght as `x`
+
+``` r
+df <- data.frame(a = 10, x = 1:260)
+df$col <- colour_values(df$x, alpha = rep(seq(0,255, by = 5),5))
+barplot(height = df$a, col = df$col, border = NA, space = 0)
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
+
 Or include the alpha value as a 4th column in the palette matrix
 
 ``` r
@@ -176,7 +186,7 @@ df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
 
 -----
 
@@ -201,13 +211,13 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 307.0600 326.5560 346.4355 333.8038 367.8085 437.9861    25
-#       scales 599.7883 638.9846 687.2668 671.1691 718.0140 809.6930    25
+#  RcppViridis 306.9752 339.8894 364.0389 351.3423 368.0906 501.4680    25
+#       scales 615.1994 645.2490 697.7371 674.0110 740.0254 940.5946    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -229,10 +239,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 328.6547 343.5471 365.7754 352.5738 363.4435 479.9522    25
-#       scales 589.4901 635.6974 688.5299 666.3140 734.8600 859.4748    25
+#  RcppViridis 329.9285 358.5274 394.1665 374.7618 413.5953 502.7821    25
+#       scales 597.0547 649.1323 697.4380 668.2701 758.8406 872.4136    25
 
 autoplot(m)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />

@@ -8,10 +8,19 @@
 namespace rcppviridis {
 namespace palette_utils {
 
-  void validate_alpha( Rcpp::NumericVector alpha ) {
-    if ( alpha.size() != 1 ) {
-        Rcpp::stop("alpha must be a single value");
+  void validate_alpha( Rcpp::NumericVector& alpha, Rcpp::NumericVector& alpha_full, int x_size ) {
+
+    int alpha_size = alpha.size();
+
+    if ( !( alpha_size == 1 || alpha_size == x_size) ){
+        Rcpp::stop("alpha must either be a single value, or the same length as x");
       }
+    if ( alpha_size > 1 ) {
+      // fill  alpha_full
+      alpha_full = alpha;
+    } else {
+      alpha_full.fill( alpha[0] );
+    }
   }
 
   /*
