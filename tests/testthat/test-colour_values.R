@@ -49,16 +49,6 @@ test_that("posix values mapped to colours", {
 })
 
 test_that("matrix palette accepted", {
-  x <- rep(255, 5)
-  m <- cbind(x,x,x)
-  colour_values(1:5, palette = m)
-
-  x <- rep(1, 5)
-  m <- cbind(x,x,x)
-  colour_values(1:5, palette = m)
-
-  expect_true(all(colour_values(1:5, palette = m) == "#000000"))
-
   ##
   m <- grDevices::colorRamp(c("red","green","blue"))(0:4/4)
   expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#57B1F7FF", "#F6D435FF", "#041AE1FF", "#F5E921FF")))
@@ -83,13 +73,13 @@ test_that("matrix palette accepted", {
 test_that("alpha values applied", {
   expect_true(all(substr(colour_values(1:5),8,9) == "FF"))
   expect_true(all(substr(colour_values(1:5, alpha = 0.0),8,9) == "00"))
-  expect_true(all(substr(colour_values(1:5, alpha = 0.5),8,9) == "80"))
-  expect_true(all(substr(colour_values(1:5, alpha = 0.25),8,9) == "40"))
-  expect_true(all(substr(colour_values(1:5, alpha = 0.75),8,9) == "BF"))
+  expect_true(all(substr(colour_values(1:5, alpha = 128),8,9) == "80"))
+  expect_true(all(substr(colour_values(1:5, alpha = 64),8,9) == "40"))
+  expect_true(all(substr(colour_values(1:5, alpha = 192),8,9) == "C0"))
 
   expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
 
-  expect_error(colour_values(1:5, alpha = 1:5),"alpha must be a single value")
+  expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must be a single value")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
   expect_true(all(substr( colour_values(letters, alpha = 0),8,9 ) == "00"))
