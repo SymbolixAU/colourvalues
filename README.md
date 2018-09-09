@@ -67,6 +67,23 @@ devtools::install_github("SymbolixAU/RcppViridis")
 All functions are written in `Rcpp`. I have exposed some of them in
 header files so you can `LinkTo` them in your package.
 
+For example, the `LinkingTo` section in `DESCRIPTION` will look
+something like
+
+``` yaml
+LinkingTo: 
+    Rcpp,
+    RcppViridis
+```
+
+And in a **c++** source file you can `#include` a header and use the
+avaialble functions
+
+``` cpp
+#include "RcppViridis/colours/colours_hex.hpp"
+// [[Rcpp::depends(RcppViridis)]]
+```
+
 **R**
 
 If you’re not using `Rcpp`, just `Import` this package like you would
@@ -121,8 +138,8 @@ That’s better\!
 
 ## Do I have to use the in-built palettes?
 
-No, you can use your own specified as a matrix of red, gree, blue
-columns in the range \[0,1\]
+No, you can use your own specified as a matrix of red, green and blue
+columns in the range \[0,255\]
 
 ``` r
 n <- 100
@@ -184,8 +201,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 317.1185 327.4647 360.0752 343.0880 368.9058 493.8726    25
-#       scales 600.1947 642.4004 685.1840 658.6908 746.9387 812.3715    25
+#  RcppViridis 307.0600 326.5560 346.4355 333.8038 367.8085 437.9861    25
+#       scales 599.7883 638.9846 687.2668 671.1691 718.0140 809.6930    25
 
 autoplot(m)
 ```
@@ -211,9 +228,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median        uq       max neval
-#  RcppViridis 325.4078 348.7157 483.6223 387.7399  602.0011  858.7916    25
-#       scales 628.0510 671.6875 904.2333 795.3240 1009.6003 1577.0112    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 328.6547 343.5471 365.7754 352.5738 363.4435 479.9522    25
+#       scales 589.4901 635.6974 688.5299 666.3140 734.8600 859.4748    25
 
 autoplot(m)
 ```

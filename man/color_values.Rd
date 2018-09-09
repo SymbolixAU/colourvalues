@@ -19,7 +19,8 @@ color_values(x, palette = "viridis", na_colour = "#808080FF", alpha = 255,
 Defaults to 255. If a matrix palette is supplied this argument is ignored.}
 
 \item{return}{either 'hex' or 'rgb'. If 'hex' hex colours are returned.
-If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in the order red, green, blue and alpha.}
+If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in
+the order red, green, blue and alpha, and each row corresponds to each elemetn of \code{x}}
 }
 \description{
 color values
