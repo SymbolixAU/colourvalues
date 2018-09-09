@@ -87,10 +87,10 @@ df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-#### 256 numbers on a non-linear scale
+#### 5000 numbers on a non-linear scale
 
 ```{r}
-df <- data.frame(a = 10, x = c((1:256)**3))
+df <- data.frame(a = 10, x = c((1:5000)**3))
 df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```

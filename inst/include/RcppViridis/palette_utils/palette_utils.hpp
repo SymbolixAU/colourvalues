@@ -23,7 +23,7 @@ namespace palette_utils {
       Rcpp::NumericVector& blue,
       Rcpp::NumericVector& alpha ) {
 
-    double scale = 1 / 255;
+    //double scale = 1 / 255;
     // red = red * scale;
     // blue = blue * scale;
     // green = green * scale;

@@ -71,7 +71,7 @@ namespace colours {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha(256, 255.0);
+    Rcpp::NumericVector alpha(x.size(), 255.0);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
@@ -97,7 +97,7 @@ namespace colours {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha_full(256, alpha[0]);
+    Rcpp::NumericVector alpha_full(x.size(), alpha[0]);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
 
@@ -148,7 +148,7 @@ namespace colours {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha(256, 255.0);
+    Rcpp::NumericVector alpha(x.size(), 255.0);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::NumericVector out_nv = resolve_string_vector( x );
@@ -174,7 +174,7 @@ namespace colours {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha_full(256, alpha[0]);
+    Rcpp::NumericVector alpha_full(x.size(), alpha[0]);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
     Rcpp::NumericVector out_nv = resolve_string_vector( x );

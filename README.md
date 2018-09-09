@@ -27,7 +27,7 @@ I wanted **one** function which will work on **one** argument.
 
 ``` r
 colour_values(1:5)
-# [1] "#44015401" "#3B528B01" "#21908C01" "#5DC96301" "#FDE72501"
+# [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 colour_values(letters[1:5])
 # [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 ```
@@ -86,10 +86,10 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" height="200" />
 
-#### 256 numbers on a non-linear scale
+#### 5000 numbers on a non-linear scale
 
 ``` r
-df <- data.frame(a = 10, x = c((1:256)**3))
+df <- data.frame(a = 10, x = c((1:5000)**3))
 df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
@@ -184,8 +184,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 314.1773 325.5425 337.5898 330.9963 337.9147 494.0678    25
-#       scales 614.3333 639.2441 694.2414 670.1903 732.2109 881.9264    25
+#  RcppViridis 329.2941 352.5408 544.9939 435.2040  620.343 1552.523    25
+#       scales 611.0542 660.5272 911.4572 753.6892 1130.279 1596.273    25
 
 autoplot(m)
 ```
@@ -211,9 +211,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 331.7393 348.2373 372.4549 355.1732 368.4722 510.2288    25
-#       scales 621.1769 637.6999 688.5643 665.3922 703.2521 838.5596    25
+#         expr      min       lq     mean   median       uq       max neval
+#  RcppViridis 319.5463 359.8183 474.6694 450.1222 557.6990  777.3813    25
+#       scales 611.1893 633.9163 815.8354 689.8862 973.5289 1429.9318    25
 
 autoplot(m)
 ```

@@ -57,9 +57,8 @@ test_that("matrix palette accepted", {
   ## because of boost's interpolation
   ## TODO(is this correct?)
 
-  m <- cbind(x,x)
   expect_error(
-    colour_values(1:5, palette = m)
+    colour_values(1:5, palette = m[,1:2])
     #, "Matrix palette needs either 3 (R, G, B) or 4 (R, G, B, A) columns"
     )
 
