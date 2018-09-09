@@ -15,9 +15,9 @@ namespace scale {
 
 
   // Always rescales to (0, 1)
-  Rcpp::NumericVector rescale( Rcpp::NumericVector x ) {
+  void rescale( Rcpp::NumericVector& x ) {
     int n = x.size();
-    Rcpp::NumericVector rescaled(n);
+    //::NumericVector rescaled(n);
     Rcpp::NumericVector rng = range(x);
     Rcpp::NumericVector diff_from = Rcpp::diff(rng); // should only be one value!
 
@@ -27,9 +27,9 @@ namespace scale {
     double this_range = rng[0];
 
     for (i = 0; i < n; i++) {
-      rescaled[i] = (x[i] - this_range) * this_diff;
+      x[i] = (x[i] - this_range) * this_diff;
     }
-    return rescaled;
+    //return rescaled;
   }
 } // namespace scale
 } // namespace rcppviridis
