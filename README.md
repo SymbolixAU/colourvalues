@@ -210,9 +210,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 406.8706 422.6514 454.0056 433.7392 446.1882  604.443    25
-#       scales 767.7528 824.2866 917.8761 889.4885 988.8309 1221.415    25
+#         expr      min       lq     mean   median       uq       max neval
+#  RcppViridis 314.1289 337.5019 379.4176 344.6244 364.6765  635.9802    25
+#       scales 581.2688 628.6510 712.7833 690.3029 766.2993 1378.8388    25
 
 autoplot(m)
 ```
@@ -238,12 +238,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq      mean   median        uq       max
-#  RcppViridis 429.7970 467.2075  514.0311 476.4281  549.1728  801.7443
-#       scales 719.0951 814.1562 1074.7713 949.0937 1171.0605 1908.8176
-#  neval
-#     25
-#     25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 363.4626 367.9781 399.5658 377.0306 394.8051 615.3840    25
+#       scales 602.6488 625.2069 706.2571 647.2395 742.0782 969.1563    25
 
 autoplot(m)
 ```
