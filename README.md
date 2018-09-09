@@ -167,8 +167,8 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 Or use a vector of values the same lenght as `x`
 
 ``` r
-df <- data.frame(a = 10, x = 1:256)
-df$col <- colour_values(df$x, alpha = c((1:256)**0.5))
+df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
+df$col <- colour_values(df$x, alpha = df$y)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -210,9 +210,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq       max neval
-#  RcppViridis 314.1289 337.5019 379.4176 344.6244 364.6765  635.9802    25
-#       scales 581.2688 628.6510 712.7833 690.3029 766.2993 1378.8388    25
+#         expr      min       lq     mean   median        uq       max neval
+#  RcppViridis 427.9845 446.6185 469.9780 459.1266  468.8915  628.6237    25
+#       scales 801.8643 846.7193 938.5121 919.1626 1007.7639 1193.1294    25
 
 autoplot(m)
 ```
@@ -238,9 +238,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 363.4626 367.9781 399.5658 377.0306 394.8051 615.3840    25
-#       scales 602.6488 625.2069 706.2571 647.2395 742.0782 969.1563    25
+#         expr      min      lq     mean   median        uq       max neval
+#  RcppViridis 443.8625 462.939 510.6144 485.6111  533.4149  714.7436    25
+#       scales 777.6324 850.007 934.3971 886.6116 1021.3705 1120.0902    25
 
 autoplot(m)
 ```

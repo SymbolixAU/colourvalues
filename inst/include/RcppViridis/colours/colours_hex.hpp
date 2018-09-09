@@ -26,6 +26,10 @@ namespace colours_hex {
     int n = x.size();
     double colours = red.size();
 
+    //resolve_na_colour( na_colour );
+    // TODO(user-supplied default na_alpha)
+    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+
     rcppviridis::scale::rescale(x);
     Rcpp::StringVector hex_strings(n);
     double step = 256 / colours;
