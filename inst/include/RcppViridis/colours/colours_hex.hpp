@@ -1,5 +1,5 @@
-#ifndef RCPP_VIRIDIS_HEADERS_COLOURS_H
-#define RCPP_VIRIDIS_HEADERS_COLOURS_H
+#ifndef RCPP_VIRIDIS_HEADERS_COLOURS_HEX_H
+#define RCPP_VIRIDIS_HEADERS_COLOURS_HEX_H
 
 #include <Rcpp.h>
 #include "RcppViridis/scale/scale.hpp"
@@ -11,13 +11,10 @@
 #include <boost/math/interpolators/cubic_b_spline.hpp>
 
 namespace rcppviridis {
-namespace colours {
+namespace colours_hex {
 
   // if palette is a string; it's using in-built palettes; nothing to do
   // if palette is function or vectors, force rescaling
-
-  // ALPHA::
-  // if matrix; ignore alpha
 
   Rcpp::StringVector colour_values_to_hex(
       Rcpp::NumericVector x,
@@ -29,7 +26,6 @@ namespace colours {
     int n = x.size();
     double colours = red.size();
 
-    //Rcpp::NumericVector scaledVals = rcppviridis::scale::rescale(x);
     rcppviridis::scale::rescale(x);
     Rcpp::StringVector hex_strings(n);
     double step = 256 / colours;
@@ -38,7 +34,6 @@ namespace colours {
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
     boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    //boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
 
     double this_x;
     int i, r, g, b, a;
@@ -54,7 +49,6 @@ namespace colours {
         r = round( spline_red( this_x ) * 255 ) ;
         g = round( spline_green( this_x ) * 255 );
         b = round( spline_blue( this_x ) * 255 );
-        //a = round( spline_alpha( this_x ) * 255 );
         a = alpha[i];
         hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b, a);
       }

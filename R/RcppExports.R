@@ -17,3 +17,19 @@ rcpp_colour_str_value_rgb_palette_hex <- function(x, palette, na_colour) {
     .Call(`_RcppViridis_rcpp_colour_str_value_rgb_palette_hex`, x, palette, na_colour)
 }
 
+rcpp_colour_num_value_string_palette_rgb <- function(x, palette, na_colour, alpha) {
+    .Call(`_RcppViridis_rcpp_colour_num_value_string_palette_rgb`, x, palette, na_colour, alpha)
+}
+
+rcpp_colour_num_value_rgb_palette_rgb <- function(x, palette, na_colour) {
+    .Call(`_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb`, x, palette, na_colour)
+}
+
+rcpp_colour_str_value_string_palette_rgb <- function(x, palette, na_colour, alpha) {
+    .Call(`_RcppViridis_rcpp_colour_str_value_string_palette_rgb`, x, palette, na_colour, alpha)
+}
+
+rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour) {
+    .Call(`_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour)
+}
+

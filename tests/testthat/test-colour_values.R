@@ -81,8 +81,46 @@ test_that("alpha values applied", {
   expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must be a single value")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
-  expect_true(all(substr( colour_values(letters, alpha = 0),8,9 ) == "00"))
+  expect_true(all(substr( colour_values(letters, alpha = 0),8,9) == "00"))
 })
 
+test_that("rgb matrix returned", {
 
+  m <- colour_values(1:5, return = "rgb")
+  expect_true(all(m[,1] == c(68,59,33,93,253)))
+  expect_true(all(m[,2] == c(1,82,144,201,231)))
+  expect_true(all(m[,3] == c(84,139,140,99,37)))
+  expect_true(all(m[,4] == 255))
+
+  m <- colour_values(letters[1:5], return = "rgb")
+  expect_true(all(m[,1] == c(68,59,33,93,253)))
+  expect_true(all(m[,2] == c(1,82,144,201,231)))
+  expect_true(all(m[,3] == c(84,139,140,99,37)))
+  expect_true(all(m[,4] == 255))
+
+  m <- colour_values(1:5, palette = "inferno", return = "rgb")
+  expect_true(all(m[,1] == c(0,87,187,249,252)))
+  expect_true(all(m[,2] == c(0,16,55,141,255)))
+  expect_true(all(m[,3] == c(4,109,85,10,164)))
+  expect_true(all(m[,4] == 255))
+
+  m <- colour_values(letters[1:5], palette = "inferno", return = "rgb")
+  expect_true(all(m[,1] == c(0,87,187,249,252)))
+  expect_true(all(m[,2] == c(0,16,55,141,255)))
+  expect_true(all(m[,3] == c(4,109,85,10,164)))
+  expect_true(all(m[,4] == 255))
+
+  m <- colour_values(1:5, palette = "inferno", alpha = 100, return = "rgb")
+  expect_true(all(m[,1] == c(0,87,187,249,252)))
+  expect_true(all(m[,2] == c(0,16,55,141,255)))
+  expect_true(all(m[,3] == c(4,109,85,10,164)))
+  expect_true(all(m[,4] == 100))
+
+  m <- colour_values(letters[1:5], palette = "inferno", alpha = 100, return = "rgb")
+  expect_true(all(m[,1] == c(0,87,187,249,252)))
+  expect_true(all(m[,2] == c(0,16,55,141,255)))
+  expect_true(all(m[,3] == c(4,109,85,10,164)))
+  expect_true(all(m[,4] == 100))
+
+})
 

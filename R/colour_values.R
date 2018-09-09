@@ -7,6 +7,8 @@
 #' @param na_colour hex string colour to use for NA values
 #' @param alpha optional. Single value in [0,255] applied to all colours.
 #' Defaults to 255. If a matrix palette is supplied this argument is ignored.
+#' @param return either 'hex' or 'rgb'. If 'hex' hex colours are returned.
+#' If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in the order red, green, blue and alpha.
 #'
 #' @details
 #'
@@ -46,48 +48,14 @@
 #' barplot(height = df$a, col = df$col, border = NA, space = 0)
 #'
 #' @export
-colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
-  UseMethod("colour_values")
-}
-
-colour_num_values_with_palette <- function( palette, x, na_colour, alpha = 255 ) {
-  UseMethod("colour_num_values_with_palette")
-}
-
-#' @export
-colour_num_values_with_palette.character <- function( palette, x, na_colour, alpha = 255 ) {
-  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
-  rcpp_colour_num_value_string_palette_hex( x, palette, na_colour, alpha )
-}
-
-#' @export
-colour_num_values_with_palette.matrix <- function( palette, x, na_colour, alpha = 255 ) {
-  rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour )
-}
-
-#' @export
-colour_num_values_with_palette.function <- function( palette, x, na_colour, alpha = 255 ) {
-  print ("functional palette")
-}
-
-colour_str_values_with_palette <- function( palette, x, na_colour, alpha = 255 ) {
-  UseMethod("colour_str_values_with_palette")
-}
-
-#' @export
-colour_str_values_with_palette.character <- function( palette, x, na_colour, alpha = 1 ) {
-  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
-  rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha )
-}
-
-#' @export
-colour_str_values_with_palette.matrix <- function( palette, x, na_colour, alpha = 255 ) {
-  rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour )
-}
-
-#' @export
-colour_str_values_with_palette.function <- function( palette, x, na_colour, alpha = 255 ) {
-  print ("functional palette")
+colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255,
+                           return = c("hex","rgb") ) {
+  return <- match.arg(return)
+  if (return == "hex" ) {
+    colour_values_hex( x, palette, na_colour, alpha )
+  } else {
+    colour_values_rgb( x, palette, na_colour, alpha )
+  }
 }
 
 #' color values
@@ -98,13 +66,116 @@ colour_str_values_with_palette.function <- function( palette, x, na_colour, alph
 #' @export
 color_values <- colour_values
 
-#' @export
-colour_values.character <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
-  colour_str_values_with_palette( palette, x, na_colour, alpha )
+### HEX ------------------------------------------------------------------------
+
+colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha = 255 ) {
+  UseMethod("colour_num_values_with_palette_hex")
 }
 
 #' @export
-colour_values.default <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
-  colour_num_values_with_palette( palette, x, na_colour, alpha )
+colour_num_values_with_palette_hex.character <- function( palette, x, na_colour, alpha = 255 ) {
+  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
+  rcpp_colour_num_value_string_palette_hex( x, palette, na_colour, alpha )
 }
 
+#' @export
+colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha = 255 ) {
+  rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour )
+}
+
+#' @export
+colour_num_values_with_palette_hex.function <- function( palette, x, na_colour, alpha = 255 ) {
+  print ("functional palette")
+}
+
+colour_str_values_with_palette_hex <- function( palette, x, na_colour, alpha = 255 ) {
+  UseMethod("colour_str_values_with_palette_hex")
+}
+
+#' @export
+colour_str_values_with_palette_hex.character <- function( palette, x, na_colour, alpha = 255 ) {
+  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
+  rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha )
+}
+
+#' @export
+colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha = 255 ) {
+  rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour )
+}
+
+#' @export
+colour_str_values_with_palette_hex.function <- function( palette, x, na_colour, alpha = 255 ) {
+  print ("functional palette")
+}
+
+colour_values_hex <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  UseMethod("colour_values_hex")
+}
+
+#' @export
+colour_values_hex.character <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  colour_str_values_with_palette_hex( palette, x, na_colour, alpha )
+}
+
+#' @export
+colour_values_hex.default <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  colour_num_values_with_palette_hex( palette, x, na_colour, alpha )
+}
+
+### end HEX ---------------------------------------------------------------------
+
+### RGB ------------------------------------------------------------------------
+
+colour_num_values_with_palette_rgb <- function( palette, x, na_colour, alpha = 255 ) {
+  UseMethod("colour_num_values_with_palette_rgb")
+}
+
+#' @export
+colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha = 255 ) {
+  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
+  rcpp_colour_num_value_string_palette_rgb( x, palette, na_colour, alpha )
+}
+
+#' @export
+colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha = 255 ) {
+  rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour )
+}
+
+#' @export
+colour_num_values_with_palette_rgb.function <- function( palette, x, na_colour, alpha = 255 ) {
+  print ("functional palette")
+}
+
+colour_str_values_with_palette_rgb <- function( palette, x, na_colour, alpha = 255 ) {
+  UseMethod("colour_str_values_with_palette_rgb")
+}
+
+#' @export
+colour_str_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha = 255 ) {
+  palette <- match.arg(palette, choices  = c("viridis","inferno","plasma","magma","cividis"))
+  rcpp_colour_str_value_string_palette_rgb(x, palette, na_colour, alpha )
+}
+
+#' @export
+colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha = 255 ) {
+  rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour )
+}
+
+#' @export
+colour_str_values_with_palette_rgb.function <- function( palette, x, na_colour, alpha = 255 ) {
+  print ("functional palette")
+}
+
+colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  UseMethod("colour_values_rgb")
+}
+
+#' @export
+colour_values_rgb.character <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  colour_str_values_with_palette_rgb( palette, x, na_colour, alpha )
+}
+
+#' @export
+colour_values_rgb.default <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255 ) {
+  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha )
+}

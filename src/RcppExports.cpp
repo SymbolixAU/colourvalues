@@ -59,12 +59,70 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_colour_num_value_string_palette_rgb
+Rcpp::NumericMatrix rcpp_colour_num_value_string_palette_rgb(Rcpp::NumericVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha);
+RcppExport SEXP _RcppViridis_rcpp_colour_num_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_num_value_string_palette_rgb(x, palette, na_colour, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_colour_num_value_rgb_palette_rgb
+Rcpp::NumericMatrix rcpp_colour_num_value_rgb_palette_rgb(Rcpp::NumericVector x, Rcpp::NumericMatrix palette, std::string na_colour);
+RcppExport SEXP _RcppViridis_rcpp_colour_num_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_num_value_rgb_palette_rgb(x, palette, na_colour));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_colour_str_value_string_palette_rgb
+Rcpp::NumericMatrix rcpp_colour_str_value_string_palette_rgb(Rcpp::StringVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha);
+RcppExport SEXP _RcppViridis_rcpp_colour_str_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_value_string_palette_rgb(x, palette, na_colour, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_colour_str_value_rgb_palette_rgb
+Rcpp::NumericMatrix rcpp_colour_str_value_rgb_palette_rgb(Rcpp::StringVector x, Rcpp::NumericMatrix palette, std::string na_colour);
+RcppExport SEXP _RcppViridis_rcpp_colour_str_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_value_rgb_palette_rgb(x, palette, na_colour));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppViridis_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_string_palette_hex, 4},
     {"_RcppViridis_rcpp_colour_num_value_rgb_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_rgb_palette_hex, 3},
     {"_RcppViridis_rcpp_colour_str_value_string_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_string_palette_hex, 4},
     {"_RcppViridis_rcpp_colour_str_value_rgb_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_rgb_palette_hex, 3},
+    {"_RcppViridis_rcpp_colour_num_value_string_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_string_palette_rgb, 4},
+    {"_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb, 3},
+    {"_RcppViridis_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_string_palette_rgb, 4},
+    {"_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb, 3},
     {NULL, NULL, 0}
 };
 
