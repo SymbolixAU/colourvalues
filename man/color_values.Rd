@@ -13,10 +13,12 @@ color_values(x, palette = "viridis", na_colour = "#808080FF", alpha = 255,
 
 \item{palette}{colour palette. See details and examples}
 
-\item{na_colour}{hex string colour to use for NA values}
+\item{na_colour}{hex string colour to use for NA values in the form \code{#RRGGBBAA}.}
 
-\item{alpha}{optional. Single value in [0,255] applied to all colours.
-Defaults to 255. If a matrix palette is supplied this argument is ignored.}
+\item{alpha}{optional. Single value in [0,255] applied to all colours, or
+a vector of numeric values the same length as \code{x}. The numeric vector
+will be scaled into the range [0,255].
+If a matrix palette is supplied this argument is ignored.}
 
 \item{return}{either 'hex' or 'rgb'. If 'hex' hex colours are returned.
 If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in

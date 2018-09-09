@@ -4,7 +4,7 @@
 #'
 #' @param x vector of values to map to a colour
 #' @param palette colour palette. See details and examples
-#' @param na_colour hex string colour to use for NA values
+#' @param na_colour hex string colour to use for NA values in the form \code{#RRGGBBAA}.
 #' @param alpha optional. Single value in [0,255] applied to all colours, or
 #' a vector of numeric values the same length as \code{x}. The numeric vector
 #' will be scaled into the range [0,255].
