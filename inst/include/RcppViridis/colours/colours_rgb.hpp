@@ -52,13 +52,16 @@ Rcpp::NumericMatrix colour_values_to_rgb(
       b = round( spline_blue( this_x ) * 255 );
       a = alpha[i];
 
-      r = r < 0 ? 255 + r : r;
-      g = g < 0 ? 255 + g : g;
-      b = b < 0 ? 255 + b : b;
-
-      r = r > 255 ? r - 255 : r;
-      g = g > 255 ? g - 255 : g;
-      b = b > 255 ? b - 255 : b;
+      r = rcppviridis::palette_utils::validate_rgb_range( r );
+      g = rcppviridis::palette_utils::validate_rgb_range( g );
+      b = rcppviridis::palette_utils::validate_rgb_range( b );
+      // r = r < 0 ? 255 + r : r;
+      // g = g < 0 ? 255 + g : g;
+      // b = b < 0 ? 255 + b : b;
+      //
+      // r = r > 255 ? r - 255 : r;
+      // g = g > 255 ? g - 255 : g;
+      // b = b > 255 ? b - 255 : b;
 
       //hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b, a);
       rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);

@@ -24,6 +24,15 @@ namespace palette_utils {
     }
   }
 
+  inline int validate_rgb_range( int x ) {
+    if ( x < 0 ) {
+      x += 255;
+    } else if ( x > 255 ) {
+      x -= 255;
+    }
+    return x;
+  }
+
   /*
    * rescale all vectors 0,1]
    */
@@ -64,9 +73,6 @@ namespace palette_utils {
     if (n_col == 4) {
       alpha = palette(_, 3);
     }
-
-    //Rcpp::Rcout << "alpha: " << alpha << std::endl;
-
     resolve_palette( red, green, blue, alpha );
   }
 

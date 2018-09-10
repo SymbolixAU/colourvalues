@@ -199,6 +199,11 @@ library(microbenchmark)
 library(ggplot2)
 library(scales)
 library(viridisLite)
+# 
+# Attaching package: 'viridisLite'
+# The following objects are masked from 'package:RcppViridis':
+# 
+#     cividis, inferno, magma, plasma, viridis
 
 n <- 1e6
 df <- data.frame(x = rnorm(n = n))
@@ -210,11 +215,12 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median        uq       max neval
-#  RcppViridis 427.9845 446.6185 469.9780 459.1266  468.8915  628.6237    25
-#       scales 801.8643 846.7193 938.5121 919.1626 1007.7639 1193.1294    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 163.8603 165.5927 171.5584 168.9119 170.3885 215.3305    25
+#       scales 284.9327 291.6565 309.4799 295.6014 335.3427 368.3365    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
@@ -238,11 +244,12 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#         expr      min      lq     mean   median        uq       max neval
-#  RcppViridis 443.8625 462.939 510.6144 485.6111  533.4149  714.7436    25
-#       scales 777.6324 850.007 934.3971 886.6116 1021.3705 1120.0902    25
+#         expr      min       lq     mean   median       uq      max neval
+#  RcppViridis 168.3095 171.1390 178.8755 175.0209 176.7191 236.5239    25
+#       scales 293.3825 300.1235 314.2118 305.3097 307.3727 365.4191    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
