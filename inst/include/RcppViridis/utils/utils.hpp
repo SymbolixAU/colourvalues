@@ -6,7 +6,7 @@
 namespace rcppviridis {
 namespace utils {
 
-  void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
+  inline void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
     int int_s = NA_INTEGER;
     std::replace( out.begin(), out.end(), na_value, int_s);
   }

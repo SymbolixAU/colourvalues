@@ -6,7 +6,7 @@
 namespace rcppviridis {
 namespace scale {
 
-  Rcpp::NumericVector range(Rcpp::NumericVector x) {
+  inline Rcpp::NumericVector range(Rcpp::NumericVector x) {
     Rcpp::NumericVector rng(2);
     rng[0] = min(na_omit(x));
     rng[1] = max(na_omit(x));
@@ -15,7 +15,7 @@ namespace scale {
 
 
   // Always rescales to (0, 1)
-  void rescale( Rcpp::NumericVector& x ) {
+  inline void rescale( Rcpp::NumericVector& x ) {
     int n = x.size();
     //::NumericVector rescaled(n);
     Rcpp::NumericVector rng = range(x);

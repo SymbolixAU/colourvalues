@@ -113,6 +113,56 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_viridis
+Rcpp::DataFrame rcpp_viridis();
+RcppExport SEXP _RcppViridis_rcpp_viridis() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_viridis());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_inferno
+Rcpp::DataFrame rcpp_inferno();
+RcppExport SEXP _RcppViridis_rcpp_inferno() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_inferno());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_magma
+Rcpp::DataFrame rcpp_magma();
+RcppExport SEXP _RcppViridis_rcpp_magma() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_magma());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_plasma
+Rcpp::DataFrame rcpp_plasma();
+RcppExport SEXP _RcppViridis_rcpp_plasma() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_plasma());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_cividis
+Rcpp::DataFrame rcpp_cividis();
+RcppExport SEXP _RcppViridis_rcpp_cividis() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_cividis());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppViridis_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_string_palette_hex, 4},
@@ -123,6 +173,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb, 3},
     {"_RcppViridis_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_string_palette_rgb, 4},
     {"_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb, 3},
+    {"_RcppViridis_rcpp_viridis", (DL_FUNC) &_RcppViridis_rcpp_viridis, 0},
+    {"_RcppViridis_rcpp_inferno", (DL_FUNC) &_RcppViridis_rcpp_inferno, 0},
+    {"_RcppViridis_rcpp_magma", (DL_FUNC) &_RcppViridis_rcpp_magma, 0},
+    {"_RcppViridis_rcpp_plasma", (DL_FUNC) &_RcppViridis_rcpp_plasma, 0},
+    {"_RcppViridis_rcpp_cividis", (DL_FUNC) &_RcppViridis_rcpp_cividis, 0},
     {NULL, NULL, 0}
 };
 

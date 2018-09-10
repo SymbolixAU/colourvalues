@@ -33,3 +33,23 @@ rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour) {
     .Call(`_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour)
 }
 
+rcpp_viridis <- function() {
+    .Call(`_RcppViridis_rcpp_viridis`)
+}
+
+rcpp_inferno <- function() {
+    .Call(`_RcppViridis_rcpp_inferno`)
+}
+
+rcpp_magma <- function() {
+    .Call(`_RcppViridis_rcpp_magma`)
+}
+
+rcpp_plasma <- function() {
+    .Call(`_RcppViridis_rcpp_plasma`)
+}
+
+rcpp_cividis <- function() {
+    .Call(`_RcppViridis_rcpp_cividis`)
+}
+

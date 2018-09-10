@@ -3,12 +3,12 @@
 
 #include <Rcpp.h>
 #include "RcppViridis/scale/scale.hpp"
-#include "RcppViridis/palettes/palettes.hpp"
+#include "RcppViridis/palettes.hpp"
 
 namespace rcppviridis {
 namespace palette_utils {
 
-  void validate_alpha( Rcpp::NumericVector& alpha, Rcpp::NumericVector& alpha_full, int x_size ) {
+  inline void validate_alpha( Rcpp::NumericVector& alpha, Rcpp::NumericVector& alpha_full, int x_size ) {
 
     int alpha_size = alpha.size();
 
@@ -27,7 +27,7 @@ namespace palette_utils {
   /*
    * rescale all vectors 0,1]
    */
-  void resolve_palette(
+  inline void resolve_palette(
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
       Rcpp::NumericVector& blue,
@@ -42,7 +42,7 @@ namespace palette_utils {
   /*
    * extract vectors from palette
    */
-  void resolve_palette(
+  inline void resolve_palette(
       Rcpp::NumericMatrix& palette,
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
@@ -73,7 +73,7 @@ namespace palette_utils {
   /*
    * return in-built vectors
    */
-  void resolve_palette(
+  inline void resolve_palette(
       std::string& palette,
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,

@@ -2,13 +2,7 @@
 #define RCPP_VIRIDIS_HEADERS_COLOURS_HEX_H
 
 #include <Rcpp.h>
-#include "RcppViridis/scale/scale.hpp"
-#include "RcppViridis/utils/utils.hpp"
-#include "RcppViridis/palette_utils/palette_utils.hpp"
-#include "RcppViridis/convert_colours/convert_colours.hpp"
-
-//[[Rcpp::depends(BH)]]
-#include <boost/math/interpolators/cubic_b_spline.hpp>
+#include "RcppViridis/colours.hpp"
 
 namespace rcppviridis {
 namespace colours_hex {
@@ -16,7 +10,7 @@ namespace colours_hex {
   // if palette is a string; it's using in-built palettes; nothing to do
   // if palette is function or vectors, force rescaling
 
-  Rcpp::StringVector colour_values_to_hex(
+  inline Rcpp::StringVector colour_values_to_hex(
       Rcpp::NumericVector x,
       Rcpp::NumericVector red,
       Rcpp::NumericVector green,
@@ -60,7 +54,7 @@ namespace colours_hex {
   }
 
   // in this function the colour vectors will already be scaled [0,1]
-  Rcpp::StringVector colour_value_hex(
+  inline Rcpp::StringVector colour_value_hex(
     Rcpp::NumericVector x,
     Rcpp::NumericMatrix palette,
     std::string na_colour ) {
@@ -75,7 +69,7 @@ namespace colours_hex {
     return colour_values_to_hex( x, red, green, blue, alpha, na_colour );
   }
 
-  Rcpp::StringVector colour_value_hex(
+  inline Rcpp::StringVector colour_value_hex(
       Rcpp::NumericVector x,
       std::string palette,
       std::string na_colour,
@@ -99,7 +93,7 @@ namespace colours_hex {
     return colour_values_to_hex(x, red, green, blue, alpha_full, na_colour);
   }
 
-  Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
+  inline Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
     bool anyNa = any( is_na( x ));
     Rcpp::StringVector lvls = sort_unique( x );
     Rcpp::IntegerVector out = match( x, lvls );
@@ -127,7 +121,7 @@ namespace colours_hex {
     return colour_values_to_hex( out_nv, red, green, blue, alpha, na_colour );
   }
 
-  Rcpp::StringVector colour_value_hex(
+  inline Rcpp::StringVector colour_value_hex(
       Rcpp::StringVector x,
       std::string palette,
       std::string na_colour,
