@@ -67,6 +67,9 @@ test_that("matrix palette accepted", {
   colour_values(1:5, palette = m)
   expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#57B1F764", "#F6D43596", "#041AE1C8", "#F5E921FF")))
 
+  ## string data
+  expect_true( all( colour_values(letters[1:5], palette = m) == colour_values(1:5, palette = m) ) )
+
 })
 
 test_that("alpha values applied", {
@@ -128,6 +131,20 @@ test_that("rgb matrix returned", {
   expect_true(all(m[,2] == c(0,16,55,141,255)))
   expect_true(all(m[,3] == c(4,109,85,10,164)))
   expect_true(all(m[,4] == 100))
+
+  # ## TODO(Why are these plots different, why is m2 different to m, why are there negatives?)
+  # ## matrix palette
+  # alpha <- c(0, 100, 150, 200, 255)
+  # m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
+  # m2 <- colour_values(1:5, palette = m, return = "rgb")
+  #
+  # df <- data.frame(a = 10, x = 1:5)
+  # df$col <- colour_values(df$x, palette = m)
+  # barplot(height = df$a, col = df$col, border = NA, space = 0)
+  #
+  # df2 <- data.frame(a = 10, x = 1:5)
+  # df2$col <- colour_values(df2$x, palette = m2)
+  # barplot(height = df2$a, col = df2$col, border = NA, space = 0)
 
 })
 
