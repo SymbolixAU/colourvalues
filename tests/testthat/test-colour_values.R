@@ -135,9 +135,9 @@ test_that("rgb matrix returned", {
   # ## TODO(Why are these plots different, why is m2 different to m, why are there negatives?)
   # ## matrix palette
   # alpha <- c(0, 100, 150, 200, 255)
-  # m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
-  # m2 <- colour_values(1:5, palette = m, return = "rgb")
-  # h <- colour_values(1:5, palette = m)
+  # m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:9/9), alpha )
+  # m2 <- colour_values(1:10, palette = m, return = "rgb")
+  # h <- colour_values(1:10, palette = m)
   #
   # df <- data.frame(a = 10, x = 1:5)
   # df2 <- data.frame(a = 10, x = 1:5)
