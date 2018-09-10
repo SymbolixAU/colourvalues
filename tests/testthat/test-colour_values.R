@@ -137,12 +137,18 @@ test_that("rgb matrix returned", {
   # alpha <- c(0, 100, 150, 200, 255)
   # m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
   # m2 <- colour_values(1:5, palette = m, return = "rgb")
+  # h <- colour_values(1:5, palette = m)
   #
   # df <- data.frame(a = 10, x = 1:5)
+  # df2 <- data.frame(a = 10, x = 1:5)
+  #
+  # t(grDevices::col2rgb(h))  ## this is waht I'd expect?
+  # m2
+  # ## do negatives just subtracted from 255?
+  #
   # df$col <- colour_values(df$x, palette = m)
   # barplot(height = df$a, col = df$col, border = NA, space = 0)
   #
-  # df2 <- data.frame(a = 10, x = 1:5)
   # df2$col <- colour_values(df2$x, palette = m2)
   # barplot(height = df2$a, col = df2$col, border = NA, space = 0)
 
