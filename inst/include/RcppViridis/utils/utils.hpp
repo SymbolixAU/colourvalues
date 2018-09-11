@@ -11,6 +11,18 @@ namespace utils {
     std::replace( out.begin(), out.end(), na_value, int_s);
   }
 
+  inline Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
+    bool anyNa = Rcpp::any( is_na( x ));
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x );
+    Rcpp::IntegerVector out = Rcpp::match( x, lvls );
+
+    if ( anyNa ) {
+      int na_value = Rcpp::max( out );
+      rcppviridis::utils::replace_nas( out, na_value );
+    }
+    return Rcpp::as< Rcpp::NumericVector >( out );
+  }
+
 } // namespace utils
 } // namespace rcppviridis
 

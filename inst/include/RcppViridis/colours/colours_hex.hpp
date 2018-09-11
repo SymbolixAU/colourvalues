@@ -3,6 +3,7 @@
 
 #include <Rcpp.h>
 #include "RcppViridis/colours.hpp"
+#include "RcppViridis/utils/utils.hpp"
 
 namespace rcppviridis {
 namespace colours_hex {
@@ -93,18 +94,6 @@ namespace colours_hex {
     return colour_values_to_hex(x, red, green, blue, alpha_full, na_colour);
   }
 
-  inline Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
-    bool anyNa = any( is_na( x ));
-    Rcpp::StringVector lvls = sort_unique( x );
-    Rcpp::IntegerVector out = match( x, lvls );
-
-    if ( anyNa ) {
-      int na_value = max( out );
-      rcppviridis::utils::replace_nas( out, na_value );
-    }
-    return as< Rcpp::NumericVector >( out );
-  }
-
   Rcpp::StringVector colour_value_hex (
       Rcpp::StringVector x,
       Rcpp::NumericMatrix palette,
@@ -116,7 +105,7 @@ namespace colours_hex {
     Rcpp::NumericVector alpha(x.size(), 255.0);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
-    Rcpp::NumericVector out_nv = resolve_string_vector( x );
+    Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
     return colour_values_to_hex( out_nv, red, green, blue, alpha, na_colour );
   }
@@ -140,7 +129,7 @@ namespace colours_hex {
     Rcpp::NumericVector blue(256);
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
-    Rcpp::NumericVector out_nv = resolve_string_vector( x );
+    Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
     return colour_values_to_hex( out_nv, red, green, blue, alpha_full, na_colour );
   }
