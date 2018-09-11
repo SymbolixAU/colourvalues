@@ -94,7 +94,7 @@ Rcpp::NumericMatrix colour_value_rgb(
   // }
   int x_size = x.size();
   Rcpp::NumericVector alpha_full( x_size );
-  rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
+  rcppviridis::palette_utils::validate_alpha( alpha, x_size );
 
   Rcpp::NumericVector red(256);
   Rcpp::NumericVector green(256);
@@ -133,7 +133,7 @@ Rcpp::NumericMatrix colour_value_rgb(
   // }
   int x_size = x.size();
   Rcpp::NumericVector alpha_full( x_size );
-  rcppviridis::palette_utils::validate_alpha( alpha, alpha_full, x_size );
+  rcppviridis::palette_utils::validate_alpha( alpha, x_size );
 
   Rcpp::NumericVector red(256);
   Rcpp::NumericVector green(256);

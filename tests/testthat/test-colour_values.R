@@ -143,21 +143,59 @@ test_that("rgb matrix returned", {
   m1 <- t(grDevices::col2rgb(h))
 
   ## expect results to be within 1 of each other
-  expect_true(sum(m1[,1] - m2[,1]) <= length(m[,1]))
-  expect_true(sum(m1[,2] - m2[,2]) <= length(m[,2]))
-  expect_true(sum(m1[,3] - m2[,3]) <= length(m[,3]))
+  expect_true(sum(abs(m1[,1] - m2[,1])) <= length(m[,1]))
+  expect_true(sum(abs(m1[,2] - m2[,2])) <= length(m[,2]))
+  expect_true(sum(abs(m1[,3] - m2[,3])) <= length(m[,3]))
 
-  # df <- data.frame(a = 10, x = 1:5)
-  # df2 <- data.frame(a = 10, x = 1:5)
-  #
-  # ## plot using the raw palette
-  # df$col <- colour_values(df$x, palette = m)
-  # barplot(height = df$a, col = df$col, border = NA, space = 0)
-  #
-  # df2$col <- colour_values(df2$x, palette = m2)
-  # barplot(height = df2$a, col = df2$col, border = NA, space = 0)
-  # ## they are different because 'm' gets interpolated, then 'm2' gets interpolated
-  # ## and since they are different to start with, the plots are different
+  df <- data.frame(a = 10, x = 1:5)
+  df2 <- data.frame(a = 10, x = 1:5)
+
+  ## plot using the raw palette
+  df$col <- colour_values(df$x, palette = m)
+  barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+  df2$col <- colour_values(df2$x, palette = m2)
+  barplot(height = df2$a, col = df2$col, border = NA, space = 0)
+  ## they are different because 'm' gets interpolated, then 'm2' gets interpolated
+  ## and since they are different to start with, the plots are different
+
+  ## TODO
+  ## matrix with an alpha-column. The alpha column needs to be interpolated along wtih
+  ## the RGB values
+  df <- data.frame(a = 10, x = 1:20)
+  m <- matrix(c(rep(100, 4*25)), ncol = 4)
+  df$col <- colour_values(df$x, palette = m)
+  barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+  df <- data.frame(a = 10, x = 1:20)
+
+  alpha <- seq(0,255,length.out = 10)
+  m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:9/9), alpha )
+
+  df$col <- colour_values(df$x, palette = m)
+  ## THIS IS THE ERROR
+  barplot(height = df$a, col = df$col, border = NA, space = 0)
+  ## ths plot ^^ and this plot vv should be the same (without alpha)
+
+  df <- data.frame(a = 10, x = 1:20)
+
+  m <- grDevices::colorRamp(c("red","green","blue"))(0:9/9)
+
+  df$col <- colour_values(df$x, palette = m)
+  ## THIS IS THE ERROR
+  barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+
+  ## TODO: another error?
+  ## maybe from my (255 - r :: r + 255) stuff
+  df <- data.frame(a = 10, x = 1:20)
+
+  m <- grDevices::colorRamp(c("red","green"))(0:9/9)
+
+  df$col <- colour_values(df$x, palette = m)
+  ## THIS IS THE ERROR
+  barplot(height = df$a, col = df$col, border = NA, space = 0)
+
 
 })
 
