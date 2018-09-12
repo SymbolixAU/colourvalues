@@ -14,7 +14,10 @@ Stars](https://img.shields.io/github/stars/SymbolixAU/RcppViridis.svg?style=soci
 
 ### What does it do?
 
-It maps viridis colours to variables, and quickly\!
+It maps viridis colours to values, and quickly\!
+
+**Note** It does not perform a 1-to-1 mapping of a palette to values. It
+interpolates the colours from a given palette.
 
 ### Why did you build it?
 
@@ -216,10 +219,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 323.3993 343.8451 360.5833 351.8652 361.1261 442.3954    25
-#       scales 592.6400 643.1642 695.9831 667.7793 737.6367 981.8861    25
+#  RcppViridis 165.5523 166.6505 170.6419 167.5555 171.6719 214.9333    25
+#       scales 282.8674 291.0787 312.1267 296.5173 340.7493 383.6086    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
@@ -244,10 +248,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 332.7982 336.7013 365.9277 346.1396 360.4579 555.2964    25
-#       scales 580.3242 642.6897 691.3789 654.5661 759.1780 852.1395    25
+#  RcppViridis 168.7213 172.7548 185.4255 175.5587 182.5003 241.9229    25
+#       scales 287.0164 297.5966 314.1793 303.5411 307.7608 373.6255    25
 
 autoplot(m)
+# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
