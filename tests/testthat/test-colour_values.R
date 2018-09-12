@@ -133,9 +133,42 @@ test_that("rgb matrix returned", {
 
 })
 
-## other tests:
-## - very few variables - large palette
-## - lots of variables - small palette
-## - few variables - small palette
-## - lots of variables - large palette
-## - small range of x values (df <- data.frame(x = c(0.01, 0.02)))
+
+test_that("different sizes of variables and palettes work", {
+
+  ## - very few variables - large palette
+  df <- data.frame(x = 1:2)
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:500/500)
+  df$col <- colour_values(df$x, palette = m)
+  expect_true(all(df$col == c("#FF0000FF","#FFFF00FF")))  ## shoudl be extremeties of palette
+  # df$a <- 10
+  # barplot(df$a, col = df$col)
+
+  ## - lots of variables - small palette
+  df <- data.frame(x = 1:10000)
+  m <- grDevices::colorRamp(c("red"))(0:4/4)
+  df$col <- colour_values(df$x, palette = m)
+  expect_true(unique(df$col == "#FF0000FF"))
+
+  ## - few variables - small palette
+  df <- data.frame(x = 1:2)
+  m <- grDevices::colorRamp(c("red"))(0:4/4)
+  df$col <- colour_values(df$x, palette = m)
+  expect_true(unique(df$col == "#FF0000FF"))
+
+  ## - lots of variables - large palette
+  df <- data.frame(x = rnorm(n = 1e6))
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
+  expect_silent(df$col <- colour_values(df$x))
+
+})
+
+test_that("small range of values give distinct palette", {
+  expect_true(all(colour_values(c(0.00001, 0.00002)) == c("#440154FF","#FDE725FF")))
+})
+
+test_that("256 variables produce 'unique' palette", {
+  ##  because of 'splining' and rounding I think it's OK it's not exactly 256 colours
+  expect_true(abs(256 - length(unique(colour_values(1:256)))) <= 2)
+})
+

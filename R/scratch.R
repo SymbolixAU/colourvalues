@@ -94,5 +94,31 @@
 #
 # barplot(height = df$a, col = df$col, border = NA, space = 0)
 
+# df <- data.frame(a = 10, x = 1:2)
+# df$col <- colour_values(df$x, palette = "viridis")
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+# n <- 2
+# df <- data.frame(a = 10, x = 1:n)
+# df$col <- scales::col_numeric(viridisLite::viridis(2), domain = df$x)(df$x)
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+
+# df <- data.frame(a = 10, x = 1:10)
+# df$col <- mapview:::zcolColors(df$x)
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+# df$col <- RcppViridis::color_values(df$x)
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+# df <- data.frame(a = 10, x = c(1:5,NA,7,NA,9,10))
+# df$col2 = mapview:::zcolColors(df$x, na.color = "#00FF00")
+# barplot(height = df$a, col = df$col2, border = NA, space = 0)
+#
+# df$col2 <- RcppViridis::colour_values(df$x, na_colour = "#00FF00")
+# barplot(height = df$a, col = df$col2, border = NA, space = 0)
+#
+# mapview:::zcolColors(df$x, na.color = "#00FF00")
+# substr(RcppViridis::colour_values(df$x, na_colour = "#00FF00"), 1,7)
 
 

@@ -42,6 +42,7 @@ Rcpp::StringVector rcpp_colour_str_value_rgb_palette_hex(
   return rcppviridis::colours_hex::colour_value_hex( x, palette, na_colour );
 }
 
+
 // -----------------------------------------------------------------------------
 // return RGB
 
