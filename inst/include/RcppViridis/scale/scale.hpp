@@ -22,7 +22,8 @@ namespace scale {
     Rcpp::NumericVector rng = range(x);
     Rcpp::NumericVector diff_from = Rcpp::diff(rng); // should only be one value!
 
-    double this_diff = std::max(1.0, diff_from[0]);  // TODO(is this right? what am I doing?)
+    double this_diff = diff_from[0] == 0 ? 1.0 : diff_from[0];
+
     this_diff = 1 / this_diff;
     int i = 0;
     double this_range = rng[0];

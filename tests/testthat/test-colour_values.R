@@ -54,8 +54,7 @@ test_that("matrix palette accepted", {
   expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#808000FF", "#00FF00FF", "#008080FF", "#0000FFFF")))
   ## This doesn't exactly equal
   #grDevices::colorRampPalette(c("red","green","blue"))(5)
-  ## because of boost's interpolation
-  ## TODO(is this correct?)
+  ## I 'think' because of boost's interpolation
 
   expect_error(
     colour_values(1:5, palette = m[,1:2])
@@ -64,7 +63,6 @@ test_that("matrix palette accepted", {
 
   alpha <- c(0, 100, 150, 200, 255)
   m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
-  #colour_values(1:5, palette = m)
   expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#80800064", "#00FF0096", "#008080C8", "#0000FFFF")))
 
   ## string data
@@ -140,3 +138,4 @@ test_that("rgb matrix returned", {
 ## - lots of variables - small palette
 ## - few variables - small palette
 ## - lots of variables - large palette
+## - small range of x values (df <- data.frame(x = c(0.01, 0.02)))

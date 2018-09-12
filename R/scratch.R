@@ -87,3 +87,12 @@
 # df <- data.frame(a = 10, x = 1:20)
 # df$col <- colour_values(df$x, palette = m)
 # barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+# df <- data.frame(a = 10, x = 1:20)
+# m <- matrix(c(rep(100, 4*25)), ncol = 4)
+# df2$col <- colour_values(df2$x, palette = m)
+#
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+
+
