@@ -21,10 +21,9 @@ If a matrix palette is supplied this argument is ignored.}
 
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}}
-
-\item{return}{either 'hex' or 'rgb'. If 'hex' hex colours are returned.
-If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in
-the order red, green, blue and alpha, and each row corresponds to each elemetn of \code{x}}
+}
+\value{
+string vector of hex colours
 }
 \description{
 maps colours to values

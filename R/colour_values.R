@@ -9,9 +9,6 @@
 #' a vector of numeric values the same length as \code{x}. The numeric vector
 #' will be scaled into the range [0,255].
 #' If a matrix palette is supplied this argument is ignored.
-#' @param return either 'hex' or 'rgb'. If 'hex' hex colours are returned.
-#' If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in
-#' the order red, green, blue and alpha, and each row corresponds to each elemetn of \code{x}
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}
 #'
@@ -22,6 +19,8 @@
 #'   \item{String - }{"viridis", "inferno", "plasma", "magma", "cividis"}
 #'   \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
 #' }
+#'
+#' @return string vector of hex colours
 #'
 #' @examples
 #'
@@ -68,7 +67,16 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
 #'
 #' @inheritParams colour_values
 #'
+#' @return matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in
+#' the order red, green, blue (and alpha). Rach row corresponds to each element of \code{x}
+#'
 #' @seealso colour_values
+#'
+#' @examples
+#'
+#' colour_values_rgb(1:5)
+#' colour_values_rgb(1:5, include_alpha = FALSE)
+#'
 #'
 #' @export
 colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
@@ -84,10 +92,10 @@ colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", 
 #' @export
 color_values <- colour_values
 
-#' Colour Values RGB
+#' Color Values RGB
 #'
 #' maps colours to values, returning a matrix of RGB(A) values
-#'
+#' @inheritParams colour_values_rgb
 #' @seealso colour_values_rgb
 #' @export
 color_values_rgb <- colour_values_rgb
