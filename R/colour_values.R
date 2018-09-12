@@ -58,14 +58,21 @@
 #' barplot(height = df$a, col = df$col, border = NA, space = 0)
 #'
 #' @export
-colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255,
-                           return = c("hex","rgb"), include_alpha = TRUE ) {
-  return <- match.arg(return)
-  if (return == "hex" ) {
-    colour_values_hex( x, palette, na_colour, alpha, include_alpha )
-  } else {
-    colour_values_rgb( x, palette, na_colour, alpha, include_alpha )
-  }
+colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+  colour_values_to_hex( x, palette, na_colour, alpha, include_alpha )
+}
+
+#' Colour Values RGB
+#'
+#' Maps colours to variables, returning a matrix of RGB(A) values
+#'
+#' @inheritParams colour_values
+#'
+#' @seealso colour_values
+#'
+#' @export
+colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha )
 }
 
 #' Color Values
@@ -76,6 +83,14 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
 #' @seealso colour_values
 #' @export
 color_values <- colour_values
+
+#' Colour Values RGB
+#'
+#' maps colours to values, returning a matrix of RGB(A) values
+#'
+#' @seealso colour_values_rgb
+#' @export
+color_values_rgb <- colour_values_rgb
 
 ### HEX ------------------------------------------------------------------------
 
@@ -107,17 +122,17 @@ colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
   rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha )
 }
 
-colour_values_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
-  UseMethod("colour_values_hex")
+colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
+  UseMethod("colour_values_to_hex")
 }
 
 #' @export
-colour_values_hex.character <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha ) {
   colour_str_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha )
 }
 
 #' @export
-colour_values_hex.default <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha )
 }
 
@@ -139,7 +154,7 @@ colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, al
   rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
 }
 
-colour_str_values_with_palette_rgb <- function( palette, x, na_colour, alpha, include_alpha ) {
+colour_str_values_with_palette_rgb <- function( palette = "viridis", x, na_colour, alpha, include_alpha ) {
   UseMethod("colour_str_values_with_palette_rgb")
 }
 
@@ -153,17 +168,17 @@ colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, al
   rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
 }
 
-colour_values_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
-  UseMethod("colour_values_rgb")
+colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
+  UseMethod("colour_values_to_rgb")
 }
 
 #' @export
-colour_values_rgb.character <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, include_alpha ) {
   colour_str_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha )
 }
 
 #' @export
-colour_values_rgb.default <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha ) {
   colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha )
 }
 

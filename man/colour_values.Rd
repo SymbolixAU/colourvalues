@@ -5,7 +5,7 @@
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, return = c("hex", "rgb"), include_alpha = TRUE)
+  alpha = 255, include_alpha = TRUE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -19,12 +19,12 @@ a vector of numeric values the same length as \code{x}. The numeric vector
 will be scaled into the range [0,255].
 If a matrix palette is supplied this argument is ignored.}
 
+\item{include_alpha}{logical indicating if the returned hex or matrix should include
+the alpha values. Defaults to \code{TRUE}}
+
 \item{return}{either 'hex' or 'rgb'. If 'hex' hex colours are returned.
 If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in
 the order red, green, blue and alpha, and each row corresponds to each elemetn of \code{x}}
-
-\item{include_alpha}{logical indicating if the returned hex or matrix should include
-the alpha values. Defaults to \code{TRUE}}
 }
 \description{
 maps colours to values

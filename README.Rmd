@@ -183,7 +183,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 
 
-**1 million numeric values**
+**10 million numeric values**
 
 ```{r, out.height=400}
 library(microbenchmark)
@@ -191,7 +191,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e6
+n <- 1e7
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(

@@ -95,37 +95,37 @@ test_that("alpha values applied", {
 
 test_that("rgb matrix returned", {
 
-  m <- colour_values(1:5, return = "rgb")
+  m <- colour_values_rgb(1:5)
   expect_true(all(m[,1] == c(68,59,33,93,253)))
   expect_true(all(m[,2] == c(1,82,144,201,231)))
   expect_true(all(m[,3] == c(84,139,140,99,37)))
   expect_true(all(m[,4] == 255))
 
-  m <- colour_values(letters[1:5], return = "rgb")
+  m <- colour_values_rgb(letters[1:5])
   expect_true(all(m[,1] == c(68,59,33,93,253)))
   expect_true(all(m[,2] == c(1,82,144,201,231)))
   expect_true(all(m[,3] == c(84,139,140,99,37)))
   expect_true(all(m[,4] == 255))
 
-  m <- colour_values(1:5, palette = "inferno", return = "rgb")
+  m <- colour_values_rgb(1:5, palette = "inferno")
   expect_true(all(m[,1] == c(0,87,187,249,252)))
   expect_true(all(m[,2] == c(0,16,55,141,255)))
   expect_true(all(m[,3] == c(4,109,85,10,164)))
   expect_true(all(m[,4] == 255))
 
-  m <- colour_values(letters[1:5], palette = "inferno", return = "rgb")
+  m <- colour_values_rgb(letters[1:5], palette = "inferno")
   expect_true(all(m[,1] == c(0,87,187,249,252)))
   expect_true(all(m[,2] == c(0,16,55,141,255)))
   expect_true(all(m[,3] == c(4,109,85,10,164)))
   expect_true(all(m[,4] == 255))
 
-  m <- colour_values(1:5, palette = "inferno", alpha = 100, return = "rgb")
+  m <- colour_values_rgb(1:5, palette = "inferno", alpha = 100)
   expect_true(all(m[,1] == c(0,87,187,249,252)))
   expect_true(all(m[,2] == c(0,16,55,141,255)))
   expect_true(all(m[,3] == c(4,109,85,10,164)))
   expect_true(all(m[,4] == 100))
 
-  m <- colour_values(letters[1:5], palette = "inferno", alpha = 100, return = "rgb")
+  m <- colour_values_rgb(letters[1:5], palette = "inferno", alpha = 100)
   expect_true(all(m[,1] == c(0,87,187,249,252)))
   expect_true(all(m[,2] == c(0,16,55,141,255)))
   expect_true(all(m[,3] == c(4,109,85,10,164)))
@@ -141,7 +141,7 @@ test_that("rgb to hex to rgb works", {
 
   mh <- t(grDevices::col2rgb(h))
 
-  m2 <- colour_values(1:10, palette = m, return = "rgb")
+  m2 <- colour_values_rgb(1:10, palette = m)
 
   expect_true(sum(abs(m[,1] - m2[,1])) <= nrow(m))
   expect_true(sum(abs(m[,2] - m2[,2])) <= nrow(m))
@@ -194,8 +194,8 @@ test_that("256 variables produce 'unique' palette", {
 })
 
 test_that("NA handled in RGB return", {
-  expect_true(all(colour_values(NA, return = "rgb") == c(rep(128,3), 255))) ## default "#808080FF
-  expect_true(all(colour_values(NA, return = "rgb", na_colour = "#FF000000") == c(255, 0, 0, 0)))
+  expect_true(all(colour_values_rgb(NA) == c(rep(128,3), 255))) ## default "#808080FF
+  expect_true(all(colour_values_rgb(NA, na_colour = "#FF000000") == c(255, 0, 0, 0)))
 })
 
 test_that("alpha can be excluded from results", {
@@ -206,11 +206,11 @@ test_that("alpha can be excluded from results", {
   expect_true(all(substr(colour_values(1:5, palette = m),1,7) == colour_values(1:5, palette = m, include_alpha = F)))
   expect_true(all(substr(colour_values(letters[1:5], palette = m),1,7) == colour_values(letters[1:5], palette = m, include_alpha = F)))
 
-  expect_true(all(colour_values(1:5, return = "rgb")[,1:3] == colour_values(1:5, include_alpha = F, return = "rgb")))
-  expect_true(all(colour_values(letters[1:5], return = "rgb")[,1:3] == colour_values(letters[1:5], include_alpha = F, return = "rgb")))
+  expect_true(all(colour_values_rgb(1:5)[,1:3] == colour_values_rgb(1:5, include_alpha = F)))
+  expect_true(all(colour_values_rgb(letters[1:5])[,1:3] == colour_values_rgb(letters[1:5], include_alpha = F)))
   m <- matrix(rep(255,4 * 5),ncol = 4)
-  expect_true(all(colour_values(1:5, palette = m, return = "rgb")[,1:3] == colour_values(1:5, palette = m, include_alpha = F, return = "rgb")))
-  expect_true(all(colour_values(letters[1:5], palette = m, return = "rgb")[,1:3] == colour_values(letters[1:5], palette = m, include_alpha = F, return = "rgb")))
+  expect_true(all(colour_values_rgb(1:5, palette = m)[,1:3] == colour_values_rgb(1:5, palette = m, include_alpha = F)))
+  expect_true(all(colour_values_rgb(letters[1:5], palette = m)[,1:3] == colour_values_rgb(letters[1:5], palette = m, include_alpha = F)))
 
 })
 
