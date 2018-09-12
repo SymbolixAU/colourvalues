@@ -27,10 +27,8 @@ I wanted **one** function which will work on **one** argument.
 
 ``` r
 colour_values(1:5)
-# alpha CONSTANT
 # [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 colour_values(letters[1:5])
-# alpha CONSTANT
 # [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 ```
 
@@ -100,7 +98,6 @@ Of course\!
 ``` r
 df <- data.frame(a = 10, x = 1:256)
 df$col <- colour_values(df$x, palette = "viridis")
-# alpha CONSTANT
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -111,7 +108,6 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 ``` r
 df <- data.frame(a = 10, x = c((1:5000)**3))
 df$col <- colour_values(df$x, palette = "viridis")
-# alpha CONSTANT
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -122,7 +118,6 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 ``` r
 df <- data.frame(a = 10, x = rnorm(n = 1000))
 df$col <- colour_values(df$x, palette = "inferno")
-# alpha CONSTANT
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -151,7 +146,6 @@ n <- 100
 m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
-# alpha CONSTANT
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -165,7 +159,6 @@ Yep. Either supply a single alpha value for all the colours
 ## single alpha value for all colours
 df <- data.frame(a = 10, x = 1:255)
 df$col <- colour_values(df$x, alpha = 50)
-# alpha CONSTANT
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -176,7 +169,6 @@ Or use a vector of values the same length as `x`
 ``` r
 df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
 df$col <- colour_values(df$x, alpha = df$y)
-# alpha VECTOR
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -191,7 +183,6 @@ m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 m <- cbind(m, seq(0, 255, length.out = 100))
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
-# alpha PALETTE
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
@@ -222,39 +213,13 @@ m <- microbenchmark(
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 166.2459 168.1874 174.5268 171.0325 175.0243 216.8199    25
-#       scales 288.4560 302.2601 327.0526 336.3259 347.8201 402.0880    25
+#  RcppViridis 323.3993 343.8451 360.5833 351.8652 361.1261 442.3954    25
+#       scales 592.6400 643.1642 695.9831 667.7793 737.6367 981.8861    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
@@ -276,39 +241,13 @@ m <- microbenchmark(
   scales = { y <- col_factor(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = unique(df$x))(df$x) },
   times = 25
 )
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
-# alpha CONSTANT
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 169.0968 171.2538 175.0727 174.5023 178.7038 182.8813    25
-#       scales 299.4667 308.3081 326.1830 313.1078 356.6525 376.2990    25
+#  RcppViridis 332.7982 336.7013 365.9277 346.1396 360.4579 555.2964    25
+#       scales 580.3242 642.6897 691.3789 654.5661 759.1780 852.1395    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />

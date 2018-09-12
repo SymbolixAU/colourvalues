@@ -31,13 +31,6 @@ namespace colours_hex {
     Rcpp::StringVector hex_strings(n);
     double step = 1 / (colours - 1);  // TODO(test)
 
-    // Rcpp::Rcout << "colours: " << colours << std::endl;
-    // Rcpp::Rcout << "step: " << step << std::endl;
-    // Rcpp::Rcout << "red: " << red << std::endl;
-    // Rcpp::Rcout << "green: " << green << std::endl;
-    // Rcpp::Rcout << "blue: " << blue << std::endl;
-    // Rcpp::Rcout << "alpha: " << alpha << std::endl;
-
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
@@ -50,7 +43,6 @@ namespace colours_hex {
 
     for( i = 0; i < n; i++ ) {
 
-      //this_x = x[i] * 255;
       this_x = x[i];
 
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
@@ -60,9 +52,9 @@ namespace colours_hex {
         g = round( spline_green( this_x ) * 255 );
         b = round( spline_blue( this_x ) * 255 );
 
-        Rcpp::Rcout << "splined r : " << r << std::endl;
-        Rcpp::Rcout << "splined g : " << g << std::endl;
-        Rcpp::Rcout << "splined b : " << b << std::endl;
+        rcppviridis::palette_utils::validate_rgb_spline(r);
+        rcppviridis::palette_utils::validate_rgb_spline(g);
+        rcppviridis::palette_utils::validate_rgb_spline(b);
 
         if ( alpha_type == ALPHA_PALETTE ) {
           a = round( spline_alpha( this_x ) * 255 );
@@ -90,7 +82,6 @@ namespace colours_hex {
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
     Rcpp::NumericVector alpha(x.size(), 255.0);
-
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
@@ -135,7 +126,6 @@ namespace colours_hex {
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
     Rcpp::NumericVector alpha(x.size(), 255.0);
-
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );

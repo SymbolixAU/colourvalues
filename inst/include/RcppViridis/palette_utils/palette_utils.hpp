@@ -17,6 +17,14 @@ namespace palette_utils {
     return x;
   }
 
+  inline void validate_rgb_spline( int& x ) {
+    if ( x < 0 ) {
+      x = 0;
+    } else if ( x > 255 ) {
+      x = 255;
+    }
+  }
+
   /*
    * rescale all vectors 0,1]
    */
