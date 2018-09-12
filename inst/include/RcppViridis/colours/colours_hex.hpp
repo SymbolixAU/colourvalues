@@ -19,7 +19,8 @@ namespace colours_hex {
       Rcpp::NumericVector& blue,
       Rcpp::NumericVector& alpha,
       int& alpha_type,
-      std::string& na_colour) {
+      std::string& na_colour,
+      bool& include_alpha) {
 
     int n = x.size();
     double colours = red.size();
@@ -55,14 +56,19 @@ namespace colours_hex {
         rcppviridis::palette_utils::validate_rgb_spline(g);
         rcppviridis::palette_utils::validate_rgb_spline(b);
 
-        if ( alpha_type == ALPHA_PALETTE ) {
-          a = round( spline_alpha( this_x ) * 255 );
-        } else if (alpha_type == ALPHA_VECTOR ){
-          a = alpha[i];
+        if (include_alpha) {
+
+          if ( alpha_type == ALPHA_PALETTE ) {
+            a = round( spline_alpha( this_x ) * 255 );
+          } else if (alpha_type == ALPHA_VECTOR ){
+            a = alpha[i];
+          } else {
+            a = alpha[0];  // should be length 5, but all the same
+          }
+          hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b, a);
         } else {
-          a = alpha[0];  // should be length 5, but all the same
+          hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b);
         }
-        hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b, a);
       }
     }
     return hex_strings;
@@ -72,7 +78,8 @@ namespace colours_hex {
   inline Rcpp::StringVector colour_value_hex(
     Rcpp::NumericVector x,
     Rcpp::NumericMatrix palette,
-    std::string na_colour ) {
+    std::string na_colour,
+    bool include_alpha) {
 
     int x_size = x.size();
     int alpha_type = rcppviridis::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -86,14 +93,15 @@ namespace colours_hex {
 
     Rcpp::NumericVector alpha_full = rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
 
-    return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour );
+    return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
   inline Rcpp::StringVector colour_value_hex(
       Rcpp::NumericVector x,
       std::string palette,
       std::string na_colour,
-      Rcpp::NumericVector alpha) {
+      Rcpp::NumericVector alpha,
+      bool include_alpha) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -110,13 +118,14 @@ namespace colours_hex {
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
 
-    return colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour);
+    return colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
   }
 
   Rcpp::StringVector colour_value_hex (
       Rcpp::StringVector x,
       Rcpp::NumericMatrix palette,
-      std::string na_colour ) {
+      std::string na_colour,
+      bool include_alpha) {
 
     int alpha_type = rcppviridis::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
 
@@ -128,14 +137,15 @@ namespace colours_hex {
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
-    return colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour );
+    return colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
   inline Rcpp::StringVector colour_value_hex(
       Rcpp::StringVector x,
       std::string palette,
       std::string na_colour,
-      Rcpp::NumericVector alpha ) {
+      Rcpp::NumericVector alpha,
+      bool include_alpha ) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -153,7 +163,7 @@ namespace colours_hex {
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
     Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
-    return colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour );
+    return colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
 } // namespace colours

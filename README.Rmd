@@ -28,6 +28,8 @@ library(RcppViridis)
 
 It maps viridis colours to variables, and quickly!
 
+
+
 ### Why did you build it?
 
 I'm aware there are other methods for mapping colours to values. And which do it quick too. But I can never remember them, and I find the interfaces a bit cumbersome. For example,  `scales::col_numeric(palette = viridisLite::viridis(5), domain = range(1:5))(1:5)`.

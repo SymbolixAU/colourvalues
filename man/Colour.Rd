@@ -2,11 +2,10 @@
 % Please edit documentation in R/colour_values.R
 \name{color_values}
 \alias{color_values}
-\title{color values
-maps colours to values}
+\title{Color Values}
 \usage{
 color_values(x, palette = "viridis", na_colour = "#808080FF", alpha = 255,
-  return = c("hex", "rgb"))
+  return = c("hex", "rgb"), include_alpha = TRUE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -23,9 +22,11 @@ If a matrix palette is supplied this argument is ignored.}
 \item{return}{either 'hex' or 'rgb'. If 'hex' hex colours are returned.
 If 'rgb' a length(\code{x}) x 4-column matrix is returned with columns in
 the order red, green, blue and alpha, and each row corresponds to each elemetn of \code{x}}
+
+\item{include_alpha}{logical indicating if the returned hex or matrix should include
+the alpha values. Defaults to \code{TRUE}}
 }
 \description{
-color values
 maps colours to values
 }
 \section{Functions}{

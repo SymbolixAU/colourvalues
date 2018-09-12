@@ -19,7 +19,8 @@ namespace colours_rgb {
       Rcpp::NumericVector& blue,
       Rcpp::NumericVector& alpha,
       int& alpha_type,
-      std::string& na_colour) {
+      std::string& na_colour,
+      bool& include_alpha) {
 
     int n = x.size();
     double colours = red.size();
@@ -27,7 +28,8 @@ namespace colours_rgb {
     na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
 
     rcppviridis::scale::rescale(x);
-    Rcpp::NumericMatrix rgb_mat(n, 4);
+    int cols = include_alpha ? 4 : 3;
+    Rcpp::NumericMatrix rgb_mat(n, cols);
     double step = 1 / (colours - 1);  // TODO(test)
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
@@ -58,14 +60,19 @@ namespace colours_rgb {
         g = rcppviridis::palette_utils::validate_rgb_range( g );
         b = rcppviridis::palette_utils::validate_rgb_range( b );
 
-        if ( alpha_type == ALPHA_PALETTE ) {
-          a = round( spline_alpha( this_x ) * 255 );
-        } else if (alpha_type == ALPHA_VECTOR ){
-          a = alpha[i];
+        if (include_alpha) {
+
+          if ( alpha_type == ALPHA_PALETTE ) {
+            a = round( spline_alpha( this_x ) * 255 );
+          } else if (alpha_type == ALPHA_VECTOR ){
+            a = alpha[i];
+          } else {
+            a = alpha[0];  // should be length 5, but all the same
+          }
+          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
         } else {
-          a = alpha[0];  // should be length 5, but all the same
+          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
         }
-        rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
       }
     }
     return rgb_mat;
@@ -75,7 +82,8 @@ namespace colours_rgb {
   Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::NumericVector x,
       Rcpp::NumericMatrix palette,
-      std::string na_colour ) {
+      std::string na_colour,
+      bool include_alpha) {
 
     int x_size = x.size();
     int alpha_type = rcppviridis::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -90,14 +98,15 @@ namespace colours_rgb {
 
     Rcpp::NumericVector alpha_full = rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
 
-    return colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour );
+    return colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
   Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::NumericVector x,
       std::string palette,
       std::string na_colour,
-      Rcpp::NumericVector alpha) {
+      Rcpp::NumericVector alpha,
+      bool include_alpha) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -115,13 +124,14 @@ namespace colours_rgb {
 
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
 
-    return colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour);
+    return colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
   Rcpp::NumericMatrix colour_value_rgb (
       Rcpp::StringVector x,
       Rcpp::NumericMatrix palette,
-      std::string na_colour ) {
+      std::string na_colour,
+      bool include_alpha ) {
 
     int alpha_type = rcppviridis::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
 
@@ -133,14 +143,15 @@ namespace colours_rgb {
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
-    return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour );
+    return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
   Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::StringVector x,
       std::string palette,
       std::string na_colour,
-      Rcpp::NumericVector alpha ) {
+      Rcpp::NumericVector alpha,
+      bool include_alpha ) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -158,7 +169,7 @@ namespace colours_rgb {
     rcppviridis::palette_utils::resolve_palette( palette, red, green, blue );
     Rcpp::NumericVector out_nv = rcppviridis::utils::resolve_string_vector( x );
 
-    return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour );
+    return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
 

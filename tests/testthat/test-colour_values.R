@@ -198,3 +198,19 @@ test_that("NA handled in RGB return", {
   expect_true(all(colour_values(NA, return = "rgb", na_colour = "#FF000000") == c(255, 0, 0, 0)))
 })
 
+test_that("alpha can be excluded from results", {
+
+  expect_true(all(substr(colour_values(1:5),1,7) == colour_values(1:5, include_alpha = F)))
+  expect_true(all(substr(colour_values(letters[1:5]),1,7) == colour_values(letters[1:5], include_alpha = F)))
+  m <- matrix(rep(255,4 * 5),ncol = 4)
+  expect_true(all(substr(colour_values(1:5, palette = m),1,7) == colour_values(1:5, palette = m, include_alpha = F)))
+  expect_true(all(substr(colour_values(letters[1:5], palette = m),1,7) == colour_values(letters[1:5], palette = m, include_alpha = F)))
+
+  expect_true(all(colour_values(1:5, return = "rgb")[,1:3] == colour_values(1:5, include_alpha = F, return = "rgb")))
+  expect_true(all(colour_values(letters[1:5], return = "rgb")[,1:3] == colour_values(letters[1:5], include_alpha = F, return = "rgb")))
+  m <- matrix(rep(255,4 * 5),ncol = 4)
+  expect_true(all(colour_values(1:5, palette = m, return = "rgb")[,1:3] == colour_values(1:5, palette = m, include_alpha = F, return = "rgb")))
+  expect_true(all(colour_values(letters[1:5], palette = m, return = "rgb")[,1:3] == colour_values(letters[1:5], palette = m, include_alpha = F, return = "rgb")))
+
+})
+
