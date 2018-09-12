@@ -193,7 +193,8 @@ test_that("256 variables produce 'unique' palette", {
   expect_true(abs(256 - length(unique(colour_values(1:256)))) <= 2)
 })
 
-# test_that("NA handled in RGB return", {
-#   colour_values(c(1,2,NA), return = "rgb")
-# })
+test_that("NA handled in RGB return", {
+  expect_true(all(colour_values(NA, return = "rgb") == c(rep(128,3), 255))) ## default "#808080FF
+  expect_true(all(colour_values(NA, return = "rgb", na_colour = "#FF000000") == c(255, 0, 0, 0)))
+})
 

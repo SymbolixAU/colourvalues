@@ -40,18 +40,15 @@ namespace colours_rgb {
     int i, r, g, b, a;
     std::string hex_str;
 
+    Rcpp::IntegerVector na_mat = rcppviridis::convert::convert_hex_to_rgb( na_colour );
+
     for( i = 0; i < n; i++ ) {
 
       this_x = x[i];
 
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
-        //r = na_colour;
-        // TODO(na colour RGB)
-        // r = 128;
-        // g = 128;
-        // b = 128;
-        // a = 255;
-        // rgb_mat(i, _) = Rcpp::NumericVector::create(r, g, b, a);
+        rgb_mat(i, _) = na_mat;
+
       } else {
         r = round( spline_red( this_x ) * 255 ) ;
         g = round( spline_green( this_x ) * 255 );

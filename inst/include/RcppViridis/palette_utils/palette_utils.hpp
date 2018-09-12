@@ -26,30 +26,6 @@ namespace palette_utils {
   }
 
   /*
-   * rescale all vectors 0,1]
-   */
-  // inline void resolve_palette(
-  //     Rcpp::NumericVector& red,
-  //     Rcpp::NumericVector& green,
-  //     Rcpp::NumericVector& blue,
-  //     Rcpp::NumericVector& alpha ) {
-  //
-  //   // RGB palettes are scaled so they can be interpolated
-  //   // rcppviridis::scale::rescale( red );
-  //   // rcppviridis::scale::rescale( green );
-  //   // rcppviridis::scale::rescale( blue );
-  //   //Rcpp::Rcout << "red before scaling: " << red << std::endl;
-  //   double scale = 1.0 / 255.0;
-  //   red = red * scale;
-  //   green = green * scale;
-  //   blue = blue * scale;
-  //   // TODO(should alpha be scaled here, or in 'alpha.hpp'?)
-  //
-  //   //Rcpp::Rcout << "red after scaling: " << red << std::endl;
-  //
-  // }
-
-  /*
    * extract vectors from palette
    */
   inline void resolve_palette(
