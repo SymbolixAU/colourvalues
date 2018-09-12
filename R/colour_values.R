@@ -68,7 +68,7 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
 
 #' color values
 #' maps colours to values
-#' @describeIn
+#' @describeIn Colour Values
 #' @inheritParams colour_values
 #' @seealso colour_values
 #' @export

@@ -133,6 +133,27 @@ test_that("rgb matrix returned", {
 
 })
 
+test_that("rgb to hex to rgb works", {
+
+  alpha <- c(0, 100, 150, 200, 255)
+  m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:9/9), alpha )
+  h <- colour_values(1:10, palette = m)
+
+  mh <- t(grDevices::col2rgb(h))
+
+  m2 <- colour_values(1:10, palette = m, return = "rgb")
+
+  expect_true(sum(abs(m[,1] - m2[,1])) <= nrow(m))
+  expect_true(sum(abs(m[,2] - m2[,2])) <= nrow(m))
+  expect_true(sum(abs(m[,3] - m2[,3])) <= nrow(m))
+  expect_true(sum(abs(m[,4] - m2[,4])) <= nrow(m))
+
+  expect_true(sum(abs(m[,1] - mh[,1])) <= nrow(m))
+  expect_true(sum(abs(m[,2] - mh[,2])) <= nrow(m))
+  expect_true(sum(abs(m[,3] - mh[,3])) <= nrow(m))
+
+})
+
 
 test_that("different sizes of variables and palettes work", {
 
@@ -171,4 +192,8 @@ test_that("256 variables produce 'unique' palette", {
   ##  because of 'splining' and rounding I think it's OK it's not exactly 256 colours
   expect_true(abs(256 - length(unique(colour_values(1:256)))) <= 2)
 })
+
+# test_that("NA handled in RGB return", {
+#   colour_values(c(1,2,NA), return = "rgb")
+# })
 

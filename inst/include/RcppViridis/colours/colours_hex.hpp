@@ -24,7 +24,6 @@ namespace colours_hex {
     int n = x.size();
     double colours = red.size();
 
-    //resolve_na_colour( na_colour );
     na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
 
     rcppviridis::scale::rescale(x);
@@ -104,7 +103,6 @@ namespace colours_hex {
     int alpha_type = rcppviridis::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
-    //Rcpp::Rcout << "alpha_full: " << alpha_full << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);

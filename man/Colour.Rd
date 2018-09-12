@@ -28,6 +28,11 @@ the order red, green, blue and alpha, and each row corresponds to each elemetn o
 color values
 maps colours to values
 }
+\section{Functions}{
+\itemize{
+\item \code{color_values}: Values
+}}
+
 \seealso{
 colour_values
 }

@@ -24,7 +24,6 @@ namespace colours_rgb {
     int n = x.size();
     double colours = red.size();
 
-    //resolve_na_colour( na_colour );
     na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
 
     rcppviridis::scale::rescale(x);
@@ -48,6 +47,11 @@ namespace colours_rgb {
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
         //r = na_colour;
         // TODO(na colour RGB)
+        // r = 128;
+        // g = 128;
+        // b = 128;
+        // a = 255;
+        // rgb_mat(i, _) = Rcpp::NumericVector::create(r, g, b, a);
       } else {
         r = round( spline_red( this_x ) * 255 ) ;
         g = round( spline_green( this_x ) * 255 );
@@ -64,8 +68,6 @@ namespace colours_rgb {
         } else {
           a = alpha[0];  // should be length 5, but all the same
         }
-
-        //hex_strings[i] = rcppviridis::convert::convert_rgb_to_hex(r, g, b, a);
         rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
       }
     }
