@@ -13,4 +13,12 @@ test_that("palettes are returned", {
   expect_true(nrow(dfm) == 256 & ncol(dfm) == 3)
   expect_true(nrow(dfc) == 256 & ncol(dfc) == 3)
 
+  expect_error(colour_values(1:5, palette = "mypalette"), "unknown palette")
+
+  expect_silent(colour_values(1, palette = "viridis"))
+  expect_silent(colour_values(1, palette = "plasma"))
+  expect_silent(colour_values(1, palette = "inferno"))
+  expect_silent(colour_values(1, palette = "magma"))
+  expect_silent(colour_values(1, palette = "cividis"))
+
 })
