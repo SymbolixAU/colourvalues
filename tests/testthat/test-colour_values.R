@@ -51,7 +51,7 @@ test_that("posix values mapped to colours", {
 test_that("matrix palette accepted", {
   ##
   m <- grDevices::colorRamp(c("red","green","blue"))(0:4/4)
-  expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#57B1F7FF", "#F6D435FF", "#041AE1FF", "#F5E921FF")))
+  expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#808000FF", "#00FF00FF", "#008080FF", "#0000FFFF")))
   ## This doesn't exactly equal
   #grDevices::colorRampPalette(c("red","green","blue"))(5)
   ## because of boost's interpolation
@@ -64,8 +64,8 @@ test_that("matrix palette accepted", {
 
   alpha <- c(0, 100, 150, 200, 255)
   m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
-  colour_values(1:5, palette = m)
-  expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#57B1F764", "#F6D43596", "#041AE1C8", "#F5E921FF")))
+  #colour_values(1:5, palette = m)
+  expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#80800064", "#00FF0096", "#008080C8", "#0000FFFF")))
 
   ## string data
   expect_true( all( colour_values(letters[1:5], palette = m) == colour_values(1:5, palette = m) ) )
@@ -81,13 +81,14 @@ test_that("alpha values applied", {
 
   expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
 
-  expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
+  #expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
+  expect_error(colour_values(1:5, alpha = c(100,200)),"Unknown alpha definition")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
   expect_true(all(substr( colour_values(letters, alpha = 0),8,9) == "00"))
 
   ## individual values for each value
-  expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255)),8,9) == c("00","80","40","C0","FF")))
+  expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255) ),8,9) == c("00","80","40","C0","FF")))
 
   ## alpha scaled according to numeric variable
   colour_values(1:5, alpha = 256:260)

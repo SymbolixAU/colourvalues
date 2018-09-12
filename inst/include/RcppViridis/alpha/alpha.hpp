@@ -43,6 +43,8 @@ namespace alpha {
     } else if (alpha_type == ALPHA_VECTOR ) {
       rcppviridis::scale::rescale( alpha );
       alpha = alpha * 255;
+      // Rcpp::Rcout << "alpha scaled: " << alpha << std::endl;
+      return alpha;
     } else if ( alpha_type == ALPHA_UNKNOWN ) {
       Rcpp::stop("Unknown alpha definition");
     }

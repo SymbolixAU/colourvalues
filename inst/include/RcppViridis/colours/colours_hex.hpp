@@ -36,6 +36,7 @@ namespace colours_hex {
     // Rcpp::Rcout << "red: " << red << std::endl;
     // Rcpp::Rcout << "green: " << green << std::endl;
     // Rcpp::Rcout << "blue: " << blue << std::endl;
+    // Rcpp::Rcout << "alpha: " << alpha << std::endl;
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
@@ -108,6 +109,7 @@ namespace colours_hex {
     int alpha_type = rcppviridis::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
+    //Rcpp::Rcout << "alpha_full: " << alpha_full << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
