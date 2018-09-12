@@ -6,7 +6,7 @@
 namespace rcppviridis {
 namespace scale {
 
-  inline Rcpp::NumericVector range(Rcpp::NumericVector x) {
+  inline Rcpp::NumericVector range(Rcpp::NumericVector& x) {
     Rcpp::NumericVector rng(2);
     rng[0] = min(na_omit(x));
     rng[1] = max(na_omit(x));
@@ -15,6 +15,7 @@ namespace scale {
 
 
   // Always rescales to (0, 1)
+  // used for variables
   inline void rescale( Rcpp::NumericVector& x ) {
     int n = x.size();
     //::NumericVector rescaled(n);
@@ -31,6 +32,13 @@ namespace scale {
     }
     //return rescaled;
   }
+
+  // need a separate rescale for rescaling colours,
+  // where, if the range == 0, it's a single colour and should remain as-is?
+  // so if red = 100,100,100,100
+  // the scaled values will be 100 / 255
+  // COLOUR PALETTES should always be specified in [0,255]
+
 } // namespace scale
 } // namespace rcppviridis
 #endif

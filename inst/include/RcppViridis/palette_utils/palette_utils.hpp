@@ -2,40 +2,11 @@
 #define RCPP_VIRIDIS_HEADERS_PALETTE_UTILS_H
 
 #include <Rcpp.h>
-#include "RcppViridis/colours.hpp"
 #include "RcppViridis/scale/scale.hpp"
 #include "RcppViridis/palettes.hpp"
 
 namespace rcppviridis {
 namespace palette_utils {
-
-
-  inline Rcpp::NumericVector validate_alpha( Rcpp::NumericVector& alpha, int x_size ) {
-
-    int alpha_size = alpha.size();
-    // Rcpp::Rcout << "alpha size  " << alpha_size << std::endl;
-    // Rcpp::Rcout << "alpha: " << alpha << std::endl;
-
-    if ( !( alpha_size == 1 || alpha_size == x_size ) ){
-        Rcpp::stop("alpha must either be a single value, or the same length as x");
-      }
-    if ( alpha_size > 1 ) {
-      //alpha_full = alpha;
-      // Rcpp::Rcout << "rescaling alpha: " << alpha << std::endl;
-
-      // TODO(IFF ALPHA_VECTOR - rescale to [0,1])
-      // IFF ALPHA_CONSTANT - leave as-is (shoudl be between [0,255])
-      rcppviridis::scale::rescale( alpha );
-      Rcpp::Rcout << "rescaled alpha : " << alpha << std::endl;
-      //alpha = alpha * 255;
-      return alpha;
-    } else {
-      Rcpp::NumericVector alpha_full( 5, alpha[0] ); // initialise with 5 vals (so i can create a spline);
-      return alpha_full;
-      //alpha_full.fill( alpha[0] );
-    }
-    return 0;
-  }
 
   inline int validate_rgb_range( int x ) {
     if ( x < 0 ) {
@@ -49,17 +20,26 @@ namespace palette_utils {
   /*
    * rescale all vectors 0,1]
    */
-  inline void resolve_palette(
-      Rcpp::NumericVector& red,
-      Rcpp::NumericVector& green,
-      Rcpp::NumericVector& blue,
-      Rcpp::NumericVector& alpha ) {
-
-    // RGB palettes are scaled so they can be interpolated
-    rcppviridis::scale::rescale( red );
-    rcppviridis::scale::rescale( green );
-    rcppviridis::scale::rescale( blue );
-  }
+  // inline void resolve_palette(
+  //     Rcpp::NumericVector& red,
+  //     Rcpp::NumericVector& green,
+  //     Rcpp::NumericVector& blue,
+  //     Rcpp::NumericVector& alpha ) {
+  //
+  //   // RGB palettes are scaled so they can be interpolated
+  //   // rcppviridis::scale::rescale( red );
+  //   // rcppviridis::scale::rescale( green );
+  //   // rcppviridis::scale::rescale( blue );
+  //   //Rcpp::Rcout << "red before scaling: " << red << std::endl;
+  //   double scale = 1.0 / 255.0;
+  //   red = red * scale;
+  //   green = green * scale;
+  //   blue = blue * scale;
+  //   // TODO(should alpha be scaled here, or in 'alpha.hpp'?)
+  //
+  //   //Rcpp::Rcout << "red after scaling: " << red << std::endl;
+  //
+  // }
 
   /*
    * extract vectors from palette
@@ -80,13 +60,20 @@ namespace palette_utils {
       Rcpp::warning("Only using the first 4 columns of the palette (R, G, B, A) values");
     }
 
+    double scale = 1.0 / 255.0;
+
     red = palette(_, 0);
     green = palette(_, 1);
     blue = palette(_, 2);
+    red = red * scale;
+    green = green * scale;
+    blue = blue * scale;
+
     if (n_col == 4) {
       alpha = palette(_, 3);
+      alpha = alpha * scale;
     }
-    resolve_palette( red, green, blue, alpha );
+    //resolve_palette( red, green, blue, alpha );
   }
 
   /*

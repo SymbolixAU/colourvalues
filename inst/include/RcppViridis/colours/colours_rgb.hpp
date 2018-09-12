@@ -4,6 +4,7 @@
 #include <Rcpp.h>
 #include "RcppViridis/colours.hpp"
 #include "RcppViridis/utils/utils.hpp"
+#include "RcppViridis/alpha/alpha.hpp"
 
 namespace rcppviridis {
 namespace colours_rgb {
@@ -12,12 +13,12 @@ namespace colours_rgb {
 // if palette is function or vectors, force rescaling
 
 Rcpp::NumericMatrix colour_values_to_rgb(
-    Rcpp::NumericVector x,
-    Rcpp::NumericVector red,
-    Rcpp::NumericVector green,
-    Rcpp::NumericVector blue,
-    Rcpp::NumericVector alpha,
-    std::string na_colour) {
+    Rcpp::NumericVector& x,
+    Rcpp::NumericVector& red,
+    Rcpp::NumericVector& green,
+    Rcpp::NumericVector& blue,
+    Rcpp::NumericVector& alpha,
+    std::string& na_colour) {
   int n = x.size();
   Rcpp::NumericMatrix rgb_mat(n, 4);
   double colours = red.size();
@@ -26,7 +27,7 @@ Rcpp::NumericMatrix colour_values_to_rgb(
   Rcpp::StringVector hex_strings(n);
   double step = 256 / colours;
 
-  // cublic_b_spoine :: vec.start, vec.end, start.time, step
+  // cublic_b_spline :: vec.start, vec.end, start.time, step
   boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
   boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
   boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
@@ -94,7 +95,10 @@ Rcpp::NumericMatrix colour_value_rgb(
   // }
   int x_size = x.size();
   Rcpp::NumericVector alpha_full( x_size );
-  rcppviridis::palette_utils::validate_alpha( alpha, x_size );
+
+  int alpha_type = 0;
+
+  rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
 
   Rcpp::NumericVector red(256);
   Rcpp::NumericVector green(256);
@@ -133,7 +137,9 @@ Rcpp::NumericMatrix colour_value_rgb(
   // }
   int x_size = x.size();
   Rcpp::NumericVector alpha_full( x_size );
-  rcppviridis::palette_utils::validate_alpha( alpha, x_size );
+
+  int alpha_type = 0;
+  rcppviridis::alpha::validate_alpha( alpha, alpha_type, x_size );
 
   Rcpp::NumericVector red(256);
   Rcpp::NumericVector green(256);
