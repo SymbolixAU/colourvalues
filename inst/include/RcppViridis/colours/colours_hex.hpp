@@ -60,6 +60,10 @@ namespace colours_hex {
         g = round( spline_green( this_x ) * 255 );
         b = round( spline_blue( this_x ) * 255 );
 
+        Rcpp::Rcout << "splined r : " << r << std::endl;
+        Rcpp::Rcout << "splined g : " << g << std::endl;
+        Rcpp::Rcout << "splined b : " << b << std::endl;
+
         if ( alpha_type == ALPHA_PALETTE ) {
           a = round( spline_alpha( this_x ) * 255 );
         } else if (alpha_type == ALPHA_VECTOR ){

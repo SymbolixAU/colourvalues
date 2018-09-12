@@ -133,8 +133,8 @@ test_that("rgb matrix returned", {
   # expect_true(all(m[,3] == c(4,109,85,10,164)))
   # expect_true(all(m[,4] == 100))
   #
-  # ## TODO(Why are these plots different, why is m2 different to m, why are there negatives?)
-  # ## matrix palette
+  ## TODO(Why are these plots different, why is m2 different to m, why are there negatives?)
+  ## matrix palette
   # alpha <- c(0, 100, 150, 200, 255)
   # m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:9/9), alpha )
   # m2 <- colour_values(1:10, palette = m, return = "rgb")
@@ -188,7 +188,7 @@ test_that("rgb matrix returned", {
   #
   # df <- data.frame(a = 10, x = 1:20)
   #
-  # m <- grDevices::colorRamp(c("red","green","blue"))(0:12/12) ## point of error == 12
+  # m <- grDevices::colorRamp(c("red","green","blue"))(0:9/9) ## point of error == 12
   #
   # df$col <- colour_values(df$x, palette = m)
   # ## THIS IS THE ERROR
@@ -202,6 +202,10 @@ test_that("rgb matrix returned", {
   #
   #
   # m <- grDevices::colorRamp( RColorBrewer::brewer.pal(8, name = "YlOrRd") )(0:255/255)
+  # df$col <- colour_values(df$x, palette = m)
+  # barplot(height = df$a, col = df$col, border = NA, space = 0)
+  #
+  # m <- grDevices::colorRamp(c("red","green","blue"))(0:255/255) ## point of error == 12
   # df$col <- colour_values(df$x, palette = m)
   # barplot(height = df$a, col = df$col, border = NA, space = 0)
   #
@@ -229,3 +233,8 @@ test_that("rgb matrix returned", {
 
 })
 
+## other tests:
+## - very few variables - large palette
+## - lots of variables - small palette
+## - few variables - small palette
+## - lots of variables - large palette
