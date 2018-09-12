@@ -51,7 +51,7 @@ test_that("posix values mapped to colours", {
 test_that("matrix palette accepted", {
   ##
   m <- grDevices::colorRamp(c("red","green","blue"))(0:4/4)
-  expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#57B1F7FF", "#F6D435FF", "#041AE1FF", "#F5E921FF")))
+  expect_true(all(colour_values(1:5, palette = m) == c("#FF0000FF", "#808000FF", "#00FF00FF", "#008080FF", "#0000FFFF")))
   ## This doesn't exactly equal
   #grDevices::colorRampPalette(c("red","green","blue"))(5)
   ## because of boost's interpolation
@@ -64,8 +64,8 @@ test_that("matrix palette accepted", {
 
   alpha <- c(0, 100, 150, 200, 255)
   m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
-  colour_values(1:5, palette = m)
-  expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#57B1F764", "#F6D43596", "#041AE1C8", "#F5E921FF")))
+  #colour_values(1:5, palette = m)
+  expect_true(all(colour_values(1:5, palette = m) == c("#FF000000", "#80800064", "#00FF0096", "#008080C8", "#0000FFFF")))
 
   ## string data
   expect_true( all( colour_values(letters[1:5], palette = m) == colour_values(1:5, palette = m) ) )
@@ -81,13 +81,14 @@ test_that("alpha values applied", {
 
   expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
 
-  expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
+  #expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
+  expect_error(colour_values(1:5, alpha = c(100,200)),"Unknown alpha definition")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
   expect_true(all(substr( colour_values(letters, alpha = 0),8,9) == "00"))
 
   ## individual values for each value
-  expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255)),8,9) == c("00","80","40","C0","FF")))
+  expect_true(all(substr(colour_values(1:5, alpha = c(0, 128, 64, 192, 255) ),8,9) == c("00","80","40","C0","FF")))
 
   ## alpha scaled according to numeric variable
   colour_values(1:5, alpha = 256:260)
@@ -132,32 +133,10 @@ test_that("rgb matrix returned", {
   expect_true(all(m[,3] == c(4,109,85,10,164)))
   expect_true(all(m[,4] == 100))
 
-  ## TODO(Why are these plots different, why is m2 different to m, why are there negatives?)
-  ## matrix palette
-  alpha <- c(0, 100, 150, 200, 255)
-  m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:9/9), alpha )
-  m2 <- colour_values(1:10, palette = m, return = "rgb")
-  ## m2 is the interpolated palette; we are not using m[1:10,] as the palette for the values
-  h <- colour_values(1:10, palette = m)
-  ## h is the hex values returned from colour_values
-  m1 <- t(grDevices::col2rgb(h))
-
-  ## expect results to be within 1 of each other
-  expect_true(sum(m1[,1] - m2[,1]) <= length(m[,1]))
-  expect_true(sum(m1[,2] - m2[,2]) <= length(m[,2]))
-  expect_true(sum(m1[,3] - m2[,3]) <= length(m[,3]))
-
-  # df <- data.frame(a = 10, x = 1:5)
-  # df2 <- data.frame(a = 10, x = 1:5)
-  #
-  # ## plot using the raw palette
-  # df$col <- colour_values(df$x, palette = m)
-  # barplot(height = df$a, col = df$col, border = NA, space = 0)
-  #
-  # df2$col <- colour_values(df2$x, palette = m2)
-  # barplot(height = df2$a, col = df2$col, border = NA, space = 0)
-  # ## they are different because 'm' gets interpolated, then 'm2' gets interpolated
-  # ## and since they are different to start with, the plots are different
-
 })
 
+## other tests:
+## - very few variables - large palette
+## - lots of variables - small palette
+## - few variables - small palette
+## - lots of variables - large palette

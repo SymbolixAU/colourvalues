@@ -164,7 +164,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
 
-Or use a vector of values the same lenght as `x`
+Or use a vector of values the same length as `x`
 
 ``` r
 df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
@@ -216,11 +216,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 163.8603 165.5927 171.5584 168.9119 170.3885 215.3305    25
-#       scales 284.9327 291.6565 309.4799 295.6014 335.3427 368.3365    25
+#  RcppViridis 323.3993 343.8451 360.5833 351.8652 361.1261 442.3954    25
+#       scales 592.6400 643.1642 695.9831 667.7793 737.6367 981.8861    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
@@ -245,11 +244,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 168.3095 171.1390 178.8755 175.0209 176.7191 236.5239    25
-#       scales 293.3825 300.1235 314.2118 305.3097 307.3727 365.4191    25
+#  RcppViridis 332.7982 336.7013 365.9277 346.1396 360.4579 555.2964    25
+#       scales 580.3242 642.6897 691.3789 654.5661 759.1780 852.1395    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />

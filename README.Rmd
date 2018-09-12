@@ -154,7 +154,7 @@ df$col <- colour_values(df$x, alpha = 50)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-Or use a vector of values the same lenght as `x`
+Or use a vector of values the same length as `x`
 
 ```{r}
 df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
