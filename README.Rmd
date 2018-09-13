@@ -80,7 +80,7 @@ LinkingTo:
     RcppViridis
 ```
 
-And in a **c++** source file you can `#include` a header and use the avaialble functions
+And in a **c++** source file so you can `#include` a header and use the available functions
 
 ```cpp
 #include "RcppViridis/colours/colours_hex.hpp"

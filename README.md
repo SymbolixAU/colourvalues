@@ -1,30 +1,21 @@
 
-[![Travis-CI Build
-Status](https://travis-ci.org/SymbolixAU/RcppViridis.svg?branch=master)](https://travis-ci.org/SymbolixAU/RcppViridis)
-[![Coverage
-status](https://codecov.io/gh/SymbolixAU/RcppViridis/branch/master/graph/badge.svg)](https://codecov.io/github/SymbolixAU/RcppViridis?branch=master)
-[![Github
-Stars](https://img.shields.io/github/stars/SymbolixAU/RcppViridis.svg?style=social&label=Github)](https://github.com/SymbolixAU/RcppViridis)
+[![Travis-CI Build Status](https://travis-ci.org/SymbolixAU/RcppViridis.svg?branch=master)](https://travis-ci.org/SymbolixAU/RcppViridis) [![Coverage status](https://codecov.io/gh/SymbolixAU/RcppViridis/branch/master/graph/badge.svg)](https://codecov.io/github/SymbolixAU/RcppViridis?branch=master) [![Github Stars](https://img.shields.io/github/stars/SymbolixAU/RcppViridis.svg?style=social&label=Github)](https://github.com/SymbolixAU/RcppViridis)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+RcppViridis
+===========
 
-# RcppViridis
-
------
+------------------------------------------------------------------------
 
 ### What does it do?
 
-It maps viridis colours to values, and quickly\!
+It maps viridis colours to values, and quickly!
 
-**Note** It does not perform a 1-to-1 mapping of a palette to values. It
-interpolates the colours from a given palette.
+**Note** It does not perform a 1-to-1 mapping of a palette to values. It interpolates the colours from a given palette.
 
 ### Why did you build it?
 
-I’m aware there are other methods for mapping colours to values. And
-which do it quick too. But I can never remember them, and I find the
-interfaces a bit cumbersome. For example, `scales::col_numeric(palette =
-viridisLite::viridis(5), domain = range(1:5))(1:5)`.
+I'm aware there are other methods for mapping colours to values. And which do it quick too. But I can never remember them, and I find the interfaces a bit cumbersome. For example, `scales::col_numeric(palette = viridisLite::viridis(5), domain = range(1:5))(1:5)`.
 
 I wanted **one** function which will work on **one** argument.
 
@@ -35,43 +26,38 @@ colour_values(letters[1:5])
 # [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 ```
 
-I also want it available at the `src` (C/C++) level for linking to other
-packages.
+I also want it available at the `src` (C/C++) level for linking to other packages.
 
------
+------------------------------------------------------------------------
 
-### Why do you spell colour with a ‘u’?
+### Why do you spell colour with a 'u'?
 
-Because it’s correct, and [R tells us
-to](http://developer.r-project.org/Rds.html)
+Because it's correct, and [R tells us to](http://developer.r-project.org/Rds.html)
 
 > For consistency, aim to use British (rather than American) spelling
 
-But don’t worry, `color_values(1:5)` works as well
+But don't worry, `color_values(1:5)` works as well
 
------
+------------------------------------------------------------------------
 
 ### How do I install it?
 
-Install the development version from
-[GitHub](https://github.com/SymbolixAU/RcppViridis) with:
+Install the development version from [GitHub](https://github.com/SymbolixAU/RcppViridis) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("SymbolixAU/RcppViridis")
 ```
 
------
+------------------------------------------------------------------------
 
 ### How can I make use of it in my package?
 
 **Rcpp**
 
-All functions are written in `Rcpp`. I have exposed some of them in
-header files so you can `LinkTo` them in your package.
+All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package.
 
-For example, the `LinkingTo` section in `DESCRIPTION` will look
-something like
+For example, the `LinkingTo` section in `DESCRIPTION` will look something like
 
 ``` yaml
 LinkingTo: 
@@ -79,8 +65,7 @@ LinkingTo:
     RcppViridis
 ```
 
-And in a **c++** source file you can `#include` a header and use the
-avaialble functions
+And in a **c++** source file so you can `#include` a header and use the available functions
 
 ``` cpp
 #include "RcppViridis/colours/colours_hex.hpp"
@@ -89,12 +74,12 @@ avaialble functions
 
 **R**
 
-If you’re not using `Rcpp`, just `Import` this package like you would
-any other.
+If you're not using `Rcpp`, just `Import` this package like you would any other.
 
-## Do you have any examples?
+Do you have any examples?
+-------------------------
 
-Of course\!
+Of course!
 
 #### 256 numbers mapped to a colour
 
@@ -126,7 +111,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
 
-Eurgh\!
+Eurgh!
 
 ``` r
 df <- df[with(df, order(x)), ]
@@ -135,14 +120,14 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
 
-That’s better\!
+That's better!
 
------
+------------------------------------------------------------------------
 
-## Do I have to use the in-built palettes?
+Do I have to use the in-built palettes?
+---------------------------------------
 
-No, you can use your own specified as a matrix of red, green and blue
-columns in the range \[0,255\]
+No, you can use your own specified as a matrix of red, green and blue columns in the range \[0,255\]
 
 ``` r
 n <- 100
@@ -154,7 +139,8 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
 
-## Do you support ‘alpha’ values
+Do you support 'alpha' values
+-----------------------------
 
 Yep. Either supply a single alpha value for all the colours
 
@@ -191,7 +177,8 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
 
-## Some of my plotting functions don’t support alpha, can I exclude it?
+Some of my plotting functions don't support alpha, can I exclude it?
+--------------------------------------------------------------------
 
 Yep. Set `include_alpha = FALSE`
 
@@ -207,9 +194,9 @@ colour_values_rgb(1:5, include_alpha = F)
 # [5,]  253  231   37
 ```
 
------
+------------------------------------------------------------------------
 
-### What’s the performance like?
+### What's the performance like?
 
 **10 million numeric values**
 
@@ -235,11 +222,10 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 1.661483 1.683969 1.732483 1.734468 1.783560 1.805028    25
-#       scales 2.890473 2.958857 3.053268 3.053813 3.112339 3.431092    25
+#  RcppViridis 1.314298 1.317930 1.329516 1.322882 1.330299 1.375277    25
+#       scales 3.873786 3.957946 3.995506 3.988583 4.044472 4.125265    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
@@ -264,11 +250,10 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 172.3549 173.2797 177.5214 174.5469 175.5295 194.7020    25
-#       scales 321.4020 324.6705 342.6100 330.5668 351.0906 461.2703    25
+#  RcppViridis 132.1553 132.5229 134.6228 134.7973 136.1055 138.9848    25
+#       scales 369.5578 370.9302 376.0741 372.6417 375.8947 396.7651    25
 
 autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="400" />
