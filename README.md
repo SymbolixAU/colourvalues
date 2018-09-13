@@ -191,11 +191,27 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 <img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
 
+## Some of my plotting functions don’t support alpha, can I exclude it?
+
+Yep. Set `include_alpha = FALSE`
+
+``` r
+colour_values(1:5, include_alpha = F)
+# [1] "#440154" "#3B528B" "#21908C" "#5DC963" "#FDE725"
+colour_values_rgb(1:5, include_alpha = F)
+#      [,1] [,2] [,3]
+# [1,]   68    1   84
+# [2,]   59   82  139
+# [3,]   33  144  140
+# [4,]   93  201   99
+# [5,]  253  231   37
+```
+
 -----
 
 ### What’s the performance like?
 
-**1 million numeric values**
+**10 million numeric values**
 
 ``` r
 library(microbenchmark)
@@ -208,7 +224,7 @@ library(viridisLite)
 # 
 #     cividis, inferno, magma, plasma, viridis
 
-n <- 1e6
+n <- 1e7
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
@@ -217,16 +233,16 @@ m <- microbenchmark(
   times = 25
 )
 m
-# Unit: milliseconds
+# Unit: seconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 165.5523 166.6505 170.6419 167.5555 171.6719 214.9333    25
-#       scales 282.8674 291.0787 312.1267 296.5173 340.7493 383.6086    25
+#  RcppViridis 1.661483 1.683969 1.732483 1.734468 1.783560 1.805028    25
+#       scales 2.890473 2.958857 3.053268 3.053813 3.112339 3.431092    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -248,11 +264,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 168.7213 172.7548 185.4255 175.5587 182.5003 241.9229    25
-#       scales 287.0164 297.5966 314.1793 303.5411 307.7608 373.6255    25
+#  RcppViridis 172.3549 173.2797 177.5214 174.5469 175.5295 194.7020    25
+#       scales 321.4020 324.6705 342.6100 330.5668 351.0906 461.2703    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="400" />

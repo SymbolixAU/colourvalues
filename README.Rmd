@@ -177,6 +177,16 @@ df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
+## Some of my plotting functions don't support alpha, can I exclude it?
+
+Yep. Set `include_alpha = FALSE`
+
+```{r}
+colour_values(1:5, include_alpha = F)
+colour_values_rgb(1:5, include_alpha = F)
+```
+
+
 ---
 
 ### What's the performance like?
