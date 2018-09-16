@@ -14,7 +14,7 @@ Stars](https://img.shields.io/github/stars/SymbolixAU/colourvalues.svg?style=soc
 
 ### What does it do?
 
-It maps viridis colours to values, and quickly\!
+It maps viridis colours (by default) to values, and quickly\!
 
 **Note** It does not perform a 1-to-1 mapping of a palette to values. It
 interpolates the colours from a given palette.
@@ -235,8 +235,8 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.670992 1.702792 1.738679 1.721243 1.774181 1.864729    25
-#        scales 2.903132 2.988399 3.075231 3.055178 3.137970 3.450273    25
+#  colourvalues 1.680017 1.743922 1.813226 1.793703 1.875893 2.037430    25
+#        scales 2.951217 3.117111 3.179288 3.140799 3.268856 3.499361    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -264,8 +264,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 174.5425 177.0637 184.4805 182.2640 185.6439 250.9113    25
-#        scales 306.5416 315.5053 329.2387 325.5986 333.3675 381.6676    25
+#  colourvalues 169.4772 184.0983 189.0837 188.3931 191.4346 236.4518    25
+#        scales 295.9375 321.6763 332.2514 325.9257 336.5661 403.0212    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.

@@ -1,6 +1,6 @@
 Package: colourvalues
 Type: Package
-Title: Maps Colours to Values
+Title: Assigns Colours to Values
 Version: 0.1.0
 Date: 2018-09-12
 Authors@R: c(

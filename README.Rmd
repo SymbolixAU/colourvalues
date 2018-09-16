@@ -26,7 +26,7 @@ library(colourvalues)
 
 ### What does it do?
 
-It maps viridis colours to values, and quickly!
+It maps viridis colours (by default) to values, and quickly!
 
 **Note** It does not perform a 1-to-1 mapping of a palette to values. It interpolates the colours from a given palette.
 
