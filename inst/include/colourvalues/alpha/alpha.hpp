@@ -1,15 +1,15 @@
-#ifndef RCPP_VIRIDIS_HEADERS_ALPHA_H
-#define RCPP_VIRIDIS_HEADERS_ALPHA_H
+#ifndef R_COLOURVALUES_ALPHA_H
+#define R_COLOURVALUES_ALPHA_H
 
 #include <Rcpp.h>
-#include "RcppViridis/scale/scale.hpp"
+#include "colourvalues/scale/scale.hpp"
 
 #define ALPHA_UNKNOWN  0
 #define ALPHA_PALETTE  1  // the alpha is on the palette
 #define ALPHA_VECTOR   2  // the alpha is a variable / vector
 #define ALPHA_CONSTANT 3  // the alpha is a constant
 
-namespace rcppviridis {
+namespace colourvalues {
 namespace alpha {
 
   inline int make_alpha_type( int alpha_size, int x_size, int palette_cols ) {
@@ -37,7 +37,7 @@ namespace alpha {
     } else if ( alpha_type == ALPHA_PALETTE ) {
       return alpha;
     } else if (alpha_type == ALPHA_VECTOR ) {
-      rcppviridis::scale::rescale( alpha );
+      colourvalues::scale::rescale( alpha );
       alpha = alpha * 255;
       // Rcpp::Rcout << "alpha scaled: " << alpha << std::endl;
       return alpha;
@@ -48,6 +48,6 @@ namespace alpha {
   }
 
 } // namespace alpha
-} // namespace rcppviridis
+} // namespace colourvalues
 
 #endif

@@ -2,54 +2,54 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 rcpp_colour_num_value_string_palette_hex <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_num_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
 }
 
 rcpp_colour_num_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_num_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
 }
 
 rcpp_colour_str_value_string_palette_hex <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_str_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
 }
 
 rcpp_colour_str_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_str_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
 }
 
 rcpp_colour_num_value_string_palette_rgb <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_num_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
 }
 
 rcpp_colour_num_value_rgb_palette_rgb <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
 }
 
 rcpp_colour_str_value_string_palette_rgb <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_str_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
 }
 
 rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
+    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
 }
 
 rcpp_viridis <- function() {
-    .Call(`_RcppViridis_rcpp_viridis`)
+    .Call(`_colourvalues_rcpp_viridis`)
 }
 
 rcpp_inferno <- function() {
-    .Call(`_RcppViridis_rcpp_inferno`)
+    .Call(`_colourvalues_rcpp_inferno`)
 }
 
 rcpp_magma <- function() {
-    .Call(`_RcppViridis_rcpp_magma`)
+    .Call(`_colourvalues_rcpp_magma`)
 }
 
 rcpp_plasma <- function() {
-    .Call(`_RcppViridis_rcpp_plasma`)
+    .Call(`_colourvalues_rcpp_plasma`)
 }
 
 rcpp_cividis <- function() {
-    .Call(`_RcppViridis_rcpp_cividis`)
+    .Call(`_colourvalues_rcpp_cividis`)
 }
 

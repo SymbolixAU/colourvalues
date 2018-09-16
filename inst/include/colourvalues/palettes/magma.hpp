@@ -1,10 +1,10 @@
-#ifndef R_RCPP_VIRIDIS_HEADERS_MAGMA_H
-#define R_RCPP_VIRIDIS_HEADERS_MAGMA_H
+#ifndef R_COLOURVALUES_MAGMA_H
+#define R_COLOURVALUES_MAGMA_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace rcppviridis {
+namespace colourvalues {
 
 namespace palette {
 
@@ -179,5 +179,5 @@ const Rcpp::List magma = Rcpp::List::create(
   _["b"] = magma_blue
 );
 } // namespace palette
-} // namepsace rcppviridis
+} // namepsace colourvalues
 #endif

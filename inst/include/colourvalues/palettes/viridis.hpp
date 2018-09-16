@@ -1,10 +1,10 @@
-#ifndef R_RCPP_VIRIDIS_HEADERS_VIRIDIS_H
-#define R_RCPP_VIRIDIS_HEADERS_VIRIDIS_H
+#ifndef R_COLOURVALUES_VIRIDIS_H
+#define R_COLOURVALUES_VIRIDIS_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace rcppviridis {
+namespace colourvalues {
 
 namespace palette {
 
@@ -153,6 +153,6 @@ const Rcpp::List viridis = Rcpp::List::create(
 );
 
 } // namespace palette
-} // namepsace rcppviridis
+} // namepsace colourvalues
 
 #endif

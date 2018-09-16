@@ -100,19 +100,19 @@
 # # df$col <- mapview:::zcolColors(df$x)
 # # barplot(height = df$a, col = df$col, border = NA, space = 0)
 # #
-# # df$col <- RcppViridis::color_values(df$x)
+# # df$col <- colourvalues::color_values(df$x)
 # # barplot(height = df$a, col = df$col, border = NA, space = 0)
 # #
 # # df <- data.frame(a = 10, x = c(1:5,NA,7,NA,9,10))
 # # df$col2 = mapview:::zcolColors(df$x, na.color = "#00FF00")
 # # barplot(height = df$a, col = df$col2, border = NA, space = 0)
 # #
-# # df$col2 <- RcppViridis::colour_values(df$x, na_colour = "")
+# # df$col2 <- colourvalues::colour_values(df$x, na_colour = "")
 # # barplot(height = df$a, col = df$col2, border = NA, space = 0)
 # #
 # #
 # # mapview:::zcolColors(df$x, na.color = "#00FF00")
-# # substr(RcppViridis::colour_values(df$x, na_colour = "#00FF00"), 1,7)
+# # substr(colourvalues::colour_values(df$x, na_colour = "#00FF00"), 1,7)
 #
 #
 #

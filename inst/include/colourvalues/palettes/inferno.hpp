@@ -1,10 +1,10 @@
-#ifndef R_RCPP_VIRIDIS_HEADERS_INFERNO_H
-#define R_RCPP_VIRIDIS_HEADERS_INFERNO_H
+#ifndef R_COLOURVALUES_INFERNO_H
+#define R_COLOURVALUES_INFERNO_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace rcppviridis {
+namespace colourvalues {
 
 namespace palette {
 
@@ -180,6 +180,6 @@ const Rcpp::List inferno = Rcpp::List::create(
 );
 
 } // namespace palette
-} // namepsace rcppviridis
+} // namepsace colourvalues
 
 #endif

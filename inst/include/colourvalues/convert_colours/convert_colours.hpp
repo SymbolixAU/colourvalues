@@ -1,11 +1,11 @@
-#ifndef RCPP_VIRIDIS_HEADERS_CONVERT_COLOURS_H
-#define RCPP_VIRIDIS_HEADERS_CONVERT_COLOURS_H
+#ifndef R_COLOURVALUES_CONVERT_COLOURS_H
+#define R_COLOURVALUES_CONVERT_COLOURS_H
 
 #include <iostream>
 #include <string>
 #include <sstream>
 
-namespace rcppviridis {
+namespace colourvalues {
 namespace convert {
 
   // https://www.dreamincode.net/forums/topic/58058-converting-rgb-to-hex/
@@ -52,6 +52,6 @@ namespace convert {
   }
 
 } // namespace convert
-} // namespace rcppviridis
+} // namespace colourvalues
 
 #endif

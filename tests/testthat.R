@@ -1,4 +1,4 @@
 library(testthat)
-library(RcppViridis)
+library(colourvalues)
 
-test_check("RcppViridis")
+test_check("colourvalues")

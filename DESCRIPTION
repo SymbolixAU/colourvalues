@@ -1,6 +1,6 @@
-Package: RcppViridis
+Package: colourvalues
 Type: Package
-Title: Maps Viridis Colours to Values
+Title: Maps Colours to Values
 Version: 0.1.0
 Date: 2018-09-12
 Authors@R: c(

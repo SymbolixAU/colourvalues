@@ -1,11 +1,11 @@
-#ifndef RCPP_VIRIDIS_HEADERS_PALETTE_UTILS_H
-#define RCPP_VIRIDIS_HEADERS_PALETTE_UTILS_H
+#ifndef R_COLOURVALUES_PALETTE_UTILS_H
+#define R_COLOURVALUES_PALETTE_UTILS_H
 
 #include <Rcpp.h>
-#include "RcppViridis/scale/scale.hpp"
-#include "RcppViridis/palettes.hpp"
+#include "colourvalues/scale/scale.hpp"
+#include "colourvalues/palettes.hpp"
 
-namespace rcppviridis {
+namespace colourvalues {
 namespace palette_utils {
 
   inline int validate_rgb_range( int x ) {
@@ -70,32 +70,32 @@ namespace palette_utils {
       Rcpp::NumericVector& blue ) {
 
     if( palette == "viridis" ) {
-      red = rcppviridis::palette::viridis_red;
-      green = rcppviridis::palette::viridis_green;
-      blue = rcppviridis::palette::viridis_blue;
+      red = colourvalues::palette::viridis_red;
+      green = colourvalues::palette::viridis_green;
+      blue = colourvalues::palette::viridis_blue;
     } else if ( palette == "inferno" ) {
-      red = rcppviridis::palette::inferno_red;
-      green = rcppviridis::palette::inferno_green;
-      blue = rcppviridis::palette::inferno_blue;
+      red = colourvalues::palette::inferno_red;
+      green = colourvalues::palette::inferno_green;
+      blue = colourvalues::palette::inferno_blue;
     } else if ( palette == "plasma" ) {
-      red = rcppviridis::palette::plasma_red;
-      green = rcppviridis::palette::plasma_green;
-      blue = rcppviridis::palette::plasma_blue;
+      red = colourvalues::palette::plasma_red;
+      green = colourvalues::palette::plasma_green;
+      blue = colourvalues::palette::plasma_blue;
     } else if ( palette == "magma" ) {
-      red = rcppviridis::palette::magma_red;
-      green = rcppviridis::palette::magma_green;
-      blue = rcppviridis::palette::magma_blue;
+      red = colourvalues::palette::magma_red;
+      green = colourvalues::palette::magma_green;
+      blue = colourvalues::palette::magma_blue;
     } else if ( palette == "cividis" ) {
-      red = rcppviridis::palette::cividis_red;
-      green = rcppviridis::palette::cividis_green;
-      blue = rcppviridis::palette::cividis_blue;
+      red = colourvalues::palette::cividis_red;
+      green = colourvalues::palette::cividis_green;
+      blue = colourvalues::palette::cividis_blue;
     } else {
       Rcpp::stop("unknown palette");
     }
   }
 
 } // namespace palette_utils
-} // namespace rcppviridis
+} // namespace colourvalues
 
 
 #endif

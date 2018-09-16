@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_colour_num_value_string_palette_hex
 Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(Rcpp::NumericVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_num_value_string_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_num_value_string_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +22,7 @@ END_RCPP
 }
 // rcpp_colour_num_value_rgb_palette_hex
 Rcpp::StringVector rcpp_colour_num_value_rgb_palette_hex(Rcpp::NumericVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_num_value_rgb_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_num_value_rgb_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +36,7 @@ END_RCPP
 }
 // rcpp_colour_str_value_string_palette_hex
 Rcpp::StringVector rcpp_colour_str_value_string_palette_hex(Rcpp::StringVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_str_value_string_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_string_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -51,7 +51,7 @@ END_RCPP
 }
 // rcpp_colour_str_value_rgb_palette_hex
 Rcpp::StringVector rcpp_colour_str_value_rgb_palette_hex(Rcpp::StringVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_str_value_rgb_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_rgb_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -65,7 +65,7 @@ END_RCPP
 }
 // rcpp_colour_num_value_string_palette_rgb
 Rcpp::NumericMatrix rcpp_colour_num_value_string_palette_rgb(Rcpp::NumericVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_num_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_num_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -80,7 +80,7 @@ END_RCPP
 }
 // rcpp_colour_num_value_rgb_palette_rgb
 Rcpp::NumericMatrix rcpp_colour_num_value_rgb_palette_rgb(Rcpp::NumericVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_num_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_num_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -94,7 +94,7 @@ END_RCPP
 }
 // rcpp_colour_str_value_string_palette_rgb
 Rcpp::NumericMatrix rcpp_colour_str_value_string_palette_rgb(Rcpp::StringVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_str_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_string_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -109,7 +109,7 @@ END_RCPP
 }
 // rcpp_colour_str_value_rgb_palette_rgb
 Rcpp::NumericMatrix rcpp_colour_str_value_rgb_palette_rgb(Rcpp::StringVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha);
-RcppExport SEXP _RcppViridis_rcpp_colour_str_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -123,7 +123,7 @@ END_RCPP
 }
 // rcpp_viridis
 Rcpp::DataFrame rcpp_viridis();
-RcppExport SEXP _RcppViridis_rcpp_viridis() {
+RcppExport SEXP _colourvalues_rcpp_viridis() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -133,7 +133,7 @@ END_RCPP
 }
 // rcpp_inferno
 Rcpp::DataFrame rcpp_inferno();
-RcppExport SEXP _RcppViridis_rcpp_inferno() {
+RcppExport SEXP _colourvalues_rcpp_inferno() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -143,7 +143,7 @@ END_RCPP
 }
 // rcpp_magma
 Rcpp::DataFrame rcpp_magma();
-RcppExport SEXP _RcppViridis_rcpp_magma() {
+RcppExport SEXP _colourvalues_rcpp_magma() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -153,7 +153,7 @@ END_RCPP
 }
 // rcpp_plasma
 Rcpp::DataFrame rcpp_plasma();
-RcppExport SEXP _RcppViridis_rcpp_plasma() {
+RcppExport SEXP _colourvalues_rcpp_plasma() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -163,7 +163,7 @@ END_RCPP
 }
 // rcpp_cividis
 Rcpp::DataFrame rcpp_cividis();
-RcppExport SEXP _RcppViridis_rcpp_cividis() {
+RcppExport SEXP _colourvalues_rcpp_cividis() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -173,23 +173,23 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RcppViridis_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_string_palette_hex, 5},
-    {"_RcppViridis_rcpp_colour_num_value_rgb_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_rgb_palette_hex, 4},
-    {"_RcppViridis_rcpp_colour_str_value_string_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_string_palette_hex, 5},
-    {"_RcppViridis_rcpp_colour_str_value_rgb_palette_hex", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_rgb_palette_hex, 4},
-    {"_RcppViridis_rcpp_colour_num_value_string_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_string_palette_rgb, 5},
-    {"_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_num_value_rgb_palette_rgb, 4},
-    {"_RcppViridis_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_string_palette_rgb, 5},
-    {"_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_RcppViridis_rcpp_colour_str_value_rgb_palette_rgb, 4},
-    {"_RcppViridis_rcpp_viridis", (DL_FUNC) &_RcppViridis_rcpp_viridis, 0},
-    {"_RcppViridis_rcpp_inferno", (DL_FUNC) &_RcppViridis_rcpp_inferno, 0},
-    {"_RcppViridis_rcpp_magma", (DL_FUNC) &_RcppViridis_rcpp_magma, 0},
-    {"_RcppViridis_rcpp_plasma", (DL_FUNC) &_RcppViridis_rcpp_plasma, 0},
-    {"_RcppViridis_rcpp_cividis", (DL_FUNC) &_RcppViridis_rcpp_cividis, 0},
+    {"_colourvalues_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_hex, 5},
+    {"_colourvalues_rcpp_colour_num_value_rgb_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_hex, 4},
+    {"_colourvalues_rcpp_colour_str_value_string_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_string_palette_hex, 5},
+    {"_colourvalues_rcpp_colour_str_value_rgb_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_rgb_palette_hex, 4},
+    {"_colourvalues_rcpp_colour_num_value_string_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_rgb, 5},
+    {"_colourvalues_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_rgb, 4},
+    {"_colourvalues_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_string_palette_rgb, 5},
+    {"_colourvalues_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_rgb_palette_rgb, 4},
+    {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
+    {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},
+    {"_colourvalues_rcpp_magma", (DL_FUNC) &_colourvalues_rcpp_magma, 0},
+    {"_colourvalues_rcpp_plasma", (DL_FUNC) &_colourvalues_rcpp_plasma, 0},
+    {"_colourvalues_rcpp_cividis", (DL_FUNC) &_colourvalues_rcpp_cividis, 0},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_RcppViridis(DllInfo *dll) {
+RcppExport void R_init_colourvalues(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

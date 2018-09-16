@@ -1,9 +1,9 @@
-#ifndef RCPP_VIRIDIS_HEADERS_SCALE_H
-#define RCPP_VIRIDIS_HEADERS_SCALE_H
+#ifndef R_COLOURVALUES_SCALE_H
+#define R_COLOURVALUES_SCALE_H
 
 #include <Rcpp.h>
 
-namespace rcppviridis {
+namespace colourvalues {
 namespace scale {
 
   inline Rcpp::NumericVector range(Rcpp::NumericVector& x) {
@@ -41,5 +41,5 @@ namespace scale {
   // COLOUR PALETTES should always be specified in [0,255]
 
 } // namespace scale
-} // namespace rcppviridis
+} // namespace colourvalues
 #endif

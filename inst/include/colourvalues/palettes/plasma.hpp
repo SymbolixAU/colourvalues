@@ -1,10 +1,10 @@
-#ifndef R_RCPP_VIRIDIS_HEADERS_PLASMA_H
-#define R_RCPP_VIRIDIS_HEADERS_PLASMA_H
+#ifndef R_COLOURVALUES_PLASMA_H
+#define R_COLOURVALUES_PLASMA_H
 
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace rcppviridis {
+namespace colourvalues {
 
 namespace palette {
 
@@ -180,5 +180,5 @@ const Rcpp::List plasma = Rcpp::List::create(
 );
 
 } // namespace palette
-} // namepsace rcppviridis
+} // namepsace colourvalues
 #endif

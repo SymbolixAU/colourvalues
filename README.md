@@ -1,14 +1,14 @@
 
 [![Travis-CI Build
-Status](https://travis-ci.org/SymbolixAU/RcppViridis.svg?branch=master)](https://travis-ci.org/SymbolixAU/RcppViridis)
+Status](https://travis-ci.org/SymbolixAU/colourvalues.svg?branch=master)](https://travis-ci.org/SymbolixAU/colourvalues)
 [![Coverage
-status](https://codecov.io/gh/SymbolixAU/RcppViridis/branch/master/graph/badge.svg)](https://codecov.io/github/SymbolixAU/RcppViridis?branch=master)
+status](https://codecov.io/gh/SymbolixAU/colourvalues/branch/master/graph/badge.svg)](https://codecov.io/github/SymbolixAU/colourvalues?branch=master)
 [![Github
-Stars](https://img.shields.io/github/stars/SymbolixAU/RcppViridis.svg?style=social&label=Github)](https://github.com/SymbolixAU/RcppViridis)
+Stars](https://img.shields.io/github/stars/SymbolixAU/colourvalues.svg?style=social&label=Github)](https://github.com/SymbolixAU/colourvalues)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# RcppViridis
+# colourvalues
 
 -----
 
@@ -54,11 +54,11 @@ But don’t worry, `color_values(1:5)` works as well
 ### How do I install it?
 
 Install the development version from
-[GitHub](https://github.com/SymbolixAU/RcppViridis) with:
+[GitHub](https://github.com/SymbolixAU/colourvalues) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("SymbolixAU/RcppViridis")
+devtools::install_github("SymbolixAU/colourvalues")
 ```
 
 -----
@@ -76,15 +76,15 @@ something like
 ``` yaml
 LinkingTo: 
     Rcpp,
-    RcppViridis
+    colourvalues
 ```
 
 And in a **c++** source file so you can `#include` a header and use the
 available functions
 
 ``` cpp
-#include "RcppViridis/colours/colours_hex.hpp"
-// [[Rcpp::depends(RcppViridis)]]
+#include "colourvalues/colours/colours_hex.hpp"
+// [[Rcpp::depends(colourvalues)]]
 ```
 
 **R**
@@ -220,7 +220,7 @@ library(scales)
 library(viridisLite)
 # 
 # Attaching package: 'viridisLite'
-# The following objects are masked from 'package:RcppViridis':
+# The following objects are masked from 'package:colourvalues':
 # 
 #     cividis, inferno, magma, plasma, viridis
 
@@ -228,15 +228,15 @@ n <- 1e7
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
-  RcppViridis = { RcppViridis::colour_values(x = df$x) },
+  colourvalues = { colourvalues::colour_values(x = df$x) },
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
 m
 # Unit: seconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 1.661479 1.667042 1.685440 1.670131 1.675113 1.877817    25
-#       scales 2.881157 2.951867 3.002407 2.987579 3.034468 3.305677    25
+#          expr      min       lq     mean   median       uq      max neval
+#  colourvalues 1.670992 1.702792 1.738679 1.721243 1.774181 1.864729    25
+#        scales 2.903132 2.988399 3.075231 3.055178 3.137970 3.450273    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -257,15 +257,15 @@ x <- sample(x = letters, size = n, replace = TRUE)
 df <- data.frame(x = x)
 
 m <- microbenchmark(
-  RcppViridis = { x <- RcppViridis::colour_values(x = df$x) },
+  colourvalues = { x <- colourvalues::colour_values(x = df$x) },
   scales = { y <- col_factor(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = unique(df$x))(df$x) },
   times = 25
 )
 m
 # Unit: milliseconds
-#         expr      min       lq     mean   median       uq      max neval
-#  RcppViridis 175.5278 180.3672 185.3634 187.5670 190.1344 193.8903    25
-#       scales 300.2514 323.6980 340.9838 337.4562 349.3760 427.9255    25
+#          expr      min       lq     mean   median       uq      max neval
+#  colourvalues 174.5425 177.0637 184.4805 182.2640 185.6439 250.9113    25
+#        scales 306.5416 315.5053 329.2387 325.5986 333.3675 381.6676    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.

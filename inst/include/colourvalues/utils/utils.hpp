@@ -1,9 +1,9 @@
-#ifndef RCPP_VIRIDIS_HEADERS_UTILS_H
-#define RCPP_VIRIDIS_HEADERS_UTILS_H
+#ifndef R_COLOURVALUES_UTILS_H
+#define R_COLOURVALUES_UTILS_H
 
 #include <Rcpp.h>
 
-namespace rcppviridis {
+namespace colourvalues {
 namespace utils {
 
   inline void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
@@ -18,13 +18,13 @@ namespace utils {
 
     if ( anyNa ) {
       int na_value = Rcpp::max( out );
-      rcppviridis::utils::replace_nas( out, na_value );
+      colourvalues::utils::replace_nas( out, na_value );
     }
     return Rcpp::as< Rcpp::NumericVector >( out );
   }
 
 } // namespace utils
-} // namespace rcppviridis
+} // namespace colourvalues
 
 
 #endif
