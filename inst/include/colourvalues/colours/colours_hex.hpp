@@ -38,7 +38,7 @@ namespace colours_hex {
     boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
 
     double this_x;
-    int i, r, g, b, a;
+    int i, r, g, b;
     std::string hex_str;
 
     for( i = 0; i < n; i++ ) {
@@ -57,7 +57,7 @@ namespace colours_hex {
         colourvalues::palette_utils::validate_rgb_spline(b);
 
         if (include_alpha) {
-
+          int a;
           if ( alpha_type == ALPHA_PALETTE ) {
             a = round( spline_alpha( this_x ) * 255 );
           } else if (alpha_type == ALPHA_VECTOR ){

@@ -39,7 +39,7 @@ namespace colours_rgb {
     boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
 
     double this_x;
-    int i, r, g, b, a;
+    int i, r, g, b;
     std::string hex_str;
 
     Rcpp::IntegerVector na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
@@ -61,7 +61,7 @@ namespace colours_rgb {
         b = colourvalues::palette_utils::validate_rgb_range( b );
 
         if (include_alpha) {
-
+          int a;
           if ( alpha_type == ALPHA_PALETTE ) {
             a = round( spline_alpha( this_x ) * 255 );
           } else if (alpha_type == ALPHA_VECTOR ){
@@ -71,7 +71,7 @@ namespace colours_rgb {
           }
           rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
         } else {
-          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
+          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b);
         }
       }
     }
