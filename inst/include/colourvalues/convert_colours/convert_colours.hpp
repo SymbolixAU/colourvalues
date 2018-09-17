@@ -11,8 +11,10 @@ namespace convert {
   // https://www.dreamincode.net/forums/topic/58058-converting-rgb-to-hex/
   inline std::string convert_rgb_to_hex( int num, bool include_alpha ) {
     std::string rgb;
-    int cols = include_alpha ? 4 : 3;
-    for (int i=(cols*2) - 1; i>=0; i--) {
+//    int cols = include_alpha ? 4 : 3;
+//    cols = ( cols * 2 ) - 1;
+    int cols = include_alpha ? 7 : 5;
+    for (int i = cols; i >= 0; i--) {
       rgb += "0123456789ABCDEF"[((num >> i*4) & 0xF)];
     }
     return rgb;

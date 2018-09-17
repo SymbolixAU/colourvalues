@@ -116,7 +116,6 @@ namespace colours_rgb {
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    //Rcpp::Rcout << "alpha_full: " << alpha_full << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
