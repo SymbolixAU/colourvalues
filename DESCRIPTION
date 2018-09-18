@@ -7,6 +7,9 @@ Authors@R: c(
     person("David", "Cooley", ,"dcooley@symbolix.com.au", role = c("aut", "cre"))
     )
 Description: Maps one of the viridis colour palettes, or a user-specified palette to values. 
+    Viridis colour maps are created by Stéfan van der Walt and Nathaniel Smith. 
+    They were set as the default palette for the 'Python' 'Matplotlib' library, 
+    introduced at SciPy 2015 conference <http://scipy2015.scipy.org/ehome/index.php?eventid=115969&>.  
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -14,8 +17,7 @@ LinkingTo:
     Rcpp,
     BH
 Imports: 
-    Rcpp,
-    BH
+    Rcpp
 RoxygenNote: 6.0.1
 Suggests: 
     covr,
