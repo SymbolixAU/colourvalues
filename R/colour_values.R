@@ -130,6 +130,7 @@ colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
   rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha )
 }
 
+
 colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
   UseMethod("colour_values_to_hex")
 }
