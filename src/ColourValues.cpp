@@ -15,7 +15,8 @@ Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(
     std::string na_colour,
     Rcpp::NumericVector alpha,
     bool include_alpha ) {
-  return colourvalues::colours_hex::colour_value_hex( x, palette, na_colour, alpha, include_alpha );
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, alpha, include_alpha );
 }
 
 // [[Rcpp::export]]
@@ -24,7 +25,8 @@ Rcpp::StringVector rcpp_colour_num_value_rgb_palette_hex(
     Rcpp::NumericMatrix palette,
     std::string na_colour,
     bool include_alpha ) {
-  return colourvalues::colours_hex::colour_value_hex( x, palette, na_colour, include_alpha );
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, include_alpha );
 }
 
 // [[Rcpp::export]]
@@ -34,7 +36,7 @@ Rcpp::StringVector rcpp_colour_str_value_string_palette_hex(
     std::string na_colour,
     Rcpp::NumericVector alpha,
     bool include_alpha ) {
-    return colourvalues::colours_hex::colour_value_hex( x, palette, na_colour, alpha, include_alpha );
+  return colourvalues::colours_hex::colour_value_hex( x, palette, na_colour, alpha, include_alpha );
 }
 
 // [[Rcpp::export]]
@@ -58,7 +60,8 @@ Rcpp::NumericMatrix rcpp_colour_num_value_string_palette_rgb(
     std::string na_colour,
     Rcpp::NumericVector alpha,
     bool include_alpha ) {
-  return colourvalues::colours_rgb::colour_value_rgb( x, palette, na_colour, alpha, include_alpha );
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_rgb::colour_value_rgb( x2, palette, na_colour, alpha, include_alpha );
 }
 
 // [[Rcpp::export]]
@@ -67,7 +70,8 @@ Rcpp::NumericMatrix rcpp_colour_num_value_rgb_palette_rgb(
     Rcpp::NumericMatrix palette,
     std::string na_colour,
     bool include_alpha ) {
-  return colourvalues::colours_rgb::colour_value_rgb( x, palette, na_colour, include_alpha );
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_rgb::colour_value_rgb( x2, palette, na_colour, include_alpha );
 }
 
 // [[Rcpp::export]]

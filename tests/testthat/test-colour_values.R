@@ -214,3 +214,30 @@ test_that("alpha can be excluded from results", {
 
 })
 
+test_that("original vectors returned",{
+  ## https://github.com/SymbolixAU/colourvalues/issues/24
+  x <- 1L:10L
+  y <- 1L:10L
+  invisible( colour_values(x) )
+  expect_true( all(x == y) )
+  invisible( colour_values_rgb(x))
+  expect_true( all(x == y))
+
+  set.seed(1)
+  x <- as.numeric( sample.int(100, 10))
+  set.seed(1)
+  y <- as.numeric( sample.int(100, 10))
+  expect_true( all( x == y ))
+  invisible( colour_values(x) )
+  expect_true( all( x == y ))
+
+
+  set.seed(1)
+  x <- as.numeric( sample.int(100, 10))
+  set.seed(1)
+  y <- as.numeric( sample.int(100, 10))
+  expect_true( all( x == y ))
+  invisible( colour_values_rgb(x) )
+  expect_true( all( x == y ))
+
+})
