@@ -57,7 +57,13 @@ But don't worry, `color_values(1:5)` works as well
 
 ### How do I install it?
 
-Install the development version from [GitHub](https://github.com/SymbolixAU/colourvalues) with:
+From CRAN
+
+```{r, eval=FALSE}
+install.packages("colourvalues")
+```
+
+Or install the development version from [GitHub](https://github.com/SymbolixAU/colourvalues) with:
 
 ```r
 # install.packages("devtools")

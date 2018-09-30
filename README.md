@@ -53,7 +53,13 @@ But don’t worry, `color_values(1:5)` works as well
 
 ### How do I install it?
 
-Install the development version from
+From CRAN
+
+``` r
+install.packages("colourvalues")
+```
+
+Or install the development version from
 [GitHub](https://github.com/SymbolixAU/colourvalues) with:
 
 ``` r
@@ -104,7 +110,7 @@ df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" height="200" />
 
 #### 5000 numbers on a non-linear scale
 
@@ -114,7 +120,7 @@ df$col <- colour_values(df$x, palette = "viridis")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
 
 #### 1000 random numbers
 
@@ -124,7 +130,7 @@ df$col <- colour_values(df$x, palette = "inferno")
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
 
 Eurgh\!
 
@@ -133,7 +139,7 @@ df <- df[with(df, order(x)), ]
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
 
 That’s better\!
 
@@ -152,7 +158,7 @@ df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
 
 ## Do you support ‘alpha’ values
 
@@ -165,7 +171,7 @@ df$col <- colour_values(df$x, alpha = 50)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
 
 Or use a vector of values the same length as `x`
 
@@ -175,7 +181,7 @@ df$col <- colour_values(df$x, alpha = df$y)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
 
 Or include the alpha value as a 4th column in the palette matrix
 
@@ -189,7 +195,7 @@ df$col <- colour_values(df$x, palette = m)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="200" />
 
 ## Some of my plotting functions don’t support alpha, can I exclude it?
 
@@ -235,14 +241,14 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.653246 1.657567 1.668899 1.660036 1.669532 1.734161    25
-#        scales 2.821622 2.911222 2.963922 2.954737 3.008437 3.286702    25
+#  colourvalues 1.631410 1.711759 1.751323 1.741404 1.779819 1.965281    25
+#        scales 2.900174 3.011839 3.079789 3.049456 3.147505 3.354404    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -264,11 +270,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 167.6287 172.5251 175.1058 173.5187 173.8032 223.7279    25
-#        scales 301.5320 309.3315 315.6025 310.9532 312.0156 378.2303    25
+#  colourvalues 167.6837 169.7646 174.7244 172.0396 179.9782 184.8556    25
+#        scales 304.4721 310.6224 324.5070 319.0520 334.0095 382.8709    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" height="400" />
