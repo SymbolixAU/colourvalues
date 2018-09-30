@@ -70,7 +70,7 @@ devtools::install_github("SymbolixAU/colourvalues")
 
 **Rcpp**
 
-All functions are written in `Rcpp`. I have exposed some of them in header files so you can `LinkTo` them in your package.
+All functions are written in `Rcpp`. I have exposed some of them in header files so you can "link to" them in your package.
 
 For example, the `LinkingTo` section in `DESCRIPTION` will look something like
 

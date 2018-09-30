@@ -68,7 +68,7 @@ devtools::install_github("SymbolixAU/colourvalues")
 **Rcpp**
 
 All functions are written in `Rcpp`. I have exposed some of them in
-header files so you can `LinkTo` them in your package.
+header files so you can “link to” them in your package.
 
 For example, the `LinkingTo` section in `DESCRIPTION` will look
 something like
@@ -235,8 +235,8 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.680017 1.743922 1.813226 1.793703 1.875893 2.037430    25
-#        scales 2.951217 3.117111 3.179288 3.140799 3.268856 3.499361    25
+#  colourvalues 1.653246 1.657567 1.668899 1.660036 1.669532 1.734161    25
+#        scales 2.821622 2.911222 2.963922 2.954737 3.008437 3.286702    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -264,8 +264,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 169.4772 184.0983 189.0837 188.3931 191.4346 236.4518    25
-#        scales 295.9375 321.6763 332.2514 325.9257 336.5661 403.0212    25
+#  colourvalues 167.6287 172.5251 175.1058 173.5187 173.8032 223.7279    25
+#        scales 301.5320 309.3315 315.6025 310.9532 312.0156 378.2303    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
