@@ -1,4 +1,8 @@
 
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/colourvalues)](http://cran.r-project.org/package=colourvalues)
+![downloads](http://cranlogs.r-pkg.org/badges/grand-total/colourvalues)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/colourvalues)](http://cran.r-project.org/web/packages/colourvalues/index.html)
 [![Travis-CI Build
 Status](https://travis-ci.org/SymbolixAU/colourvalues.svg?branch=master)](https://travis-ci.org/SymbolixAU/colourvalues)
 [![Coverage
@@ -241,8 +245,8 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.631410 1.711759 1.751323 1.741404 1.779819 1.965281    25
-#        scales 2.900174 3.011839 3.079789 3.049456 3.147505 3.354404    25
+#  colourvalues 1.680810 1.750678 1.781264 1.789702 1.811741 1.910503    25
+#        scales 2.843353 2.943077 3.028863 3.002642 3.096513 3.264814    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -270,8 +274,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 167.6837 169.7646 174.7244 172.0396 179.9782 184.8556    25
-#        scales 304.4721 310.6224 324.5070 319.0520 334.0095 382.8709    25
+#  colourvalues 168.9823 175.0881 176.5180 177.0736 178.1082 182.8782    25
+#        scales 295.6720 307.0646 313.1495 308.4419 315.5147 368.5441    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
