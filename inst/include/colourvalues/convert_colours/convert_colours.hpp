@@ -31,13 +31,13 @@ namespace convert {
     return '#' + convert_rgb_to_hex(rgbNum, false);
   }
 
-  int hex_element( std::string& hex, int pos ) {
+  inline int hex_element( std::string& hex, int pos ) {
     return std::stoul( hex.substr(pos, 2), nullptr, 16 );
   }
 
   // TODO(3-character hex ("#0F0") and alpha channel)
   // can this be sped-up?
-  Rcpp::IntegerVector convert_hex_to_rgb( std::string hex ) {
+  inline Rcpp::IntegerVector convert_hex_to_rgb( std::string hex ) {
 
     int hasHash = 0;
     if ( hex[0] == '#') {

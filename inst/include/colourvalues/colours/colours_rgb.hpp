@@ -12,7 +12,7 @@ namespace colours_rgb {
 // if palette is a string; it's using in-built palettes; nothing to do
 // if palette is function or vectors, force rescaling
 
-  Rcpp::NumericMatrix colour_values_to_rgb(
+  inline Rcpp::NumericMatrix colour_values_to_rgb(
       Rcpp::NumericVector& x,
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
@@ -79,7 +79,7 @@ namespace colours_rgb {
   }
 
   // in this function the colour vectors will already be scaled [0,1]
-  Rcpp::NumericMatrix colour_value_rgb(
+  inline Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::NumericVector x,
       Rcpp::NumericMatrix palette,
       std::string na_colour,
@@ -101,7 +101,7 @@ namespace colours_rgb {
     return colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-  Rcpp::NumericMatrix colour_value_rgb(
+  inline Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::NumericVector x,
       std::string palette,
       std::string na_colour,
@@ -126,7 +126,7 @@ namespace colours_rgb {
     return colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-  Rcpp::NumericMatrix colour_value_rgb (
+  inline Rcpp::NumericMatrix colour_value_rgb (
       Rcpp::StringVector x,
       Rcpp::NumericMatrix palette,
       std::string na_colour,
@@ -145,7 +145,7 @@ namespace colours_rgb {
     return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
-  Rcpp::NumericMatrix colour_value_rgb(
+  inline Rcpp::NumericMatrix colour_value_rgb(
       Rcpp::StringVector x,
       std::string palette,
       std::string na_colour,

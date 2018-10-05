@@ -121,7 +121,7 @@ namespace colours_hex {
     return colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
   }
 
-  Rcpp::StringVector colour_value_hex (
+  inline Rcpp::StringVector colour_value_hex (
       Rcpp::StringVector x,
       Rcpp::NumericMatrix palette,
       std::string na_colour,
