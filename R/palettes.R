@@ -12,7 +12,6 @@ viridis <- function() rcpp_viridis()
 #' @export
 inferno <- function() rcpp_inferno()
 
-
 #' Plasma
 #'
 #' Data frame of the plasma palette
@@ -20,14 +19,12 @@ inferno <- function() rcpp_inferno()
 #' @export
 plasma <- function() rcpp_plasma()
 
-
 #' Magma
 #'
 #' Data frame of the magma palette
 #'
 #' @export
 magma <- function() rcpp_magma()
-
 
 #' Cividis
 #'

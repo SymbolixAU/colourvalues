@@ -20,6 +20,10 @@
 #'   \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
 #' }
 #'
+#' The \code{palette} (and \code{alpha} argument when using a vector) requires 5
+#' rows because the colours are interpolated using a cubic b-spline. This method
+#' requires 5 values.
+#'
 #' @return string vector of hex colours
 #'
 #' @examples
@@ -58,6 +62,7 @@
 #'
 #' @export
 colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+  alpha_check( alpha )
   colour_values_to_hex( x, palette, na_colour, alpha, include_alpha )
 }
 
@@ -80,6 +85,7 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
 #'
 #' @export
 colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+  alpha_check( alpha )
   colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha )
 }
 
