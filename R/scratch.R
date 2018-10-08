@@ -125,3 +125,77 @@
 # stl_sort( 20:1 )
 # stl_sort( x )
 #
+
+
+# ## stirng vectors
+#
+# library(Rcpp)
+# library(stringi)
+#
+# n <- 1e6
+# x <- rnorm(n = n)
+# y <- do.call(paste0, Map(stri_rand_strings, n=n, length=c(5, 4, 1),
+#                          pattern = c('[A-Z]', '[0-9]', '[A-Z]')))
+#
+# cppFunction('Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
+#     bool anyNa = Rcpp::any( is_na( x ) );
+#
+#     Rcpp::StringVector lvls = Rcpp::sort_unique( x );
+#     Rcpp::IntegerVector out = Rcpp::match( x, lvls );
+#
+#     if ( anyNa ) {
+#       int na_value = Rcpp::max( out );
+#       int int_s = NA_INTEGER;
+#       std::replace( out.begin(), out.end(), na_value, int_s);
+#     }
+#     return Rcpp::as< Rcpp::NumericVector >( out );
+# }')
+#
+#
+# res <- resolve_string_vector( x )
+#
+# microbenchmark(
+#   numeric = { v1 <- colourvalues::colour_values( x ) },
+#   character = { v2 <- colourvalues::colour_values( y ) },
+#   internals = { v3 <- resolve_string_vector( y ) },
+#   times = 5
+# )
+#
+# n <- 1e6
+# y <- do.call(paste0, Map(stri_rand_strings, n=n, length=c(5, 4, 1),
+#                          pattern = c('[A-Z]', '[0-9]', '[A-Z]')))
+#
+# cppFunction('Rcpp::StringVector rcpp_sort( Rcpp::StringVector x ) {
+#   Rcpp::StringVector lvls = Rcpp::sort_unique( x );
+#   return lvls;
+# }')
+#
+# cppFunction('Rcpp::StringVector std_sort( Rcpp::StringVector x ) {
+#   Rcpp::StringVector y = clone( x );
+#   std::sort(y.begin(), y.end());
+#   y.erase( std::unique( y.begin(), y.end()), y.end());
+#   return y;
+# }')
+#
+# microbenchmark(
+#   rcpp = { res1 <- rcpp_sort( y ) },
+#   std = { res2 <- std_sort( y ) },
+#   times = 10
+# )
+#
+# # Unit: seconds
+# # expr     min       lq     mean   median       uq      max neval
+# # rcpp 7.71686 7.836721 8.321830 7.945700 7.985845 12.09966    10
+# #  std 3.29611 3.416647 4.582591 3.841523 4.440750 11.43789    10
+#
+# ## TODO( how are NAs sorted in both )
+#
+# y2 <- y[1:5]
+#
+# y2[1] <- NA
+# y2[3] <- NA
+#
+# rcpp_sort( y2 )
+# std_sort( y2 )
+#
+# ## the same...
