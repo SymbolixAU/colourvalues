@@ -12,7 +12,8 @@ namespace utils {
   }
 
   inline Rcpp::NumericVector resolve_string_vector( Rcpp::StringVector x ) {
-    bool anyNa = Rcpp::any( is_na( x ));
+    bool anyNa = Rcpp::any( is_na( x ) );
+
     Rcpp::StringVector lvls = Rcpp::sort_unique( x );
     Rcpp::IntegerVector out = Rcpp::match( x, lvls );
 

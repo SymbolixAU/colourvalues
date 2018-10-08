@@ -27,9 +27,9 @@ namespace colours_hex {
 
     na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
 
-    colourvalues::scale::rescale(x);
-    Rcpp::StringVector hex_strings(n);
-    double step = 1 / (colours - 1);  // TODO(test)
+    colourvalues::scale::rescale( x );
+    Rcpp::StringVector hex_strings( n );
+    double step = 1 / ( colours - 1 );  // TODO(test)
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );

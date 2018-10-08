@@ -15,12 +15,12 @@ colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
 \item{na_colour}{hex string colour to use for NA values in the form \code{#RRGGBBAA}.}
 
 \item{alpha}{optional. Single value in [0,255] applied to all colours, or
-a vector of numeric values the same length as \code{x}. The numeric vector
-will be scaled into the range [0,255].
+a vector of numeric values the same length as \code{x} and at least length 5.
+The numeric vector will be scaled into the range [0,255].
 If a matrix palette is supplied this argument is ignored.}
 
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
-the alpha values. Defaults to \code{TRUE}}
+the alpha values. Defaults to \code{TRUE}.}
 }
 \value{
 matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in
