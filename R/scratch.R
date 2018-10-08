@@ -199,3 +199,13 @@
 # std_sort( y2 )
 #
 # ## the same...
+
+#
+# set.seed(1)
+# df <- data.frame(a = 10, x = sample(letters, size = 26))
+# df$col <- colour_values(df$x, palette = "viridis")
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+#
+# df$col <- colour_values(df$x, palette = "viridis")
+# barplot(height = df$a, col = df$col, border = NA, space = 0)
+
