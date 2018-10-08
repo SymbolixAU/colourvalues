@@ -32,13 +32,6 @@ namespace scale {
     return Rcpp::NumericVector::create(min, max);
   }
 
-  // inline Rcpp::NumericVector range( Rcpp::NumericVector& x ) {
-  //   Rcpp::NumericVector rng(2);
-  //   rng[0] = min( na_omit(x) );
-  //   rng[1] = max( na_omit(x) );
-  //   return rng;
-  // }
-
   // Always rescales to (0, 1)
   // used for variables
   inline void rescale( Rcpp::NumericVector& x ) {

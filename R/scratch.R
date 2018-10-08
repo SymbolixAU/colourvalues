@@ -17,6 +17,11 @@
 #   times = 5
 # )
 #
+# # Unit: seconds
+# #       expr       min        lq      mean    median       uq       max neval
+# #   numeric  1.609049  1.627812  1.849422  1.635453  1.67614  2.698658     5
+# # character 11.787047 11.852525 12.743274 12.068627 13.64671 14.361460     5
+#
 #
 # library(Rcpp)
 #
@@ -108,3 +113,15 @@
 #   for_min_max = { for_min_max( x ) },
 #   times = 2
 # )
+#
+#
+# cppFunction('Rcpp::NumericVector stl_sort( Rcpp::NumericVector x) {
+#   NumericVector y = clone(x);
+#   //int n = x.size() - 1;
+#   std::sort(y.begin(), y.end());
+#   return y;
+# }')
+#
+# stl_sort( 20:1 )
+# stl_sort( x )
+#
