@@ -199,3 +199,31 @@
 # std_sort( y2 )
 #
 # ## the same...
+
+
+# col <- "#00FF00FF"
+# col <- rep(col, 1e6)
+#
+# m <- colourvalues:::rcpp_convert_hex_to_rgb(col)
+# m2 <- grDevices::col2rgb(col, alpha = T)
+#
+# str(m)
+# str(m2)
+# head(t(m2))
+# head(m)
+#
+# library(microbenchmark)
+#
+# microbenchmark(
+#   cv = { colourvalues:::rcpp_convert_hex_to_rgb(col) },
+#   gr = { grDevices::col2rgb(col, alpha = TRUE) },
+#   times = 10
+# )
+# Unit: milliseconds
+# expr       min        lq      mean    median        uq       max neval
+#  cv 282.89980 284.49219 313.91039 308.83278 342.12669 359.66133    10
+#  gr  28.06987  29.27938  33.65456  34.48015  35.83781  39.26315    10
+
+
+## differences:
+## - colourvalues automatically handles alpha?
