@@ -2,7 +2,7 @@
 % Please edit documentation in R/convert_colours.R
 \name{convert_colour}
 \alias{convert_colour}
-\title{Convert}
+\title{Convert Colour}
 \usage{
 convert_colour(x)
 }
@@ -10,7 +10,7 @@ convert_colour(x)
 \item{x}{character vector of hex strings, or numeric matrix of RRGGBBAA values}
 }
 \description{
-Converts colours between RRGGBBAA and hex strings, in both directions
+Converts colours between RRGGBBAA and hex strings, in both directions.
 }
 \details{
 If a combination of hex strings with and without alpha values are supplied, those

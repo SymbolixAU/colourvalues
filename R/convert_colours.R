@@ -1,6 +1,6 @@
-#' Convert
+#' Convert Colour
 #'
-#' Converts colours between RRGGBBAA and hex strings, in both directions
+#' Converts colours between RRGGBBAA and hex strings, in both directions.
 #'
 #' @param x character vector of hex strings, or numeric matrix of RRGGBBAA values
 #'
@@ -29,3 +29,31 @@ convert_colour.character <- function( x ) {
   ## TODO (convert hex to RGBA matrix)
   rcpp_convert_hex_to_rgb( x )
 }
+
+
+#' Convert Colours
+#'
+#' Converts colours between RRGGBBAA and hex strings, in both directions.
+#' @describeIn Convert Colour
+#' @inheritParams convert_colour
+#' @seealso convert_colour
+#' @export
+convert_colours <- convert_colour
+
+#' Convert Color
+#'
+#' Converts colours between RRGGBBAA and hex strings, in both directions.
+#' @describeIn Convert Colour
+#' @inheritParams convert_colour
+#' @seealso convert_colour
+#' @export
+convert_color <- convert_colour
+
+#' Convert Colors
+#'
+#' Converts colours between RRGGBBAA and hex strings, in both directions.
+#' @describeIn Convert Colour
+#' @inheritParams convert_colour
+#' @seealso convert_colour
+#' @export
+convert_colors <- convert_colour

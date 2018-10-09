@@ -57,71 +57,65 @@ namespace convert {
     return 16 * hexdigit( hex[ele1] ) + hexdigit( hex[ele2] );
   }
 
-  inline Rcpp::IntegerMatrix convert_hex_to_rgb( const char* hex, bool& any_alpha ) {
-    Rcpp::IntegerMatrix mat(1, 4);
+  inline Rcpp::IntegerMatrix convert_hex_to_rgb( Rcpp::StringVector hex_strings ) {
+    int i;
+    int n = hex_strings.size();
+    Rcpp::IntegerMatrix mat(n, 4);
+    bool any_alpha = false;
 
-    if ( strncmp(hex, "#", 1) != 0 ) {
-      Rcpp::stop("unknown hex string, expecting # symbol");
+    for( i = 0; i < n; i++ ) {
+      Rcpp::String this_hex = hex_strings[i];
+      const char* hex = this_hex.get_cstring();
+      //mat(i, Rcpp::_) = convert_hex_to_rgb( cs, any_alpha );
+
+      if ( strncmp(hex, "#", 1) != 0 ) {
+        Rcpp::stop("unknown hex string, expecting # symbol");
+      }
+
+      switch( strlen( hex ) ) {
+      case 9: {
+        any_alpha = true;
+        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
+        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
+        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
+        mat(i, 3) = colourvalues::convert::hex_to_rgba( hex, 7, 8 );
+        break;
+      }
+      case 7: {
+        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
+        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
+        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
+        mat(i, 3) = 255;
+        break;
+      }
+      case 5: {
+        any_alpha = true;
+        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
+        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
+        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
+        mat(i, 3) = colourvalues::convert::hex_to_rgba( hex, 4, 4 );
+        break;
+      }
+      case 4: {
+        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
+        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
+        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
+        mat(i, 3) = 255;
+        break;
+      }
+      default: {
+        Rcpp::stop("Unsupported hex string");
+      }
+      }
+
     }
-    switch( strlen( hex ) ) {
-    case 9: {
-      any_alpha = true;
-      mat(0, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
-      mat(0, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
-      mat(0, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
-      mat(0, 3) = colourvalues::convert::hex_to_rgba( hex, 7, 8 );
-      break;
-    }
-    case 7: {
-      mat(0, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
-      mat(0, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
-      mat(0, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
-      mat(0, 3) = 255;
-      break;
-    }
-    case 5: {
-      any_alpha = true;
-      mat(0, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
-      mat(0, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
-      mat(0, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
-      mat(0, 3) = colourvalues::convert::hex_to_rgba( hex, 4, 4 );
-      break;
-    }
-    case 4: {
-      mat(0, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
-      mat(0, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
-      mat(0, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
-      mat(0, 3) = 255;
-      break;
-    }
-    default: {
-      Rcpp::stop("Unsupported hex string");
-    }
+
+    if ( !any_alpha ) {
+      mat = mat(Rcpp::_, Rcpp::Range(0,2) );
     }
     return mat;
   }
 
-  // // TODO(3-character hex ("#0F0") and alpha channel)
-  // // can this be sped-up?
-  // inline Rcpp::IntegerVector convert_hex_to_rgb( std::string& hex ) {
-  //
-  //   // int hasHash = 1;
-  //   // //int r, g, b, a;
-  //   //
-  //   // if ( hex[0] == '#') {
-  //   //  hasHash = 1;
-  //   // } else {
-  //   //  hasHash = 0;
-  //   // }
-  //   //
-  //   // int  r = hex_element( hex, 0 + hasHash );
-  //   // int  g = hex_element( hex, 2 + hasHash );
-  //   // int  b = hex_element( hex, 4 + hasHash );
-  //   // int  a = hex_element( hex, 6 + hasHash );
-  //   //
-  //   // return Rcpp::IntegerVector::create(r,g,b,a);
-  //   return Rcpp::IntegerVector::create(0,0,0,0);
-  // }
 
 } // namespace convert
 } // namespace colourvalues

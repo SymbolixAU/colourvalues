@@ -200,23 +200,14 @@
 #
 # ## the same...
 
-
+#
 # col <- "#00FF00FF"
 # col <- rep(col, 1e6)
-#
-# m1 <- colourvalues:::rcpp_convert_hex_to_rgb_new(col)
-# m2 <- colourvalues:::rcpp_convert_hex_to_rgb(col)
-# m3 <- grDevices::col2rgb(col, alpha = T)
-#
-# str(m1)
-# str(m2)
-# head(t(m1))
-# head(m2)
 #
 # library(microbenchmark)
 #
 # microbenchmark(
-#   cv = { colourvalues:::rcpp_convert_hex_to_rgb( col) },
+#   cv = { colourvalues::convert_colours( col) },
 #   gr = { grDevices::col2rgb(col, alpha = TRUE) },
 #   times = 10
 # )

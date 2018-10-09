@@ -28,3 +28,9 @@ test_that("hex strings correctly converted to RGB(A) matrices", {
   expect_equal(convert_colour(c("#FA0","#FFAA00AA")), matrix(c(255,170,0,255,255,170,0,170),ncol=4,byrow=T))
 
 })
+
+test_that("convert_color and convert_colours work as per convert_colour", {
+  expect_equal(convert_colour("#FA0"), convert_colours("#FA0"))
+  expect_equal(convert_colour("#FA0"), convert_color("#FA0"))
+  expect_equal(convert_colour("#FA0"), convert_colors("#FA0"))
+})
