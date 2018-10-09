@@ -204,13 +204,14 @@
 # col <- "#00FF00FF"
 # col <- rep(col, 1e6)
 #
-# m <- colourvalues:::rcpp_convert_hex_to_rgb(col)
-# m2 <- grDevices::col2rgb(col, alpha = T)
+# m1 <- colourvalues:::rcpp_convert_hex_to_rgb_new(col)
+# m2 <- colourvalues:::rcpp_convert_hex_to_rgb(col)
+# m3 <- grDevices::col2rgb(col, alpha = T)
 #
-# str(m)
+# str(m1)
 # str(m2)
-# head(t(m2))
-# head(m)
+# head(t(m1))
+# head(m2)
 #
 # library(microbenchmark)
 #
@@ -219,10 +220,12 @@
 #   gr = { grDevices::col2rgb(col, alpha = TRUE) },
 #   times = 10
 # )
+
 # Unit: milliseconds
-# expr       min        lq      mean    median        uq       max neval
-#  cv 282.89980 284.49219 313.91039 308.83278 342.12669 359.66133    10
-#  gr  28.06987  29.27938  33.65456  34.48015  35.83781  39.26315    10
+#   expr       min        lq     mean    median        uq       max neval
+#     cv  30.81213  32.73352  47.4408  35.59811  76.95149  81.37984    10
+# cv_old 272.52093 276.65413 290.7468 285.09019 295.67034 327.61521    10
+#     gr  36.80980  39.10075  41.6736  41.57528  44.91530  46.51591    10
 
 
 ## differences:

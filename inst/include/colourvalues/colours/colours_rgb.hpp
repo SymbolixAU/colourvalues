@@ -42,7 +42,8 @@ namespace colours_rgb {
     int i, r, g, b;
     std::string hex_str;
 
-    Rcpp::IntegerVector na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
+    bool any_alpha = true;
+    Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour.c_str(), any_alpha );
 
     for( i = 0; i < n; i++ ) {
 

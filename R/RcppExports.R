@@ -33,10 +33,6 @@ rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour, include
     .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
 }
 
-test_hex_to_rgb <- function(hex) {
-    .Call(`_colourvalues_test_hex_to_rgb`, hex)
-}
-
 rcpp_convert_hex_to_rgb <- function(hex_strings) {
     .Call(`_colourvalues_rcpp_convert_hex_to_rgb`, hex_strings)
 }
