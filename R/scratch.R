@@ -215,7 +215,7 @@
 # library(microbenchmark)
 #
 # microbenchmark(
-#   cv = { colourvalues:::rcpp_convert_hex_to_rgb(col) },
+#   cv = { colourvalues:::rcpp_convert_hex_to_rgb( col) },
 #   gr = { grDevices::col2rgb(col, alpha = TRUE) },
 #   times = 10
 # )
@@ -227,3 +227,17 @@
 
 ## differences:
 ## - colourvalues automatically handles alpha?
+
+# ## hex_to_rgb
+# library(Rcpp)
+#
+# #"FF" ->
+#
+# cppFunction('int hex_to_rgb( const char* col) {
+#   return std::stoul( col, nullptr, 16);
+# }')
+#
+# hex_to_rgb("0A")
+
+
+

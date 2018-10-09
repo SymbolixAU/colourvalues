@@ -121,8 +121,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// test_hex_to_rgb
+int test_hex_to_rgb(std::string hex);
+RcppExport SEXP _colourvalues_test_hex_to_rgb(SEXP hexSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type hex(hexSEXP);
+    rcpp_result_gen = Rcpp::wrap(test_hex_to_rgb(hex));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_convert_hex_to_rgb
-Rcpp::NumericMatrix rcpp_convert_hex_to_rgb(Rcpp::StringVector hex_strings);
+Rcpp::IntegerMatrix rcpp_convert_hex_to_rgb(Rcpp::StringVector hex_strings);
 RcppExport SEXP _colourvalues_rcpp_convert_hex_to_rgb(SEXP hex_stringsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -192,6 +203,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_rgb, 4},
     {"_colourvalues_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_string_palette_rgb, 5},
     {"_colourvalues_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_rgb_palette_rgb, 4},
+    {"_colourvalues_test_hex_to_rgb", (DL_FUNC) &_colourvalues_test_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},
