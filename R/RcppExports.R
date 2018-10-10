@@ -33,6 +33,18 @@ rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour, include
     .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
 }
 
+rcpp_convert_hex_to_rgb <- function(hex_strings) {
+    .Call(`_colourvalues_rcpp_convert_hex_to_rgb`, hex_strings)
+}
+
+rcpp_convert_rgb_mat_to_hex <- function(rgb) {
+    .Call(`_colourvalues_rcpp_convert_rgb_mat_to_hex`, rgb)
+}
+
+rcpp_convert_rgb_vec_to_hex <- function(rgb) {
+    .Call(`_colourvalues_rcpp_convert_rgb_vec_to_hex`, rgb)
+}
+
 rcpp_viridis <- function() {
     .Call(`_colourvalues_rcpp_viridis`)
 }

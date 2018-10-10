@@ -3,8 +3,6 @@
 #include "colourvalues/colours/colours_hex.hpp"
 #include "colourvalues/colours/colours_rgb.hpp"
 
-using namespace Rcpp;
-
 // -----------------------------------------------------------------------------
 // return HEX
 

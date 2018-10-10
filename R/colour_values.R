@@ -89,20 +89,11 @@ colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", 
   colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha )
 }
 
-#' Color Values
-#'
-#' maps colours to values
-#' @describeIn Colour Values
-#' @inheritParams colour_values
-#' @seealso colour_values
+#' @rdname colour_values
 #' @export
 color_values <- colour_values
 
-#' Color Values RGB
-#'
-#' maps colours to values, returning a matrix of RGB(A) values
-#' @inheritParams colour_values_rgb
-#' @seealso colour_values_rgb
+#' @rdname colour_values_rgb
 #' @export
 color_values_rgb <- colour_values_rgb
 

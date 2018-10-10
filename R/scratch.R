@@ -199,3 +199,65 @@
 # std_sort( y2 )
 #
 # ## the same...
+
+#
+# col <- "#00FF00FF"
+# col <- rep(col, 1e6)
+#
+# library(microbenchmark)
+#
+# microbenchmark(
+#   cv = { colourvalues::convert_colours( col) },
+#   gr = { grDevices::col2rgb(col, alpha = TRUE) },
+#   times = 10
+# )
+
+# Unit: milliseconds
+#   expr       min        lq     mean    median        uq       max neval
+#     cv  30.81213  32.73352  47.4408  35.59811  76.95149  81.37984    10
+# cv_old 272.52093 276.65413 290.7468 285.09019 295.67034 327.61521    10
+#     gr  36.80980  39.10075  41.6736  41.57528  44.91530  46.51591    10
+
+
+## differences:
+## - colourvalues automatically handles alpha?
+
+# ## hex_to_rgb
+# library(Rcpp)
+#
+# #"FF" ->
+#
+# cppFunction('int hex_to_rgb( const char* col) {
+#   return std::stoul( col, nullptr, 16);
+# }')
+#
+# hex_to_rgb("0A")
+
+
+### RGB to HEx
+
+# rgb2hex <- function(m) grDevices::rgb(m[,1], m[,2], m[,3], m[,4], maxColorValue = 255)
+#
+# rgb2hex(m[1:2,])
+#
+# m <- matrix(c(255,170,0,255),ncol = 4)
+# n <- 1e6
+# m <- m[rep(1,n),]
+#
+# r <- rep(255, n)
+# g <- rep(170, n)
+# b <- rep(0, n)
+# a <- rep(255, n)
+# microbenchmark(
+#   gr = { rgb2hex(m) },
+#   gr2 = { rgb(r,g,b,a, maxColorValue = 255) },
+#   cv = { colourvalues:::convert_colour(m) },
+#   times = 10
+# )
+#
+# # Unit: milliseconds
+# # expr      min       lq      mean    median        uq       max neval
+# #  gr 92.93735 97.36313 105.60413 100.61244 104.47904 152.06389    10
+# # gr2 77.65241 80.03476  93.30192  85.64504  90.76205 131.98374    10
+# #  cv 78.46464 78.81009  83.86777  81.85836  87.48609  94.67922    10
+#
