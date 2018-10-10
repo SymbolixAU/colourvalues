@@ -36,13 +36,13 @@ namespace colours_rgb {
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
     boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
+    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
 
     double this_x;
     int i, r, g, b;
     std::string hex_str;
 
-    Rcpp::IntegerVector na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
+    Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
 
     for( i = 0; i < n; i++ ) {
 
@@ -170,8 +170,6 @@ namespace colours_rgb {
 
     return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
-
-
 
 } // namespace colours
 } // namespace colourvalues
