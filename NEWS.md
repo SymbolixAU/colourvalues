@@ -1,4 +1,4 @@
-# colourvalues 0.1.1003
+# colourvalues 0.2.0
 
 * `convert_colours()` function exposed to R to convert between hex-rgb [issue 14](https://github.com/SymbolixAU/colourvalues/issues/14)
 * speed improvement for internal hex-to-RGB conversion

@@ -171,8 +171,6 @@ namespace colours_rgb {
     return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-
-
 } // namespace colours
 } // namespace colourvalues
 
