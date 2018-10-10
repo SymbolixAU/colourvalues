@@ -36,7 +36,7 @@ namespace colours_rgb {
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
     boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
+    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
 
     double this_x;
     int i, r, g, b;

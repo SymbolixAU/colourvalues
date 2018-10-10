@@ -47,5 +47,5 @@ Rcpp::StringVector rcpp_convert_rgb_vec_to_hex( Rcpp::IntegerVector rgb ) {
   } else {
     Rcpp::stop("unknown RGB vector");
   }
-  return ""; // never reacehd
+  return ""; // never reached
 }
