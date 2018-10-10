@@ -13,47 +13,35 @@
 #' @examples
 #'
 #' convert_colour(c("#FFAA00"))
+#' convert_colour(c("#FFAA00","#FF00AAFF"))
+#'
+#' convert_colour(matrix(c(255,170,0),ncol = 3))
+#' convert_colour(matrix(c(255,170,0,255),ncol = 4))
 #'
 #'
 #' @export
 convert_colour <- function( x ) UseMethod("convert_colour")
 
 #' @export
-convert_colour.matrix <- function( x ) {
-  ## TODO( convert RGBA to hex )
-}
-
+convert_colour.matrix <- function( x ) rcpp_convert_rgb_mat_to_hex( x )
 
 #' @export
-convert_colour.character <- function( x ) {
-  ## TODO (convert hex to RGBA matrix)
-  rcpp_convert_hex_to_rgb( x )
-}
+convert_colour.numeric <- function( x ) rcpp_convert_rgb_vec_to_hex( x )
 
+#' @export
+convert_colour.character <- function( x ) rcpp_convert_hex_to_rgb( x )
 
-#' Convert Colours
-#'
-#' Converts colours between RRGGBBAA and hex strings, in both directions.
-#' @describeIn Convert Colour
-#' @inheritParams convert_colour
-#' @seealso convert_colour
+#' @export
+convert_colour.default <- function( x ) stop("unsupported type")
+
+#' @rdname convert_colour
 #' @export
 convert_colours <- convert_colour
 
-#' Convert Color
-#'
-#' Converts colours between RRGGBBAA and hex strings, in both directions.
-#' @describeIn Convert Colour
-#' @inheritParams convert_colour
-#' @seealso convert_colour
+#' @rdname convert_colour
 #' @export
 convert_color <- convert_colour
 
-#' Convert Colors
-#'
-#' Converts colours between RRGGBBAA and hex strings, in both directions.
-#' @describeIn Convert Colour
-#' @inheritParams convert_colour
-#' @seealso convert_colour
+#' @rdname convert_colour
 #' @export
 convert_colors <- convert_colour

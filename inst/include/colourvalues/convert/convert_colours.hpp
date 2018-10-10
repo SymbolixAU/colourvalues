@@ -8,14 +8,6 @@
 // grDevices code
 // https://github.com/SurajGupta/r-source/blob/master/src/library/grDevices/src/colors.c
 
-#define CV_RGBA(r,g,b,a) ((r & 0xff) << 24) | ((g & 0xff) << 16) | (b & 0xff) << 8 | (a & 0xff);
-#define CV_RGB(r,g,b)    ((r & 0xff) << 16) | ((g & 0xff) << 8 ) | (b & 0xff);
-
-#define CV_RED(col)      (((col)     )  &255);
-#define CV_GREEN(col)    (((col) >> 8)  &255);
-#define CV_BLUE(col)     (((col) >> 16) &255);
-#define CV_ALPHA(col)    (((col) >> 24) &255);
-
 namespace colourvalues {
 namespace convert {
 
@@ -31,20 +23,14 @@ namespace convert {
 
   // notes: https://stackoverflow.com/a/3723917/5977215
   inline std::string convert_rgb_to_hex(int r, int g, int b, int a) {
-    //int rgbNum = ((r & 0xff) << 24) | ((g & 0xff) << 16) | (b & 0xff) << 8 | (a & 0xff);
-    int rgbNum = CV_RGBA(r,g,b,a);
+    int rgbNum = ((r & 0xff) << 24) | ((g & 0xff) << 16) | (b & 0xff) << 8 | (a & 0xff);
     return '#' + convert_rgb_to_hex(rgbNum, true);
   }
 
   inline std::string convert_rgb_to_hex(int r, int g, int b) {
-    //int rgbNum = ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
-    int rgbNum = CV_RGB(r,g,b);
+    int rgbNum = ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
     return '#' + convert_rgb_to_hex(rgbNum, false);
   }
-
-  // inline int hex_element( std::string& hex, int pos ) {
-  //   return std::stoul( hex.substr(pos, 2), nullptr, 16 );
-  // }
 
   inline static unsigned int hexdigit( int digit ) {
     if('0' <= digit && digit <= '9') return digit - '0';
@@ -66,7 +52,6 @@ namespace convert {
     for( i = 0; i < n; i++ ) {
       Rcpp::String this_hex = hex_strings[i];
       const char* hex = this_hex.get_cstring();
-      //mat(i, Rcpp::_) = convert_hex_to_rgb( cs, any_alpha );
 
       if ( strncmp(hex, "#", 1) != 0 ) {
         Rcpp::stop("unknown hex string, expecting # symbol");
@@ -75,31 +60,31 @@ namespace convert {
       switch( strlen( hex ) ) {
       case 9: {
         any_alpha = true;
-        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
-        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
-        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
-        mat(i, 3) = colourvalues::convert::hex_to_rgba( hex, 7, 8 );
+        mat(i, 0) = hex_to_rgba( hex, 1, 2 );
+        mat(i, 1) = hex_to_rgba( hex, 3, 4 );
+        mat(i, 2) = hex_to_rgba( hex, 5, 6 );
+        mat(i, 3) = hex_to_rgba( hex, 7, 8 );
         break;
       }
       case 7: {
-        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 2 );
-        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 3, 4 );
-        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 5, 6 );
+        mat(i, 0) = hex_to_rgba( hex, 1, 2 );
+        mat(i, 1) = hex_to_rgba( hex, 3, 4 );
+        mat(i, 2) = hex_to_rgba( hex, 5, 6 );
         mat(i, 3) = 255;
         break;
       }
       case 5: {
         any_alpha = true;
-        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
-        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
-        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
-        mat(i, 3) = colourvalues::convert::hex_to_rgba( hex, 4, 4 );
+        mat(i, 0) = hex_to_rgba( hex, 1, 1 );
+        mat(i, 1) = hex_to_rgba( hex, 2, 2 );
+        mat(i, 2) = hex_to_rgba( hex, 3, 3 );
+        mat(i, 3) = hex_to_rgba( hex, 4, 4 );
         break;
       }
       case 4: {
-        mat(i, 0) = colourvalues::convert::hex_to_rgba( hex, 1, 1 );
-        mat(i, 1) = colourvalues::convert::hex_to_rgba( hex, 2, 2 );
-        mat(i, 2) = colourvalues::convert::hex_to_rgba( hex, 3, 3 );
+        mat(i, 0) = hex_to_rgba( hex, 1, 1 );
+        mat(i, 1) = hex_to_rgba( hex, 2, 2 );
+        mat(i, 2) = hex_to_rgba( hex, 3, 3 );
         mat(i, 3) = 255;
         break;
       }

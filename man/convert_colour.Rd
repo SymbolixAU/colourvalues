@@ -2,9 +2,18 @@
 % Please edit documentation in R/convert_colours.R
 \name{convert_colour}
 \alias{convert_colour}
+\alias{convert_colours}
+\alias{convert_color}
+\alias{convert_colors}
 \title{Convert Colour}
 \usage{
 convert_colour(x)
+
+convert_colours(x)
+
+convert_color(x)
+
+convert_colors(x)
 }
 \arguments{
 \item{x}{character vector of hex strings, or numeric matrix of RRGGBBAA values}
@@ -20,6 +29,10 @@ RRGGBBAA matrix
 \examples{
 
 convert_colour(c("#FFAA00"))
+convert_colour(c("#FFAA00","#FF00AAFF"))
+
+convert_colour(matrix(c(255,170,0),ncol = 3))
+convert_colour(matrix(c(255,170,0,255),ncol = 4))
 
 
 }

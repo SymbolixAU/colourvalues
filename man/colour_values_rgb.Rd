@@ -2,9 +2,13 @@
 % Please edit documentation in R/colour_values.R
 \name{colour_values_rgb}
 \alias{colour_values_rgb}
+\alias{color_values_rgb}
 \title{Colour Values RGB}
 \usage{
 colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
+  alpha = 255, include_alpha = TRUE)
+
+color_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
   alpha = 255, include_alpha = TRUE)
 }
 \arguments{

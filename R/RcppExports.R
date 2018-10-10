@@ -37,6 +37,14 @@ rcpp_convert_hex_to_rgb <- function(hex_strings) {
     .Call(`_colourvalues_rcpp_convert_hex_to_rgb`, hex_strings)
 }
 
+rcpp_convert_rgb_mat_to_hex <- function(rgb) {
+    .Call(`_colourvalues_rcpp_convert_rgb_mat_to_hex`, rgb)
+}
+
+rcpp_convert_rgb_vec_to_hex <- function(rgb) {
+    .Call(`_colourvalues_rcpp_convert_rgb_vec_to_hex`, rgb)
+}
+
 rcpp_viridis <- function() {
     .Call(`_colourvalues_rcpp_viridis`)
 }
