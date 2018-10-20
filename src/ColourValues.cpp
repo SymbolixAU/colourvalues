@@ -18,6 +18,19 @@ Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(
 }
 
 // [[Rcpp::export]]
+Rcpp::List rcpp_colour_num_value_string_palette_legend_hex(
+    Rcpp::NumericVector x,
+    std::string palette,
+    std::string na_colour,
+    Rcpp::NumericVector alpha,
+    bool include_alpha,
+    int n_summaries) {
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, alpha, include_alpha, n_summaries );
+}
+
+
+// [[Rcpp::export]]
 Rcpp::StringVector rcpp_colour_num_value_rgb_palette_hex(
     Rcpp::NumericVector x,
     Rcpp::NumericMatrix palette,
