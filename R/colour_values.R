@@ -11,6 +11,9 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
+#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
+#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
 #'
 #' @details
 #'
@@ -23,8 +26,6 @@
 #' The \code{palette} (and \code{alpha} argument when using a vector) requires 5
 #' rows because the colours are interpolated using a cubic b-spline. This method
 #' requires 5 values.
-#'
-#' @return string vector of hex colours
 #'
 #' @examples
 #'
@@ -60,10 +61,13 @@
 #' df$col <- colour_values(df$x, alpha = df$y)
 #' barplot(height = df$a, col = df$col, border = NA, space = 0)
 #'
+#' ## returning a summary palette
+#' colour_values(-10:10, n_summaries = 5)
+#'
 #' @export
-colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, n_summaries = 0 ) {
   alpha_check( alpha )
-  colour_values_to_hex( x, palette, na_colour, alpha, include_alpha )
+  colour_values_to_hex( x, palette, na_colour, alpha, include_alpha, n_summaries )
 }
 
 #' Colour Values RGB
@@ -81,12 +85,13 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
 #'
 #' colour_values_rgb(1:5)
 #' colour_values_rgb(1:5, include_alpha = FALSE)
+#' colour_values_rgb(-25:25, n_summaries = 5)
 #'
 #'
 #' @export
-colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE ) {
+colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, n_summaries = 0 ) {
   alpha_check( alpha )
-  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha )
+  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries )
 }
 
 #' @rdname colour_values
@@ -99,18 +104,27 @@ color_values_rgb <- colour_values_rgb
 
 ### HEX ------------------------------------------------------------------------
 
-colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha ) {
+colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
   UseMethod("colour_num_values_with_palette_hex")
 }
 
 #' @export
-colour_num_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_num_value_string_palette_hex( x, palette, na_colour, alpha, include_alpha )
+colour_num_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  if ( n_summaries > 0 ) {
+    return( rcpp_colour_num_value_string_palette_summary_hex( x, palette, na_colour, alpha, include_alpha, n_summaries ) )
+  } else {
+    return( rcpp_colour_num_value_string_palette_hex( x, palette, na_colour, alpha, include_alpha ) )
+  }
 }
 
 #' @export
-colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour, include_alpha )
+colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  if( n_summaries > 0 ) {
+    return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries ) )
+  } else {
+    return( rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
+  }
+
 }
 
 colour_str_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha ) {
@@ -128,36 +142,44 @@ colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
 }
 
 
-colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
+colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha, n_summaries ) {
   UseMethod("colour_values_to_hex")
 }
 
 #' @export
-colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
   colour_str_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha )
 }
 
 #' @export
-colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha ) {
-  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha )
+colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
+  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
 ### end HEX --------------------------------------------------------------------
 
 ### RGB ------------------------------------------------------------------------
 
-colour_num_values_with_palette_rgb <- function( palette, x, na_colour, alpha, include_alpha ) {
+colour_num_values_with_palette_rgb <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
   UseMethod("colour_num_values_with_palette_rgb")
 }
 
 #' @export
-colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_num_value_string_palette_rgb( x, palette, na_colour, alpha, include_alpha )
+colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  if ( n_summaries > 0 ) {
+    return( rcpp_colour_num_value_string_palette_summary_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries ) )
+  } else {
+    return( rcpp_colour_num_value_string_palette_rgb( x, palette, na_colour, alpha, include_alpha ) )
+  }
 }
 
 #' @export
-colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
+colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  if ( n_summaries > 0 ) {
+    return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries ) )
+  } else {
+    return( rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour, include_alpha ) )
+  }
 }
 
 colour_str_values_with_palette_rgb <- function( palette = "viridis", x, na_colour, alpha, include_alpha ) {
@@ -174,18 +196,18 @@ colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, al
   rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
 }
 
-colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha ) {
+colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha, n_summaries ) {
   UseMethod("colour_values_to_rgb")
 }
 
 #' @export
-colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, include_alpha ) {
+colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
   colour_str_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha )
 }
 
 #' @export
-colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha ) {
-  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha )
+colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
+  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
 ### end RGB --------------------------------------------------------------------

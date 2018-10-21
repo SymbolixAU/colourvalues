@@ -18,7 +18,7 @@ Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(
 }
 
 // [[Rcpp::export]]
-Rcpp::List rcpp_colour_num_value_string_palette_legend_hex(
+Rcpp::List rcpp_colour_num_value_string_palette_summary_hex(
     Rcpp::NumericVector x,
     std::string palette,
     std::string na_colour,
@@ -39,6 +39,18 @@ Rcpp::StringVector rcpp_colour_num_value_rgb_palette_hex(
   Rcpp::NumericVector x2 = Rcpp::clone(x);
   return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, include_alpha );
 }
+
+// [[Rcpp::export]]
+Rcpp::List rcpp_colour_num_value_rgb_palette_summary_hex(
+    Rcpp::NumericVector x,
+    Rcpp::NumericMatrix palette,
+    std::string na_colour,
+    bool include_alpha,
+    int n_summaries ) {
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, include_alpha, n_summaries );
+}
+
 
 // [[Rcpp::export]]
 Rcpp::StringVector rcpp_colour_str_value_string_palette_hex(
@@ -76,6 +88,18 @@ Rcpp::NumericMatrix rcpp_colour_num_value_string_palette_rgb(
 }
 
 // [[Rcpp::export]]
+Rcpp::List rcpp_colour_num_value_string_palette_summary_rgb(
+    Rcpp::NumericVector x,
+    std::string palette,
+    std::string na_colour,
+    Rcpp::NumericVector alpha,
+    bool include_alpha,
+    int n_summaries) {
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_rgb::colour_value_rgb( x2, palette, na_colour, alpha, include_alpha, n_summaries );
+}
+
+// [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_colour_num_value_rgb_palette_rgb(
     Rcpp::NumericVector x,
     Rcpp::NumericMatrix palette,
@@ -83,6 +107,17 @@ Rcpp::NumericMatrix rcpp_colour_num_value_rgb_palette_rgb(
     bool include_alpha ) {
   Rcpp::NumericVector x2 = Rcpp::clone(x);
   return colourvalues::colours_rgb::colour_value_rgb( x2, palette, na_colour, include_alpha );
+}
+
+// [[Rcpp::export]]
+Rcpp::List rcpp_colour_num_value_rgb_palette_summary_rgb(
+    Rcpp::NumericVector x,
+    Rcpp::NumericMatrix palette,
+    std::string na_colour,
+    bool include_alpha,
+    int n_summaries ) {
+  Rcpp::NumericVector x2 = Rcpp::clone(x);
+  return colourvalues::colours_rgb::colour_value_rgb( x2, palette, na_colour, include_alpha, n_summaries );
 }
 
 // [[Rcpp::export]]

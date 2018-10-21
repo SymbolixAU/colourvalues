@@ -6,10 +6,10 @@
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE)
+  alpha = 255, include_alpha = TRUE, n_summaries = 0)
 
 color_values(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE)
+  alpha = 255, include_alpha = TRUE, n_summaries = 0)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -25,9 +25,10 @@ If a matrix palette is supplied this argument is ignored.}
 
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
-}
-\value{
-string vector of hex colours
+
+\item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
+in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+and their associated colours. If a non-numeric \code{x} is used this value is ignored}
 }
 \description{
 maps colours to values
@@ -76,5 +77,8 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
 df$col <- colour_values(df$x, alpha = df$y)
 barplot(height = df$a, col = df$col, border = NA, space = 0)
+
+## returning a summary palette
+colour_values(-10:10, n_summaries = 5)
 
 }

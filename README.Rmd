@@ -195,6 +195,13 @@ colour_values(1:5, include_alpha = F)
 colour_values_rgb(1:5, include_alpha = F)
 ```
 
+## Can I get a summary of colours to use in a legend?
+
+Yes, use the `n_summaries` argument to specify the number of summary values you'd like
+
+```{r}
+colour_values(1:10, n_summaries = 3)
+```
 
 ---
 

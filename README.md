@@ -217,6 +217,24 @@ colour_values_rgb(1:5, include_alpha = F)
 # [5,]  253  231   37
 ```
 
+## Can I get a summary of colours to use in a legend?
+
+Yes, use the `n_summaries` argument to specify the number of summary
+values you’d like
+
+``` r
+colour_values(1:10, n_summaries = 3)
+# $colours
+#  [1] "#440154FF" "#482878FF" "#3E4A89FF" "#31688EFF" "#26838EFF"
+#  [6] "#1F9D89FF" "#35B779FF" "#6CCE59FF" "#B4DD2CFF" "#FDE725FF"
+# 
+# $summary_values
+# [1]  1.0  5.5 10.0
+# 
+# $summary_colours
+# [1] "#440154FF" "#21908CFF" "#FDE725FF"
+```
+
 -----
 
 ### What’s the performance like?
@@ -244,15 +262,15 @@ m <- microbenchmark(
 )
 m
 # Unit: seconds
-#          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.680810 1.750678 1.781264 1.789702 1.811741 1.910503    25
-#        scales 2.843353 2.943077 3.028863 3.002642 3.096513 3.264814    25
+#          expr      min       lq     mean   median       uq       max neval
+#  colourvalues 3.379120 4.288701 4.561132 4.491353 4.925689  6.563919    25
+#        scales 6.368541 6.572796 7.999677 8.565267 9.036532 10.516685    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -274,11 +292,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 168.9823 175.0881 176.5180 177.0736 178.1082 182.8782    25
-#        scales 295.6720 307.0646 313.1495 308.4419 315.5147 368.5441    25
+#  colourvalues 334.1250 348.3973 362.4838 354.1611 356.3841 464.4726    25
+#        scales 635.9375 648.6532 680.7516 663.0456 691.0620 824.5088    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" height="400" />

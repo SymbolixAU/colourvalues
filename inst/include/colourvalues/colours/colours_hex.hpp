@@ -94,6 +94,18 @@ namespace colours_hex {
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
+    if ( n_summaries > 0 ) {
+      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      return Rcpp::List::create(
+        _["colours"] = full_hex,
+        _["summary_values"] = summary_values,
+        _["summary_colours"] = summary_hex
+      );
+    }
+
     return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
@@ -121,7 +133,7 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_legend_values( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
@@ -131,7 +143,6 @@ namespace colours_hex {
         _["summary_colours"] = summary_hex
         );
     }
-
     return colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
   }
 
