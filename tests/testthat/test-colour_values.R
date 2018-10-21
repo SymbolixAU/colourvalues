@@ -68,6 +68,12 @@ test_that("matrix palette accepted", {
   ## string data
   expect_true( all( colour_values(letters[1:5], palette = m) == colour_values(1:5, palette = m) ) )
 
+  m <- grDevices::colorRamp(c("red","green","blue"))(0:3/3)
+  expect_error(
+    colour_values(1:5, palette = m)
+    , "A matrix palette must contain at least 5 rows"
+  )
+
 })
 
 test_that("alpha values applied", {

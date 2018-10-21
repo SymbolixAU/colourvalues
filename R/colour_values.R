@@ -119,6 +119,7 @@ colour_num_values_with_palette_hex.character <- function( palette, x, na_colour,
 
 #' @export
 colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  palette_check( palette )
   if( n_summaries > 0 ) {
     return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries ) )
   } else {
@@ -138,6 +139,7 @@ colour_str_values_with_palette_hex.character <- function( palette, x, na_colour,
 
 #' @export
 colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
+  palette_check( palette )
   rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha )
 }
 
@@ -175,6 +177,7 @@ colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour,
 
 #' @export
 colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+  palette_check( palette )
   if ( n_summaries > 0 ) {
     return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries ) )
   } else {
@@ -193,6 +196,7 @@ colour_str_values_with_palette_rgb.character <- function( palette, x, na_colour,
 
 #' @export
 colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
+  palette_check( palette )
   rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
 }
 

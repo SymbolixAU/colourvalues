@@ -41,6 +41,7 @@ Maps colours to variables, returning a matrix of RGB(A) values
 
 colour_values_rgb(1:5)
 colour_values_rgb(1:5, include_alpha = FALSE)
+colour_values_rgb(-25:25, n_summaries = 5)
 
 
 }

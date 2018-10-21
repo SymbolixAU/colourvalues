@@ -1,5 +1,5 @@
 ## Release Notes
-* Updates v0.1.0 to v0.2.0
+* Updates v0.1.1 to v0.2.0
 * Two new functions, and performance improvements for existing functions
 
 ## Test environments
