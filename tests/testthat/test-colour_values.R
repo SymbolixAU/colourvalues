@@ -242,3 +242,15 @@ test_that("original vectors returned",{
   expect_true( all( x == y ))
 
 })
+
+test_that("summary values returned", {
+
+  lst <- colour_values(1:10, n_summaries = 2)
+  expect_true(all( lst$summary_values == c(1,10) ) )
+  expect_true( all( colour_values(c(1,10)) == lst$summary_colours ) )
+  lst <- colour_values(-10:10, n_summaries = 5)
+  expect_true(all( lst$summary_values == c(-10,-5,0,5,10) ) )
+  expect_true( all( colour_values(c(-10,-5,0,5,10)) == lst$summary_colours ) )
+
+})
+

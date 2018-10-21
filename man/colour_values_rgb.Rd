@@ -6,10 +6,10 @@
 \title{Colour Values RGB}
 \usage{
 colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE)
+  alpha = 255, include_alpha = TRUE, n_summaries = 0)
 
 color_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE)
+  alpha = 255, include_alpha = TRUE, n_summaries = 0)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -25,6 +25,10 @@ If a matrix palette is supplied this argument is ignored.}
 
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
+
+\item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
+in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+and their associated colours. If a non-numeric \code{x} is used this value is ignored}
 }
 \value{
 matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in

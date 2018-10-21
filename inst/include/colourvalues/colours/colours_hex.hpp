@@ -5,6 +5,7 @@
 #include "colourvalues/colours.hpp"
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
+#include "colourvalues/legend/legend.hpp"
 
 namespace colourvalues {
 namespace colours_hex {
@@ -74,12 +75,12 @@ namespace colours_hex {
     return hex_strings;
   }
 
-  // in this function the colour vectors will already be scaled [0,1]
-  inline Rcpp::StringVector colour_value_hex(
+  inline SEXP colour_value_hex(
     Rcpp::NumericVector x,
     Rcpp::NumericMatrix palette,
     std::string na_colour,
-    bool include_alpha) {
+    bool include_alpha,
+    int n_summaries = 0) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -93,15 +94,28 @@ namespace colours_hex {
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
+    if ( n_summaries > 0 ) {
+      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      return Rcpp::List::create(
+        _["colours"] = full_hex,
+        _["summary_values"] = summary_values,
+        _["summary_colours"] = summary_hex
+      );
+    }
+
     return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-  inline Rcpp::StringVector colour_value_hex(
+  inline SEXP colour_value_hex(
       Rcpp::NumericVector x,
       std::string palette,
       std::string na_colour,
       Rcpp::NumericVector alpha,
-      bool include_alpha) {
+      bool include_alpha,
+      int n_summaries = 0) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -118,6 +132,17 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
+    if ( n_summaries > 0 ) {
+      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      return Rcpp::List::create(
+        _["colours"] = full_hex,
+        _["summary_values"] = summary_values,
+        _["summary_colours"] = summary_hex
+        );
+    }
     return colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
   }
 

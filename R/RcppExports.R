@@ -5,8 +5,16 @@ rcpp_colour_num_value_string_palette_hex <- function(x, palette, na_colour, alph
     .Call(`_colourvalues_rcpp_colour_num_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
 }
 
+rcpp_colour_num_value_string_palette_summary_hex <- function(x, palette, na_colour, alpha, include_alpha, n_summaries) {
+    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_hex`, x, palette, na_colour, alpha, include_alpha, n_summaries)
+}
+
 rcpp_colour_num_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {
     .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
+}
+
+rcpp_colour_num_value_rgb_palette_summary_hex <- function(x, palette, na_colour, include_alpha, n_summaries) {
+    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_summary_hex`, x, palette, na_colour, include_alpha, n_summaries)
 }
 
 rcpp_colour_str_value_string_palette_hex <- function(x, palette, na_colour, alpha, include_alpha) {
@@ -21,8 +29,16 @@ rcpp_colour_num_value_string_palette_rgb <- function(x, palette, na_colour, alph
     .Call(`_colourvalues_rcpp_colour_num_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
 }
 
+rcpp_colour_num_value_string_palette_summary_rgb <- function(x, palette, na_colour, alpha, include_alpha, n_summaries) {
+    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_rgb`, x, palette, na_colour, alpha, include_alpha, n_summaries)
+}
+
 rcpp_colour_num_value_rgb_palette_rgb <- function(x, palette, na_colour, include_alpha) {
     .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
+}
+
+rcpp_colour_num_value_rgb_palette_summary_rgb <- function(x, palette, na_colour, include_alpha, n_summaries) {
+    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_summary_rgb`, x, palette, na_colour, include_alpha, n_summaries)
 }
 
 rcpp_colour_str_value_string_palette_rgb <- function(x, palette, na_colour, alpha, include_alpha) {
