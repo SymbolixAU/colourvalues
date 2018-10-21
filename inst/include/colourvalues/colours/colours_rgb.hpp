@@ -167,7 +167,8 @@ namespace colours_rgb {
     Rcpp::NumericVector alpha(x.size(), 255.0);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
-    Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x );
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
+    Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
@@ -193,7 +194,8 @@ namespace colours_rgb {
     Rcpp::NumericVector blue(256);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
-    Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x );
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
+    Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }

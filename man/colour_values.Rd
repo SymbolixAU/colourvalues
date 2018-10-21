@@ -3,13 +3,21 @@
 \name{colour_values}
 \alias{colour_values}
 \alias{color_values}
+\alias{colour_values_to_hex.character}
+\alias{colour_values_to_hex.default}
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE, n_summaries = 0)
+  alpha = 255, include_alpha = TRUE, ...)
 
 color_values(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE, n_summaries = 0)
+  alpha = 255, include_alpha = TRUE, ...)
+
+\method{colour_values_to_hex}{character}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_hex}{default}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -25,6 +33,9 @@ If a matrix palette is supplied this argument is ignored.}
 
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
+
+\item{summary}{logical indicating if a summary of the colours should be returned as
+well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
 
 \item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},

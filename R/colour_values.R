@@ -11,9 +11,6 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
-#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
-#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
-#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
 #'
 #' @details
 #'
@@ -65,9 +62,9 @@
 #' colour_values(-10:10, n_summaries = 5)
 #'
 #' @export
-colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, n_summaries = 0 ) {
+colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, ... ) {
   alpha_check( alpha )
-  colour_values_to_hex( x, palette, na_colour, alpha, include_alpha, n_summaries )
+  colour_values_to_hex( x, palette, na_colour, alpha, include_alpha, ... )
 }
 
 #' Colour Values RGB
@@ -104,7 +101,7 @@ color_values_rgb <- colour_values_rgb
 
 ### HEX ------------------------------------------------------------------------
 
-colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha, ... ) {
   UseMethod("colour_num_values_with_palette_hex")
 }
 
@@ -128,33 +125,50 @@ colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
 
 }
 
-colour_str_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha ) {
+colour_str_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha, ... ) {
   UseMethod("colour_str_values_with_palette_hex")
 }
 
 #' @export
-colour_str_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha, include_alpha )
+colour_str_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha, summary ) {
+  if( summary ) {
+    return( rcpp_colour_str_value_string_palette_summary_hex(x, palette, na_colour, alpha, include_alpha, summary ) )
+  } else {
+    rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha, include_alpha )
+  }
+
 }
 
 #' @export
-colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
+colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, summary ) {
   palette_check( palette )
-  rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha )
+  if ( summary ) {
+    return( rcpp_colour_str_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, summary ) )
+  } else {
+    return( rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
+  }
+
 }
 
 
-colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha, n_summaries ) {
+colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha, ... ) {
   UseMethod("colour_values_to_hex")
 }
 
+#' @rdname colour_values
+#' @param summary logical indicating if a summary of the colours should be returned as
+#' well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.
 #' @export
-colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
-  colour_str_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha )
+colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_str_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, summary )
 }
 
+#' @rdname colour_values
+#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
+#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
 #' @export
-colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
+colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0 ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
