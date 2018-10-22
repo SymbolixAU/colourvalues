@@ -5,7 +5,7 @@
 #include "colourvalues/colours.hpp"
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
-#include "colourvalues/legend/legend.hpp"
+#include "colourvalues/summary/summary.hpp"
 
 namespace colourvalues {
 namespace colours_hex {
@@ -95,7 +95,7 @@ namespace colours_hex {
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
@@ -133,7 +133,7 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
@@ -161,7 +161,7 @@ namespace colours_hex {
     Rcpp::NumericVector alpha(x.size(), 255.0);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
-    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     if ( summary ) {

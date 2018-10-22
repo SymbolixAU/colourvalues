@@ -148,5 +148,10 @@ colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
+#' @export
+colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+}
+
 ### end HEX --------------------------------------------------------------------
 

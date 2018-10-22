@@ -102,4 +102,9 @@ colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_
   colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
+#' @export
+colour_values_to_rgb.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_values_to_rgb.character(x, palette, na_colour, alpha, include_alpha, summary)
+}
+
 ### end RGB --------------------------------------------------------------------

@@ -5,7 +5,7 @@
 #include "colourvalues/colours.hpp"
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
-#include "colourvalues/legend/legend.hpp"
+#include "colourvalues/summary/summary.hpp"
 
 namespace colourvalues {
 namespace colours_rgb {
@@ -101,7 +101,7 @@ namespace colours_rgb {
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
@@ -139,7 +139,7 @@ namespace colours_rgb {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
