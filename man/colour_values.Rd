@@ -34,6 +34,8 @@ If a matrix palette is supplied this argument is ignored.}
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
 
+\item{...}{other arguments possed to methods}
+
 \item{summary}{logical indicating if a summary of the colours should be returned as
 well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
 
@@ -92,4 +94,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 ## returning a summary palette
 colour_values(-10:10, n_summaries = 5)
 
+}
+\seealso{
+colour_values_rgb
 }

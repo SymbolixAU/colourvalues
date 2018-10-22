@@ -11,9 +11,7 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
-#'
-#' @return matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in
-#' the order red, green, blue (and alpha). Rach row corresponds to each element of \code{x}
+#' @param ... other arguments possed to methods
 #'
 #' @seealso colour_values
 #'
@@ -27,7 +25,7 @@
 #' @export
 colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, ... ) {
   alpha_check( alpha )
-  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries )
+  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, ... )
 }
 
 #' @rdname colour_values_rgb
@@ -61,26 +59,16 @@ colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, al
 }
 
 colour_str_values_with_palette_rgb <- function( palette, x, na_colour, alpha, include_alpha, ... ) {
-  print("dispatching palettte")
   UseMethod("colour_str_values_with_palette_rgb")
 }
 
 #' @export
 colour_str_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha, summary ) {
-  print("dispatcehd palette...")
-  print(palette)
-  print(x)
-  print(na_colour)
-  print(include_alpha)
-  print( summary )
-  #print( summary )
-  # if ( summary ) {
-  #   print("is summary")
-  #    return( rcpp_colour_str_value_string_palette_summary_rgb(x, palette, na_colour, alpha, include_alpha, summary ) )
-  # } else {
-  #   print("not summary")
-  #   return( rcpp_colour_str_value_string_palette_rgb(x, palette, na_colour, alpha, include_alpha ) )
-  # }
+  if ( summary ) {
+    return( rcpp_colour_str_value_string_palette_summary_rgb(x, palette, na_colour, alpha, include_alpha, summary ) )
+  } else {
+    return( rcpp_colour_str_value_string_palette_rgb(x, palette, na_colour, alpha, include_alpha ) )
+  }
 }
 
 #' @export
@@ -89,12 +77,11 @@ colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, al
   if ( summary ) {
     return( rcpp_colour_str_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, summary ) )
   } else {
-    reutrn( rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha ) )
+    return( rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha ) )
   }
 }
 
 colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha, ... ) {
-  print("dispatching")
   UseMethod("colour_values_to_rgb")
 }
 
@@ -103,8 +90,6 @@ colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, incl
 #' well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.
 #' @export
 colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
-  print("dispatched")
-  print(summary)
   colour_str_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, summary )
 }
 

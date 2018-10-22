@@ -11,6 +11,9 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
+#' @param ... other arguments possed to methods
+#'
+#' @seealso colour_values_rgb
 #'
 #' @details
 #'
@@ -121,7 +124,6 @@ colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
   } else {
     return( rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
   }
-
 }
 
 
@@ -134,7 +136,6 @@ colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, incl
 #' well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.
 #' @export
 colour_values_to_hex.character <- function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
-  print(summary)
   colour_str_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, summary )
 }
 

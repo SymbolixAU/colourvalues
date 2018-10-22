@@ -34,16 +34,14 @@ If a matrix palette is supplied this argument is ignored.}
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
 
+\item{...}{other arguments possed to methods}
+
 \item{summary}{logical indicating if a summary of the colours should be returned as
 well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
 
 \item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 and their associated colours. If a non-numeric \code{x} is used this value is ignored}
-}
-\value{
-matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in
-the order red, green, blue (and alpha). Rach row corresponds to each element of \code{x}
 }
 \description{
 Maps colours to variables, returning a matrix of RGB(A) values
