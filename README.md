@@ -262,9 +262,9 @@ m <- microbenchmark(
 )
 m
 # Unit: seconds
-#          expr      min       lq     mean   median       uq       max neval
-#  colourvalues 3.379120 4.288701 4.561132 4.491353 4.925689  6.563919    25
-#        scales 6.368541 6.572796 7.999677 8.565267 9.036532 10.516685    25
+#          expr      min       lq     mean   median       uq      max neval
+#  colourvalues 1.650813 1.688667 1.764329 1.761870 1.820108 1.984648    25
+#        scales 2.931549 3.087972 3.178309 3.133891 3.249300 3.657932    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -292,8 +292,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 334.1250 348.3973 362.4838 354.1611 356.3841 464.4726    25
-#        scales 635.9375 648.6532 680.7516 663.0456 691.0620 824.5088    25
+#  colourvalues 171.3805 183.8710 199.6419 191.7212 206.3815 274.7522    25
+#        scales 320.6524 335.9726 354.6676 353.4846 364.7990 413.4517    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
