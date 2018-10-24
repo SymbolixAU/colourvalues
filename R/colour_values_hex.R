@@ -11,6 +11,9 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
+#' @param ... other arguments possed to methods
+#'
+#' @seealso colour_values_rgb
 #'
 #' @details
 #'
@@ -67,37 +70,11 @@ colour_values <- function( x, palette = "viridis", na_colour = "#808080FF", alph
   colour_values_to_hex( x, palette, na_colour, alpha, include_alpha, ... )
 }
 
-#' Colour Values RGB
-#'
-#' Maps colours to variables, returning a matrix of RGB(A) values
-#'
-#' @inheritParams colour_values
-#'
-#' @return matrix with the same number of rows as \code{length(x)}, and either 3 or 4 columns in
-#' the order red, green, blue (and alpha). Rach row corresponds to each element of \code{x}
-#'
-#' @seealso colour_values
-#'
-#' @examples
-#'
-#' colour_values_rgb(1:5)
-#' colour_values_rgb(1:5, include_alpha = FALSE)
-#' colour_values_rgb(-25:25, n_summaries = 5)
-#'
-#'
-#' @export
-colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, n_summaries = 0 ) {
-  alpha_check( alpha )
-  colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries )
-}
-
 #' @rdname colour_values
 #' @export
 color_values <- colour_values
 
-#' @rdname colour_values_rgb
-#' @export
-color_values_rgb <- colour_values_rgb
+
 
 ### HEX ------------------------------------------------------------------------
 
@@ -147,7 +124,6 @@ colour_str_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
   } else {
     return( rcpp_colour_str_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
   }
-
 }
 
 
@@ -172,60 +148,10 @@ colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries )
 }
 
+#' @export
+colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+}
+
 ### end HEX --------------------------------------------------------------------
 
-### RGB ------------------------------------------------------------------------
-
-colour_num_values_with_palette_rgb <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
-  UseMethod("colour_num_values_with_palette_rgb")
-}
-
-#' @export
-colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
-  if ( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_string_palette_summary_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries ) )
-  } else {
-    return( rcpp_colour_num_value_string_palette_rgb( x, palette, na_colour, alpha, include_alpha ) )
-  }
-}
-
-#' @export
-colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
-  palette_check( palette )
-  if ( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries ) )
-  } else {
-    return( rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour, include_alpha ) )
-  }
-}
-
-colour_str_values_with_palette_rgb <- function( palette = "viridis", x, na_colour, alpha, include_alpha ) {
-  UseMethod("colour_str_values_with_palette_rgb")
-}
-
-#' @export
-colour_str_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha ) {
-  rcpp_colour_str_value_string_palette_rgb(x, palette, na_colour, alpha, include_alpha )
-}
-
-#' @export
-colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha ) {
-  palette_check( palette )
-  rcpp_colour_str_value_rgb_palette_rgb( x, palette, na_colour, include_alpha )
-}
-
-colour_values_to_rgb <- function( x, palette = "viridis", na_colour, alpha, include_alpha, n_summaries ) {
-  UseMethod("colour_values_to_rgb")
-}
-
-#' @export
-colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
-  colour_str_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha )
-}
-
-#' @export
-colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries ) {
-  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries )
-}
-
-### end RGB --------------------------------------------------------------------

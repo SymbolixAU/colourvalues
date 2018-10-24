@@ -1,10 +1,10 @@
-#ifndef COLOURVALUES_LEGEND_H
-#define COLOURVALUES_LEGEND_H
+#ifndef COLOURVALUES_SUMMARY_H
+#define COLOURVALUES_SUMMARY_H
 
 #include <Rcpp.h>
 
 namespace colourvalues {
-namespace legend {
+namespace summary {
 
   /*
    * Returns evenly spaced values from a vector
@@ -25,7 +25,7 @@ namespace legend {
   }
 
 
-} // namespace legend
+} // namespace summary
 } // namespace colourvalues
 
 #endif

@@ -5,7 +5,7 @@
 #include "colourvalues/colours.hpp"
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
-#include "colourvalues/legend/legend.hpp"
+#include "colourvalues/summary/summary.hpp"
 
 namespace colourvalues {
 namespace colours_rgb {
@@ -81,9 +81,9 @@ namespace colours_rgb {
 
   // in this function the colour vectors will already be scaled [0,1]
   inline SEXP colour_value_rgb(
-      Rcpp::NumericVector x,
-      Rcpp::NumericMatrix palette,
-      std::string na_colour,
+      Rcpp::NumericVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
       bool include_alpha,
       int n_summaries = 0) {
 
@@ -101,7 +101,7 @@ namespace colours_rgb {
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
@@ -116,10 +116,10 @@ namespace colours_rgb {
   }
 
   inline SEXP colour_value_rgb(
-      Rcpp::NumericVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
+      Rcpp::NumericVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
       bool include_alpha,
       int n_summaries = 0) {
 
@@ -139,7 +139,7 @@ namespace colours_rgb {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
     if ( n_summaries > 0 ) {
-      Rcpp::NumericVector summary = colourvalues::legend::numeric_summary( x, n_summaries );
+      Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
@@ -153,11 +153,12 @@ namespace colours_rgb {
     return colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-  inline Rcpp::NumericMatrix colour_value_rgb (
-      Rcpp::StringVector x,
-      Rcpp::NumericMatrix palette,
-      std::string na_colour,
-      bool include_alpha ) {
+  inline SEXP colour_value_rgb (
+      Rcpp::StringVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
+      bool include_alpha,
+      bool summary = false ) {
 
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
 
@@ -170,15 +171,28 @@ namespace colours_rgb {
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
+    if ( summary ) {
+      Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
+      Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+      return Rcpp::List::create(
+        _["colours"] = full_rgb,
+        _["summary_values"] = lvls,
+        _["summary_colours"] = summary_rgb
+      );
+    }
+
     return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
-  inline Rcpp::NumericMatrix colour_value_rgb(
-      Rcpp::StringVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
-      bool include_alpha ) {
+  inline SEXP colour_value_rgb(
+      Rcpp::StringVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
+      bool include_alpha,
+      bool summary = false ) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -196,6 +210,18 @@ namespace colours_rgb {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
+
+    if ( summary ) {
+      Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
+      Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      return Rcpp::List::create(
+        _["colours"] = full_rgb,
+        _["summary_values"] = lvls,
+        _["summary_colours"] = summary_rgb
+      );
+    }
 
     return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }

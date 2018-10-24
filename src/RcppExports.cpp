@@ -200,6 +200,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_colour_str_value_string_palette_summary_rgb
+Rcpp::List rcpp_colour_str_value_string_palette_summary_rgb(Rcpp::StringVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha, bool summary);
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_string_palette_summary_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP, SEXP summarySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type summary(summarySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_value_string_palette_summary_rgb(x, palette, na_colour, alpha, include_alpha, summary));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_colour_str_value_rgb_palette_rgb
 Rcpp::NumericMatrix rcpp_colour_str_value_rgb_palette_rgb(Rcpp::StringVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha);
 RcppExport SEXP _colourvalues_rcpp_colour_str_value_rgb_palette_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP) {
@@ -211,6 +227,21 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
     Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_value_rgb_palette_rgb(x, palette, na_colour, include_alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_colour_str_value_rgb_palette_summary_rgb
+Rcpp::List rcpp_colour_str_value_rgb_palette_summary_rgb(Rcpp::StringVector x, Rcpp::NumericMatrix palette, std::string na_colour, bool include_alpha, bool summary);
+RcppExport SEXP _colourvalues_rcpp_colour_str_value_rgb_palette_summary_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP summarySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::StringVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type summary(summarySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_str_value_rgb_palette_summary_rgb(x, palette, na_colour, include_alpha, summary));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -312,7 +343,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_colour_num_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_rgb, 4},
     {"_colourvalues_rcpp_colour_num_value_rgb_palette_summary_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_summary_rgb, 5},
     {"_colourvalues_rcpp_colour_str_value_string_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_string_palette_rgb, 5},
+    {"_colourvalues_rcpp_colour_str_value_string_palette_summary_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_string_palette_summary_rgb, 6},
     {"_colourvalues_rcpp_colour_str_value_rgb_palette_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_rgb_palette_rgb, 4},
+    {"_colourvalues_rcpp_colour_str_value_rgb_palette_summary_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_str_value_rgb_palette_summary_rgb, 5},
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
