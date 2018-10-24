@@ -81,9 +81,9 @@ namespace colours_rgb {
 
   // in this function the colour vectors will already be scaled [0,1]
   inline SEXP colour_value_rgb(
-      Rcpp::NumericVector x,
-      Rcpp::NumericMatrix palette,
-      std::string na_colour,
+      Rcpp::NumericVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
       bool include_alpha,
       int n_summaries = 0) {
 
@@ -116,10 +116,10 @@ namespace colours_rgb {
   }
 
   inline SEXP colour_value_rgb(
-      Rcpp::NumericVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
+      Rcpp::NumericVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
       bool include_alpha,
       int n_summaries = 0) {
 
@@ -154,9 +154,9 @@ namespace colours_rgb {
   }
 
   inline SEXP colour_value_rgb (
-      Rcpp::StringVector x,
-      Rcpp::NumericMatrix palette,
-      std::string na_colour,
+      Rcpp::StringVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
       bool include_alpha,
       bool summary = false ) {
 
@@ -187,10 +187,10 @@ namespace colours_rgb {
   }
 
   inline SEXP colour_value_rgb(
-      Rcpp::StringVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
+      Rcpp::StringVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
       bool include_alpha,
       bool summary = false ) {
 

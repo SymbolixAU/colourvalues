@@ -76,9 +76,9 @@ namespace colours_hex {
   }
 
   inline SEXP colour_value_hex(
-    Rcpp::NumericVector x,
-    Rcpp::NumericMatrix palette,
-    std::string na_colour,
+    Rcpp::NumericVector& x,
+    Rcpp::NumericMatrix& palette,
+    std::string& na_colour,
     bool include_alpha,
     int n_summaries = 0) {
 
@@ -110,10 +110,10 @@ namespace colours_hex {
   }
 
   inline SEXP colour_value_hex(
-      Rcpp::NumericVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
+      Rcpp::NumericVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
       bool include_alpha,
       int n_summaries = 0) {
 
@@ -147,9 +147,9 @@ namespace colours_hex {
   }
 
   inline SEXP colour_value_hex (
-      Rcpp::StringVector x,
-      Rcpp::NumericMatrix palette,
-      std::string na_colour,
+      Rcpp::StringVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
       bool include_alpha,
       bool summary = false) {
 
@@ -180,10 +180,10 @@ namespace colours_hex {
   }
 
   inline SEXP colour_value_hex(
-      Rcpp::StringVector x,
-      std::string palette,
-      std::string na_colour,
-      Rcpp::NumericVector alpha,
+      Rcpp::StringVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
       bool include_alpha,
       bool summary = false) {
 
