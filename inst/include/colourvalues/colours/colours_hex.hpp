@@ -6,6 +6,7 @@
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
 #include "colourvalues/summary/summary.hpp"
+#include "colourvalues/format/format.hpp"
 
 namespace colourvalues {
 namespace colours_hex {
@@ -135,6 +136,11 @@ namespace colours_hex {
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+
+      // TODO( format summary values )
+      //
+      Rcpp::StringVector test = colourvalues::format::date_to_string( summary_values );
+
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       return Rcpp::List::create(
