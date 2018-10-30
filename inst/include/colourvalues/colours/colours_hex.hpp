@@ -81,7 +81,10 @@ namespace colours_hex {
     Rcpp::NumericMatrix& palette,
     std::string& na_colour,
     bool include_alpha,
-    int n_summaries = 0) {
+    int n_summaries = 0,
+    bool format = false,
+    std::string format_type = "number",
+    int digits = 2) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -97,7 +100,12 @@ namespace colours_hex {
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      SEXP summary_values = Rcpp::clone( summary );
+
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
+
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       return Rcpp::List::create(

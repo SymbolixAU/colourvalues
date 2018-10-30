@@ -5,6 +5,10 @@
 \alias{color_values_rgb}
 \alias{colour_values_to_rgb.character}
 \alias{colour_values_to_rgb.default}
+\alias{colour_values_to_rgb.logical}
+\alias{colour_values_to_rgb.factor}
+\alias{colour_values_to_rgb.Date}
+\alias{colour_values_to_rgb.POSIXct}
 \title{Colour Values RGB}
 \usage{
 colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
@@ -17,7 +21,19 @@ color_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, summary = FALSE)
 
 \method{colour_values_to_rgb}{default}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0)
+  include_alpha, n_summaries = 0, format = FALSE, digits = 2)
+
+\method{colour_values_to_rgb}{logical}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_rgb}{factor}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_rgb}{Date}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_rgb}{POSIXct}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -42,9 +58,27 @@ well as the full colour mapping. This will be the unique elements of \code{x} ma
 \item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 and their associated colours. If a non-numeric \code{x} is used this value is ignored}
+
+\item{format}{logical indicating if the summary values should be formatted. See details}
+
+\item{digits}{Integer. When summarising a numeric vector you can specify
+the number of decimal places to include in the summary values}
 }
 \description{
 Maps colours to variables, returning a matrix of RGB(A) values
+}
+\details{
+when \code{summary = TRUE}, the following rules are applied to the summary values
+\itemize{
+  \item{logical vectors are converted to "TRUE" or "FALSE" strings}
+  \item{all other types remain as-is, unless \code{format = T} is used}
+}
+
+when \code{format = TRUE},
+\itemize{
+  \item{numbers are converted to strings with the specified number of decimal places (using \code{digits} argument) }
+  \item{Dates are formatted as "yyyy-mm-dd"}
+}
 }
 \examples{
 

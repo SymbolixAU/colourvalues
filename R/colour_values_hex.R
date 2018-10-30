@@ -92,10 +92,10 @@ colour_num_values_with_palette_hex.character <- function( palette, x, na_colour,
 }
 
 #' @export
-colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type ) {
+colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) {
   palette_check( palette )
   if( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries, format, format_type ) )
+    return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries, format, format_type, digits ) )
   } else {
     return( rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
   }
@@ -166,16 +166,28 @@ colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "number", digits )
 }
 
+#' @rdname colour_values
 #' @export
-colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE, format ) {
+colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
   colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
-  #colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "number" )
 }
 
+#' @rdname colour_values
 #' @export
-colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format ) {
-  #colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+colour_values_to_hex.factor <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+}
+
+#' @rdname colour_values
+#' @export
+colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "date", 0 )
+}
+
+#' @rdname colour_values
+#' @export
+colour_values_to_hex.POSIXct <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "posixct", 0 )
 }
 
 

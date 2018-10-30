@@ -97,3 +97,46 @@ test_that("summary values returned", {
   expect_true(all(lst$summary_colours == colour_values_rgb(letters) ))
 
 })
+
+
+test_that("summary rgb values are formatted", {
+
+  dte <- seq(as.Date("2018-01-01"), as.Date("2018-02-01"), by = 1)
+  cv <- colour_values_rgb( dte, n_summaries = 5, format = T)
+  expect_true( all( cv$summary_values == c("2018-01-01","2018-01-08","2018-01-16","2018-01-24","2018-02-01") ) )
+
+  psx <- seq(as.POSIXct("2018-01-01 00:00:00", tz = "Australia/Melbourne"),
+             as.POSIXct("2018-02-01 00:00:00", tz = "Australia/Melbourne"),
+             by = 60 * 60 * 24)
+  cv <- colour_values_rgb( psx, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("2017-12-31T13:00:00", "2018-01-08T07:00:00", "2018-01-16T01:00:00",
+                                         "2018-01-23T19:00:00", "2018-01-31T13:00:00")))
+
+
+  psx <- seq(as.POSIXct("2018-01-01 00:00:00", tz = "UTC"),
+             as.POSIXct("2018-02-01 00:00:00", tz = "UTC"),
+             by = 60 * 60 * 24)
+  cv <- colour_values_rgb( psx, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("2018-01-01T00:00:00", "2018-01-08T18:00:00", "2018-01-16T12:00:00",
+                                         "2018-01-24T06:00:00", "2018-02-01T00:00:00")))
+
+  lv <- c(T,F,F,T,F)
+  cv <- colour_values_rgb(lv, summary = T)
+  expect_true( all (cv$summary_values == c("FALSE","TRUE") ) )
+
+  fct <- factor(letters)
+  cv <- colour_values_rgb( fct, summary = T )
+  expect_true( all( cv$summary_values  == letters ) )
+
+})
+
+test_that("summary rgb values are formatted with palette matrix", {
+
+  df <- data.frame(x = 0:20)
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
+
+  cv <- colour_values( df$x, palette = m, n_summaries = 5)
+  expect_true(all(cv$summary_values == c(0,5,10,15,20)))
+
+})
+

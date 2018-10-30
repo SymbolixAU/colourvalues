@@ -5,6 +5,10 @@
 \alias{color_values}
 \alias{colour_values_to_hex.character}
 \alias{colour_values_to_hex.default}
+\alias{colour_values_to_hex.logical}
+\alias{colour_values_to_hex.factor}
+\alias{colour_values_to_hex.Date}
+\alias{colour_values_to_hex.POSIXct}
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
@@ -18,6 +22,18 @@ color_values(x, palette = "viridis", na_colour = "#808080FF",
 
 \method{colour_values_to_hex}{default}(x, palette, na_colour, alpha,
   include_alpha, n_summaries = 0, format = FALSE, digits = 2)
+
+\method{colour_values_to_hex}{logical}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_hex}{factor}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_hex}{Date}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_hex}{POSIXct}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}

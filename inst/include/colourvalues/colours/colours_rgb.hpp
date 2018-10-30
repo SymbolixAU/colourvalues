@@ -6,6 +6,7 @@
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
 #include "colourvalues/summary/summary.hpp"
+#include "colourvalues/format/format.hpp"
 
 namespace colourvalues {
 namespace colours_rgb {
@@ -85,7 +86,10 @@ namespace colours_rgb {
       Rcpp::NumericMatrix& palette,
       std::string& na_colour,
       bool include_alpha,
-      int n_summaries = 0) {
+      int n_summaries = 0,
+      bool format = false,
+      std::string format_type = "number",
+      int digits = 2) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -102,7 +106,11 @@ namespace colours_rgb {
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      SEXP summary_values = Rcpp::clone( summary );
+
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
@@ -121,7 +129,10 @@ namespace colours_rgb {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      int n_summaries = 0) {
+      int n_summaries = 0,
+      bool format = false,
+      std::string format_type = "number",
+      int digits = 2) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -140,7 +151,12 @@ namespace colours_rgb {
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      SEXP summary_values = Rcpp::clone( summary );
+
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
+
       Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
