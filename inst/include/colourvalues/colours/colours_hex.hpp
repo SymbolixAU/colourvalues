@@ -116,7 +116,10 @@ namespace colours_hex {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      int n_summaries = 0) {
+      int n_summaries = 0,
+      bool format = false,
+      std::string format_type = "number",
+      int digits = 2) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
@@ -135,11 +138,11 @@ namespace colours_hex {
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
+      SEXP summary_values = Rcpp::clone( summary );
 
-      // TODO( format summary values )
-      //
-      Rcpp::StringVector test = colourvalues::format::date_to_string( summary_values );
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
 
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);

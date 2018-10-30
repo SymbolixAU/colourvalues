@@ -83,19 +83,19 @@ colour_num_values_with_palette_hex <- function( palette, x, na_colour, alpha, in
 }
 
 #' @export
-colour_num_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+colour_num_values_with_palette_hex.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) {
   if ( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_string_palette_summary_hex( x, palette, na_colour, alpha, include_alpha, n_summaries ) )
+    return( rcpp_colour_num_value_string_palette_summary_hex( x, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) )
   } else {
     return( rcpp_colour_num_value_string_palette_hex( x, palette, na_colour, alpha, include_alpha ) )
   }
 }
 
 #' @export
-colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type ) {
   palette_check( palette )
   if( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries ) )
+    return( rcpp_colour_num_value_rgb_palette_summary_hex( x, palette, na_colour, include_alpha, n_summaries, format, format_type ) )
   } else {
     return( rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
   }
@@ -143,20 +143,40 @@ colour_values_to_hex.character <- function( x, palette, na_colour, alpha, includ
 #' @param n_summaries positive integer. If supplied a summary colour palette will be returned
 #' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 #' and their associated colours. If a non-numeric \code{x} is used this value is ignored
-#' @export
-colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0 ) {
-  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries )
-}
-
-#' #' @export
-#' colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
-#'   colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+#' @param format logical indicating if the summary values should be formatted. See details
+#' @param digits Integer. When summarising a numeric vector you can specify
+#' the number of decimal places to include in the summary values
+#'
+#' @details
+#'
+#' when \code{summary = TRUE}, the following rules are applied to the summary values
+#' \itemize{
+#'   \item{logical vectors are converted to "TRUE" or "FALSE" strings}
+#'   \item{all other types remain as-is, unless \code{format = T} is used}
 #' }
 #'
-#' #' @export
-#' colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
-#'   colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+#' when \code{format = TRUE},
+#' \itemize{
+#'   \item{numbers are converted to strings with the specified number of decimal places (using \code{digits} argument) }
+#'   \item{Dates are formatted as "yyyy-mm-dd"}
 #' }
+#'
+#' @export
+colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE, digits = 2 ) {
+  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "number", digits )
+}
+
+#' @export
+colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE, format ) {
+  colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+  #colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "number" )
+}
+
+#' @export
+colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format ) {
+  #colour_values_to_hex.character(x, palette, na_colour, alpha, include_alpha, summary)
+  colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "date", 0 )
+}
 
 
 ### end HEX --------------------------------------------------------------------

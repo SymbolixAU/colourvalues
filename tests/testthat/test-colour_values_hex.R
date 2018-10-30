@@ -197,3 +197,10 @@ test_that("summary values returned", {
   expect_true(all(lst$summary_colours == colour_values(letters) ))
 })
 
+test_that("summary values are formatted", {
+
+  ## if foramt = T, need to specify the format type
+  expect_error(colour_values(rnorm(n=50), n_summaries = 10, format = T), "unsupported format type")
+  colour_values(rnorm(n=50), n_summaries = 10, format = T, format_type = "number")
+
+})

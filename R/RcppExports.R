@@ -5,8 +5,8 @@ rcpp_colour_num_value_string_palette_hex <- function(x, palette, na_colour, alph
     .Call(`_colourvalues_rcpp_colour_num_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
 }
 
-rcpp_colour_num_value_string_palette_summary_hex <- function(x, palette, na_colour, alpha, include_alpha, n_summaries) {
-    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_hex`, x, palette, na_colour, alpha, include_alpha, n_summaries)
+rcpp_colour_num_value_string_palette_summary_hex <- function(x, palette, na_colour, alpha, include_alpha, n_summaries, format = FALSE, format_type = "", digits = 2L) {
+    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_hex`, x, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits)
 }
 
 rcpp_colour_num_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {

@@ -11,46 +11,48 @@
 namespace colourvalues {
 namespace format {
 
-  template< int RTYPE >
-  Rcpp::StringVector date_to_string( const Rcpp::Vector< RTYPE >& nv ) {
+  Rcpp::StringVector date_to_string( SEXP v, int n ) {
 
-    int n = nv.size();
     int i;
+    Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
     Rcpp::StringVector sv( n );
 
     for ( i = 0; i < n; i++ ) {
-      //std::string s = boost::lexical_cast< std::string >( nv[i] );
-      // boost::gregorian::date d( nv[i] );
-      //
-      // std::string s = boost::gregorian::to_iso_string( d );
-      // Rcpp::Rcout << s.c_str()  << std::endl;
-
-      //boost::posix_time::ptime now = boost::posix_time::second_clock::local_time();
-      //boost::gregorian::date today = now.date();
-      // std::string s = boost::gregorian::to_iso_string( today );
-      // Rcpp::Rcout << s.c_str() << std::endl;
-
       Rcpp::Date d = nv[i];
       boost::gregorian::date gd = boost::gregorian::date(d.getYear(), d.getMonth(), d.getDay());
-      std::string s = boost::gregorian::to_iso_string( gd );
-      Rcpp::Rcout << s.c_str() << std::endl;
-
-      // // create your formatting
-      //boost::gregorian::date_facet *df = new boost::gregorian::date_facet("%Y%m%d_%H%M%S");
-      //
-      // // set your formatting
-      // std::ostringstream is;
-      // is.imbue(std::locale(is.getloc(), df));
-      // is << d << std::endl;
-      //
-      // // get string
-      // Rcpp::Rcout << "output :" << is.str() << std::endl;
+      std::string s = boost::gregorian::to_iso_extended_string( gd );
+      sv[i] = s.c_str();
     }
 
     return sv;
   }
 
+  Rcpp::StringVector number_to_string( SEXP v, int n, int dp) {
+    int i;
+    Rcpp::StringVector sv( n );
+    Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
+    // TODO( implement decimal-places )
+    for ( i = 0; i < n; i++) {
+      std::ostringstream os;
+      os << std::fixed << std::setprecision( dp ) << nv[i];
+      std::string s = os.str();
+      sv[i] = s.c_str();
+    }
 
+    return sv;
+  }
+
+  Rcpp::StringVector format_summary( SEXP summary_values, std::string format_type, int n_summaries, int digits ) {
+    if (format_type == "number" ) {
+      return colourvalues::format::number_to_string( summary_values, n_summaries, digits);
+    } else if ( format_type == "date" ) {
+      return colourvalues::format::date_to_string( summary_values, n_summaries );
+    } else {
+      Rcpp::stop("unsupported format type");
+    }
+
+    return ""; // never reacehd
+  }
 } // namespace format
 } // namespace colourvalues
 
