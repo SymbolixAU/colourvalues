@@ -12,10 +12,18 @@ namespace summary {
    * to use in a legend
    */
   inline Rcpp::NumericVector numeric_summary(Rcpp::NumericVector& nv, std::size_t n) {
+
+    int n_summaries = n < nv.length() ? n : nv.length();
+
+    if ( n_summaries == 1 ) {
+      return nv;
+    }
+
+    Rcpp::NumericVector vals( n_summaries );
+
     double x = Rcpp::min( nv );
     double y = Rcpp::max( nv );
-    double h = ( y - x ) / static_cast< double >( n - 1 );
-    Rcpp::NumericVector vals( n );
+    double h = ( y - x ) / static_cast< double >( n_summaries - 1 );
     Rcpp::NumericVector::iterator it;
     double val;
     for ( it = vals.begin(), val = x; it != vals.end(); it++, val += h ) {

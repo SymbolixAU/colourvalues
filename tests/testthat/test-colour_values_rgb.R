@@ -140,3 +140,15 @@ test_that("summary rgb values are formatted with palette matrix", {
 
 })
 
+test_that("n_summaries is the min of 5 or length(x) ", {
+
+  cv <- colour_values_rgb( 1, n_summaries = 5 )
+  expect_true( cv$summary_values == 1 )
+
+  cv <- colour_values_rgb( 1:50, n_summaries = 500 )
+  expect_true( length( cv$summary_values ) == 50 )
+
+  cv <- colour_values_rgb(c("a","b"), summary = T )
+  expect_true(all(cv$summary_values == c("a","b")))
+
+})

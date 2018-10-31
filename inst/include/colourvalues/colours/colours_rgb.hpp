@@ -108,6 +108,8 @@ namespace colours_rgb {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       SEXP summary_values = Rcpp::clone( summary );
 
+      n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
+
       if( format ) {
         summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
@@ -152,6 +154,8 @@ namespace colours_rgb {
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       SEXP summary_values = Rcpp::clone( summary );
+
+      n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
 
       if( format ) {
         summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
