@@ -9,6 +9,7 @@
 \alias{colour_values_to_hex.factor}
 \alias{colour_values_to_hex.Date}
 \alias{colour_values_to_hex.POSIXct}
+\alias{colour_values_to_hex.POSIXlt}
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
@@ -33,6 +34,9 @@ color_values(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, n_summaries = 0, format = FALSE)
 
 \method{colour_values_to_hex}{POSIXct}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_hex}{POSIXlt}(x, palette, na_colour, alpha,
   include_alpha, n_summaries = 0, format = FALSE)
 }
 \arguments{

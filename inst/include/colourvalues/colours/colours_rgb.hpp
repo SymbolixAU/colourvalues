@@ -88,7 +88,7 @@ namespace colours_rgb {
       bool include_alpha,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "number",
+      std::string format_type = "numeric",
       int digits = 2) {
 
     int x_size = x.size();
@@ -131,7 +131,7 @@ namespace colours_rgb {
       bool include_alpha,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "number",
+      std::string format_type = "numeric",
       int digits = 2) {
 
     // TODO(this throws an error on Travis)

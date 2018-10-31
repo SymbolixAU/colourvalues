@@ -9,6 +9,7 @@
 \alias{colour_values_to_rgb.factor}
 \alias{colour_values_to_rgb.Date}
 \alias{colour_values_to_rgb.POSIXct}
+\alias{colour_values_to_rgb.POSIXlt}
 \title{Colour Values RGB}
 \usage{
 colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
@@ -33,6 +34,9 @@ color_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, n_summaries = 0, format = FALSE)
 
 \method{colour_values_to_rgb}{POSIXct}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_rgb}{POSIXlt}(x, palette, na_colour, alpha,
   include_alpha, n_summaries = 0, format = FALSE)
 }
 \arguments{
