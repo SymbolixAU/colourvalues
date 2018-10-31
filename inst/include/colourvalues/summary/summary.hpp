@@ -11,7 +11,7 @@ namespace summary {
    * The idea is to use the same palette as the vector to then get the values and colours
    * to use in a legend
    */
-  inline Rcpp::NumericVector numeric_summary(Rcpp::NumericVector& nv, std::size_t n) {
+  inline Rcpp::NumericVector numeric_summary( Rcpp::NumericVector& nv, std::size_t n ) {
 
     int n_summaries = n < nv.length() ? n : nv.length();
 
