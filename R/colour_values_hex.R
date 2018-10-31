@@ -166,6 +166,12 @@ colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "numeric", digits )
 }
 
+#' #' @rdname colour_values_rgb
+#' #' @export
+#' colour_values_to_hex.integer <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, ...) {
+#'   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, FALSE, "integer", 0)
+#' }
+
 #' @rdname colour_values
 #' @export
 colour_values_to_hex.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {

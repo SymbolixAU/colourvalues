@@ -58,9 +58,11 @@ namespace format {
     return sv;
   }
 
-  inline Rcpp::StringVector format_summary( SEXP summary_values, std::string format_type, int n_summaries, int digits ) {
+  inline SEXP format_summary( SEXP summary_values, std::string format_type, int n_summaries, int digits ) {
     if (format_type == "numeric" ) {
       return colourvalues::format::numeric_to_string( summary_values, n_summaries, digits);
+    // } else if ( format_type == "integer" ) {
+    //   return summary_values; // ints are nice already
     } else if ( format_type == "Date" ) {
       return colourvalues::format::date_to_string( summary_values, n_summaries );
     } else if ( format_type == "POSIXct" ) {
@@ -71,7 +73,7 @@ namespace format {
       Rcpp::stop("unsupported format type");
     }
 
-    return ""; // never reacehd
+    return R_NilValue; // never reacehd
   }
 } // namespace format
 } // namespace colourvalues
