@@ -162,7 +162,7 @@ colour_values_to_hex.character <- function( x, palette, na_colour, alpha, includ
 #' }
 #'
 #' @export
-colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE, digits = 2 ) {
+colour_values_to_hex.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = TRUE, digits = 2 ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "numeric", digits )
 }
 
@@ -186,19 +186,19 @@ colour_values_to_hex.factor <-  function( x, palette, na_colour, alpha, include_
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+colour_values_to_hex.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = TRUE ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "Date", 0 )
 }
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.POSIXct <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+colour_values_to_hex.POSIXct <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = TRUE ) {
   colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
 }
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.POSIXlt <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+colour_values_to_hex.POSIXlt <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = TRUE ) {
   colour_num_values_with_palette_hex( palette, as.POSIXct(x), na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
 }
 

@@ -192,10 +192,10 @@ test_that("original vectors returned",{
 
 test_that("summary values returned", {
 
-  lst <- colour_values(1:10, n_summaries = 2)
+  lst <- colour_values(1:10, n_summaries = 2, format = F)
   expect_true(all( lst$summary_values == c(1,10) ) )
   expect_true( all( colour_values(c(1,10)) == lst$summary_colours ) )
-  lst <- colour_values(-10:10, n_summaries = 5)
+  lst <- colour_values(-10:10, n_summaries = 5, format = F)
   expect_true(all( lst$summary_values == c(-10,-5,0,5,10) ) )
   expect_true( all( colour_values(c(-10,-5,0,5,10)) == lst$summary_colours ) )
 
@@ -263,14 +263,14 @@ test_that("summary hex values are formatted with palette matrix", {
   df <- data.frame(x = 0:20)
   m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
 
-  cv <- colour_values( df$x, palette = m, n_summaries = 5)
-  expect_true(all(cv$summary_values == c(0,5,10,15,20)))
+  cv <- colour_values( df$x, palette = m, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("0.00","5.00","10.00","15.00","20.00")))
 
 })
 
 test_that("n_summaries is the min of 5 or length(x) ", {
 
-  cv <- colour_values( 1, n_summaries = 5 )
+  cv <- colour_values( 1, n_summaries = 5, format = F )
   expect_true( cv$summary_values == 1 )
 
   cv <- colour_values( 1:50, n_summaries = 500 )

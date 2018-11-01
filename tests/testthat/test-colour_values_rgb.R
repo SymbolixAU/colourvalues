@@ -80,10 +80,10 @@ test_that("alpha can be excluded from results", {
 
 test_that("summary values returned", {
 
-  lst <- colour_values_rgb(1:10, n_summaries = 2)
+  lst <- colour_values_rgb(1:10, n_summaries = 2, format = F)
   expect_true(all( lst$summary_values == c(1,10) ) )
   expect_true( all( colour_values_rgb(c(1,10)) == lst$summary_colours ) )
-  lst <- colour_values_rgb(-10:10, n_summaries = 5)
+  lst <- colour_values_rgb(-10:10, n_summaries = 5, format = F)
   expect_true(all( lst$summary_values == c(-10,-5,0,5,10) ) )
   expect_true( all( colour_values_rgb(c(-10,-5,0,5,10)) == lst$summary_colours ) )
 
@@ -148,14 +148,14 @@ test_that("summary rgb values are formatted with palette matrix", {
   m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
 
   cv <- colour_values_rgb( df$x, palette = m, n_summaries = 5)
-  expect_true(all(cv$summary_values == c(0,5,10,15,20)))
+  expect_true(all(cv$summary_values == c("0.00","5.00","10.00","15.00","20.00")))
 
 })
 
 test_that("n_summaries is the min of 5 or length(x) ", {
 
   cv <- colour_values_rgb( 1, n_summaries = 5 )
-  expect_true( cv$summary_values == 1 )
+  expect_true( cv$summary_values == "1.00" )
 
   cv <- colour_values_rgb( 1:50, n_summaries = 500 )
   expect_true( length( cv$summary_values ) == 50 )

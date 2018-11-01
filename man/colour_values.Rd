@@ -22,7 +22,7 @@ color_values(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, summary = FALSE)
 
 \method{colour_values_to_hex}{default}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = FALSE, digits = 2)
+  include_alpha, n_summaries = 0, format = TRUE, digits = 2)
 
 \method{colour_values_to_hex}{logical}(x, palette, na_colour, alpha,
   include_alpha, summary = FALSE)
@@ -31,13 +31,13 @@ color_values(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, summary = FALSE)
 
 \method{colour_values_to_hex}{Date}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = FALSE)
+  include_alpha, n_summaries = 0, format = TRUE)
 
 \method{colour_values_to_hex}{POSIXct}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = FALSE)
+  include_alpha, n_summaries = 0, format = TRUE)
 
 \method{colour_values_to_hex}{POSIXlt}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = FALSE)
+  include_alpha, n_summaries = 0, format = TRUE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
