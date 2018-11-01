@@ -98,6 +98,18 @@ test_that("summary values returned", {
 
 })
 
+test_that("short vecors are coloured", {
+
+  expect_equal( colour_values_rgb(1), convert_colour("#440154FF") )
+  expect_equal( colour_values_rgb("a"), convert_colour( "#440154FF") )
+
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
+  expect_equal( colour_values_rgb(1, palette = m ), convert_colour("#FF0000FF"))
+  expect_equal( colour_values_rgb("a", palette = m), convert_colour("#FF0000FF"))
+
+})
+
+
 
 test_that("summary rgb values are formatted", {
 
@@ -135,7 +147,7 @@ test_that("summary rgb values are formatted with palette matrix", {
   df <- data.frame(x = 0:20)
   m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
 
-  cv <- colour_values( df$x, palette = m, n_summaries = 5)
+  cv <- colour_values_rgb( df$x, palette = m, n_summaries = 5)
   expect_true(all(cv$summary_values == c(0,5,10,15,20)))
 
 })
@@ -150,5 +162,73 @@ test_that("n_summaries is the min of 5 or length(x) ", {
 
   cv <- colour_values_rgb(c("a","b"), summary = T )
   expect_true(all(cv$summary_values == c("a","b")))
+
+})
+
+
+test_that("summary values contain FF alphas", {
+
+  cv <- colour_values_rgb( 1, n_summaries = 5 )
+  expect_true(all( cv$summary_colours == convert_colour("#440154FF")))
+  cv <- colour_values_rgb( 1, n_summaries = 5, alpha = 1 )
+  expect_true(all(cv$summary_colours == convert_colour("#440154FF")))
+  cv <- colour_values_rgb( 1:100, n_summaries = 5 )
+  expect_true( all( cv$summary_colours[, 4] == 255 ) )
+  cv <- colour_values_rgb( 1:100, n_summaries = 5, alpha = 1:100 )
+  expect_true( all( cv$summary_colours[, 4] == 255 ) )
+  cv <- colour_values_rgb( 1:100, n_summaries = 100, alpha = 1:100 )
+  expect_true( all( cv$summary_colours[, 4] == 255 ) )
+
+  cv <- colour_values_rgb( 1, n_summaries = 5, include_alpha = F )
+  expect_true(all(cv$summary_colours == convert_colour("#440154")))
+  cv <- colour_values_rgb( 1, n_summaries = 5, alpha = 1, include_alpha = F )
+  expect_true(all(cv$summary_colours == convert_colour("#440154")))
+  cv <- colour_values_rgb( 1:100, n_summaries = 5, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+  cv <- colour_values_rgb( 1:100, n_summaries = 5, alpha = 1:100, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+  cv <- colour_values_rgb( 1:100, n_summaries = 100, alpha = 1:100, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+
+
+  cv <- colour_values_rgb( "a", summary = T)
+  expect_true(all(cv$summary_colours == convert_colour( "#440154FF") ) )
+  cv <- colour_values_rgb( "a", summary = T, alpha = 1 )
+  expect_true(all(cv$summary_colours == convert_colour( "#440154FF") ) )
+  cv <- colour_values_rgb( letters, summary = T)
+  expect_true( all( cv$summary_colours[, 4] == 255 ) )
+  cv <- colour_values_rgb( letters, summary = T, alpha = 1:26)
+  expect_true( all( cv$summary_colours[, 4]  == 255 ) )
+
+  cv <- colour_values_rgb( "a", summary = T, include_alpha = F )
+  expect_true(all(cv$summary_colours == convert_colour( "#440154") ) )
+  cv <- colour_values_rgb( "a", summary = T, alpha = 1, include_alpha = F  )
+  expect_true(all(cv$summary_colours == convert_colour("#440154") ) )
+  cv <- colour_values_rgb( letters, summary = T, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+  cv <- colour_values_rgb( letters, summary = T, alpha = 1:26, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+
+
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
+  cv <- colour_values_rgb( "a", summary = T, palette = m)
+  expect_true(all( cv$summary_colours == convert_colour( "#FF0000FF") ) )
+  cv <- colour_values_rgb( "a", summary = T, alpha = 1, palette = m )
+  expect_true(all(cv$summary_colours == convert_colour("#FF0000FF") ) )
+  cv <- colour_values_rgb( letters, summary = T, palette = m )
+  expect_true( all( cv$summary_colours[, 4] == 255) )
+  cv <- colour_values_rgb( letters, summary = T, alpha = 1:26, palette = m )
+  expect_true( all( cv$summary_colours[, 4] == 255) )
+
+  m <- grDevices::colorRamp(c("red","green","blue","yellow"))(0:1000/1000)
+  cv <- colour_values_rgb( "a", summary = T, palette = m, include_alpha = F)
+  expect_true(all(cv$summary_colours == convert_colour("#FF0000") ) )
+  cv <- colour_values_rgb( "a", summary = T, alpha = 1, palette = m, include_alpha = F)
+  expect_true(all(cv$summary_colours == convert_colour( "#FF0000") ) )
+  cv <- colour_values_rgb( letters, summary = T, palette = m, include_alpha = F)
+  expect_true( ncol(cv$summary_colours ) == 3 )
+  cv <- colour_values_rgb( letters, summary = T, alpha = 1:26, palette = m, include_alpha = F )
+  expect_true( ncol( cv$summary_colours ) == 3 )
+
 
 })

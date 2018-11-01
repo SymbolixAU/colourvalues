@@ -109,10 +109,6 @@ namespace colours_hex {
         summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
 
-      // Rcpp::NumericVector alpha_summary(5, 255.0);
-      // int summary_alpha_type = ALPHA_CONSTANT;
-      // Rcpp::NumericVector full_alpha_summary = colourvalues::alpha::validate_alpha( alpha_summary, summary_alpha_type, x_size );
-
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
@@ -214,10 +210,6 @@ namespace colours_hex {
       );
     }
 
-    // Rcpp::Rcout << "red size: " << red.size() << std::endl;
-    // Rcpp::Rcout << "green size: " << green.size() << std::endl;
-    // Rcpp::Rcout << "blue size: " << blue.size() << std::endl;
-    // Rcpp::Rcout << "alpha size: " << alpha.size() << std::endl;
     return colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 

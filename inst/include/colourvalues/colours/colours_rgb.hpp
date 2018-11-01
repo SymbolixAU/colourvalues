@@ -113,7 +113,11 @@ namespace colours_rgb {
       if( format ) {
         summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+
+      int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
@@ -161,7 +165,10 @@ namespace colours_rgb {
         summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
 
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
@@ -185,7 +192,7 @@ namespace colours_rgb {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha(x.size(), 255.0);
+    Rcpp::NumericVector alpha(palette.nrow(), 255.0);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
@@ -194,7 +201,12 @@ namespace colours_rgb {
     if ( summary ) {
       Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+
+      int red_size = red.size();
+      int n_alpha_summary = red_size < 5 ? 5 : red_size;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
@@ -234,7 +246,12 @@ namespace colours_rgb {
     if ( summary ) {
       Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+
+      int x_size = x.size();
+      int n_alpha_summary = x_size < 5 ? 5 : x_size;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
