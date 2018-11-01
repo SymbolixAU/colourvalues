@@ -42,7 +42,7 @@ namespace alpha {
     } else if ( alpha_type == ALPHA_UNKNOWN ) {
       Rcpp::stop("Unknown alpha definition");
     }
-    return 0;
+    return 0;  // never reached
   }
 
 } // namespace alpha

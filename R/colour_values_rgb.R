@@ -40,19 +40,19 @@ colour_num_values_with_palette_rgb <- function( palette, x, na_colour, alpha, in
 }
 
 #' @export
-colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) {
   if ( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_string_palette_summary_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries ) )
+    return( rcpp_colour_num_value_string_palette_summary_rgb( x, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) )
   } else {
     return( rcpp_colour_num_value_string_palette_rgb( x, palette, na_colour, alpha, include_alpha ) )
   }
 }
 
 #' @export
-colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries ) {
+colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) {
   palette_check( palette )
   if ( n_summaries > 0 ) {
-    return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries ) )
+    return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries, format, format_type, digits ) )
   } else {
     return( rcpp_colour_num_value_rgb_palette_rgb( x, palette, na_colour, include_alpha ) )
   }
@@ -97,14 +97,64 @@ colour_values_to_rgb.character <- function( x, palette, na_colour, alpha, includ
 #' @param n_summaries positive integer. If supplied a summary colour palette will be returned
 #' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 #' and their associated colours. If a non-numeric \code{x} is used this value is ignored
+#' @param format logical indicating if the summary values should be formatted. See details
+#' @param digits Integer. When summarising a numeric vector you can specify
+#' the number of decimal places to include in the summary values
+#'
+#' @details
+#'
+#' when \code{summary = TRUE}, the following rules are applied to the summary values
+#' \itemize{
+#'   \item{logical vectors are converted to "TRUE" or "FALSE" strings}
+#'   \item{all other types remain as-is, unless \code{format = T} is used}
+#' }
+#'
+#' when \code{format = TRUE},
+#' \itemize{
+#'   \item{numbers are converted to strings with the specified number of decimal places (using \code{digits} argument) }
+#'   \item{Dates are formatted as "yyyy-mm-dd"}
+#' }
+#'
 #' @export
-colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0 ) {
-  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries )
+colour_values_to_rgb.default <- function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE, digits = 2 ) {
+  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "numeric", digits )
 }
 
+#' #' @rdname colour_values_rgb
+#' #' @export
+#' colour_values_to_rgb.integer <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, ... ) {
+#'   colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries, FALSE, "integer", 0)
+#' }
+
+#' @rdname colour_values_rgb
 #' @export
 colour_values_to_rgb.logical <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
   colour_values_to_rgb.character(x, palette, na_colour, alpha, include_alpha, summary)
 }
+
+#' @rdname colour_values_rgb
+#' @export
+colour_values_to_rgb.factor <-  function( x, palette, na_colour, alpha, include_alpha, summary = FALSE ) {
+  colour_values_to_rgb.character(x, palette, na_colour, alpha, include_alpha, summary)
+}
+
+#' @rdname colour_values_rgb
+#' @export
+colour_values_to_rgb.Date <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format  = FALSE ) {
+  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "Date", 0 )
+}
+
+#' @rdname colour_values_rgb
+#' @export
+colour_values_to_rgb.POSIXct <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+  colour_num_values_with_palette_rgb( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
+}
+
+#' @rdname colour_values_rgb
+#' @export
+colour_values_to_rgb.POSIXlt <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = FALSE ) {
+  colour_num_values_with_palette_rgb( palette, as.POSIXct(x), na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
+}
+
 
 ### end RGB --------------------------------------------------------------------

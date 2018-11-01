@@ -6,6 +6,7 @@
 #include "colourvalues/utils/utils.hpp"
 #include "colourvalues/alpha/alpha.hpp"
 #include "colourvalues/summary/summary.hpp"
+#include "colourvalues/format/format.hpp"
 
 namespace colourvalues {
 namespace colours_hex {
@@ -80,7 +81,10 @@ namespace colours_hex {
     Rcpp::NumericMatrix& palette,
     std::string& na_colour,
     bool include_alpha,
-    int n_summaries = 0) {
+    int n_summaries = 0,
+    bool format = false,
+    std::string format_type = "numeric",
+    int digits = 2) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -88,24 +92,34 @@ namespace colours_hex {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha(x.size(), 255.0);
+    Rcpp::NumericVector alpha( x.size(), 255.0 );
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    // Rcpp::Rcout << "alpha: " << alpha << std::endl;
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
-      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
-      Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      SEXP summary_values = Rcpp::clone( summary );
+
+      n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
+
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
+
+      int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::StringVector summary_hex = colour_values_to_hex( summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha ); // uses full opacity
+      Rcpp::StringVector full_hex = colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_hex,
         _["summary_values"] = summary_values,
         _["summary_colours"] = summary_hex
       );
     }
-
     return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
@@ -115,12 +129,16 @@ namespace colours_hex {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      int n_summaries = 0) {
+      int n_summaries = 0,
+      bool format = false,
+      std::string format_type = "numeric",
+      int digits = 2) {
 
     // TODO(this throws an error on Travis)
     // if(!is_hex_colour(na_colour)) {
     //   Rcpp::stop("invalid NA Colour");
     // }
+
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
@@ -134,9 +152,26 @@ namespace colours_hex {
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
-      Rcpp::NumericVector summary_values = Rcpp::clone( summary );
-      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+      SEXP summary_values = Rcpp::clone( summary );
+
+      n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
+
+      if( format ) {
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+      }
+
+      int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
+
+      // alpha_summary = colourvalues::summary::numeric_summary( alpha_full, n_summaries );
+      // Rcpp::Rcout << "alpha summary: " << alpha_summary << std::endl;
+      //
+
+      // Rcpp::StringVector summary_alpha_hex =
+
       return Rcpp::List::create(
         _["colours"] = full_hex,
         _["summary_values"] = summary_values,
@@ -158,7 +193,7 @@ namespace colours_hex {
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
     Rcpp::NumericVector blue(256);
-    Rcpp::NumericVector alpha(x.size(), 255.0);
+    Rcpp::NumericVector alpha(palette.nrow(), 255.0);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
@@ -167,7 +202,12 @@ namespace colours_hex {
     if ( summary ) {
       Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
-      Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+
+      int red_size = red.size();
+      int n_alpha_summary = red_size < 5 ? 5 : red_size;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::StringVector full_hex = colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_hex,
@@ -208,8 +248,15 @@ namespace colours_hex {
     if ( summary ) {
       Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
-      Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+
+      int x_size = x.size();
+      int n_alpha_summary = x_size < 5 ? 5 : x_size;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+
+      Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::StringVector full_hex = colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+
       return Rcpp::List::create(
         _["colours"] = full_hex,
         _["summary_values"] = lvls,

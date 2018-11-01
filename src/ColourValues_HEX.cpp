@@ -24,9 +24,12 @@ Rcpp::List rcpp_colour_num_value_string_palette_summary_hex(
     std::string na_colour,
     Rcpp::NumericVector alpha,
     bool include_alpha,
-    int n_summaries) {
+    int n_summaries,
+    bool format = false,
+    std::string format_type = "",
+    int digits = 2) {
   Rcpp::NumericVector x2 = Rcpp::clone(x);
-  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, alpha, include_alpha, n_summaries );
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits );
 }
 
 
@@ -46,9 +49,12 @@ Rcpp::List rcpp_colour_num_value_rgb_palette_summary_hex(
     Rcpp::NumericMatrix palette,
     std::string na_colour,
     bool include_alpha,
-    int n_summaries ) {
+    int n_summaries,
+    bool format = false,
+    std::string format_type = "",
+    int digits = 2 ) {
   Rcpp::NumericVector x2 = Rcpp::clone(x);
-  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, include_alpha, n_summaries );
+  return colourvalues::colours_hex::colour_value_hex( x2, palette, na_colour, include_alpha, n_summaries, format, format_type, digits );
 }
 
 

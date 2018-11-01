@@ -5,6 +5,11 @@
 \alias{color_values}
 \alias{colour_values_to_hex.character}
 \alias{colour_values_to_hex.default}
+\alias{colour_values_to_hex.logical}
+\alias{colour_values_to_hex.factor}
+\alias{colour_values_to_hex.Date}
+\alias{colour_values_to_hex.POSIXct}
+\alias{colour_values_to_hex.POSIXlt}
 \title{Colour Values}
 \usage{
 colour_values(x, palette = "viridis", na_colour = "#808080FF",
@@ -17,7 +22,22 @@ color_values(x, palette = "viridis", na_colour = "#808080FF",
   include_alpha, summary = FALSE)
 
 \method{colour_values_to_hex}{default}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0)
+  include_alpha, n_summaries = 0, format = FALSE, digits = 2)
+
+\method{colour_values_to_hex}{logical}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_hex}{factor}(x, palette, na_colour, alpha,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_hex}{Date}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_hex}{POSIXct}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
+
+\method{colour_values_to_hex}{POSIXlt}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = FALSE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -42,6 +62,11 @@ well as the full colour mapping. This will be the unique elements of \code{x} ma
 \item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 and their associated colours. If a non-numeric \code{x} is used this value is ignored}
+
+\item{format}{logical indicating if the summary values should be formatted. See details}
+
+\item{digits}{Integer. When summarising a numeric vector you can specify
+the number of decimal places to include in the summary values}
 }
 \description{
 maps colours to values
@@ -56,6 +81,18 @@ The palette can either be
 The \code{palette} (and \code{alpha} argument when using a vector) requires 5
 rows because the colours are interpolated using a cubic b-spline. This method
 requires 5 values.
+
+when \code{summary = TRUE}, the following rules are applied to the summary values
+\itemize{
+  \item{logical vectors are converted to "TRUE" or "FALSE" strings}
+  \item{all other types remain as-is, unless \code{format = T} is used}
+}
+
+when \code{format = TRUE},
+\itemize{
+  \item{numbers are converted to strings with the specified number of decimal places (using \code{digits} argument) }
+  \item{Dates are formatted as "yyyy-mm-dd"}
+}
 }
 \examples{
 
