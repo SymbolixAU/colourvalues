@@ -54,7 +54,6 @@ namespace format {
       std::string s = os.str();
       sv[i] = s.c_str();
     }
-
     return sv;
   }
 
@@ -70,7 +69,8 @@ namespace format {
     // } else if ( format_type == "posixlt" ) {
     //   return colourvalues::format::posixlt_to_string( summary_values, n_summaries );
     } else {
-      Rcpp::stop("unsupported format type");
+      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( summary_values );
+      return sv;
     }
 
     return R_NilValue; // never reacehd
