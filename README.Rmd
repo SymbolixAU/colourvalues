@@ -197,11 +197,35 @@ colour_values_rgb(1:5, include_alpha = F)
 
 ## Can I get a summary of colours to use in a legend?
 
-Yes, use the `n_summaries` argument to specify the number of summary values you'd like
+Yes, for numeric values use the `n_summaries` argument to specify the number of summary values you'd like
 
 ```{r}
 colour_values(1:10, n_summaries = 3)
 ```
+
+You can also specify the number of digits you'd like returned in the summary
+
+```{r}
+colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
+```
+
+You can also use `format = FALSE` if you don't want the summary values formatted.
+
+```{r}
+dte <- seq(as.Date("2018-01-01"), as.Date("2018-02-01"), by = 1)
+colour_values(dte, n_summaries = 3)
+
+colour_values(dte, n_summaries = 3, format = F)
+```
+
+
+For categorical values use `summary = TRUE` to return a uniqe set of the values, and their associated colours
+
+```{r}
+colour_values(sample(letters, size = 50, replace = T), summary = T)
+```
+
+
 
 ---
 

@@ -13,7 +13,8 @@ namespace summary {
    */
   inline Rcpp::NumericVector numeric_summary( Rcpp::NumericVector& nv, std::size_t n ) {
 
-    size_t n_summaries = n < nv.length() ? n : nv.length();
+    size_t nv_length = nv.length();
+    size_t n_summaries = n < nv_length ? n : nv_length;
 
     if ( n_summaries == 1 ) {
       return nv;

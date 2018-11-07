@@ -219,8 +219,8 @@ colour_values_rgb(1:5, include_alpha = F)
 
 ## Can I get a summary of colours to use in a legend?
 
-Yes, use the `n_summaries` argument to specify the number of summary
-values you’d like
+Yes, for numeric values use the `n_summaries` argument to specify the
+number of summary values you’d like
 
 ``` r
 colour_values(1:10, n_summaries = 3)
@@ -229,10 +229,93 @@ colour_values(1:10, n_summaries = 3)
 #  [6] "#1F9D89FF" "#35B779FF" "#6CCE59FF" "#B4DD2CFF" "#FDE725FF"
 # 
 # $summary_values
-# [1]  1.0  5.5 10.0
+# [1] "1.00"  "5.50"  "10.00"
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
+```
+
+You can also specify the number of digits you’d like returned in the
+summary
+
+``` r
+colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
+# $colours
+#  [1] "#20918CFF" "#98D83EFF" "#26838EFF" "#B3DD2CFF" "#B3DD2DFF"
+#  [6] "#2C738EFF" "#FDE725FF" "#355E8DFF" "#B7DE2AFF" "#440154FF"
+# 
+# $summary_values
+# [1] "-2.76" "-1.17" "0.41" 
+# 
+# $summary_colours
+# [1] "#440154FF" "#21908CFF" "#FDE725FF"
+```
+
+You can also use `format = FALSE` if you don’t want the summary values
+formatted.
+
+``` r
+dte <- seq(as.Date("2018-01-01"), as.Date("2018-02-01"), by = 1)
+colour_values(dte, n_summaries = 3)
+# $colours
+#  [1] "#440154FF" "#470D60FF" "#48196BFF" "#482474FF" "#472E7CFF"
+#  [6] "#453882FF" "#414286FF" "#3E4B8AFF" "#3A548CFF" "#365D8DFF"
+# [11] "#32658EFF" "#2E6D8EFF" "#2B758EFF" "#287D8EFF" "#25858EFF"
+# [16] "#228C8DFF" "#20948CFF" "#1E9C89FF" "#20A386FF" "#25AB82FF"
+# [21] "#2DB27DFF" "#39BA76FF" "#48C16EFF" "#58C765FF" "#6ACD5BFF"
+# [26] "#7ED34FFF" "#92D742FF" "#A8DB34FF" "#BEDF26FF" "#D4E21BFF"
+# [31] "#E9E41AFF" "#FDE725FF"
+# 
+# $summary_values
+# [1] "2018-01-01" "2018-01-16" "2018-02-01"
+# 
+# $summary_colours
+# [1] "#440154FF" "#21908CFF" "#FDE725FF"
+
+colour_values(dte, n_summaries = 3, format = F)
+# $colours
+#  [1] "#440154FF" "#470D60FF" "#48196BFF" "#482474FF" "#472E7CFF"
+#  [6] "#453882FF" "#414286FF" "#3E4B8AFF" "#3A548CFF" "#365D8DFF"
+# [11] "#32658EFF" "#2E6D8EFF" "#2B758EFF" "#287D8EFF" "#25858EFF"
+# [16] "#228C8DFF" "#20948CFF" "#1E9C89FF" "#20A386FF" "#25AB82FF"
+# [21] "#2DB27DFF" "#39BA76FF" "#48C16EFF" "#58C765FF" "#6ACD5BFF"
+# [26] "#7ED34FFF" "#92D742FF" "#A8DB34FF" "#BEDF26FF" "#D4E21BFF"
+# [31] "#E9E41AFF" "#FDE725FF"
+# 
+# $summary_values
+# [1] 17532.0 17547.5 17563.0
+# 
+# $summary_colours
+# [1] "#440154FF" "#21908CFF" "#FDE725FF"
+```
+
+For categorical values use `summary = TRUE` to return a uniqe set of the
+values, and their associated colours
+
+``` r
+colour_values(sample(letters, size = 50, replace = T), summary = T)
+# $colours
+#  [1] "#440154FF" "#31688EFF" "#C7E020FF" "#481F71FF" "#FDE725FF"
+#  [6] "#472D7BFF" "#472D7BFF" "#3B528BFF" "#471163FF" "#E3E418FF"
+# [11] "#8FD744FF" "#E3E418FF" "#472D7BFF" "#2C728EFF" "#20A486FF"
+# [16] "#ABDC32FF" "#2C728EFF" "#24868EFF" "#35B779FF" "#28AE80FF"
+# [21] "#ABDC32FF" "#E3E418FF" "#24868EFF" "#31688EFF" "#47C06FFF"
+# [26] "#20A486FF" "#404688FF" "#24868EFF" "#28AE80FF" "#443A83FF"
+# [31] "#47C06FFF" "#3B528BFF" "#75D054FF" "#404688FF" "#404688FF"
+# [36] "#481F71FF" "#287C8EFF" "#20A486FF" "#5DC963FF" "#ABDC32FF"
+# [41] "#1F9A8AFF" "#443A83FF" "#355D8DFF" "#28AE80FF" "#E3E418FF"
+# [46] "#28AE80FF" "#8FD744FF" "#21908CFF" "#28AE80FF" "#8FD744FF"
+# 
+# $summary_values
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "m" "n" "o" "p" "q" "r"
+# [18] "s" "t" "u" "v" "w" "x" "y" "z"
+# 
+# $summary_colours
+#  [1] "#440154FF" "#471163FF" "#481F71FF" "#472D7BFF" "#443A83FF"
+#  [6] "#404688FF" "#3B528BFF" "#355D8DFF" "#31688EFF" "#2C728EFF"
+# [11] "#287C8EFF" "#24868EFF" "#21908CFF" "#1F9A8AFF" "#20A486FF"
+# [16] "#28AE80FF" "#35B779FF" "#47C06FFF" "#5DC963FF" "#75D054FF"
+# [21] "#8FD744FF" "#ABDC32FF" "#C7E020FF" "#E3E418FF" "#FDE725FF"
 ```
 
 -----
@@ -263,14 +346,14 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.650813 1.688667 1.764329 1.761870 1.820108 1.984648    25
-#        scales 2.931549 3.087972 3.178309 3.133891 3.249300 3.657932    25
+#  colourvalues 1.617392 1.650307 1.707740 1.688513 1.757597 1.866051    25
+#        scales 2.772918 2.889632 2.958089 2.922623 3.016068 3.344712    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-16-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -292,11 +375,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 171.3805 183.8710 199.6419 191.7212 206.3815 274.7522    25
-#        scales 320.6524 335.9726 354.6676 353.4846 364.7990 413.4517    25
+#  colourvalues 183.6266 191.3288 196.3723 192.1881 192.8737 304.3512    25
+#        scales 288.9669 311.4043 320.7450 313.7732 318.0472 378.1733    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-17-1.png" width="100%" height="400" />
