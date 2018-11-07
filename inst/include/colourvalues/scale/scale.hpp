@@ -9,8 +9,8 @@ namespace scale {
   inline Rcpp::NumericVector minmax( Rcpp::NumericVector& x ) {
     int n = x.size();
 
-    double min;
-    double max;
+    double min = 0;
+    double max = 0;
     bool first_value = false;
 
     for( int i = 0; i < n; i++) {
