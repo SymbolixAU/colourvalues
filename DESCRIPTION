@@ -1,7 +1,7 @@
 Package: colourvalues
 Type: Package
 Title: Assigns Colours to Values
-Version: 0.2.0
+Version: 0.2.1
 Date: 2018-11-07
 Authors@R: c(
     person("David", "Cooley", ,"dcooley@symbolix.com.au", role = c("aut", "cre"))

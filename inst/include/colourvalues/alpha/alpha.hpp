@@ -35,8 +35,26 @@ namespace alpha {
       return alpha;
 
     } else if (alpha_type == ALPHA_VECTOR ) {
+
       colourvalues::scale::rescale( alpha );
       alpha = alpha * 255;
+
+      // If length( alpha ) < 5; fill with mean
+      int n_alpha = alpha.size();
+
+      if ( n_alpha < 5 ) {
+        int to_fill = 5 - n_alpha;
+        double mean_alpha = Rcpp::mean( alpha );
+        Rcpp::NumericVector alpha_full( 5 );
+        int i = 0;
+        for ( i = 0; i < n_alpha; i++ ) {
+          alpha_full[i] = alpha[i];
+        }
+        for ( i = 1; i <= to_fill; i++ ) {
+          alpha_full[ n_alpha + to_fill ] = mean_alpha;
+        }
+        return alpha_full;
+      }
       return alpha;
 
     } else if ( alpha_type == ALPHA_UNKNOWN ) {

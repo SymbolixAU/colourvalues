@@ -1,4 +1,8 @@
-# colourvalues 0.2.0
+# v0.2.1
+
+* alpha now accepts fewer than 5 values when using a vector
+
+# v0.2.0
 
 * `format`, `summary`, `n_summaries` arguments for returning summary colours (for use in legends)
 * `convert_colours()` function exposed to R to convert between hex-rgb [issue 14](https://github.com/SymbolixAU/colourvalues/issues/14)

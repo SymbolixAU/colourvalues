@@ -24,7 +24,6 @@
 #'
 #' @export
 colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, ... ) {
-  alpha_check( alpha )
   colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, ... )
 }
 
