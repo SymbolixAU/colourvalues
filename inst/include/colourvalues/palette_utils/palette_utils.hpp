@@ -89,6 +89,10 @@ namespace palette_utils {
       red = colourvalues::palette::cividis_red;
       green = colourvalues::palette::cividis_green;
       blue = colourvalues::palette::cividis_blue;
+    } else if ( palette == "terrain" ) {
+      red = colourvalues::palette::terrain_red;
+      green = colourvalues::palette::terrain_green;
+      blue = colourvalues::palette::terrain_blue;
     } else {
       Rcpp::stop("unknown palette");
     }

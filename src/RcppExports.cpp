@@ -340,6 +340,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_terrain
+Rcpp::DataFrame rcpp_terrain();
+RcppExport SEXP _colourvalues_rcpp_terrain() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_terrain());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_hex, 5},
@@ -366,6 +376,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_magma", (DL_FUNC) &_colourvalues_rcpp_magma, 0},
     {"_colourvalues_rcpp_plasma", (DL_FUNC) &_colourvalues_rcpp_plasma, 0},
     {"_colourvalues_rcpp_cividis", (DL_FUNC) &_colourvalues_rcpp_cividis, 0},
+    {"_colourvalues_rcpp_terrain", (DL_FUNC) &_colourvalues_rcpp_terrain, 0},
     {NULL, NULL, 0}
 };
 

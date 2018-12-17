@@ -97,3 +97,7 @@ rcpp_cividis <- function() {
     .Call(`_colourvalues_rcpp_cividis`)
 }
 
+rcpp_terrain <- function() {
+    .Call(`_colourvalues_rcpp_terrain`)
+}
+

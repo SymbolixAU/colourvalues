@@ -11,7 +11,6 @@ Rcpp::DataFrame rcpp_viridis() {
   );
 }
 
-
 // [[Rcpp::export]]
 Rcpp::DataFrame rcpp_inferno() {
   return Rcpp::DataFrame::create(
@@ -47,3 +46,13 @@ Rcpp::DataFrame rcpp_cividis() {
     _["blue"] = colourvalues::palette::cividis_blue
   );
 }
+
+// [[Rcpp::export]]
+Rcpp::DataFrame rcpp_terrain() {
+  return Rcpp::DataFrame::create(
+    _["red"] = colourvalues::palette::terrain_red,
+    _["green"] = colourvalues::palette::terrain_green,
+    _["blue"] = colourvalues::palette::terrain_blue
+  );
+}
+

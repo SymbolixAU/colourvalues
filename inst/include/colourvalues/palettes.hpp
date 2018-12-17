@@ -6,5 +6,6 @@
 #include "colourvalues/palettes/magma.hpp"
 #include "colourvalues/palettes/inferno.hpp"
 #include "colourvalues/palettes/plasma.hpp"
+#include "colourvalues/palettes/terrain.hpp"
 
 #endif

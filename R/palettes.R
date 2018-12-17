@@ -33,3 +33,11 @@ magma <- function() rcpp_magma()
 #' @export
 cividis <- function() rcpp_cividis()
 
+
+#' Terrain
+#'
+#' Data frame of the terrain palette
+#'
+#' @export
+terrain <- function() rcpp_terrain()
+
