@@ -105,3 +105,115 @@ rcpp_topo <- function() {
     .Call(`_colourvalues_rcpp_topo`)
 }
 
+rcpp_heat <- function() {
+    .Call(`_colourvalues_rcpp_heat`)
+}
+
+rcpp_ylorrd <- function() {
+    .Call(`_colourvalues_rcpp_ylorrd`)
+}
+
+rcpp_ylorbr <- function() {
+    .Call(`_colourvalues_rcpp_ylorbr`)
+}
+
+rcpp_ylgnbu <- function() {
+    .Call(`_colourvalues_rcpp_ylgnbu`)
+}
+
+rcpp_ylgn <- function() {
+    .Call(`_colourvalues_rcpp_ylgn`)
+}
+
+rcpp_reds <- function() {
+    .Call(`_colourvalues_rcpp_reds`)
+}
+
+rcpp_rdpu <- function() {
+    .Call(`_colourvalues_rcpp_rdpu`)
+}
+
+rcpp_purples <- function() {
+    .Call(`_colourvalues_rcpp_purples`)
+}
+
+rcpp_purd <- function() {
+    .Call(`_colourvalues_rcpp_purd`)
+}
+
+rcpp_pubugn <- function() {
+    .Call(`_colourvalues_rcpp_pubugn`)
+}
+
+rcpp_pubu <- function() {
+    .Call(`_colourvalues_rcpp_pubu`)
+}
+
+rcpp_orrd <- function() {
+    .Call(`_colourvalues_rcpp_orrd`)
+}
+
+rcpp_oranges <- function() {
+    .Call(`_colourvalues_rcpp_oranges`)
+}
+
+rcpp_greys <- function() {
+    .Call(`_colourvalues_rcpp_greys`)
+}
+
+rcpp_greens <- function() {
+    .Call(`_colourvalues_rcpp_greens`)
+}
+
+rcpp_gnbu <- function() {
+    .Call(`_colourvalues_rcpp_gnbu`)
+}
+
+rcpp_bupu <- function() {
+    .Call(`_colourvalues_rcpp_bupu`)
+}
+
+rcpp_bugn <- function() {
+    .Call(`_colourvalues_rcpp_bugn`)
+}
+
+rcpp_blues <- function() {
+    .Call(`_colourvalues_rcpp_blues`)
+}
+
+rcpp_spectral <- function() {
+    .Call(`_colourvalues_rcpp_spectral`)
+}
+
+rcpp_rdylgn <- function() {
+    .Call(`_colourvalues_rcpp_rdylgn`)
+}
+
+rcpp_rdylbu <- function() {
+    .Call(`_colourvalues_rcpp_rdylbu`)
+}
+
+rcpp_rdgy <- function() {
+    .Call(`_colourvalues_rcpp_rdgy`)
+}
+
+rcpp_rdbu <- function() {
+    .Call(`_colourvalues_rcpp_rdbu`)
+}
+
+rcpp_puor <- function() {
+    .Call(`_colourvalues_rcpp_puor`)
+}
+
+rcpp_prgn <- function() {
+    .Call(`_colourvalues_rcpp_prgn`)
+}
+
+rcpp_piyg <- function() {
+    .Call(`_colourvalues_rcpp_piyg`)
+}
+
+rcpp_brbg <- function() {
+    .Call(`_colourvalues_rcpp_brbg`)
+}
+

@@ -97,6 +97,122 @@ namespace palette_utils {
       red = colourvalues::palette::topo_red;
       green = colourvalues::palette::topo_green;
       blue = colourvalues::palette::topo_blue;
+    } else if ( palette == "heat" ) {
+      red = colourvalues::palette::heat_red;
+      green = colourvalues::palette::heat_green;
+      blue = colourvalues::palette::heat_blue;
+    } else if ( palette == "ylorrd" ) {
+      red = colourvalues::palette::ylorrd_red;
+      green = colourvalues::palette::ylorrd_green;
+      blue = colourvalues::palette::ylorrd_blue;
+    } else if ( palette == "ylorbr" ) {
+      red = colourvalues::palette::ylorbr_red;
+      green = colourvalues::palette::ylorbr_green;
+      blue = colourvalues::palette::ylorbr_blue;
+    } else if ( palette == "ylgnbu" ) {
+      red = colourvalues::palette::ylgnbu_red;
+      green = colourvalues::palette::ylgnbu_green;
+      blue = colourvalues::palette::ylgnbu_blue;
+    } else if ( palette == "ylgn" ) {
+      red = colourvalues::palette::ylgn_red;
+      green = colourvalues::palette::ylgn_green;
+      blue = colourvalues::palette::ylgn_blue;
+    } else if ( palette == "reds" ) {
+      red = colourvalues::palette::reds_red;
+      green = colourvalues::palette::reds_green;
+      blue = colourvalues::palette::reds_blue;
+    } else if ( palette == "rdpu" ) {
+      red = colourvalues::palette::rdpu_red;
+      green = colourvalues::palette::rdpu_green;
+      blue = colourvalues::palette::rdpu_blue;
+    } else if ( palette == "purples" ) {
+      red = colourvalues::palette::purples_red;
+      green = colourvalues::palette::purples_green;
+      blue = colourvalues::palette::purples_blue;
+    } else if ( palette == "purd" ) {
+      red = colourvalues::palette::purd_red;
+      green = colourvalues::palette::purd_green;
+      blue = colourvalues::palette::purd_blue;
+    } else if ( palette == "pubugn" ) {
+      red = colourvalues::palette::pubugn_red;
+      green = colourvalues::palette::pubugn_green;
+      blue = colourvalues::palette::pubugn_blue;
+    } else if ( palette == "pubu" ) {
+      red = colourvalues::palette::pubu_red;
+      green = colourvalues::palette::pubu_green;
+      blue = colourvalues::palette::pubu_blue;
+    } else if ( palette == "orrd" ) {
+      red = colourvalues::palette::orrd_red;
+      green = colourvalues::palette::orrd_green;
+      blue = colourvalues::palette::orrd_blue;
+    } else if ( palette == "oranges" ) {
+      red = colourvalues::palette::oranges_red;
+      green = colourvalues::palette::oranges_green;
+      blue = colourvalues::palette::oranges_blue;
+    } else if ( palette == "greys" ) {
+      red = colourvalues::palette::greys_red;
+      green = colourvalues::palette::greys_green;
+      blue = colourvalues::palette::greys_blue;
+    } else if ( palette == "greens" ) {
+      red = colourvalues::palette::greens_red;
+      green = colourvalues::palette::greens_green;
+      blue = colourvalues::palette::greens_blue;
+    } else if ( palette == "gnbu" ) {
+      red = colourvalues::palette::gnbu_red;
+      green = colourvalues::palette::gnbu_green;
+      blue = colourvalues::palette::gnbu_blue;
+    } else if ( palette == "bupu" ) {
+      red = colourvalues::palette::bupu_red;
+      green = colourvalues::palette::bupu_green;
+      blue = colourvalues::palette::bupu_blue;
+    } else if ( palette == "bugn" ) {
+      red = colourvalues::palette::bugn_red;
+      green = colourvalues::palette::bugn_green;
+      blue = colourvalues::palette::bugn_blue;
+    } else if ( palette == "blues" ) {
+      red = colourvalues::palette::blues_red;
+      green = colourvalues::palette::blues_green;
+      blue = colourvalues::palette::blues_blue;
+    } else if ( palette == "spectral" ) {
+      red = colourvalues::palette::spectral_red;
+      green = colourvalues::palette::spectral_green;
+      blue = colourvalues::palette::spectral_blue;
+    } else if ( palette == "spectral" ) {
+      red = colourvalues::palette::spectral_red;
+      green = colourvalues::palette::spectral_green;
+      blue = colourvalues::palette::spectral_blue;
+    } else if ( palette == "rdylgn" ) {
+      red = colourvalues::palette::rdylgn_red;
+      green = colourvalues::palette::rdylgn_green;
+      blue = colourvalues::palette::rdylgn_blue;
+    } else if ( palette == "rdylbu" ) {
+      red = colourvalues::palette::rdylbu_red;
+      green = colourvalues::palette::rdylbu_green;
+      blue = colourvalues::palette::rdylbu_blue;
+    } else if ( palette == "rdgy" ) {
+      red = colourvalues::palette::rdgy_red;
+      green = colourvalues::palette::rdgy_green;
+      blue = colourvalues::palette::rdgy_blue;
+    } else if ( palette == "rdbu" ) {
+      red = colourvalues::palette::rdbu_red;
+      green = colourvalues::palette::rdbu_green;
+      blue = colourvalues::palette::rdbu_blue;
+    } else if ( palette == "puor" ) {
+      red = colourvalues::palette::puor_red;
+      green = colourvalues::palette::puor_green;
+      blue = colourvalues::palette::puor_blue;
+    } else if ( palette == "prgn" ) {
+      red = colourvalues::palette::prgn_red;
+      green = colourvalues::palette::prgn_green;
+      blue = colourvalues::palette::prgn_blue;
+    } else if ( palette == "piyg" ) {
+      red = colourvalues::palette::piyg_red;
+      green = colourvalues::palette::piyg_green;
+      blue = colourvalues::palette::piyg_blue;
+    } else if ( palette == "brbg" ) {
+      red = colourvalues::palette::brbg_red;
+      green = colourvalues::palette::brbg_green;
+      blue = colourvalues::palette::brbg_blue;
     } else {
       Rcpp::stop("unknown palette");
     }
