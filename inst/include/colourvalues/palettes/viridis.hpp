@@ -146,9 +146,9 @@ namespace palette {
   };
 
   const Rcpp::List viridis = Rcpp::List::create(
-    _["r"] = viridis_red,
-    _["g"] = viridis_green,
-    _["b"] = viridis_blue
+    Rcpp::_["r"] = viridis_red,
+    Rcpp::_["g"] = viridis_green,
+    Rcpp::_["b"] = viridis_blue
   );
 
 } // namespace palette

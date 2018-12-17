@@ -173,9 +173,9 @@ namespace palette {
   };
 
   const Rcpp::List plasma = Rcpp::List::create(
-    _["r"] = plasma_red,
-    _["g"] = plasma_green,
-    _["b"] = plasma_blue
+    Rcpp::_["r"] = plasma_red,
+    Rcpp::_["g"] = plasma_green,
+    Rcpp::_["b"] = plasma_blue
   );
 
 } // namespace palette

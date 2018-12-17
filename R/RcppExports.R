@@ -101,3 +101,7 @@ rcpp_terrain <- function() {
     .Call(`_colourvalues_rcpp_terrain`)
 }
 
+rcpp_topo <- function() {
+    .Call(`_colourvalues_rcpp_topo`)
+}
+

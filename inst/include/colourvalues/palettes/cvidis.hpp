@@ -111,9 +111,9 @@ namespace palette {
   };
 
   const Rcpp::List cvidis = Rcpp::List::create(
-    _["r"] = cividis_red,
-    _["g"] = cividis_green,
-    _["b"] = cividis_blue
+    Rcpp::_["r"] = cividis_red,
+    Rcpp::_["g"] = cividis_green,
+    Rcpp::_["b"] = cividis_blue
   );
 
 } // namespace palette

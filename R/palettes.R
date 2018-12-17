@@ -41,3 +41,9 @@ cividis <- function() rcpp_cividis()
 #' @export
 terrain <- function() rcpp_terrain()
 
+#' Topo
+#'
+#' Data Frame of the topo palette
+#'
+#' @export
+topo <- function() rcpp_topo()

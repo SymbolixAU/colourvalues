@@ -56,3 +56,11 @@ Rcpp::DataFrame rcpp_terrain() {
   );
 }
 
+// [[Rcpp::export]]
+Rcpp::DataFrame rcpp_topo() {
+  return Rcpp::DataFrame::create(
+    _["red"] = colourvalues::palette::topo_red,
+    _["green"] = colourvalues::palette::topo_green,
+    _["blue"] = colourvalues::palette::topo_blue
+  );
+}

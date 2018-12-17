@@ -7,5 +7,6 @@
 #include "colourvalues/palettes/inferno.hpp"
 #include "colourvalues/palettes/plasma.hpp"
 #include "colourvalues/palettes/terrain.hpp"
+#include "colourvalues/palettes/topo.hpp"
 
 #endif

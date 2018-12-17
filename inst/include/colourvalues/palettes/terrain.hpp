@@ -184,9 +184,9 @@ namespace palette {
   };
 
   const Rcpp::List terrain = Rcpp::List::create(
-    _["r"] = terrain_red,
-    _["g"] = terrain_green,
-    _["b"] = terrain_blue
+    Rcpp::_["r"] = terrain_red,
+    Rcpp::_["g"] = terrain_green,
+    Rcpp::_["b"] = terrain_blue
   );
 
 } // namespace palette
