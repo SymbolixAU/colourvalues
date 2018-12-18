@@ -217,3 +217,71 @@ rcpp_brbg <- function() {
     .Call(`_colourvalues_rcpp_brbg`)
 }
 
+rcpp_cm <- function() {
+    .Call(`_colourvalues_rcpp_cm`)
+}
+
+rcpp_rainbow <- function() {
+    .Call(`_colourvalues_rcpp_rainbow`)
+}
+
+rcpp_ygobb <- function() {
+    .Call(`_colourvalues_rcpp_ygobb`)
+}
+
+rcpp_matlab_like2 <- function() {
+    .Call(`_colourvalues_rcpp_matlab_like2`)
+}
+
+rcpp_matlab_like <- function() {
+    .Call(`_colourvalues_rcpp_matlab_like`)
+}
+
+rcpp_magenta2green <- function() {
+    .Call(`_colourvalues_rcpp_magenta2green`)
+}
+
+rcpp_cyan2yellow <- function() {
+    .Call(`_colourvalues_rcpp_cyan2yellow`)
+}
+
+rcpp_blue2yellow <- function() {
+    .Call(`_colourvalues_rcpp_blue2yellow`)
+}
+
+rcpp_green2red <- function() {
+    .Call(`_colourvalues_rcpp_green2red`)
+}
+
+rcpp_blue2green <- function() {
+    .Call(`_colourvalues_rcpp_blue2green`)
+}
+
+rcpp_blue2red <- function() {
+    .Call(`_colourvalues_rcpp_blue2red`)
+}
+
+rcpp_diverge_hcl <- function() {
+    .Call(`_colourvalues_rcpp_diverge_hcl`)
+}
+
+rcpp_diverge_hsv <- function() {
+    .Call(`_colourvalues_rcpp_diverge_hsv`)
+}
+
+rcpp_terrain_hcl <- function() {
+    .Call(`_colourvalues_rcpp_terrain_hcl`)
+}
+
+rcpp_heat_hcl <- function() {
+    .Call(`_colourvalues_rcpp_heat_hcl`)
+}
+
+rcpp_sequential_hcl <- function() {
+    .Call(`_colourvalues_rcpp_sequential_hcl`)
+}
+
+rcpp_rainbow_hcl <- function() {
+    .Call(`_colourvalues_rcpp_rainbow_hcl`)
+}
+

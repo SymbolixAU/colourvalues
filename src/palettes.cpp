@@ -295,3 +295,154 @@ Rcpp::DataFrame rcpp_ylgn() {
    _["blue"] = colourvalues::palette::brbg_blue
 );
 }
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_cm() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::cm_red,
+   _["green"] = colourvalues::palette::cm_green,
+   _["blue"] = colourvalues::palette::cm_blue
+);
+}
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_rainbow() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::rainbow_red,
+   _["green"] = colourvalues::palette::rainbow_green,
+   _["blue"] = colourvalues::palette::rainbow_blue
+);
+}
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_ygobb() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::ygobb_red,
+   _["green"] = colourvalues::palette::ygobb_green,
+   _["blue"] = colourvalues::palette::ygobb_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_matlab_like2() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::matlab_like2_red,
+   _["green"] = colourvalues::palette::matlab_like2_green,
+   _["blue"] = colourvalues::palette::matlab_like2_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_matlab_like() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::matlab_like_red,
+   _["green"] = colourvalues::palette::matlab_like_green,
+   _["blue"] = colourvalues::palette::matlab_like_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_magenta2green() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::magenta2green_red,
+   _["green"] = colourvalues::palette::magenta2green_green,
+   _["blue"] = colourvalues::palette::magenta2green_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_cyan2yellow() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::cyan2yellow_red,
+   _["green"] = colourvalues::palette::cyan2yellow_green,
+   _["blue"] = colourvalues::palette::cyan2yellow_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_blue2yellow() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::blue2yellow_red,
+   _["green"] = colourvalues::palette::blue2yellow_green,
+   _["blue"] = colourvalues::palette::blue2yellow_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_green2red() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::green2red_red,
+   _["green"] = colourvalues::palette::green2red_green,
+   _["blue"] = colourvalues::palette::green2red_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_blue2green() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::blue2green_red,
+   _["green"] = colourvalues::palette::blue2green_green,
+   _["blue"] = colourvalues::palette::blue2green_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_blue2red() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::blue2red_red,
+   _["green"] = colourvalues::palette::blue2red_green,
+   _["blue"] = colourvalues::palette::blue2red_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_diverge_hcl() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::diverge_hcl_red,
+   _["green"] = colourvalues::palette::diverge_hcl_green,
+   _["blue"] = colourvalues::palette::diverge_hcl_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_diverge_hsv() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::diverge_hsv_red,
+   _["green"] = colourvalues::palette::diverge_hsv_green,
+   _["blue"] = colourvalues::palette::diverge_hsv_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_terrain_hcl() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::terrain_hcl_red,
+   _["green"] = colourvalues::palette::terrain_hcl_green,
+   _["blue"] = colourvalues::palette::terrain_hcl_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_heat_hcl() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::heat_hcl_red,
+   _["green"] = colourvalues::palette::heat_hcl_green,
+   _["blue"] = colourvalues::palette::heat_hcl_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_sequential_hcl() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::sequential_hcl_red,
+   _["green"] = colourvalues::palette::sequential_hcl_green,
+   _["blue"] = colourvalues::palette::sequential_hcl_blue
+);
+}
+
+// [[Rcpp::export]]
+  Rcpp::DataFrame rcpp_rainbow_hcl() {
+    return Rcpp::DataFrame::create(
+   _["red"] = colourvalues::palette::rainbow_hcl_red,
+   _["green"] = colourvalues::palette::rainbow_hcl_green,
+   _["blue"] = colourvalues::palette::rainbow_hcl_blue
+);
+}

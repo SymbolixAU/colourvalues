@@ -10,7 +10,7 @@ NULL
 palette_check <- function( palette ) UseMethod("palette_check")
 
 #' @export
-palette_check.character <- function( palette ) tolower( palette )
+palette_check.character <- function( palette ) tolower( gsub("\\.","_", palette ) )
 
 #' @export
 palette_check.default <- function( palette ) palette

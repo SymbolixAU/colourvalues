@@ -213,6 +213,74 @@ namespace palette_utils {
       red = colourvalues::palette::brbg_red;
       green = colourvalues::palette::brbg_green;
       blue = colourvalues::palette::brbg_blue;
+    } else if ( palette == "cm" ) {
+      red = colourvalues::palette::cm_red;
+      green = colourvalues::palette::cm_green;
+      blue = colourvalues::palette::cm_blue;
+    } else if ( palette == "rainbow" ) {
+      red = colourvalues::palette::rainbow_red;
+      green = colourvalues::palette::rainbow_green;
+      blue = colourvalues::palette::rainbow_blue;
+    } else if ( palette == "ygobb" ) {
+      red = colourvalues::palette::ygobb_red;
+      green = colourvalues::palette::ygobb_green;
+      blue = colourvalues::palette::ygobb_blue;
+    } else if ( palette == "matlab_like2" ) {
+      red = colourvalues::palette::matlab_like2_red;
+      green = colourvalues::palette::matlab_like2_green;
+      blue = colourvalues::palette::matlab_like2_blue;
+    } else if ( palette == "matlab_like" ) {
+      red = colourvalues::palette::matlab_like_red;
+      green = colourvalues::palette::matlab_like_green;
+      blue = colourvalues::palette::matlab_like_blue;
+    } else if ( palette == "magenta2green" ) {
+      red = colourvalues::palette::magenta2green_red;
+      green = colourvalues::palette::magenta2green_green;
+      blue = colourvalues::palette::magenta2green_blue;
+    } else if ( palette == "cyan2yellow" ) {
+      red = colourvalues::palette::cyan2yellow_red;
+      green = colourvalues::palette::cyan2yellow_green;
+      blue = colourvalues::palette::cyan2yellow_blue;
+    } else if ( palette == "blue2yellow" ) {
+      red = colourvalues::palette::blue2yellow_red;
+      green = colourvalues::palette::blue2yellow_green;
+      blue = colourvalues::palette::blue2yellow_blue;
+    } else if ( palette == "green2red" ) {
+      red = colourvalues::palette::green2red_red;
+      green = colourvalues::palette::green2red_green;
+      blue = colourvalues::palette::green2red_blue;
+    } else if ( palette == "blue2green" ) {
+      red = colourvalues::palette::blue2green_red;
+      green = colourvalues::palette::blue2green_green;
+      blue = colourvalues::palette::blue2green_blue;
+    } else if ( palette == "blue2red" ) {
+      red = colourvalues::palette::blue2red_red;
+      green = colourvalues::palette::blue2red_green;
+      blue = colourvalues::palette::blue2red_blue;
+    } else if ( palette == "diverge_hcl" ) {
+      red = colourvalues::palette::diverge_hcl_red;
+      green = colourvalues::palette::diverge_hcl_green;
+      blue = colourvalues::palette::diverge_hcl_blue;
+    } else if ( palette == "diverge_hsv" ) {
+      red = colourvalues::palette::diverge_hsv_red;
+      green = colourvalues::palette::diverge_hsv_green;
+      blue = colourvalues::palette::diverge_hsv_blue;
+    } else if ( palette == "terrain_hcl" ) {
+      red = colourvalues::palette::terrain_hcl_red;
+      green = colourvalues::palette::terrain_hcl_green;
+      blue = colourvalues::palette::terrain_hcl_blue;
+    } else if ( palette == "heat_hcl" ) {
+      red = colourvalues::palette::heat_hcl_red;
+      green = colourvalues::palette::heat_hcl_green;
+      blue = colourvalues::palette::heat_hcl_blue;
+    } else if ( palette == "sequential_hcl" ) {
+      red = colourvalues::palette::sequential_hcl_red;
+      green = colourvalues::palette::sequential_hcl_green;
+      blue = colourvalues::palette::sequential_hcl_blue;
+    } else if ( palette == "rainbow_hcl" ) {
+      red = colourvalues::palette::rainbow_hcl_red;
+      green = colourvalues::palette::rainbow_hcl_green;
+      blue = colourvalues::palette::rainbow_hcl_blue;
     } else {
       Rcpp::stop("unknown palette");
     }

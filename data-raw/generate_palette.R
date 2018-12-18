@@ -18,12 +18,15 @@
 #   grDevices::heat.colors(n = 256)
 # )
 
-n <- 11
-cols <- 1
-pal_name <- "BrBG"
+n <- 256
+cols <- 4
+pal_name <- "rainbow_hcl"
 
 pal <- colourvalues::convert_colours(
-  RColorBrewer::brewer.pal(n, pal_name)
+  #RColorBrewer::brewer.pal(n, pal_name)
+  #grDevices::rainbow( n = n )
+  #colorRamps::blue2red(n)
+  colorspace::rainbow_hcl(n = n)
 )
 
 pal_name <- tolower(pal_name)
@@ -148,7 +151,7 @@ txt <- paste0(
   "#' Data Frame of the ", pal_name, " palette\n",
   "#'\n",
   "#' @export\n",
-  pal_name, " <- function() rcpp_", pal_name, "()"
+  pal_name, " <- function() rcpp_", pal_name, "()\n"
 )
 
 #clipr::write_clip(txt)
@@ -169,7 +172,7 @@ txt <- paste0(
   "   _[\"green\"] = colourvalues::palette::", pal_name, "_green,\n",
   "   _[\"blue\"] = colourvalues::palette::", pal_name, "_blue\n",
   ");\n",
-"}"
+"}\n"
 )
 
 # clipr::write_clip(txt)

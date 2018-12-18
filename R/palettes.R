@@ -1,3 +1,52 @@
+
+#' Colour Palettes
+#'
+#' List the available colour palettes
+#'
+#' @export
+colour_palettes <- function() {
+  return(
+    c("viridis", "cividis", "magma", "inferno", "plasma", "blue2green",
+      "blue2red", "blue2yellow", "blues", "brbg", "bugn", "bupu", "cm",
+      "cyan2yellow", "diverge_hcl", "diverge_hsv", "gnbu", "green2red",
+      "greens", "greys", "heat", "heat_hcl", "magenta2green", "matlab_like",
+      "matlab_like2", "oranges", "orrd", "piyg", "prgn", "pubu", "pubugn",
+      "puor", "purd", "purples", "rainbow", "rainbow_hcl", "rdbu",
+      "rdgy", "rdpu", "rdylbu", "rdylgn", "reds", "sequential_hcl",
+      "spectral", "terrain", "terrain_hcl", "topo", "ygobb", "ylgn",
+      "ylgnbu", "ylorbr", "ylorrd")
+  )
+}
+
+#' Show Colours
+#'
+#' Plots all the selected colours
+#'
+#' @param colours vector of colour palettes
+#'
+#' @export
+show_colours <- function( colours = colour_palettes() ) {
+  par(mar = c(0, 0, 0, 0) + 0.1)
+
+  plot(0, 0, type = "n", axes = FALSE, bty = "n", xlab = "", ylab = "",
+       xlim = c(0, 1), ylim = c(-length(colours)-1, 0))
+
+  for (i in seq_len(length(colours))) {
+    cols <- colourvalues::colour_values(1:50, palette = colours[i])
+    colours_len <- length(cols)
+    breaks <- seq(from = 0.075, to = 1, length = colours_len + 1)
+
+    text(0, -i - 0.5, colours[i], cex = (10 / colours_len) + 0.6)  ## 0.6 is min size, ## 10 is max
+    rect(xleft = breaks[1:colours_len], xright = breaks[1:colours_len + 1],
+         ytop = - 0.15-i, ybottom = -0.8-i,
+         col = cols, border = NA)
+  }
+}
+
+#' @rdname colour_palettes
+#' @export
+color_palettes <- colour_palettes
+
 #' Viridis
 #'
 #' Data frame of the viridis palette
@@ -243,3 +292,120 @@ piyg <- function() rcpp_piyg()
 #'
 #' @export
 brbg <- function() rcpp_brbg()
+
+#' Cm
+#'
+#' Data Frame of the cm palette
+#'
+#' @export
+cm <- function() rcpp_cm()
+#' Rainbow
+#'
+#' Data Frame of the rainbow palette
+#'
+#' @export
+rainbow <- function() rcpp_rainbow()
+#' Ygobb
+#'
+#' Data Frame of the ygobb palette
+#'
+#' @export
+ygobb <- function() rcpp_ygobb()
+
+#' Matlab_like2
+#'
+#' Data Frame of the matlab_like2 palette
+#'
+#' @export
+matlab_like2 <- function() rcpp_matlab_like2()
+
+#' Matlab_like
+#'
+#' Data Frame of the matlab_like palette
+#'
+#' @export
+matlab_like <- function() rcpp_matlab_like()
+
+#' Magenta2green
+#'
+#' Data Frame of the magenta2green palette
+#'
+#' @export
+magenta2green <- function() rcpp_magenta2green()
+
+#' Cyan2yellow
+#'
+#' Data Frame of the cyan2yellow palette
+#'
+#' @export
+cyan2yellow <- function() rcpp_cyan2yellow()
+
+#' Blue2yellow
+#'
+#' Data Frame of the blue2yellow palette
+#'
+#' @export
+blue2yellow <- function() rcpp_blue2yellow()
+
+#' Green2red
+#'
+#' Data Frame of the green2red palette
+#'
+#' @export
+green2red <- function() rcpp_green2red()
+
+#' Blue2green
+#'
+#' Data Frame of the blue2green palette
+#'
+#' @export
+blue2green <- function() rcpp_blue2green()
+
+#' Blue2red
+#'
+#' Data Frame of the blue2red palette
+#'
+#' @export
+blue2red <- function() rcpp_blue2red()
+
+#' Diverge_hcl
+#'
+#' Data Frame of the diverge_hcl palette
+#'
+#' @export
+diverge_hcl <- function() rcpp_diverge_hcl()
+
+#' Diverge_hsv
+#'
+#' Data Frame of the diverge_hsv palette
+#'
+#' @export
+diverge_hsv <- function() rcpp_diverge_hsv()
+
+#' Terrain_hcl
+#'
+#' Data Frame of the terrain_hcl palette
+#'
+#' @export
+terrain_hcl <- function() rcpp_terrain_hcl()
+
+#' Heat_hcl
+#'
+#' Data Frame of the heat_hcl palette
+#'
+#' @export
+heat_hcl <- function() rcpp_heat_hcl()
+
+#' Sequential_hcl
+#'
+#' Data Frame of the sequential_hcl palette
+#'
+#' @export
+sequential_hcl <- function() rcpp_sequential_hcl()
+
+#' Rainbow_hcl
+#'
+#' Data Frame of the rainbow_hcl palette
+#'
+#' @export
+rainbow_hcl <- function() rcpp_rainbow_hcl()

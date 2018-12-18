@@ -1,5 +1,7 @@
 # v0.2.1
 
+* `show_colours()` to plot all colour palettes
+* `colour_palettes()` to list all colour palettes
 * alpha now accepts fewer than 5 values when using a vector
 
 # v0.2.0
