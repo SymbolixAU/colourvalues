@@ -10,7 +10,7 @@ colour_palettes()
 color_palettes()
 }
 \description{
-List the available colour palettes
+List the available colour palettes.
 }
 \examples{
 colour_palettes()

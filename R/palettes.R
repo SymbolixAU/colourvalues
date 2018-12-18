@@ -1,7 +1,7 @@
 
 #' Colour Palettes
 #'
-#' List the available colour palettes
+#' List the available colour palettes.
 #'
 #' @examples
 #' colour_palettes()
@@ -21,8 +21,9 @@ colour_palettes <- function() {
   )
 }
 
-
-
+#' @rdname colour_palettes
+#' @export
+color_palettes <- colour_palettes
 
 
 #' Show Colours
@@ -41,9 +42,9 @@ colour_palettes <- function() {
 #'
 #' @export
 show_colours <- function( colours = colour_palettes() ) {
-  par(mar = c(0, 0, 0, 0) + 0.1)
+  graphics::par(mar = c(0, 0, 0, 0) + 0.1)
 
-  plot(0, 0, type = "n", axes = FALSE, bty = "n", xlab = "", ylab = "",
+  graphics::plot(0, 0, type = "n", axes = FALSE, bty = "n", xlab = "", ylab = "",
        xlim = c(0, 1), ylim = c(-length(colours)-1, 0))
 
   for (i in seq_len(length(colours))) {
@@ -51,16 +52,12 @@ show_colours <- function( colours = colour_palettes() ) {
     colours_len <- length(cols)
     breaks <- seq(from = 0.075, to = 1, length = colours_len + 1)
 
-    text(0, -i - 0.5, colours[i], cex = (10 / colours_len) + 0.6)  ## 0.6 is min size, ## 10 is max
-    rect(xleft = breaks[1:colours_len], xright = breaks[1:colours_len + 1],
+    graphics::text(0, -i - 0.5, colours[i], cex = (10 / colours_len) + 0.6)  ## 0.6 is min size, ## 10 is max
+    graphics::rect(xleft = breaks[1:colours_len], xright = breaks[1:colours_len + 1],
          ytop = - 0.15-i, ybottom = -0.8-i,
          col = cols, border = NA)
   }
 }
-
-#' @rdname colour_palettes
-#' @export
-color_palettes <- colour_palettes
 
 #' Viridis
 #'

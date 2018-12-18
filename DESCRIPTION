@@ -16,7 +16,8 @@ LazyData: true
 LinkingTo: 
     Rcpp,
     BH
-Imports: 
+Imports:
+    graphics,
     Rcpp
 RoxygenNote: 6.1.0
 Suggests: 
