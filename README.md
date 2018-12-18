@@ -109,9 +109,12 @@ Of course\!
 #### 256 numbers mapped to a colour
 
 ``` r
+bar_plot <- function(df) {
+  barplot( height = df[["a"]], col = df[["col"]], border = NA, space = 0, yaxt = 'n')
+}
 df <- data.frame(a = 10, x = 1:256)
 df$col <- colour_values(df$x, palette = "viridis")
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" height="200" />
@@ -121,7 +124,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 ``` r
 df <- data.frame(a = 10, x = c((1:5000)**3))
 df$col <- colour_values(df$x, palette = "viridis")
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
@@ -131,7 +134,7 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 ``` r
 df <- data.frame(a = 10, x = rnorm(n = 1000))
 df$col <- colour_values(df$x, palette = "inferno")
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
@@ -140,7 +143,7 @@ Eurgh\!
 
 ``` r
 df <- df[with(df, order(x)), ]
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
@@ -159,7 +162,7 @@ n <- 100
 m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
@@ -172,7 +175,7 @@ Yep. Either supply a single alpha value for all the colours
 ## single alpha value for all colours
 df <- data.frame(a = 10, x = 1:255)
 df$col <- colour_values(df$x, alpha = 50)
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
@@ -182,7 +185,7 @@ Or use a vector of values the same length as `x`
 ``` r
 df <- data.frame(a = 10, x = 1:300, y = rep(c(1:50, 50:1), 3) )
 df$col <- colour_values(df$x, alpha = df$y)
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
@@ -196,7 +199,7 @@ m <- grDevices::colorRamp(c("red", "green"))( (1:n)/n )
 m <- cbind(m, seq(0, 255, length.out = 100))
 df <- data.frame(a = 10, x = 1:n)
 df$col <- colour_values(df$x, palette = m)
-barplot(height = df$a, col = df$col, border = NA, space = 0)
+bar_plot( df )
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="200" />
@@ -241,11 +244,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#20918CFF" "#98D83EFF" "#26838EFF" "#B3DD2CFF" "#B3DD2DFF"
-#  [6] "#2C738EFF" "#FDE725FF" "#355E8DFF" "#B7DE2AFF" "#440154FF"
+#  [1] "#49C16EFF" "#31668EFF" "#20938CFF" "#54C568FF" "#FDE725FF"
+#  [6] "#440154FF" "#F6E61FFF" "#47C06FFF" "#1F998AFF" "#38578CFF"
 # 
 # $summary_values
-# [1] "-2.76" "-1.17" "0.41" 
+# [1] "-1.55" "0.11"  "1.77" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -295,27 +298,26 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#440154FF" "#31688EFF" "#C7E020FF" "#481F71FF" "#FDE725FF"
-#  [6] "#472D7BFF" "#472D7BFF" "#3B528BFF" "#471163FF" "#E3E418FF"
-# [11] "#8FD744FF" "#E3E418FF" "#472D7BFF" "#2C728EFF" "#20A486FF"
-# [16] "#ABDC32FF" "#2C728EFF" "#24868EFF" "#35B779FF" "#28AE80FF"
-# [21] "#ABDC32FF" "#E3E418FF" "#24868EFF" "#31688EFF" "#47C06FFF"
-# [26] "#20A486FF" "#404688FF" "#24868EFF" "#28AE80FF" "#443A83FF"
-# [31] "#47C06FFF" "#3B528BFF" "#75D054FF" "#404688FF" "#404688FF"
-# [36] "#481F71FF" "#287C8EFF" "#20A486FF" "#5DC963FF" "#ABDC32FF"
-# [41] "#1F9A8AFF" "#443A83FF" "#355D8DFF" "#28AE80FF" "#E3E418FF"
-# [46] "#28AE80FF" "#8FD744FF" "#21908CFF" "#28AE80FF" "#8FD744FF"
+#  [1] "#481567FF" "#453781FF" "#73D055FF" "#404788FF" "#29AF7FFF"
+#  [6] "#238A8DFF" "#29AF7FFF" "#1F968BFF" "#95D840FF" "#482677FF"
+# [11] "#3CBB75FF" "#FDE725FF" "#238A8DFF" "#39568CFF" "#95D840FF"
+# [16] "#39568CFF" "#DCE319FF" "#73D055FF" "#440154FF" "#FDE725FF"
+# [21] "#238A8DFF" "#1F968BFF" "#B8DE29FF" "#39568CFF" "#95D840FF"
+# [26] "#440154FF" "#95D840FF" "#33638DFF" "#404788FF" "#453781FF"
+# [31] "#287D8EFF" "#33638DFF" "#FDE725FF" "#2D708EFF" "#55C667FF"
+# [36] "#2D708EFF" "#404788FF" "#482677FF" "#2D708EFF" "#B8DE29FF"
+# [41] "#95D840FF" "#1F968BFF" "#20A387FF" "#20A387FF" "#482677FF"
+# [46] "#287D8EFF" "#453781FF" "#404788FF" "#39568CFF" "#20A387FF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "m" "n" "o" "p" "q" "r"
-# [18] "s" "t" "u" "v" "w" "x" "y" "z"
+#  [1] "a" "b" "e" "f" "g" "h" "i" "j" "l" "m" "n" "o" "q" "r" "s" "u" "w"
+# [18] "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#471163FF" "#481F71FF" "#472D7BFF" "#443A83FF"
-#  [6] "#404688FF" "#3B528BFF" "#355D8DFF" "#31688EFF" "#2C728EFF"
-# [11] "#287C8EFF" "#24868EFF" "#21908CFF" "#1F9A8AFF" "#20A486FF"
-# [16] "#28AE80FF" "#35B779FF" "#47C06FFF" "#5DC963FF" "#75D054FF"
-# [21] "#8FD744FF" "#ABDC32FF" "#C7E020FF" "#E3E418FF" "#FDE725FF"
+#  [1] "#440154FF" "#481567FF" "#482677FF" "#453781FF" "#404788FF"
+#  [6] "#39568CFF" "#33638DFF" "#2D708EFF" "#287D8EFF" "#238A8DFF"
+# [11] "#1F968BFF" "#20A387FF" "#29AF7FFF" "#3CBB75FF" "#55C667FF"
+# [16] "#73D055FF" "#95D840FF" "#B8DE29FF" "#DCE319FF" "#FDE725FF"
 ```
 
 -----
@@ -329,13 +331,8 @@ library(microbenchmark)
 library(ggplot2)
 library(scales)
 library(viridisLite)
-# 
-# Attaching package: 'viridisLite'
-# The following objects are masked from 'package:colourvalues':
-# 
-#     cividis, inferno, magma, plasma, viridis
 
-n <- 1e7
+n <- 1e6
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
@@ -344,10 +341,13 @@ m <- microbenchmark(
   times = 25
 )
 m
-# Unit: seconds
-#          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.617392 1.650307 1.707740 1.688513 1.757597 1.866051    25
-#        scales 2.772918 2.889632 2.958089 2.922623 3.016068 3.344712    25
+# Unit: milliseconds
+#          expr      min       lq     mean    median        uq      max
+#  colourvalues 413.7846 465.2459  667.549  533.3406  775.9402 1768.377
+#        scales 865.6236 985.3206 1476.348 1357.1543 2078.2787 2857.309
+#  neval
+#     25
+#     25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -363,7 +363,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e6
+n <- 5e5
 x <- sample(x = letters, size = n, replace = TRUE)
 df <- data.frame(x = x)
 
@@ -375,8 +375,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 183.6266 191.3288 196.3723 192.1881 192.8737 304.3512    25
-#        scales 288.9669 311.4043 320.7450 313.7732 318.0472 378.1733    25
+#  colourvalues 219.6011 251.1079 281.4803 257.8884 268.8997 457.7094    25
+#        scales 392.0473 418.4014 536.5625 453.4664 566.0392 999.5088    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
