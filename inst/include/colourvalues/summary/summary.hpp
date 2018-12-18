@@ -13,17 +13,18 @@ namespace summary {
    */
   inline Rcpp::NumericVector numeric_summary( Rcpp::NumericVector& nv, std::size_t n ) {
 
-    size_t nv_length = nv.length();
+    Rcpp::NumericVector clean_nv = na_omit( nv );
+    size_t nv_length = clean_nv.length();
     size_t n_summaries = n < nv_length ? n : nv_length;
 
     if ( n_summaries == 1 ) {
-      return nv;
+      return clean_nv;
     }
 
     Rcpp::NumericVector vals( n_summaries );
 
-    double x = Rcpp::min( nv );
-    double y = Rcpp::max( nv );
+    double x = Rcpp::min( clean_nv );
+    double y = Rcpp::max( clean_nv );
     double h = ( y - x ) / static_cast< double >( n_summaries - 1 );
     Rcpp::NumericVector::iterator it;
     double val;
