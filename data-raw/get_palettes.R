@@ -8,6 +8,43 @@ txt <- txt[4:(length(txt)-1)]
 txt <- gsub("\\.hpp\"","",basename(txt))
 txt <- txt[ txt != "" ]
 
+dput( txt )
+
+
+### viridis
+v_sequential <- txt[1:5]
+
+## RColorBrewer
+rcb_sequential <- txt[6:23]
+rcb_diverging <- txt[24:32]
+
+## grDevices
+gr_sequential <- txt[38:46]
+
+## colorspace
+cs_diverging <- txt[47:48]
+cs_sequential <- txt[49:52]
+
+df <- data.frame(
+  name = c(v_sequential, rcb_sequential, rcb_diverging, cs_diverging, cs_sequential, gr_sequential)
+  , source = c(
+    rep("viridis", length(v_sequential))
+    , rep("rcolorbrewer", length(rcb_sequential) + length(rcb_diverging))
+    , rep("colorspace", length(cs_diverging) + length(cs_sequential))
+    , rep("grdevices", length(gr_sequential))
+    )
+  , type = c(
+    rep("sequential", length(v_sequential))
+    , rep("sequential", length(rcb_sequential))
+    , rep("diverging", length(rcb_diverging))
+    , rep("diverging", length(cs_diverging))
+    , rep("sequential", length(cs_sequential))
+    , rep("sequential", length(gr_sequential))
+  )
+)
+
+
+
 vir <- txt[1:5]
 txt <- sort( txt[6:length(txt)] )
 dput( c( vir, txt ) )

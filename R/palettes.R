@@ -3,6 +3,9 @@
 #'
 #' List the available colour palettes
 #'
+#' @examples
+#' colour_palettes()
+#'
 #' @export
 colour_palettes <- function() {
   return(
@@ -18,11 +21,23 @@ colour_palettes <- function() {
   )
 }
 
+
+
+
+
 #' Show Colours
 #'
 #' Plots all the selected colours
 #'
 #' @param colours vector of colour palettes
+#'
+#' @examples
+#'
+#' ## view all the colour palettes
+#' show_colours()
+#'
+#' ## view a selection of colour palettes
+#' show_colours( colours = colour_palettes()[1:10] )
 #'
 #' @export
 show_colours <- function( colours = colour_palettes() ) {
@@ -32,7 +47,7 @@ show_colours <- function( colours = colour_palettes() ) {
        xlim = c(0, 1), ylim = c(-length(colours)-1, 0))
 
   for (i in seq_len(length(colours))) {
-    cols <- colourvalues::colour_values(1:50, palette = colours[i])
+    cols <- colourvalues::colour_values(1:256, palette = colours[i])
     colours_len <- length(cols)
     breaks <- seq(from = 0.075, to = 1, length = colours_len + 1)
 

@@ -12,3 +12,12 @@ show_colours(colours = colour_palettes())
 \description{
 Plots all the selected colours
 }
+\examples{
+
+## view all the colour palettes
+show_colours()
+
+## view a selection of colour palettes
+show_colours( colours = colour_palettes()[1:10] )
+
+}
