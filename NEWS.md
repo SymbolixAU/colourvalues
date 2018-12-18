@@ -1,5 +1,6 @@
 # v0.2.1
 
+* fix NA values in summary [issue 39](https://github.com/SymbolixAU/colourvalues/issues/39)
 * alpha now accepts fewer than 5 values when using a vector
 
 # v0.2.0
