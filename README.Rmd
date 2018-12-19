@@ -244,7 +244,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e6
+n <- 1e7
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
@@ -266,7 +266,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 5e5
+n <- 1e6
 x <- sample(x = letters, size = n, replace = TRUE)
 df <- data.frame(x = x)
 

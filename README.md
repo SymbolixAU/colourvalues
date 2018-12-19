@@ -244,11 +244,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#49C16EFF" "#31668EFF" "#20938CFF" "#54C568FF" "#FDE725FF"
-#  [6] "#440154FF" "#F6E61FFF" "#47C06FFF" "#1F998AFF" "#38578CFF"
+#  [1] "#DAE319FF" "#F8E621FF" "#1F978BFF" "#84D44BFF" "#1E9B8AFF"
+#  [6] "#FDE725FF" "#31678EFF" "#2F6D8EFF" "#A6DB35FF" "#440154FF"
 # 
 # $summary_values
-# [1] "-1.55" "0.11"  "1.77" 
+# [1] "-2.31" "-0.87" "0.57" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -298,26 +298,28 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#481567FF" "#453781FF" "#73D055FF" "#404788FF" "#29AF7FFF"
-#  [6] "#238A8DFF" "#29AF7FFF" "#1F968BFF" "#95D840FF" "#482677FF"
-# [11] "#3CBB75FF" "#FDE725FF" "#238A8DFF" "#39568CFF" "#95D840FF"
-# [16] "#39568CFF" "#DCE319FF" "#73D055FF" "#440154FF" "#FDE725FF"
-# [21] "#238A8DFF" "#1F968BFF" "#B8DE29FF" "#39568CFF" "#95D840FF"
-# [26] "#440154FF" "#95D840FF" "#33638DFF" "#404788FF" "#453781FF"
-# [31] "#287D8EFF" "#33638DFF" "#FDE725FF" "#2D708EFF" "#55C667FF"
-# [36] "#2D708EFF" "#404788FF" "#482677FF" "#2D708EFF" "#B8DE29FF"
-# [41] "#95D840FF" "#1F968BFF" "#20A387FF" "#20A387FF" "#482677FF"
-# [46] "#287D8EFF" "#453781FF" "#404788FF" "#39568CFF" "#20A387FF"
+#  [1] "#C9E01FFF" "#1F9E88FF" "#22A884FF" "#E4E418FF" "#1F9E88FF"
+#  [6] "#3ABA76FF" "#3ABA76FF" "#2E6E8EFF" "#26828EFF" "#1F958BFF"
+# [11] "#22A884FF" "#2E6E8EFF" "#C9E01FFF" "#E4E418FF" "#E4E418FF"
+# [16] "#471063FF" "#472B7AFF" "#7AD151FF" "#FDE725FF" "#26828EFF"
+# [21] "#1F958BFF" "#228B8DFF" "#4DC36CFF" "#375A8CFF" "#481E70FF"
+# [26] "#440154FF" "#7AD151FF" "#453882FF" "#7AD151FF" "#7AD151FF"
+# [31] "#FDE725FF" "#4DC36CFF" "#93D741FF" "#3C4F8BFF" "#2E6E8EFF"
+# [36] "#32648EFF" "#3C4F8BFF" "#32648EFF" "#2CB17EFF" "#62CA5FFF"
+# [41] "#3C4F8BFF" "#228B8DFF" "#414487FF" "#2A788EFF" "#453882FF"
+# [46] "#AEDC30FF" "#AEDC30FF" "#375A8CFF" "#26828EFF" "#471063FF"
 # 
 # $summary_values
-#  [1] "a" "b" "e" "f" "g" "h" "i" "j" "l" "m" "n" "o" "q" "r" "s" "u" "w"
-# [18] "x" "y" "z"
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+# [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#481567FF" "#482677FF" "#453781FF" "#404788FF"
-#  [6] "#39568CFF" "#33638DFF" "#2D708EFF" "#287D8EFF" "#238A8DFF"
-# [11] "#1F968BFF" "#20A387FF" "#29AF7FFF" "#3CBB75FF" "#55C667FF"
-# [16] "#73D055FF" "#95D840FF" "#B8DE29FF" "#DCE319FF" "#FDE725FF"
+#  [1] "#440154FF" "#471063FF" "#481E70FF" "#472B7AFF" "#453882FF"
+#  [6] "#414487FF" "#3C4F8BFF" "#375A8CFF" "#32648EFF" "#2E6E8EFF"
+# [11] "#2A788EFF" "#26828EFF" "#228B8DFF" "#1F958BFF" "#1F9E88FF"
+# [16] "#22A884FF" "#2CB17EFF" "#3ABA76FF" "#4DC36CFF" "#62CA5FFF"
+# [21] "#7AD151FF" "#93D741FF" "#AEDC30FF" "#C9E01FFF" "#E4E418FF"
+# [26] "#FDE725FF"
 ```
 
 -----
@@ -332,7 +334,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 1e6
+n <- 1e7
 df <- data.frame(x = rnorm(n = n))
 
 m <- microbenchmark(
@@ -341,13 +343,10 @@ m <- microbenchmark(
   times = 25
 )
 m
-# Unit: milliseconds
-#          expr      min       lq     mean    median        uq      max
-#  colourvalues 413.7846 465.2459  667.549  533.3406  775.9402 1768.377
-#        scales 865.6236 985.3206 1476.348 1357.1543 2078.2787 2857.309
-#  neval
-#     25
-#     25
+# Unit: seconds
+#          expr      min       lq     mean   median       uq      max neval
+#  colourvalues 1.648931 1.677334 1.700990 1.694654 1.709067 1.823521    25
+#        scales 2.824650 2.908006 2.968315 2.945947 3.013193 3.338338    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -363,7 +362,7 @@ library(ggplot2)
 library(scales)
 library(viridisLite)
 
-n <- 5e5
+n <- 1e6
 x <- sample(x = letters, size = n, replace = TRUE)
 df <- data.frame(x = x)
 
@@ -375,8 +374,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 219.6011 251.1079 281.4803 257.8884 268.8997 457.7094    25
-#        scales 392.0473 418.4014 536.5625 453.4664 566.0392 999.5088    25
+#  colourvalues 188.1557 190.9667 194.2682 192.4433 194.4276 244.0605    25
+#        scales 300.0350 314.6473 323.1116 316.2003 318.6083 409.6637    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.

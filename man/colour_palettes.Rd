@@ -5,14 +5,32 @@
 \alias{color_palettes}
 \title{Colour Palettes}
 \usage{
-colour_palettes()
+colour_palettes(colours = NULL)
 
-color_palettes()
+color_palettes(colours = NULL)
+}
+\arguments{
+\item{colours}{vector of source colour palettes to return, one or many of
+"viridis","rcolorbrewer","grdevices","colorspace","colorramp". NULL will reutrn all palettes.}
 }
 \description{
 List the available colour palettes.
 }
+\details{
+The palettes avaialble in \code{colourvalues} have been derived from those avaialble in
+the libraries
+
+\itemize{
+  \item{viridis}
+  \item{RColorBrewer}
+  \item{grDevices}
+  \item{colorspaces}
+  \item{colorRamp}
+}
+}
 \examples{
 colour_palettes()
+colour_palettes( "viridis" )
+colour_palettes( colours = c("rcolorbrewer","grdevices") )
 
 }

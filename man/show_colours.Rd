@@ -10,7 +10,7 @@ show_colours(colours = colour_palettes())
 \item{colours}{vector of colour palettes}
 }
 \description{
-Plots all the selected colours
+Plots all the selected colours. See \link{colour_palettes} for avaialble colours.
 }
 \examples{
 
@@ -18,6 +18,8 @@ Plots all the selected colours
 show_colours()
 
 ## view a selection of colour palettes
-show_colours( colours = colour_palettes()[1:10] )
+show_colours( colours = colour_palettes( c("viridis", "grdevices") ) )
+
+
 
 }

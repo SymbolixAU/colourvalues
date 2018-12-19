@@ -3,23 +3,101 @@
 #'
 #' List the available colour palettes.
 #'
+#' @param colours vector of source colour palettes to return, one or many of
+#' "viridis","rcolorbrewer","grdevices","colorspace","colorramp". NULL will reutrn all palettes.
+#'
+#' @details
+#' The palettes avaialble in \code{colourvalues} have been derived from those avaialble in
+#' the libraries
+#'
+#' \itemize{
+#'   \item{viridis}
+#'   \item{RColorBrewer}
+#'   \item{grDevices}
+#'   \item{colorspaces}
+#'   \item{colorRamp}
+#' }
+#'
 #' @examples
 #' colour_palettes()
+#' colour_palettes( "viridis" )
+#' colour_palettes( colours = c("rcolorbrewer","grdevices") )
 #'
 #' @export
-colour_palettes <- function() {
+colour_palettes <- function( colours = NULL ) {
+  if( is.null( colours ) ) colours <- c("viridis","rcolorbrewer","grdevices","colorspace","colorramp")
+  colours <- tolower(colours)
+
   return(
-    c("viridis", "cividis", "magma", "inferno", "plasma", "blue2green",
-      "blue2red", "blue2yellow", "blues", "brbg", "bugn", "bupu", "cm",
-      "cyan2yellow", "diverge_hcl", "diverge_hsv", "gnbu", "green2red",
-      "greens", "greys", "heat", "heat_hcl", "magenta2green", "matlab_like",
-      "matlab_like2", "oranges", "orrd", "piyg", "prgn", "pubu", "pubugn",
-      "puor", "purd", "purples", "rainbow", "rainbow_hcl", "rdbu",
-      "rdgy", "rdpu", "rdylbu", "rdylgn", "reds", "sequential_hcl",
-      "spectral", "terrain", "terrain_hcl", "topo", "ygobb", "ylgn",
-      "ylgnbu", "ylorbr", "ylorrd")
+    c(
+      if( "viridis" %in% colours ) { viridis_palettes() }
+      , if( "rcolorbrewer" %in% colours ) { c( rcolorbrewer_seq_palettes(), rcolorbrewer_div_palettes() ) }
+      , if( "grdevices" %in% colours ) { grdevices_palettes() }
+      , if( "colorspace" %in% colours ) { c( colorspace_seq_palettes(), colorspace_div_palettes() ) }
+      , if( "colorramp" %in% colours ) { colorramp_palettes() }
+    )
   )
 }
+
+viridis_palettes <- function() {
+  return(
+    c("viridis", "cividis", "magma", "inferno", "plasma")
+  )
+}
+
+rcolorbrewer_seq_palettes <- function() {
+  return(
+    c(
+      "ylorrd",
+      "ylorbr", "ylgnbu", "ylgn", "reds", "rdpu", "purples", "purd",
+      "pubugn", "pubu", "orrd", "oranges", "greys", "greens", "gnbu",
+      "bupu", "bugn", "blues"
+    )
+  )
+}
+
+rcolorbrewer_div_palettes <- function() {
+  return(
+    c(
+      "spectral", "rdylgn", "rdylbu", "rdgy",
+      "rdbu", "puor", "prgn", "piyg", "brbg"
+    )
+  )
+}
+
+grdevices_palettes <- function() {
+  return(
+    c(
+      "terrain", "topo", "heat",
+      "cm", "rainbow"
+    )
+  )
+}
+
+colorspace_seq_palettes <- function() {
+  return(
+    c(
+      "terrain_hcl", "heat_hcl", "sequential_hcl",
+      "rainbow_hcl"
+    )
+  )
+}
+
+colorspace_div_palettes <- function() {
+  return(
+    c("diverge_hcl", "diverge_hsv")
+    )
+}
+
+colorramp_palettes <- function() {
+  return(
+    c(
+      "ygobb", "matlab_like2", "matlab_like", "magenta2green",
+      "cyan2yellow", "blue2yellow", "green2red", "blue2green", "blue2red"
+    )
+  )
+}
+
 
 #' @rdname colour_palettes
 #' @export
@@ -28,7 +106,7 @@ color_palettes <- colour_palettes
 
 #' Show Colours
 #'
-#' Plots all the selected colours
+#' Plots all the selected colours. See \link{colour_palettes} for avaialble colours.
 #'
 #' @param colours vector of colour palettes
 #'
@@ -38,7 +116,9 @@ color_palettes <- colour_palettes
 #' show_colours()
 #'
 #' ## view a selection of colour palettes
-#' show_colours( colours = colour_palettes()[1:10] )
+#' show_colours( colours = colour_palettes( c("viridis", "grdevices") ) )
+#'
+#'
 #'
 #' @export
 show_colours <- function( colours = colour_palettes() ) {
