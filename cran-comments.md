@@ -1,6 +1,8 @@
+
 ## Release Notes
-* Updates v0.1.1 to v0.2.0
-* Two new functions, and performance improvements for existing functions
+
+* Updates v0.2.0 to v0.2.1
+* added more palettes, a plotting function and one bug fix
 
 ## Test environments
 * local OS X install, R 3.5.0

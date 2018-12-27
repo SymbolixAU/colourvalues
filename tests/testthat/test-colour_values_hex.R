@@ -242,6 +242,13 @@ test_that("summary hex values are formatted", {
   expect_true(all(cv$summary_values == c("2018-01-01T00:00:00", "2018-01-08T18:00:00", "2018-01-16T12:00:00",
                                          "2018-01-24T06:00:00", "2018-02-01T00:00:00")))
 
+  psx <- seq(as.POSIXct("2018-01-01 01:23:45", tz = "UTC"),
+             as.POSIXct("2018-02-01 23:23:23", tz = "UTC"),
+             by = 60 * 60 * 24)
+  cv <- colour_values( psx, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("2018-01-01T01:23:45", "2018-01-08T19:23:45", "2018-01-16T13:23:45",
+                                         "2018-01-24T07:23:45", "2018-02-01T01:23:45")))
+
   plt <- seq(as.POSIXlt("2018-01-01 00:00:00", tz = "UTC"),
              as.POSIXlt("2018-02-01 00:00:00", tz = "UTC"),
              by = 60 * 60 * 24)
