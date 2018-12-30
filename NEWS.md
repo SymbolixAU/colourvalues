@@ -1,3 +1,8 @@
+# v0.2.2
+
+
+* Improved handling of Dates in summary values
+
 # v0.2.1
 
 * `show_colours()` to plot all colour palettes

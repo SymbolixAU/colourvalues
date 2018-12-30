@@ -15,6 +15,17 @@
 #'
 #' @seealso colour_values
 #'
+#' @details
+#'
+#' The palette can either be
+#' \itemize{
+#'   \item{String - }{use \code{colour_palettes()} to view available palettes}
+#'   \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
+#' }
+#'
+#' The matrix \code{palette} requires 5 rows because the colours are interpolated using a
+#' cubic b-spline. This method requires 5 values.
+#'
 #' @examples
 #'
 #' colour_values_rgb(1:5)
