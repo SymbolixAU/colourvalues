@@ -52,7 +52,7 @@ namespace format {
     Rcpp::StringVector sv( n );
     Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
     // TODO( implement decimal-places )
-    for ( i = 0; i < n; i++) {
+    for ( i = 0; i < n; i++ ) {
       std::ostringstream os;
       os << std::fixed << std::setprecision( dp ) << nv[i];
       std::string s = os.str();
