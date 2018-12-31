@@ -1,8 +1,8 @@
 
 ## Release Notes
 
-* Updates v0.2.0 to v0.2.1
-* added more palettes, a plotting function and one bug fix
+* Updates v0.2.1 to v0.2.2
+* Improved handling of Dates and POSIXct objects
 
 ## Test environments
 * local OS X install, R 3.5.0
