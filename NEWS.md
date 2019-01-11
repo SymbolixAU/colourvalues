@@ -1,6 +1,6 @@
 # v0.2.2
 
-
+* Fixed NAs in character summary values [issue 42](https://github.com/SymbolixAU/colourvalues/issues/42)
 * Improved handling of Dates in summary values
 
 # v0.2.1
