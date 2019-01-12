@@ -173,9 +173,9 @@ namespace palette {
   };
 
   const Rcpp::List inferno = Rcpp::List::create(
-    _["r"] = inferno_red,
-    _["g"] = inferno_green,
-    _["b"] = inferno_blue
+    Rcpp::_["r"] = inferno_red,
+    Rcpp::_["g"] = inferno_green,
+    Rcpp::_["b"] = inferno_blue
   );
 
 } // namespace palette

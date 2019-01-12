@@ -96,9 +96,10 @@ test_that("alpha values applied", {
 
   expect_true(all(substr(colour_values(1:5, alpha = 0),8,9) == "00"))
 
+  ## No longe valid since v0.2.1 (issue 25)
   #expect_error(colour_values(1:5, alpha = c(100,200)),"alpha must either be a single value, or the same length as x")
-  expect_error(colour_values( 1:5, alpha = c(100,200) ), "A vector of alpha values must contain at least 5 values")
-  expect_error(colour_values( 1:3, alpha = c(1:3)), "A vector of alpha values must contain at least 5 values")
+  #expect_error(colour_values( 1:5, alpha = c(100,200) ), "A vector of alpha values must contain at least 5 values")
+  #expect_error(colour_values( 1:3, alpha = c(1:3)), "A vector of alpha values must contain at least 5 values")
 
   expect_true(all(colour_values(letters) == colour_values(letters, alpha = 255)))
   expect_true(all(substr( colour_values(letters, alpha = 0),8,9) == "00"))
@@ -240,6 +241,13 @@ test_that("summary hex values are formatted", {
   cv <- colour_values( psx, n_summaries = 5, format = T)
   expect_true(all(cv$summary_values == c("2018-01-01T00:00:00", "2018-01-08T18:00:00", "2018-01-16T12:00:00",
                                          "2018-01-24T06:00:00", "2018-02-01T00:00:00")))
+
+  psx <- seq(as.POSIXct("2018-01-01 01:23:45", tz = "UTC"),
+             as.POSIXct("2018-02-01 23:23:23", tz = "UTC"),
+             by = 60 * 60 * 24)
+  cv <- colour_values( psx, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("2018-01-01T01:23:45", "2018-01-08T19:23:45", "2018-01-16T13:23:45",
+                                         "2018-01-24T07:23:45", "2018-02-01T01:23:45")))
 
   plt <- seq(as.POSIXlt("2018-01-01 00:00:00", tz = "UTC"),
              as.POSIXlt("2018-02-01 00:00:00", tz = "UTC"),

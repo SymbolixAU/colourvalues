@@ -173,9 +173,9 @@ namespace palette {
   };
 
   const Rcpp::List magma = Rcpp::List::create(
-    _["r"] = magma_red,
-    _["g"] = magma_green,
-    _["b"] = magma_blue
+    Rcpp::_["r"] = magma_red,
+    Rcpp::_["g"] = magma_green,
+    Rcpp::_["b"] = magma_blue
   );
 } // namespace palette
 } // namepsace colourvalues

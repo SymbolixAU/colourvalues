@@ -197,6 +197,7 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
+    lvls = na_omit( lvls );
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     if ( summary ) {
@@ -243,6 +244,7 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
     Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a legend
+    lvls = na_omit( lvls );
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     if ( summary ) {
@@ -252,7 +254,6 @@ namespace colours_hex {
       int x_size = x.size();
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
-
 
       Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
       Rcpp::StringVector full_hex = colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );

@@ -6,6 +6,17 @@
 #'
 #' @seealso colour_values
 #'
+#' @details
+#'
+#' The palette can either be
+#' \itemize{
+#'   \item{String - }{use \code{colour_palettes()} to view available palettes}
+#'   \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
+#' }
+#'
+#' The matrix \code{palette} requires 5 rows because the colours are interpolated using a
+#' cubic b-spline. This method requires 5 values.
+#'
 #' @examples
 #'
 #' colour_values_rgb(1:5)
@@ -15,7 +26,7 @@
 #'
 #' @export
 colour_values_rgb <- function( x, palette = "viridis", na_colour = "#808080FF", alpha = 255, include_alpha = TRUE, ... ) {
-  alpha_check( alpha )
+  palette <- palette_check( palette )
   colour_values_to_rgb( x, palette, na_colour, alpha, include_alpha, ... )
 }
 
@@ -41,7 +52,7 @@ colour_num_values_with_palette_rgb.character <- function( palette, x, na_colour,
 
 #' @export
 colour_num_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits ) {
-  palette_check( palette )
+  #palette_check( palette )
   if ( n_summaries > 0 ) {
     return( rcpp_colour_num_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, n_summaries, format, format_type, digits ) )
   } else {
@@ -64,7 +75,7 @@ colour_str_values_with_palette_rgb.character <- function( palette, x, na_colour,
 
 #' @export
 colour_str_values_with_palette_rgb.matrix <- function( palette, x, na_colour, alpha, include_alpha, summary ) {
-  palette_check( palette )
+  #palette_check( palette )
   if ( summary ) {
     return( rcpp_colour_str_value_rgb_palette_summary_rgb( x, palette, na_colour, include_alpha, summary ) )
   } else {

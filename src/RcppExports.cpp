@@ -340,6 +340,476 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_terrain
+Rcpp::DataFrame rcpp_terrain();
+RcppExport SEXP _colourvalues_rcpp_terrain() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_terrain());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_topo
+Rcpp::DataFrame rcpp_topo();
+RcppExport SEXP _colourvalues_rcpp_topo() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_topo());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_heat
+Rcpp::DataFrame rcpp_heat();
+RcppExport SEXP _colourvalues_rcpp_heat() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_heat());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_ylorrd
+Rcpp::DataFrame rcpp_ylorrd();
+RcppExport SEXP _colourvalues_rcpp_ylorrd() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_ylorrd());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_ylorbr
+Rcpp::DataFrame rcpp_ylorbr();
+RcppExport SEXP _colourvalues_rcpp_ylorbr() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_ylorbr());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_ylgnbu
+Rcpp::DataFrame rcpp_ylgnbu();
+RcppExport SEXP _colourvalues_rcpp_ylgnbu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_ylgnbu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_ylgn
+Rcpp::DataFrame rcpp_ylgn();
+RcppExport SEXP _colourvalues_rcpp_ylgn() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_ylgn());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_reds
+Rcpp::DataFrame rcpp_reds();
+RcppExport SEXP _colourvalues_rcpp_reds() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_reds());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rdpu
+Rcpp::DataFrame rcpp_rdpu();
+RcppExport SEXP _colourvalues_rcpp_rdpu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rdpu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_purples
+Rcpp::DataFrame rcpp_purples();
+RcppExport SEXP _colourvalues_rcpp_purples() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_purples());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_purd
+Rcpp::DataFrame rcpp_purd();
+RcppExport SEXP _colourvalues_rcpp_purd() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_purd());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pubugn
+Rcpp::DataFrame rcpp_pubugn();
+RcppExport SEXP _colourvalues_rcpp_pubugn() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_pubugn());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_pubu
+Rcpp::DataFrame rcpp_pubu();
+RcppExport SEXP _colourvalues_rcpp_pubu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_pubu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_orrd
+Rcpp::DataFrame rcpp_orrd();
+RcppExport SEXP _colourvalues_rcpp_orrd() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_orrd());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_oranges
+Rcpp::DataFrame rcpp_oranges();
+RcppExport SEXP _colourvalues_rcpp_oranges() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_oranges());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_greys
+Rcpp::DataFrame rcpp_greys();
+RcppExport SEXP _colourvalues_rcpp_greys() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_greys());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_greens
+Rcpp::DataFrame rcpp_greens();
+RcppExport SEXP _colourvalues_rcpp_greens() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_greens());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_gnbu
+Rcpp::DataFrame rcpp_gnbu();
+RcppExport SEXP _colourvalues_rcpp_gnbu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_gnbu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_bupu
+Rcpp::DataFrame rcpp_bupu();
+RcppExport SEXP _colourvalues_rcpp_bupu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_bupu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_bugn
+Rcpp::DataFrame rcpp_bugn();
+RcppExport SEXP _colourvalues_rcpp_bugn() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_bugn());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_blues
+Rcpp::DataFrame rcpp_blues();
+RcppExport SEXP _colourvalues_rcpp_blues() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_blues());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_spectral
+Rcpp::DataFrame rcpp_spectral();
+RcppExport SEXP _colourvalues_rcpp_spectral() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_spectral());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rdylgn
+Rcpp::DataFrame rcpp_rdylgn();
+RcppExport SEXP _colourvalues_rcpp_rdylgn() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rdylgn());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rdylbu
+Rcpp::DataFrame rcpp_rdylbu();
+RcppExport SEXP _colourvalues_rcpp_rdylbu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rdylbu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rdgy
+Rcpp::DataFrame rcpp_rdgy();
+RcppExport SEXP _colourvalues_rcpp_rdgy() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rdgy());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rdbu
+Rcpp::DataFrame rcpp_rdbu();
+RcppExport SEXP _colourvalues_rcpp_rdbu() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rdbu());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_puor
+Rcpp::DataFrame rcpp_puor();
+RcppExport SEXP _colourvalues_rcpp_puor() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_puor());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_prgn
+Rcpp::DataFrame rcpp_prgn();
+RcppExport SEXP _colourvalues_rcpp_prgn() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_prgn());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_piyg
+Rcpp::DataFrame rcpp_piyg();
+RcppExport SEXP _colourvalues_rcpp_piyg() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_piyg());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_brbg
+Rcpp::DataFrame rcpp_brbg();
+RcppExport SEXP _colourvalues_rcpp_brbg() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_brbg());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_cm
+Rcpp::DataFrame rcpp_cm();
+RcppExport SEXP _colourvalues_rcpp_cm() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_cm());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rainbow
+Rcpp::DataFrame rcpp_rainbow();
+RcppExport SEXP _colourvalues_rcpp_rainbow() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rainbow());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_ygobb
+Rcpp::DataFrame rcpp_ygobb();
+RcppExport SEXP _colourvalues_rcpp_ygobb() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_ygobb());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_matlab_like2
+Rcpp::DataFrame rcpp_matlab_like2();
+RcppExport SEXP _colourvalues_rcpp_matlab_like2() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_matlab_like2());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_matlab_like
+Rcpp::DataFrame rcpp_matlab_like();
+RcppExport SEXP _colourvalues_rcpp_matlab_like() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_matlab_like());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_magenta2green
+Rcpp::DataFrame rcpp_magenta2green();
+RcppExport SEXP _colourvalues_rcpp_magenta2green() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_magenta2green());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_cyan2yellow
+Rcpp::DataFrame rcpp_cyan2yellow();
+RcppExport SEXP _colourvalues_rcpp_cyan2yellow() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_cyan2yellow());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_blue2yellow
+Rcpp::DataFrame rcpp_blue2yellow();
+RcppExport SEXP _colourvalues_rcpp_blue2yellow() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_blue2yellow());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_green2red
+Rcpp::DataFrame rcpp_green2red();
+RcppExport SEXP _colourvalues_rcpp_green2red() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_green2red());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_blue2green
+Rcpp::DataFrame rcpp_blue2green();
+RcppExport SEXP _colourvalues_rcpp_blue2green() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_blue2green());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_blue2red
+Rcpp::DataFrame rcpp_blue2red();
+RcppExport SEXP _colourvalues_rcpp_blue2red() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_blue2red());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_diverge_hcl
+Rcpp::DataFrame rcpp_diverge_hcl();
+RcppExport SEXP _colourvalues_rcpp_diverge_hcl() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_diverge_hcl());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_diverge_hsv
+Rcpp::DataFrame rcpp_diverge_hsv();
+RcppExport SEXP _colourvalues_rcpp_diverge_hsv() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_diverge_hsv());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_terrain_hcl
+Rcpp::DataFrame rcpp_terrain_hcl();
+RcppExport SEXP _colourvalues_rcpp_terrain_hcl() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_terrain_hcl());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_heat_hcl
+Rcpp::DataFrame rcpp_heat_hcl();
+RcppExport SEXP _colourvalues_rcpp_heat_hcl() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_heat_hcl());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_sequential_hcl
+Rcpp::DataFrame rcpp_sequential_hcl();
+RcppExport SEXP _colourvalues_rcpp_sequential_hcl() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_sequential_hcl());
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_rainbow_hcl
+Rcpp::DataFrame rcpp_rainbow_hcl();
+RcppExport SEXP _colourvalues_rcpp_rainbow_hcl() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(rcpp_rainbow_hcl());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_hex, 5},
@@ -366,6 +836,53 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_magma", (DL_FUNC) &_colourvalues_rcpp_magma, 0},
     {"_colourvalues_rcpp_plasma", (DL_FUNC) &_colourvalues_rcpp_plasma, 0},
     {"_colourvalues_rcpp_cividis", (DL_FUNC) &_colourvalues_rcpp_cividis, 0},
+    {"_colourvalues_rcpp_terrain", (DL_FUNC) &_colourvalues_rcpp_terrain, 0},
+    {"_colourvalues_rcpp_topo", (DL_FUNC) &_colourvalues_rcpp_topo, 0},
+    {"_colourvalues_rcpp_heat", (DL_FUNC) &_colourvalues_rcpp_heat, 0},
+    {"_colourvalues_rcpp_ylorrd", (DL_FUNC) &_colourvalues_rcpp_ylorrd, 0},
+    {"_colourvalues_rcpp_ylorbr", (DL_FUNC) &_colourvalues_rcpp_ylorbr, 0},
+    {"_colourvalues_rcpp_ylgnbu", (DL_FUNC) &_colourvalues_rcpp_ylgnbu, 0},
+    {"_colourvalues_rcpp_ylgn", (DL_FUNC) &_colourvalues_rcpp_ylgn, 0},
+    {"_colourvalues_rcpp_reds", (DL_FUNC) &_colourvalues_rcpp_reds, 0},
+    {"_colourvalues_rcpp_rdpu", (DL_FUNC) &_colourvalues_rcpp_rdpu, 0},
+    {"_colourvalues_rcpp_purples", (DL_FUNC) &_colourvalues_rcpp_purples, 0},
+    {"_colourvalues_rcpp_purd", (DL_FUNC) &_colourvalues_rcpp_purd, 0},
+    {"_colourvalues_rcpp_pubugn", (DL_FUNC) &_colourvalues_rcpp_pubugn, 0},
+    {"_colourvalues_rcpp_pubu", (DL_FUNC) &_colourvalues_rcpp_pubu, 0},
+    {"_colourvalues_rcpp_orrd", (DL_FUNC) &_colourvalues_rcpp_orrd, 0},
+    {"_colourvalues_rcpp_oranges", (DL_FUNC) &_colourvalues_rcpp_oranges, 0},
+    {"_colourvalues_rcpp_greys", (DL_FUNC) &_colourvalues_rcpp_greys, 0},
+    {"_colourvalues_rcpp_greens", (DL_FUNC) &_colourvalues_rcpp_greens, 0},
+    {"_colourvalues_rcpp_gnbu", (DL_FUNC) &_colourvalues_rcpp_gnbu, 0},
+    {"_colourvalues_rcpp_bupu", (DL_FUNC) &_colourvalues_rcpp_bupu, 0},
+    {"_colourvalues_rcpp_bugn", (DL_FUNC) &_colourvalues_rcpp_bugn, 0},
+    {"_colourvalues_rcpp_blues", (DL_FUNC) &_colourvalues_rcpp_blues, 0},
+    {"_colourvalues_rcpp_spectral", (DL_FUNC) &_colourvalues_rcpp_spectral, 0},
+    {"_colourvalues_rcpp_rdylgn", (DL_FUNC) &_colourvalues_rcpp_rdylgn, 0},
+    {"_colourvalues_rcpp_rdylbu", (DL_FUNC) &_colourvalues_rcpp_rdylbu, 0},
+    {"_colourvalues_rcpp_rdgy", (DL_FUNC) &_colourvalues_rcpp_rdgy, 0},
+    {"_colourvalues_rcpp_rdbu", (DL_FUNC) &_colourvalues_rcpp_rdbu, 0},
+    {"_colourvalues_rcpp_puor", (DL_FUNC) &_colourvalues_rcpp_puor, 0},
+    {"_colourvalues_rcpp_prgn", (DL_FUNC) &_colourvalues_rcpp_prgn, 0},
+    {"_colourvalues_rcpp_piyg", (DL_FUNC) &_colourvalues_rcpp_piyg, 0},
+    {"_colourvalues_rcpp_brbg", (DL_FUNC) &_colourvalues_rcpp_brbg, 0},
+    {"_colourvalues_rcpp_cm", (DL_FUNC) &_colourvalues_rcpp_cm, 0},
+    {"_colourvalues_rcpp_rainbow", (DL_FUNC) &_colourvalues_rcpp_rainbow, 0},
+    {"_colourvalues_rcpp_ygobb", (DL_FUNC) &_colourvalues_rcpp_ygobb, 0},
+    {"_colourvalues_rcpp_matlab_like2", (DL_FUNC) &_colourvalues_rcpp_matlab_like2, 0},
+    {"_colourvalues_rcpp_matlab_like", (DL_FUNC) &_colourvalues_rcpp_matlab_like, 0},
+    {"_colourvalues_rcpp_magenta2green", (DL_FUNC) &_colourvalues_rcpp_magenta2green, 0},
+    {"_colourvalues_rcpp_cyan2yellow", (DL_FUNC) &_colourvalues_rcpp_cyan2yellow, 0},
+    {"_colourvalues_rcpp_blue2yellow", (DL_FUNC) &_colourvalues_rcpp_blue2yellow, 0},
+    {"_colourvalues_rcpp_green2red", (DL_FUNC) &_colourvalues_rcpp_green2red, 0},
+    {"_colourvalues_rcpp_blue2green", (DL_FUNC) &_colourvalues_rcpp_blue2green, 0},
+    {"_colourvalues_rcpp_blue2red", (DL_FUNC) &_colourvalues_rcpp_blue2red, 0},
+    {"_colourvalues_rcpp_diverge_hcl", (DL_FUNC) &_colourvalues_rcpp_diverge_hcl, 0},
+    {"_colourvalues_rcpp_diverge_hsv", (DL_FUNC) &_colourvalues_rcpp_diverge_hsv, 0},
+    {"_colourvalues_rcpp_terrain_hcl", (DL_FUNC) &_colourvalues_rcpp_terrain_hcl, 0},
+    {"_colourvalues_rcpp_heat_hcl", (DL_FUNC) &_colourvalues_rcpp_heat_hcl, 0},
+    {"_colourvalues_rcpp_sequential_hcl", (DL_FUNC) &_colourvalues_rcpp_sequential_hcl, 0},
+    {"_colourvalues_rcpp_rainbow_hcl", (DL_FUNC) &_colourvalues_rcpp_rainbow_hcl, 0},
     {NULL, NULL, 0}
 };
 

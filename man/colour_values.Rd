@@ -75,13 +75,12 @@ maps colours to values
 \details{
 The palette can either be
 \itemize{
-  \item{String - }{"viridis", "inferno", "plasma", "magma", "cividis"}
+  \item{String - }{use \code{colour_palettes()} to view available palettes}
   \item{Matrix - }{At least 5 rows, and 3 (or 4) columns representing the red, green and blue (and alpha) values}
 }
 
-The \code{palette} (and \code{alpha} argument when using a vector) requires 5
-rows because the colours are interpolated using a cubic b-spline. This method
-requires 5 values.
+The matrix \code{palette} requires 5 rows because the colours are interpolated using a
+cubic b-spline. This method requires 5 values.
 
 when \code{summary = TRUE}, the following rules are applied to the summary values
 \itemize{
@@ -103,6 +102,7 @@ colour_values(x = 1:5, palette = "inferno")
 colour_values(x = 1:5, palette = "plasma")
 colour_values(x = 1:5, palette = "magma")
 colour_values(x = 1:5, palette = "cividis")
+colour_values(x = 1:5, palette = "rainbow")
 
 ## matrix palette
 n <- 100

@@ -36,7 +36,11 @@ namespace format {
       Rcpp::Datetime d = nv[i];
       boost::gregorian::date dt( d.getYear(), d.getMonth(), d.getDay() );
       boost::posix_time::hours h( d.getHours() );
-      boost::posix_time::ptime pt = boost::posix_time::ptime( dt, h );
+      boost::posix_time::minutes mins( d.getMinutes() );
+      boost::posix_time::seconds sec( d.getSeconds() );
+      boost::posix_time::time_duration td = h + mins + sec;
+
+      boost::posix_time::ptime pt = boost::posix_time::ptime( dt, td );
       std::string s = boost::posix_time::to_iso_extended_string( pt );
       sv[i] = s.c_str();
     }
@@ -48,7 +52,7 @@ namespace format {
     Rcpp::StringVector sv( n );
     Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
     // TODO( implement decimal-places )
-    for ( i = 0; i < n; i++) {
+    for ( i = 0; i < n; i++ ) {
       std::ostringstream os;
       os << std::fixed << std::setprecision( dp ) << nv[i];
       std::string s = os.str();

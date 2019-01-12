@@ -1,4 +1,16 @@
-# colourvalues 0.2.0
+# v0.2.2
+
+* Fixed NAs in character summary values [issue 42](https://github.com/SymbolixAU/colourvalues/issues/42)
+* Improved handling of Dates in summary values
+
+# v0.2.1
+
+* `show_colours()` to plot all colour palettes
+* added more colour palettes. Use `colour_palettes()` to list them
+* fix NA values in summary [issue 39](https://github.com/SymbolixAU/colourvalues/issues/39)
+* alpha now accepts fewer than 5 values when using a vector
+
+# v0.2.0
 
 * `alpha` can accept [0,1) values to indicate a percentage
 * `format`, `summary`, `n_summaries` arguments for returning summary colours (for use in legends)

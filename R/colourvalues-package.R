@@ -2,14 +2,22 @@
 #' @importFrom Rcpp sourceCpp
 NULL
 
+# palette_check <- function( palette ) {
+#   if ( nrow( palette ) < 5 )
+#     stop("A matrix palette must contain at least 5 rows")
+# }
 
-alpha_check <- function( alpha ) {
-  if ( length( alpha ) > 1 & length( alpha ) < 5 )
-    stop("A vector of alpha values must contain at least 5 values")
-}
+palette_check <- function( palette ) UseMethod("palette_check")
 
-palette_check <- function( palette ) {
+#' @export
+palette_check.character <- function( palette ) tolower( gsub("\\.","_", palette ) )
+
+#' @export
+palette_check.default <- function( palette ) palette
+
+#' @export
+palette_check.matrix <- function( palette ) {
   if ( nrow( palette ) < 5 )
     stop("A matrix palette must contain at least 5 rows")
+  return( palette )
 }
-

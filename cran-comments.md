@@ -1,6 +1,8 @@
+
 ## Release Notes
-* Updates v0.1.1 to v0.2.0
-* Two new functions, and performance improvements for existing functions
+
+* Updates v0.2.1 to v0.2.2
+* Improved handling of Dates and POSIXct objects
 
 ## Test environments
 * local OS X install, R 3.5.0
