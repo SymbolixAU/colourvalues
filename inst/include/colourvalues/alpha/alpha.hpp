@@ -28,6 +28,10 @@ namespace alpha {
   inline Rcpp::NumericVector validate_alpha( Rcpp::NumericVector& alpha, int& alpha_type, int& x_size ) {
 
     if ( alpha_type == ALPHA_CONSTANT ) {
+      if ( alpha[0] >= 0 && alpha[0] < 1 ) {
+        alpha = alpha * 255;
+      }
+
       Rcpp::NumericVector alpha_full( 5, alpha[0] ); // initialise with 5 vals (so i can create a spline object);
       return alpha_full;
 
