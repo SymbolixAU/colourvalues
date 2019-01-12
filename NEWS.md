@@ -1,5 +1,6 @@
 # colourvalues 0.2.0
 
+* `alpha` can accept [0,1) values to indicate a percentage
 * `format`, `summary`, `n_summaries` arguments for returning summary colours (for use in legends)
 * `convert_colours()` function exposed to R to convert between hex-rgb [issue 14](https://github.com/SymbolixAU/colourvalues/issues/14)
 * speed improvement for internal hex-to-RGB conversion

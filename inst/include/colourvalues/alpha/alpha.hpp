@@ -28,10 +28,6 @@ namespace alpha {
   inline Rcpp::NumericVector validate_alpha( Rcpp::NumericVector& alpha, int& alpha_type, int& x_size ) {
 
     if ( alpha_type == ALPHA_CONSTANT ) {
-
-      //Rcpp::NumericVector rng = colourvalues::scale::minmax( alpha );
-      // Rcpp::Rcout << "rng : " << rng << std::endl;
-      //if ( rng[0] >= 0 && rng[1] <= 1 ) {
       if ( alpha[0] >= 0 && alpha[0] < 1 ) {
         alpha = alpha * 255;
       }
