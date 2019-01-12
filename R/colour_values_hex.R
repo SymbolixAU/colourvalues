@@ -7,7 +7,7 @@
 #' @param na_colour hex string colour to use for NA values in the form \code{#RRGGBBAA}.
 #' @param alpha optional. Single value in [0,255] applied to all colours,
 #' or a decimal in [0, 1) (to indicate a percentage, noting 1 is excluded),
-#' or a vector of numeric values the same length as \code{x} and at least length 5.
+#' or a vector of numeric values the same length as \code{x}.
 #' The numeric vector will be scaled into the range [0,255].
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
