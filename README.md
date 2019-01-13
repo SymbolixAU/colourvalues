@@ -275,11 +275,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#471163FF" "#472D7BFF" "#1F9F88FF" "#30B47BFF" "#287C8EFF"
-#  [6] "#2D6F8EFF" "#3F4989FF" "#FDE725FF" "#440154FF" "#404688FF"
+#  [1] "#27AD81FF" "#3F4989FF" "#39568CFF" "#218F8DFF" "#228C8DFF"
+#  [6] "#FDE725FF" "#440154FF" "#3F4889FF" "#453681FF" "#26818EFF"
 # 
 # $summary_values
-# [1] "-1.66" "0.33"  "2.32" 
+# [1] "-1.21" "0.71"  "2.62" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -329,20 +329,20 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#43BF71FF" "#345F8DFF" "#FDE725FF" "#DDE318FF" "#21908CFF"
-#  [6] "#2A788EFF" "#345F8DFF" "#2FB47CFF" "#5DC963FF" "#440154FF"
-# [11] "#BCDF27FF" "#3B528BFF" "#43BF71FF" "#2F6C8EFF" "#2F6C8EFF"
-# [16] "#3B528BFF" "#440154FF" "#9AD93DFF" "#463480FF" "#1E9C89FF"
-# [21] "#463480FF" "#440154FF" "#440154FF" "#BCDF27FF" "#2FB47CFF"
-# [26] "#3B528BFF" "#7AD151FF" "#25848EFF" "#414487FF" "#3B528BFF"
-# [31] "#BCDF27FF" "#481466FF" "#22A884FF" "#2FB47CFF" "#9AD93DFF"
-# [36] "#21908CFF" "#9AD93DFF" "#2F6C8EFF" "#7AD151FF" "#FDE725FF"
-# [41] "#482575FF" "#1E9C89FF" "#440154FF" "#2A788EFF" "#481466FF"
-# [46] "#43BF71FF" "#482575FF" "#345F8DFF" "#22A884FF" "#43BF71FF"
+#  [1] "#2F6C8EFF" "#2FB47CFF" "#482575FF" "#2F6C8EFF" "#43BF71FF"
+#  [6] "#3B528BFF" "#414487FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF"
+# [11] "#5DC963FF" "#2F6C8EFF" "#7AD151FF" "#345F8DFF" "#7AD151FF"
+# [16] "#7AD151FF" "#482575FF" "#25848EFF" "#1E9C89FF" "#2A788EFF"
+# [21] "#9AD93DFF" "#3B528BFF" "#481466FF" "#7AD151FF" "#22A884FF"
+# [26] "#5DC963FF" "#21908CFF" "#FDE725FF" "#21908CFF" "#DDE318FF"
+# [31] "#463480FF" "#21908CFF" "#25848EFF" "#2F6C8EFF" "#481466FF"
+# [36] "#25848EFF" "#440154FF" "#BCDF27FF" "#345F8DFF" "#25848EFF"
+# [41] "#440154FF" "#FDE725FF" "#440154FF" "#43BF71FF" "#1E9C89FF"
+# [46] "#22A884FF" "#2F6C8EFF" "#BCDF27FF" "#DDE318FF" "#463480FF"
 # 
 # $summary_values
-#  [1] "b" "f" "g" "h" "i" "j" "k" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v"
-# [18] "w" "x" "y" "z"
+#  [1] "a" "b" "c" "e" "f" "g" "h" "i" "j" "k" "m" "o" "p" "q" "r" "s" "t"
+# [18] "u" "x" "y" "z"
 # 
 # $summary_colours
 #  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF"
@@ -375,8 +375,8 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.646645 1.664558 1.708250 1.682939 1.741683 1.826235    25
-#        scales 2.838452 2.885296 2.971917 2.940913 3.041552 3.262631    25
+#  colourvalues 1.617036 1.629365 1.682938 1.645191 1.745641 1.800155    25
+#        scales 2.820961 2.916128 3.035900 2.981311 3.140706 3.418156    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -404,8 +404,8 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 184.4999 194.1111 196.7344 194.7268 196.9258 234.9344    25
-#        scales 295.7765 309.4233 319.2835 315.8983 324.1985 386.2713    25
+#  colourvalues 182.1952 203.5807 206.2559 207.5844 209.7223 245.3349    25
+#        scales 329.7487 342.8897 349.5171 345.3121 345.8927 417.3716    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.

@@ -26,7 +26,7 @@ RoxygenNote: 6.1.0
 Suggests: 
     covr,
     microbenchmark,
-    ggplot2,
+    ggplot2
     scales,
     testthat,
     viridisLite

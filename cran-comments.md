@@ -2,7 +2,11 @@
 ## Release Notes
 
 * Updates v0.2.1 to v0.2.2
-* Improved handling of Dates and POSIXct objects
+* CRAN Build Notes: Fedora Clang and OSX builds give notes
+"installed package size is 6.1Mb"
+  - I can't reduce the libs directory as all the compiled source code is required
+
+
 
 ## Test environments
 * local OS X install, R 3.5.0

@@ -1,5 +1,6 @@
 # v0.2.2
 
+* [0,1) alpha values treated as percentage [issue 37](https://github.com/SymbolixAU/colourvalues/issues/37)
 * Fixed NAs in character summary values [issue 42](https://github.com/SymbolixAU/colourvalues/issues/42)
 * Improved handling of Dates in summary values
 
