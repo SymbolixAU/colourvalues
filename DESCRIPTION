@@ -14,6 +14,7 @@ Description: Maps one of the viridis colour palettes, or a user-specified palett
     'RColorBrewer' <https://CRAN.R-project.org/package=RColorBrewer> and 
     'colorspace' <https://CRAN.R-project.org/package=colorspace> packages.
 License: GPL-3
+BugReports: https://github.com/SymbolixAU/colourvalues/issues
 Encoding: UTF-8
 LazyData: true
 LinkingTo: 
