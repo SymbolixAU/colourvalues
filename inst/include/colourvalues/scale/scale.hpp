@@ -36,7 +36,7 @@ namespace scale {
   // used for variables
   inline void rescale( Rcpp::NumericVector& x ) {
     int n = x.size();
-    //::NumericVector rescaled(n);
+
     Rcpp::NumericVector rng = minmax( x );
     Rcpp::NumericVector diff_from = Rcpp::diff( rng ); // should only be one value!
 

@@ -1,3 +1,7 @@
+# v0.2.2.1
+
+* 
+
 # v0.2.2
 
 * [0,1) alpha values treated as percentage [issue 37](https://github.com/SymbolixAU/colourvalues/issues/37)
