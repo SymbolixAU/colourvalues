@@ -97,7 +97,7 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "alpha: " << alpha << std::endl;
+    // Rcpp::Rcout << "after validate_alpha: " << alpha << std::endl;
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -141,8 +141,10 @@ namespace colours_hex {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
+    // Rcpp::Rcout << "alpha_type: " << alpha_type << std::endl;
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    // Rcpp::Rcout << "after validate_alpha2: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -236,6 +238,7 @@ namespace colours_hex {
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    // Rcpp::Rcout << "after validate_alpha3: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);

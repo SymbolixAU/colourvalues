@@ -17,15 +17,25 @@ test_that("alpha vector scaled to [0-255]", {
 
 test_that("alpha not updated by reference", {
 
+  v <- 1
+  o <- 1
+  colour_values(x = v, alpha = o)
+  expect_equal( o, 1 )
+
+  v <- c(1,1)
+  o <- c(1,1)
+  colour_values(x = v, alpha = o)
+  expect_equal( o, c(1,1) )
+
   v <- 1:5
   o <- 1:5
   colour_values(x = v, alpha = o)
-  expect_equal( o, 1:5)
+  expect_equal( o, 1:5 )
 
   v <- 1:5
   o <- rep(5,5)
   colour_values(x = v, alpha = o)
-  expect_equal( o, rep(5,5))
+  expect_equal( o, rep(5,5) )
 
   df <- data.frame(id = 1:5, o = rep(5,5) )
   cols <- colour_values(x = df$id, alpha = df$o )
