@@ -43,9 +43,7 @@ namespace alpha {
 
     } else if (alpha_type == ALPHA_VECTOR ) {
 
-      // Rcpp::Rcout << "alpha: " << alpha << std::endl;
       colourvalues::scale::rescale( alpha );
-      // Rcpp::Rcout << "alpha: " << alpha << std::endl;
       alpha = alpha * 255;
 
       // If length( alpha ) < 5; fill with mean
@@ -62,10 +60,8 @@ namespace alpha {
         for ( i = 1; i <= to_fill; i++ ) {
           alpha_full[ n_alpha + to_fill ] = mean_alpha;
         }
-        // Rcpp::Rcout << "returning alpha_full" << std::endl;
         return alpha_full;
       }
-      // Rcpp::Rcout << "returning alpha" << std::endl;
       return alpha;
 
     } else if ( alpha_type == ALPHA_UNKNOWN ) {

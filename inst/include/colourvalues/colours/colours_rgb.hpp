@@ -91,6 +91,7 @@ namespace colours_rgb {
       std::string format_type = "numeric",
       int digits = 2) {
 
+    colourvalues::utils::matrix_palette_check( palette );
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
 
@@ -187,6 +188,7 @@ namespace colours_rgb {
       bool include_alpha,
       bool summary = false ) {
 
+    colourvalues::utils::matrix_palette_check( palette );
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
 
     Rcpp::NumericVector red(256);

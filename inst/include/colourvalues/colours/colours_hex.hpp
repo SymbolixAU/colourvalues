@@ -37,7 +37,7 @@ namespace colours_hex {
     boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
     boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha(  alpha.begin(),  alpha.end(),  0, step );
+    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(),  alpha.end(),  0, step );
 
     double this_x;
     int i, r, g, b;
@@ -85,6 +85,8 @@ namespace colours_hex {
     bool format = false,
     std::string format_type = "numeric",
     int digits = 2) {
+
+    colourvalues::utils::matrix_palette_check( palette );
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -190,6 +192,7 @@ namespace colours_hex {
       bool include_alpha,
       bool summary = false) {
 
+    colourvalues::utils::matrix_palette_check( palette );
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
 
     Rcpp::NumericVector red(256);

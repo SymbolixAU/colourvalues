@@ -1,6 +1,6 @@
-# v0.2.2.1
+# v0.2.3
 
-* 
+* Added palette row check function inside .hpp files 
 
 # v0.2.2
 

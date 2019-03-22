@@ -6,6 +6,12 @@
 namespace colourvalues {
 namespace utils {
 
+  inline void matrix_palette_check( Rcpp::NumericMatrix& pal ) {
+    if( pal.nrow() < 5 ) {
+      Rcpp::stop("Matrix palettes must have at least 5 rows");
+    }
+  }
+
   inline void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
     int int_s = NA_INTEGER;
     std::replace( out.begin(), out.end(), na_value, int_s);
