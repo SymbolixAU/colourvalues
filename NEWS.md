@@ -1,6 +1,7 @@
 # v0.2.3
 
 * Added palette row check function inside .hpp files 
+* BH -DBOOST_NO_AUTO_PTR flag
 
 # v0.2.2
 
