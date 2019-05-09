@@ -99,7 +99,6 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha: " << alpha << std::endl;
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -136,17 +135,10 @@ namespace colours_hex {
       std::string format_type = "numeric",
       int digits = 2) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
-
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
-    // Rcpp::Rcout << "alpha_type: " << alpha_type << std::endl;
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha2: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -169,12 +161,6 @@ namespace colours_hex {
 
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
-
-      // alpha_summary = colourvalues::summary::numeric_summary( alpha_full, n_summaries );
-      // Rcpp::Rcout << "alpha summary: " << alpha_summary << std::endl;
-      //
-
-      // Rcpp::StringVector summary_alpha_hex =
 
       return Rcpp::List::create(
         _["colours"] = full_hex,
@@ -233,15 +219,10 @@ namespace colours_hex {
       bool include_alpha,
       bool summary = false) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha3: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
