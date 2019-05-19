@@ -290,6 +290,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// list_size
+Rcpp::List list_size(const Rcpp::List& lst);
+RcppExport SEXP _colourvalues_list_size(SEXP lstSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
+    rcpp_result_gen = Rcpp::wrap(list_size(lst));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_list_types
 Rcpp::IntegerVector rcpp_list_types(const Rcpp::List& lst);
 RcppExport SEXP _colourvalues_rcpp_list_types(SEXP lstSEXP) {
@@ -842,6 +853,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
+    {"_colourvalues_list_size", (DL_FUNC) &_colourvalues_list_size, 1},
     {"_colourvalues_rcpp_list_types", (DL_FUNC) &_colourvalues_rcpp_list_types, 1},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},

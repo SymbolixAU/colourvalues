@@ -77,6 +77,10 @@ rcpp_convert_rgb_vec_to_hex <- function(rgb) {
     .Call(`_colourvalues_rcpp_convert_rgb_vec_to_hex`, rgb)
 }
 
+list_size <- function(lst) {
+    .Call(`_colourvalues_list_size`, lst)
+}
+
 rcpp_list_types <- function(lst) {
     .Call(`_colourvalues_rcpp_list_types`, lst)
 }

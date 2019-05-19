@@ -39,6 +39,14 @@ namespace list {
    return res;
  }
 
+
+
+  //
+  inline void colour_list( const Rcpp::List& lst ) {
+     double total_size = 0;
+
+  }
+
 } // list
 } // colourvalues
 
