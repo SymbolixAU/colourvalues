@@ -9,8 +9,15 @@
 #   , a = list( list( list( x = list( letters ) ) ) )
 # )
 #
-# microbenchmark(
-#   me = { colourvalues:::list_size( l ) }
-#   , base = { rapply(l, length) }
-#   , times = 25
+# colourvalues:::list_size( l, 0, 10 )
+
+
+# l <- list(
+#   x = 1:100
+#   , y = 1:100
+#   , z = list( x = 1:100 )
+#   , a = 10.1
+#   , b = as.POSIXct("2018-01-01 00:00:00")
 # )
+#
+# colourvalues:::list_size( l, 0, 10 )

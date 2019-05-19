@@ -290,14 +290,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// vector_type
+int vector_type(int new_type, int existing_type);
+RcppExport SEXP _colourvalues_vector_type(SEXP new_typeSEXP, SEXP existing_typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type new_type(new_typeSEXP);
+    Rcpp::traits::input_parameter< int >::type existing_type(existing_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(vector_type(new_type, existing_type));
+    return rcpp_result_gen;
+END_RCPP
+}
 // list_size
-Rcpp::List list_size(const Rcpp::List& lst);
-RcppExport SEXP _colourvalues_list_size(SEXP lstSEXP) {
+Rcpp::List list_size(const Rcpp::List& lst, double& total_size, int& existing_type);
+RcppExport SEXP _colourvalues_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
-    rcpp_result_gen = Rcpp::wrap(list_size(lst));
+    Rcpp::traits::input_parameter< double& >::type total_size(total_sizeSEXP);
+    Rcpp::traits::input_parameter< int& >::type existing_type(existing_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(list_size(lst, total_size, existing_type));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -853,7 +867,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
-    {"_colourvalues_list_size", (DL_FUNC) &_colourvalues_list_size, 1},
+    {"_colourvalues_vector_type", (DL_FUNC) &_colourvalues_vector_type, 2},
+    {"_colourvalues_list_size", (DL_FUNC) &_colourvalues_list_size, 3},
     {"_colourvalues_rcpp_list_types", (DL_FUNC) &_colourvalues_rcpp_list_types, 1},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},
