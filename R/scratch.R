@@ -21,3 +21,14 @@
 # )
 #
 # colourvalues:::list_size( l, 0, 10 )
+
+# colourvalues:::colour_list( l )
+
+# l <- list(
+#   x = 1:100
+#   , y = letters
+#   , z = list( list( x = letters ) )
+#   , a = list( list( list( x = list( letters ) ) ) )
+# )
+#
+# colourvalues:::colour_list( l )
