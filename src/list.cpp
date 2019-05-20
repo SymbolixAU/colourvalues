@@ -175,8 +175,6 @@ Rcpp::List colour_list( Rcpp::List lst ) {
     Rcpp::StringVector colours( total_size );
     unlist_list( lst, lst_sizes, colours, position );
 
-    Rcpp::Rcout << "total_size: " << total_size << std::endl;
-
     //Rcpp::Rcout << "colours: " << colours << std::endl;
     // TODO - 'colours' now goes into 'colour_values_hex()
     std::string palette = "viridis";
