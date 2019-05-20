@@ -14,6 +14,8 @@ namespace alpha {
 
   inline int make_alpha_type( int alpha_size, int x_size, int palette_cols ) {
 
+    Rcpp::Rcout << "alpha_size: " << alpha_size << ", x_size: " << x_size << std::endl;
+
     if (palette_cols == 4 ) {
       return ALPHA_PALETTE;
     } else if (alpha_size <= 1) {  // covers NULL alpha (from R)

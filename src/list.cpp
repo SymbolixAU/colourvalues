@@ -175,12 +175,14 @@ Rcpp::List colour_list( Rcpp::List lst ) {
     Rcpp::StringVector colours( total_size );
     unlist_list( lst, lst_sizes, colours, position );
 
+    Rcpp::Rcout << "total_size: " << total_size << std::endl;
 
     //Rcpp::Rcout << "colours: " << colours << std::endl;
     // TODO - 'colours' now goes into 'colour_values_hex()
     std::string palette = "viridis";
     std::string na_colour = "#808080";
-    Rcpp::NumericVector alpha = 1;
+    //Rcpp::NumericVector alpha( total_size, 255 );
+    Rcpp::NumericVector alpha(1, 255.0);
     bool include_alpha = true;
     bool summary = false;
 

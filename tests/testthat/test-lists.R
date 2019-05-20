@@ -46,4 +46,8 @@ test_that("lists work", {
   expect_true( all( res[[2]] == res[[3]][[1]][[1]] ) )
   expect_true( all( res[[2]] == res[[4]][[1]][[1]][[1]][[1]] ) )
 
+  x <- c(as.character(1:100), letters)
+
+  expect_true( all( res[[1]] == colourvalues::colour_values(x)[1:100] ) )
+
 })
