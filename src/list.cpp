@@ -74,7 +74,7 @@ Rcpp::List list_size( const Rcpp::List& lst, double& total_size, int& existing_t
  * StringVectors of hex colours
  */
 // [[Rcpp::export]]
-Rcpp::List refil_list( const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& list_position ) {
+Rcpp::List refil_list( const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& vector_position ) {
 
   // iterate through the list, if size > 0, fill with that many values from the vector
 
@@ -85,16 +85,16 @@ Rcpp::List refil_list( const Rcpp::List& lst_sizes, Rcpp::StringVector& colours,
   for( i = 0; i < n; i++ ) {
     switch( TYPEOF( lst_sizes[ i ] ) ) {
     case VECSXP: {
-      res[ i ] = refil_list( lst_sizes[ i ], colours, list_position );
+      res[ i ] = refil_list( lst_sizes[ i ], colours, vector_position );
       break;
     }
     case INTSXP: {
       Rcpp::IntegerVector n_elements = Rcpp::as< Rcpp::IntegerVector >( lst_sizes[ i ] );
-      int end_position = list_position + n_elements[0] - 1;
-      Rcpp::IntegerVector elements = Rcpp::seq( list_position, end_position );
+      int end_position = vector_position + n_elements[0] - 1;
+      Rcpp::IntegerVector elements = Rcpp::seq( vector_position, end_position );
       Rcpp::StringVector these_colours = colours[ elements ];
       res[ i ] = these_colours;
-      list_position = end_position;
+      vector_position = end_position + 1;
       break;
     }
     default: {

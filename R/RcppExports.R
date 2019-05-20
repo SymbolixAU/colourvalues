@@ -85,8 +85,8 @@ list_size <- function(lst, total_size, existing_type) {
     .Call(`_colourvalues_list_size`, lst, total_size, existing_type)
 }
 
-refil_list <- function(lst_sizes, colours, list_position) {
-    .Call(`_colourvalues_refil_list`, lst_sizes, colours, list_position)
+refil_list <- function(lst_sizes, colours, vector_position) {
+    .Call(`_colourvalues_refil_list`, lst_sizes, colours, vector_position)
 }
 
 colour_list <- function(lst) {

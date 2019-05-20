@@ -316,15 +316,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // refil_list
-Rcpp::List refil_list(const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& list_position);
-RcppExport SEXP _colourvalues_refil_list(SEXP lst_sizesSEXP, SEXP coloursSEXP, SEXP list_positionSEXP) {
+Rcpp::List refil_list(const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& vector_position);
+RcppExport SEXP _colourvalues_refil_list(SEXP lst_sizesSEXP, SEXP coloursSEXP, SEXP vector_positionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst_sizes(lst_sizesSEXP);
     Rcpp::traits::input_parameter< Rcpp::StringVector& >::type colours(coloursSEXP);
-    Rcpp::traits::input_parameter< int& >::type list_position(list_positionSEXP);
-    rcpp_result_gen = Rcpp::wrap(refil_list(lst_sizes, colours, list_position));
+    Rcpp::traits::input_parameter< int& >::type vector_position(vector_positionSEXP);
+    rcpp_result_gen = Rcpp::wrap(refil_list(lst_sizes, colours, vector_position));
     return rcpp_result_gen;
 END_RCPP
 }

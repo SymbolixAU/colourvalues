@@ -31,3 +31,19 @@ test_that("list vector types correctly calculated", {
   expect_true( res == 16 )
 
 })
+
+
+test_that("lists work", {
+
+  l <- list(
+    x = 1:100
+    , y = letters
+    , z = list( list( x = letters ) )
+    , a = list( list( list( x = list( letters ) ) ) )
+  )
+
+  res <- colourvalues:::colour_list( l )
+  expect_true( all( res[[2]] == res[[3]][[1]][[1]] ) )
+  expect_true( all( res[[2]] == res[[4]][[1]][[1]][[1]][[1]] ) )
+
+})
