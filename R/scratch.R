@@ -32,3 +32,13 @@
 # )
 #
 # colourvalues:::colour_list( l )
+
+
+
+## Use R to handle optionals & defaults?
+##
+## Enter C++
+## - x - Any R object
+## - PALETTE - string or matrix
+
+

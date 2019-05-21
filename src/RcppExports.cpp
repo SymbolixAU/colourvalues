@@ -290,41 +290,41 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// vector_type
-int vector_type(int new_type, int existing_type);
-RcppExport SEXP _colourvalues_vector_type(SEXP new_typeSEXP, SEXP existing_typeSEXP) {
+// rcpp_vector_type
+int rcpp_vector_type(int new_type, int existing_type);
+RcppExport SEXP _colourvalues_rcpp_vector_type(SEXP new_typeSEXP, SEXP existing_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type new_type(new_typeSEXP);
     Rcpp::traits::input_parameter< int >::type existing_type(existing_typeSEXP);
-    rcpp_result_gen = Rcpp::wrap(vector_type(new_type, existing_type));
+    rcpp_result_gen = Rcpp::wrap(rcpp_vector_type(new_type, existing_type));
     return rcpp_result_gen;
 END_RCPP
 }
-// list_size
-Rcpp::List list_size(const Rcpp::List& lst, double& total_size, int& existing_type);
-RcppExport SEXP _colourvalues_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
+// rcpp_list_size
+Rcpp::List rcpp_list_size(const Rcpp::List& lst, double& total_size, int& existing_type);
+RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
     Rcpp::traits::input_parameter< double& >::type total_size(total_sizeSEXP);
     Rcpp::traits::input_parameter< int& >::type existing_type(existing_typeSEXP);
-    rcpp_result_gen = Rcpp::wrap(list_size(lst, total_size, existing_type));
+    rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type));
     return rcpp_result_gen;
 END_RCPP
 }
-// refil_list
-Rcpp::List refil_list(const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& vector_position);
-RcppExport SEXP _colourvalues_refil_list(SEXP lst_sizesSEXP, SEXP coloursSEXP, SEXP vector_positionSEXP) {
+// rcpp_refil_list
+Rcpp::List rcpp_refil_list(const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& vector_position);
+RcppExport SEXP _colourvalues_rcpp_refil_list(SEXP lst_sizesSEXP, SEXP coloursSEXP, SEXP vector_positionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst_sizes(lst_sizesSEXP);
     Rcpp::traits::input_parameter< Rcpp::StringVector& >::type colours(coloursSEXP);
     Rcpp::traits::input_parameter< int& >::type vector_position(vector_positionSEXP);
-    rcpp_result_gen = Rcpp::wrap(refil_list(lst_sizes, colours, vector_position));
+    rcpp_result_gen = Rcpp::wrap(rcpp_refil_list(lst_sizes, colours, vector_position));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -336,17 +336,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::List >::type lst(lstSEXP);
     rcpp_result_gen = Rcpp::wrap(colour_list(lst));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_list_types
-Rcpp::IntegerVector rcpp_list_types(const Rcpp::List& lst);
-RcppExport SEXP _colourvalues_rcpp_list_types(SEXP lstSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_list_types(lst));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -891,11 +880,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
-    {"_colourvalues_vector_type", (DL_FUNC) &_colourvalues_vector_type, 2},
-    {"_colourvalues_list_size", (DL_FUNC) &_colourvalues_list_size, 3},
-    {"_colourvalues_refil_list", (DL_FUNC) &_colourvalues_refil_list, 3},
+    {"_colourvalues_rcpp_vector_type", (DL_FUNC) &_colourvalues_rcpp_vector_type, 2},
+    {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 3},
+    {"_colourvalues_rcpp_refil_list", (DL_FUNC) &_colourvalues_rcpp_refil_list, 3},
     {"_colourvalues_colour_list", (DL_FUNC) &_colourvalues_colour_list, 1},
-    {"_colourvalues_rcpp_list_types", (DL_FUNC) &_colourvalues_rcpp_list_types, 1},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},
     {"_colourvalues_rcpp_magma", (DL_FUNC) &_colourvalues_rcpp_magma, 0},

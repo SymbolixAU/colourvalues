@@ -100,7 +100,6 @@ colour_num_values_with_palette_hex.matrix <- function( palette, x, na_colour, al
   } else {
     return( rcpp_colour_num_value_rgb_palette_hex( x, palette, na_colour, include_alpha ) )
   }
-
 }
 
 colour_str_values_with_palette_hex <- function( palette, x, na_colour, alpha, include_alpha, ... ) {
@@ -112,9 +111,8 @@ colour_str_values_with_palette_hex.character <- function( palette, x, na_colour,
   if( summary ) {
     return( rcpp_colour_str_value_string_palette_summary_hex(x, palette, na_colour, alpha, include_alpha, summary ) )
   } else {
-    rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha, include_alpha )
+    return( rcpp_colour_str_value_string_palette_hex(x, palette, na_colour, alpha, include_alpha ) )
   }
-
 }
 
 #' @export
