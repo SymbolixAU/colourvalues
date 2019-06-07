@@ -2,49 +2,15 @@
 % Please edit documentation in R/colour_values_rgb.R
 \name{colour_values_rgb}
 \alias{colour_values_rgb}
-\alias{color_values_rgb}
-\alias{colour_values_to_rgb.character}
-\alias{colour_values_to_rgb.default}
-\alias{colour_values_to_rgb.logical}
-\alias{colour_values_to_rgb.factor}
-\alias{colour_values_to_rgb.Date}
-\alias{colour_values_to_rgb.POSIXct}
-\alias{colour_values_to_rgb.POSIXlt}
 \title{Colour Values RGB}
 \usage{
-colour_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE, ...)
-
-color_values_rgb(x, palette = "viridis", na_colour = "#808080FF",
-  alpha = 255, include_alpha = TRUE, ...)
-
-\method{colour_values_to_rgb}{character}(x, palette, na_colour, alpha,
-  include_alpha, summary = FALSE)
-
-\method{colour_values_to_rgb}{default}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE, digits = 2)
-
-\method{colour_values_to_rgb}{logical}(x, palette, na_colour, alpha,
-  include_alpha, summary = FALSE)
-
-\method{colour_values_to_rgb}{factor}(x, palette, na_colour, alpha,
-  include_alpha, summary = FALSE)
-
-\method{colour_values_to_rgb}{Date}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE)
-
-\method{colour_values_to_rgb}{POSIXct}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE)
-
-\method{colour_values_to_rgb}{POSIXlt}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE)
+colour_values_rgb(x, palette = "viridis", alpha = 255,
+  na_colour = "#808080FF", include_alpha = TRUE, ...)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
 
 \item{palette}{colour palette. See details and examples}
-
-\item{na_colour}{hex string colour to use for NA values in the form \code{#RRGGBBAA}.}
 
 \item{alpha}{optional. Single value in [0,255] applied to all colours,
 or a decimal in [0, 1) (to indicate a percentage, noting 1 is excluded),
@@ -52,22 +18,12 @@ or a vector of numeric values the same length as \code{x}.
 The numeric vector will be scaled into the range [0,255].
 If a matrix palette is supplied this argument is ignored.}
 
+\item{na_colour}{hex string colour to use for NA values in the form \code{#RRGGBBAA}.}
+
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
 
 \item{...}{other arguments possed to methods}
-
-\item{summary}{logical indicating if a summary of the colours should be returned as
-well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
-
-\item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
-in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
-and their associated colours. If a non-numeric \code{x} is used this value is ignored}
-
-\item{format}{logical indicating if the summary values should be formatted. See details}
-
-\item{digits}{Integer. When summarising a numeric vector you can specify
-the number of decimal places to include in the summary values}
 }
 \description{
 Maps colours to variables, returning a matrix of RGB(A) values
@@ -81,18 +37,6 @@ The palette can either be
 
 The matrix \code{palette} requires 5 rows because the colours are interpolated using a
 cubic b-spline. This method requires 5 values.
-
-when \code{summary = TRUE}, the following rules are applied to the summary values
-\itemize{
-  \item{logical vectors are converted to "TRUE" or "FALSE" strings}
-  \item{all other types remain as-is, unless \code{format = T} is used}
-}
-
-when \code{format = TRUE},
-\itemize{
-  \item{numbers are converted to strings with the specified number of decimal places (using \code{digits} argument) }
-  \item{Dates are formatted as "yyyy-mm-dd"}
-}
 }
 \examples{
 

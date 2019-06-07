@@ -8,16 +8,17 @@
 #   , a = 10.1
 #   , b = as.POSIXct("2018-01-01 00:00:00")
 # )
-# colourvalues:::colour_list( l )
-
+# colour_values( l )
+# # colourvalues:::colour_list( l )
+#
 # l <- list(
 #   x = 1:100
 #   , y = letters
 #   , z = list( list( x = letters ) )
 #   , a = list( list( list( x = list( letters ) ) ) )
 # )
-#
-# colourvalues:::colour_list( l )
+# colour_values( l )
+# # colourvalues:::colour_list( l )
 
 
 

@@ -5,68 +5,8 @@ rcpp_colour_values_hex <- function(x, palette, alpha, na_colour = "#808080", inc
     .Call(`_colourvalues_rcpp_colour_values_hex`, x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries)
 }
 
-rcpp_colour_num_value_string_palette_hex <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
-}
-
-rcpp_colour_num_value_string_palette_summary_hex <- function(x, palette, na_colour, alpha, include_alpha, n_summaries, format = FALSE, format_type = "", digits = 2L) {
-    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_hex`, x, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits)
-}
-
-rcpp_colour_num_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
-}
-
-rcpp_colour_num_value_rgb_palette_summary_hex <- function(x, palette, na_colour, include_alpha, n_summaries, format = FALSE, format_type = "", digits = 2L) {
-    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_summary_hex`, x, palette, na_colour, include_alpha, n_summaries, format, format_type, digits)
-}
-
-rcpp_colour_str_value_string_palette_hex <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_hex`, x, palette, na_colour, alpha, include_alpha)
-}
-
-rcpp_colour_str_value_string_palette_summary_hex <- function(x, palette, na_colour, alpha, include_alpha, summary) {
-    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_summary_hex`, x, palette, na_colour, alpha, include_alpha, summary)
-}
-
-rcpp_colour_str_value_rgb_palette_hex <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_hex`, x, palette, na_colour, include_alpha)
-}
-
-rcpp_colour_str_value_rgb_palette_summary_hex <- function(x, palette, na_colour, include_alpha, summary) {
-    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_summary_hex`, x, palette, na_colour, include_alpha, summary)
-}
-
-rcpp_colour_num_value_string_palette_rgb <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
-}
-
-rcpp_colour_num_value_string_palette_summary_rgb <- function(x, palette, na_colour, alpha, include_alpha, n_summaries, format = FALSE, format_type = "", digits = 2L) {
-    .Call(`_colourvalues_rcpp_colour_num_value_string_palette_summary_rgb`, x, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits)
-}
-
-rcpp_colour_num_value_rgb_palette_rgb <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
-}
-
-rcpp_colour_num_value_rgb_palette_summary_rgb <- function(x, palette, na_colour, include_alpha, n_summaries, format = FALSE, format_type = "", digits = 2L) {
-    .Call(`_colourvalues_rcpp_colour_num_value_rgb_palette_summary_rgb`, x, palette, na_colour, include_alpha, n_summaries, format, format_type, digits)
-}
-
-rcpp_colour_str_value_string_palette_rgb <- function(x, palette, na_colour, alpha, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_rgb`, x, palette, na_colour, alpha, include_alpha)
-}
-
-rcpp_colour_str_value_string_palette_summary_rgb <- function(x, palette, na_colour, alpha, include_alpha, summary) {
-    .Call(`_colourvalues_rcpp_colour_str_value_string_palette_summary_rgb`, x, palette, na_colour, alpha, include_alpha, summary)
-}
-
-rcpp_colour_str_value_rgb_palette_rgb <- function(x, palette, na_colour, include_alpha) {
-    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_rgb`, x, palette, na_colour, include_alpha)
-}
-
-rcpp_colour_str_value_rgb_palette_summary_rgb <- function(x, palette, na_colour, include_alpha, summary) {
-    .Call(`_colourvalues_rcpp_colour_str_value_rgb_palette_summary_rgb`, x, palette, na_colour, include_alpha, summary)
+rcpp_colour_values_rgb <- function(x, palette, alpha, na_colour = "#808080", include_alpha = TRUE, format = FALSE, format_type = "numeric", digits = 2L, summary = FALSE, n_summaries = 0L) {
+    .Call(`_colourvalues_rcpp_colour_values_rgb`, x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries)
 }
 
 rcpp_convert_hex_to_rgb <- function(hex_strings) {
@@ -91,10 +31,6 @@ rcpp_list_size <- function(lst, total_size, existing_type) {
 
 rcpp_refil_list <- function(lst_sizes, colours, vector_position) {
     .Call(`_colourvalues_rcpp_refil_list`, lst_sizes, colours, vector_position)
-}
-
-colour_list <- function(lst) {
-    .Call(`_colourvalues_colour_list`, lst)
 }
 
 rcpp_viridis <- function() {

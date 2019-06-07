@@ -88,7 +88,8 @@ namespace colours_hex {
     int n_summaries = 0,
     bool format = false,
     std::string format_type = "numeric",
-    int digits = 2) {
+    int digits = 2
+  ) {
 
     colourvalues::utils::matrix_palette_check( palette );
 
