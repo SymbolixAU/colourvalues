@@ -5,6 +5,26 @@
 
 using namespace Rcpp;
 
+// rcpp_colour_values_hex
+Rcpp::StringVector rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, std::string format_type, int digits, bool summary, int n_summaries);
+RcppExport SEXP _colourvalues_rcpp_colour_values_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP format_typeSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
+    Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
+    Rcpp::traits::input_parameter< bool >::type format(formatSEXP);
+    Rcpp::traits::input_parameter< std::string >::type format_type(format_typeSEXP);
+    Rcpp::traits::input_parameter< int >::type digits(digitsSEXP);
+    Rcpp::traits::input_parameter< bool >::type summary(summarySEXP);
+    Rcpp::traits::input_parameter< int >::type n_summaries(n_summariesSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_values_hex(x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_colour_num_value_string_palette_hex
 Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(Rcpp::NumericVector x, std::string palette, std::string na_colour, Rcpp::NumericVector alpha, bool include_alpha);
 RcppExport SEXP _colourvalues_rcpp_colour_num_value_string_palette_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP na_colourSEXP, SEXP alphaSEXP, SEXP include_alphaSEXP) {
@@ -861,6 +881,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_colourvalues_rcpp_colour_values_hex", (DL_FUNC) &_colourvalues_rcpp_colour_values_hex, 10},
     {"_colourvalues_rcpp_colour_num_value_string_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_hex, 5},
     {"_colourvalues_rcpp_colour_num_value_string_palette_summary_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_string_palette_summary_hex, 9},
     {"_colourvalues_rcpp_colour_num_value_rgb_palette_hex", (DL_FUNC) &_colourvalues_rcpp_colour_num_value_rgb_palette_hex, 4},

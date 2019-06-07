@@ -1,10 +1,30 @@
 #include <Rcpp.h>
 
-#include "colourvalues/colours/colours_hex.hpp"
+//#include "colourvalues/colours.hpp"
+//#include "colourvalues/colours/colours_hex.hpp"
+#include "colourvalues/api.hpp"
 
 
 // -----------------------------------------------------------------------------
 // return HEX
+
+// [[Rcpp::export]]
+Rcpp::StringVector rcpp_colour_values_hex(
+    SEXP x,
+    SEXP palette,
+    Rcpp::NumericVector& alpha,
+    std::string na_colour = "#808080",
+    bool include_alpha = true,
+    bool format = false,
+    std::string format_type = "numeric",
+    int digits = 2,
+    bool summary = false,
+    int n_summaries = 0
+  ) {
+  return colourvalues::api::colour_values_hex(
+    x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
+  );
+}
 
 // [[Rcpp::export]]
 Rcpp::StringVector rcpp_colour_num_value_string_palette_hex(

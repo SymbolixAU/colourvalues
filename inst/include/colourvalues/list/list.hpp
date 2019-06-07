@@ -119,9 +119,10 @@ namespace list {
     * @param lst_sizes - the dimensions of the list
     * @param colorus - vector of values which will go into colour_values_hex()
     */
-   inline void unlist_list( const Rcpp::List& lst, const Rcpp::List& lst_sizes,
-                            Rcpp::StringVector& colours, int& list_position ) {
-
+   inline void unlist_list(
+         const Rcpp::List& lst, const Rcpp::List& lst_sizes,
+         Rcpp::StringVector& colours, int& list_position
+   ) {
       // - iterate through original list
       // - extract each element and insert into 'colours'
       size_t n = lst.size();
@@ -138,6 +139,34 @@ namespace list {
             int end_position = list_position + n_elements[0] - 1;
             Rcpp::IntegerVector elements = Rcpp::seq( list_position, end_position );
             colours[ elements ] = Rcpp::as< Rcpp::StringVector >( lst[ i ] );
+
+            list_position = end_position + 1;
+            break;
+         }
+         }
+      }
+   }
+
+   inline void unlist_list(
+         const Rcpp::List& lst, const Rcpp::List& lst_sizes,
+         Rcpp::NumericVector& colours, int& list_position
+   ) {
+      // - iterate through original list
+      // - extract each element and insert into 'colours'
+      size_t n = lst.size();
+      Rcpp::List res( n );
+      std::size_t i;
+      for( i = 0; i < n; i++ ) {
+         switch( TYPEOF( lst[i] ) ) {
+         case VECSXP: {
+            unlist_list( lst[ i ], lst_sizes[ i ], colours, list_position );
+            break;
+         }
+         default: {
+            Rcpp::IntegerVector n_elements = Rcpp::as< Rcpp::IntegerVector >( lst_sizes[ i ] );
+            int end_position = list_position + n_elements[0] - 1;
+            Rcpp::IntegerVector elements = Rcpp::seq( list_position, end_position );
+            colours[ elements ] = Rcpp::as< Rcpp::NumericVector >( lst[ i ] );
 
             list_position = end_position + 1;
             break;
