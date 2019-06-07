@@ -219,6 +219,8 @@ namespace colours_hex {
       bool include_alpha,
       bool summary = false) {
 
+    Rcpp::Rcout << "inside colours_hex::colour_value_hex" << std::endl;
+
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 

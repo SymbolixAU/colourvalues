@@ -21,6 +21,8 @@ namespace api {
     int n_summaries = 0
   ) {
 
+    Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
+
     switch( TYPEOF( palette ) ) {
       // STringVector - needs to get std::string
     case STRSXP: {
@@ -62,6 +64,8 @@ namespace api {
       int digits = 2,
       bool summary = false
   ) {
+    Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
+
     switch( TYPEOF( palette ) ) {
     case STRSXP: {
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( palette );
@@ -103,6 +107,8 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
+    Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+
     switch( TYPEOF( x ) ) {
     case INTSXP: {}
     case REALSXP: {
@@ -143,8 +149,12 @@ namespace api {
       int n_summaries = 0
   ) {
 
+    Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
+    Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+
     Rcpp::String p = palette[0];
     std::string pal = p;
+
     switch( TYPEOF( x ) ) {
     case INTSXP: {}
     case REALSXP: {
@@ -185,6 +195,8 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
+
+    Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case INTSXP: {}
