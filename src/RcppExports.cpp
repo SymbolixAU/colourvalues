@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // rcpp_colour_values_hex
-Rcpp::StringVector rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, std::string format_type, int digits, bool summary, int n_summaries);
+SEXP rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, std::string format_type, int digits, bool summary, int n_summaries);
 RcppExport SEXP _colourvalues_rcpp_colour_values_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP format_typeSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

@@ -21,7 +21,7 @@ namespace api {
     int n_summaries = 0
   ) {
 
-    Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
+    //Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
       // STringVector - needs to get std::string
@@ -64,7 +64,7 @@ namespace api {
       int digits = 2,
       bool summary = false
   ) {
-    Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
+    //Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case STRSXP: {
@@ -107,7 +107,8 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+    //Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+    //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
 
     switch( TYPEOF( x ) ) {
     case INTSXP: {}
@@ -126,7 +127,7 @@ namespace api {
     default: {
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
       return colourvalues::colours_hex::colour_value_hex(
-        sv, palette, na_colour, alpha, summary
+        sv, palette, na_colour, include_alpha, summary
       );
     }
     }
@@ -149,16 +150,29 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
-    Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+    //Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
+    //Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
 
     Rcpp::String p = palette[0];
     std::string pal = p;
 
     switch( TYPEOF( x ) ) {
-    case INTSXP: {}
+    case INTSXP: {
+      if( Rf_isFactor( x ) ) {
+      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
+      return colourvalues::colours_hex::colour_value_hex(
+        sv, pal, na_colour, alpha, include_alpha, summary
+      );
+    } else {
+      Rcpp::NumericVector nv = Rcpp::clone(x);
+      return colourvalues::colours_hex::colour_value_hex(
+        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
+      );
+    }
+    }
     case REALSXP: {
-      Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+      //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+      Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_hex::colour_value_hex(
         nv, pal, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
       );
@@ -196,7 +210,7 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
+    //Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case INTSXP: {}
@@ -209,8 +223,6 @@ namespace api {
     }
     case STRSXP: {
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( palette );
-//      Rcpp::String s = sv[0];
-//      std::string pal = s;
       return colour_values_hex(
         x, sv, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
       );

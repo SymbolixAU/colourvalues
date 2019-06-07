@@ -8,8 +8,11 @@
 // -----------------------------------------------------------------------------
 // return HEX
 
+// 'summary' will return a list
+// 'no summary' will return a string vector
+
 // [[Rcpp::export]]
-Rcpp::StringVector rcpp_colour_values_hex(
+SEXP rcpp_colour_values_hex(
     SEXP x,
     SEXP palette,
     Rcpp::NumericVector& alpha,
@@ -21,6 +24,10 @@ Rcpp::StringVector rcpp_colour_values_hex(
     bool summary = false,
     int n_summaries = 0
   ) {
+
+  //Rcpp::Rcout << "rcpp_colour_values_hex" << std::endl;
+  //Rcpp::Rcout <<  "include_alpha: " << include_alpha << std::endl;
+  //Rcpp::Rcout << "summary " << summary << std::endl;
   return colourvalues::api::colour_values_hex(
     x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
   );
