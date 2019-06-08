@@ -13,7 +13,7 @@ namespace api {
   /*
    * list with string palette
    */
-  SEXP colour_values_rgb(
+  inline SEXP colour_values_rgb(
       Rcpp::List lst,
       Rcpp::NumericMatrix& palette,
       Rcpp::NumericVector& alpha,
@@ -100,7 +100,7 @@ namespace api {
   /*
    * list with string palette
    */
-  SEXP colour_values_rgb(
+  inline SEXP colour_values_rgb(
       Rcpp::List lst,
       std::string& palette,
       Rcpp::NumericVector& alpha,
@@ -157,9 +157,9 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-        Rcpp::warning("n_summaries not valid for character values, using summary = T");
-        summary = true;
-      }
+      Rcpp::warning("n_summaries not valid for character values, using summary = T");
+      summary = true;
+    }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );

@@ -1,8 +1,6 @@
 #include <Rcpp.h>
 
-#include "colourvalues/api/api_hex.hpp"
-#include "colourvalues/api/api_rgb.hpp"
-
+#include "colourvalues/api/api.hpp"
 
 // [[Rcpp::export]]
 SEXP rcpp_colour_values_hex(

@@ -13,7 +13,7 @@ namespace api {
   /*
    * list with matrix palette
    */
-  SEXP colour_values_hex(
+  inline SEXP colour_values_hex(
       Rcpp::List lst,
       Rcpp::NumericMatrix& palette,
       Rcpp::NumericVector& alpha,
@@ -67,9 +67,9 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-        Rcpp::warning("n_summaries not valid for character values, using summary = T");
-        summary = true;
-      }
+      Rcpp::warning("n_summaries not valid for character values, using summary = T");
+      summary = true;
+    }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
@@ -89,7 +89,7 @@ namespace api {
   /*
    * list with string palette
    */
-  SEXP colour_values_hex(
+  inline SEXP colour_values_hex(
       Rcpp::List lst,
       std::string& palette,
       Rcpp::NumericVector& alpha,
@@ -141,9 +141,9 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-        Rcpp::warning("n_summaries not valid for character values, using summary = T");
-        summary = true;
-      }
+      Rcpp::warning("n_summaries not valid for character values, using summary = T");
+      summary = true;
+    }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
@@ -175,21 +175,21 @@ namespace api {
    * when palette is unknown, but vector is numeric
    */
   inline SEXP colour_values_hex(
-    Rcpp::NumericVector& x,
-    SEXP palette,
-    Rcpp::NumericVector& alpha,
-    std::string& na_colour,
-    bool include_alpha = true,
-    bool format = false,
-    std::string format_type = "numeric",
-    int digits = 2,
-    int n_summaries = 0
+      Rcpp::NumericVector& x,
+      SEXP palette,
+      Rcpp::NumericVector& alpha,
+      std::string& na_colour,
+      bool include_alpha = true,
+      bool format = false,
+      std::string format_type = "numeric",
+      int digits = 2,
+      int n_summaries = 0
   ) {
 
     //Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
-      // STringVector - needs to get std::string
+    // STringVector - needs to get std::string
     case STRSXP: {
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( palette );
       Rcpp::String s = sv[0];
@@ -201,8 +201,8 @@ namespace api {
     case INTSXP: {}
     case REALSXP: {
       if( !Rf_isMatrix( palette ) ) {
-        Rcpp::stop("Unknown palette type - expecting a matrix");
-      }
+      Rcpp::stop("Unknown palette type - expecting a matrix");
+    }
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colourvalues::colours_hex::colour_value_hex(
         x, pal, na_colour, include_alpha, n_summaries, format, format_type, digits
