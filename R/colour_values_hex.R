@@ -132,6 +132,10 @@ colour_values_to_hex.factor <- function( x, palette, alpha, na_colour, include_a
 }
 
 #' @rdname colour_values
+#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
+#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
+#' @param format logical indicating if the summary values should be formatted. See details
 #' @export
 colour_values_to_hex.Date <-  function( x, palette, alpha, na_colour, include_alpha, n_summaries = 0, format = TRUE ) {
   # colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "Date", 0 )

@@ -2,10 +2,38 @@
 % Please edit documentation in R/colour_values_rgb.R
 \name{colour_values_rgb}
 \alias{colour_values_rgb}
+\alias{color_values_rgb}
+\alias{colour_values_to_rgb.character}
+\alias{colour_values_to_rgb.logical}
+\alias{colour_values_to_rgb.factor}
+\alias{colour_values_to_rgb.Date}
+\alias{colour_values_to_rgb.POSIXct}
+\alias{colour_values_to_rgb.POSIXlt}
 \title{Colour Values RGB}
 \usage{
 colour_values_rgb(x, palette = "viridis", alpha = 255,
   na_colour = "#808080FF", include_alpha = TRUE, ...)
+
+color_values_rgb(x, palette = "viridis", alpha = 255,
+  na_colour = "#808080FF", include_alpha = TRUE, ...)
+
+\method{colour_values_to_rgb}{character}(x, palette, alpha, na_colour,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_rgb}{logical}(x, palette, alpha, na_colour,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_rgb}{factor}(x, palette, alpha, na_colour,
+  include_alpha, summary = FALSE)
+
+\method{colour_values_to_rgb}{Date}(x, palette, alpha, na_colour,
+  include_alpha, n_summaries = 0, format = TRUE)
+
+\method{colour_values_to_rgb}{POSIXct}(x, palette, alpha, na_colour,
+  include_alpha, n_summaries = 0, format = TRUE)
+
+\method{colour_values_to_rgb}{POSIXlt}(x, palette, na_colour, alpha,
+  include_alpha, n_summaries = 0, format = TRUE)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
@@ -24,6 +52,15 @@ If a matrix palette is supplied this argument is ignored.}
 the alpha values. Defaults to \code{TRUE}.}
 
 \item{...}{other arguments possed to methods}
+
+\item{summary}{logical indicating if a summary of the colours should be returned as
+well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
+
+\item{n_summaries}{positive integer. If supplied a summary colour palette will be returned
+in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+and their associated colours. If a non-numeric \code{x} is used this value is ignored}
+
+\item{format}{logical indicating if the summary values should be formatted. See details}
 }
 \description{
 Maps colours to variables, returning a matrix of RGB(A) values
