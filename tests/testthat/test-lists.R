@@ -113,6 +113,11 @@ test_that("lists of various types work",{
   exp <- colour_values( c( pct, l ) )
   expect_true( all ( unlist( res ) == exp ) )
 
+  l <- list(1:2, x = list(y = 1:2) )
+  res <- colour_values( l )
+  expect_true( res[[1]][1] == res[[2]][[1]][1] )
+  expect_true( res[[1]][2] == res[[2]][[1]][2] )
+
 })
 
 test_that("list produces summary",{
@@ -130,4 +135,20 @@ test_that("list produces summary",{
 
   expect_warning( colour_values( list(letters),  n_summaries = 4) )
 })
+
+
+test_that("lists return rgb values", {
+
+
+  l <- list(1:2, x = list(y = 1:2) )
+  res <- colour_values_rgb( l )
+  expect_equal( res[[1]], res[[2]][[1]] )
+
+  l <- list(1:2, letters)
+  res <- colour_values_rgb( l )
+  exp <- colour_values_rgb( c(1:2, letters) )
+  expect_equal( rbind( res[[1]], res[[2]] ), exp )
+
+})
+
 

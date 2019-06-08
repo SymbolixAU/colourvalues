@@ -81,9 +81,53 @@ namespace list {
 
    /*
     * Creates a list of the same dimensions as the original list, but all the elements are now
+    * NumericMatrices of rgb colours
+    */
+   inline Rcpp::List refil_list(
+         const Rcpp::List& lst_sizes,
+         Rcpp::NumericMatrix& colours,
+         int& vector_position
+   ) {
+
+      // iterate through the list, if size > 0, fill with that many values from the vector
+
+      size_t n = lst_sizes.size();
+      Rcpp::List res( n );
+      std::size_t i;
+
+      for( i = 0; i < n; i++ ) {
+         switch( TYPEOF( lst_sizes[ i ] ) ) {
+         case VECSXP: {
+            res[ i ] = refil_list( lst_sizes[ i ], colours, vector_position );
+            break;
+         }
+         case INTSXP: {
+            Rcpp::IntegerVector n_elements = Rcpp::as< Rcpp::IntegerVector >( lst_sizes[ i ] );
+            int end_position = vector_position + n_elements[0] - 1;
+            //Rcpp::IntegerVector elements = Rcpp::seq( vector_position, end_position );
+            Rcpp::Range elements = Rcpp::Range( vector_position, end_position );
+            Rcpp::NumericMatrix these_colours = colours( elements, Rcpp::_ );
+            res[ i ] = these_colours;
+            vector_position = end_position + 1;
+            break;
+         }
+         default: {
+            Rcpp::stop("Unknown list element type");
+         }
+         }
+      }
+      return res;
+   }
+
+   /*
+    * Creates a list of the same dimensions as the original list, but all the elements are now
     * StringVectors of hex colours
     */
-   inline Rcpp::List refil_list( const Rcpp::List& lst_sizes, Rcpp::StringVector& colours, int& vector_position ) {
+   inline Rcpp::List refil_list(
+         const Rcpp::List& lst_sizes,
+         Rcpp::StringVector& colours,
+         int& vector_position
+   ) {
 
       // iterate through the list, if size > 0, fill with that many values from the vector
 
