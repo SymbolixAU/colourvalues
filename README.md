@@ -89,12 +89,21 @@ LinkingTo:
     colourvalues
 ```
 
-And in a **c++** source file so you can `#include` a header and use the
-available functions
+And in a **c++** source file so you can `#include` the API header
 
 ``` cpp
-#include "colourvalues/colours/colours_hex.hpp"
+#include "colourvalues/api.hpp"
 // [[Rcpp::depends(colourvalues)]]
+```
+
+And call
+
+``` cpp
+// return hex colours
+colourvalues::api::colour_values_hex()
+
+// return RGP matrix
+colourvalues::api::colour_values_rgb()
 ```
 
 **R**
@@ -158,27 +167,28 @@ No, you can chose one from
 
 ``` r
 colour_palettes()
-#  [1] "viridis"        "cividis"        "magma"          "inferno"       
-#  [5] "plasma"         "ylorrd"         "ylorbr"         "ylgnbu"        
-#  [9] "ylgn"           "reds"           "rdpu"           "purples"       
-# [13] "purd"           "pubugn"         "pubu"           "orrd"          
-# [17] "oranges"        "greys"          "greens"         "gnbu"          
-# [21] "bupu"           "bugn"           "blues"          "spectral"      
-# [25] "rdylgn"         "rdylbu"         "rdgy"           "rdbu"          
-# [29] "puor"           "prgn"           "piyg"           "brbg"          
-# [33] "terrain"        "topo"           "heat"           "cm"            
-# [37] "rainbow"        "terrain_hcl"    "heat_hcl"       "sequential_hcl"
-# [41] "rainbow_hcl"    "diverge_hcl"    "diverge_hsv"    "ygobb"         
-# [45] "matlab_like2"   "matlab_like"    "magenta2green"  "cyan2yellow"   
-# [49] "blue2yellow"    "green2red"      "blue2green"     "blue2red"
+# Warning in if (grepl("colorspace|colourspace", colours)) {: the condition
+# has length > 1 and only the first element will be used
+# Warning in if (grepl("colorramp|colourramp", colours)) {: the condition has
+# length > 1 and only the first element will be used
+#  [1] "viridis"  "cividis"  "magma"    "inferno"  "plasma"   "ylorrd"  
+#  [7] "ylorbr"   "ylgnbu"   "ylgn"     "reds"     "rdpu"     "purples" 
+# [13] "purd"     "pubugn"   "pubu"     "orrd"     "oranges"  "greys"   
+# [19] "greens"   "gnbu"     "bupu"     "bugn"     "blues"    "spectral"
+# [25] "rdylgn"   "rdylbu"   "rdgy"     "rdbu"     "puor"     "prgn"    
+# [31] "piyg"     "brbg"     "terrain"  "topo"     "heat"     "cm"      
+# [37] "rainbow"
 ```
 
 And you can use `show_colours()` to view them all. Here’s what some of
-them look
-like
+them look like
 
 ``` r
 show_colours( colours = colour_palettes(c("viridis", "colorspace")))
+# Warning in if (grepl("colorspace|colourspace", colours)) {: the condition
+# has length > 1 and only the first element will be used
+# Warning in if (grepl("colorramp|colourramp", colours)) {: the condition has
+# length > 1 and only the first element will be used
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
@@ -275,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#27AD81FF" "#3F4989FF" "#39568CFF" "#218F8DFF" "#228C8DFF"
-#  [6] "#FDE725FF" "#440154FF" "#3F4889FF" "#453681FF" "#26818EFF"
+#  [1] "#66CC5DFF" "#32658EFF" "#31678EFF" "#5EC962FF" "#FDE725FF"
+#  [6] "#24878EFF" "#56C666FF" "#3B528BFF" "#52C569FF" "#440154FF"
 # 
 # $summary_values
-# [1] "-1.21" "0.71"  "2.62" 
+# [1] "-1.55" "0.17"  "1.88" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -329,27 +339,69 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#2F6C8EFF" "#2FB47CFF" "#482575FF" "#2F6C8EFF" "#43BF71FF"
-#  [6] "#3B528BFF" "#414487FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF"
-# [11] "#5DC963FF" "#2F6C8EFF" "#7AD151FF" "#345F8DFF" "#7AD151FF"
-# [16] "#7AD151FF" "#482575FF" "#25848EFF" "#1E9C89FF" "#2A788EFF"
-# [21] "#9AD93DFF" "#3B528BFF" "#481466FF" "#7AD151FF" "#22A884FF"
-# [26] "#5DC963FF" "#21908CFF" "#FDE725FF" "#21908CFF" "#DDE318FF"
-# [31] "#463480FF" "#21908CFF" "#25848EFF" "#2F6C8EFF" "#481466FF"
-# [36] "#25848EFF" "#440154FF" "#BCDF27FF" "#345F8DFF" "#25848EFF"
-# [41] "#440154FF" "#FDE725FF" "#440154FF" "#43BF71FF" "#1E9C89FF"
-# [46] "#22A884FF" "#2F6C8EFF" "#BCDF27FF" "#DDE318FF" "#463480FF"
+#  [1] "#1FA088FF" "#41BE72FF" "#482072FF" "#1FA088FF" "#228B8DFF"
+#  [6] "#FDE725FF" "#1F958BFF" "#2F6B8EFF" "#FDE725FF" "#24AA83FF"
+# [11] "#471164FF" "#1F958BFF" "#39558CFF" "#1FA088FF" "#26808EFF"
+# [16] "#57C766FF" "#8AD647FF" "#34608DFF" "#30B47CFF" "#1FA088FF"
+# [21] "#26808EFF" "#440154FF" "#440154FF" "#E2E418FF" "#3F4989FF"
+# [26] "#6FCF58FF" "#471164FF" "#FDE725FF" "#34608DFF" "#482072FF"
+# [31] "#228B8DFF" "#2B768EFF" "#3F4989FF" "#A7DB34FF" "#2B768EFF"
+# [36] "#C5E022FF" "#433C84FF" "#39558CFF" "#A7DB34FF" "#41BE72FF"
+# [41] "#1FA088FF" "#26808EFF" "#472E7CFF" "#24AA83FF" "#26808EFF"
+# [46] "#1F958BFF" "#41BE72FF" "#2B768EFF" "#440154FF" "#57C766FF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "e" "f" "g" "h" "i" "j" "k" "m" "o" "p" "q" "r" "s" "t"
-# [18] "u" "x" "y" "z"
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+# [18] "r" "s" "t" "v" "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF"
-#  [6] "#3B528BFF" "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF"
-# [11] "#21908CFF" "#1E9C89FF" "#22A884FF" "#2FB47CFF" "#43BF71FF"
-# [16] "#5DC963FF" "#7AD151FF" "#9AD93DFF" "#BCDF27FF" "#DDE318FF"
-# [21] "#FDE725FF"
+#  [1] "#440154FF" "#471164FF" "#482072FF" "#472E7CFF" "#433C84FF"
+#  [6] "#3F4989FF" "#39558CFF" "#34608DFF" "#2F6B8EFF" "#2B768EFF"
+# [11] "#26808EFF" "#228B8DFF" "#1F958BFF" "#1FA088FF" "#24AA83FF"
+# [16] "#30B47CFF" "#41BE72FF" "#57C766FF" "#6FCF58FF" "#8AD647FF"
+# [21] "#A7DB34FF" "#C5E022FF" "#E2E418FF" "#FDE725FF"
+```
+
+### I see you support lists, but how does it work?
+
+Basically, it’s the same as un-listing the list to create a vector of
+all the values, then colouring them.
+
+So if your list contains different types, it will coerce all values to
+the same type and colour them.
+
+But it returns a list of the same structure.
+
+For example,
+
+``` r
+
+l <- list( x = 1:5, y = list(z = letters[1:5] ) )
+colour_values( l )
+# [[1]]
+# [1] "#440154FF" "#482878FF" "#3E4A89FF" "#31688EFF" "#26838EFF"
+# 
+# [[2]]
+# [[2]][[1]]
+# [1] "#1F9D89FF" "#35B779FF" "#6CCE59FF" "#B4DD2CFF" "#FDE725FF"
+
+x <- c( 1:5, letters[1:5] )
+colour_values( x )
+#  [1] "#440154FF" "#482878FF" "#3E4A89FF" "#31688EFF" "#26838EFF"
+#  [6] "#1F9D89FF" "#35B779FF" "#6CCE59FF" "#B4DD2CFF" "#FDE725FF"
+```
+
+What it doesn’t do is treat each list element independently. For this
+you would use
+
+``` r
+lapply( l, colour_values ) 
+# $x
+# [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
+# 
+# $y
+# $y[[1]]
+# [1] "#440154FF" "#3B528BFF" "#21908CFF" "#5DC963FF" "#FDE725FF"
 ```
 
 -----
@@ -375,14 +427,14 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.617036 1.629365 1.682938 1.645191 1.745641 1.800155    25
-#        scales 2.820961 2.916128 3.035900 2.981311 3.140706 3.418156    25
+#  colourvalues 3.325935 3.512659 4.169802 4.417923 4.589773 4.849371    25
+#        scales 6.254049 8.290376 8.260139 8.629479 8.766626 9.236977    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-18-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-20-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -404,11 +456,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 182.1952 203.5807 206.2559 207.5844 209.7223 245.3349    25
-#        scales 329.7487 342.8897 349.5171 345.3121 345.8927 417.3716    25
+#  colourvalues 375.0049 393.5553 398.7031 397.6235 405.7669 417.9495    25
+#        scales 639.1727 655.2213 686.7740 669.7334 696.7927 882.1402    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-19-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-21-1.png" width="100%" height="400" />

@@ -89,7 +89,8 @@ namespace colours_rgb {
       int n_summaries = 0,
       bool format = false,
       std::string format_type = "numeric",
-      int digits = 2) {
+      int digits = 2
+  ) {
 
     colourvalues::utils::matrix_palette_check( palette );
     int x_size = x.size();
@@ -141,10 +142,6 @@ namespace colours_rgb {
       std::string format_type = "numeric",
       int digits = 2) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
@@ -228,10 +225,6 @@ namespace colours_rgb {
       bool include_alpha,
       bool summary = false ) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 

@@ -22,7 +22,11 @@ namespace colours_hex {
       Rcpp::NumericVector& alpha,
       int& alpha_type,
       std::string& na_colour,
-      bool& include_alpha) {
+      bool& include_alpha
+   ) {
+
+    //Rcpp::Rcout << "colour_values_to_hex " << std::endl;
+    //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
 
     int n = x.size();
     double colours = red.size();
@@ -84,7 +88,8 @@ namespace colours_hex {
     int n_summaries = 0,
     bool format = false,
     std::string format_type = "numeric",
-    int digits = 2) {
+    int digits = 2
+  ) {
 
     colourvalues::utils::matrix_palette_check( palette );
 
@@ -99,7 +104,6 @@ namespace colours_hex {
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha: " << alpha << std::endl;
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -122,6 +126,7 @@ namespace colours_hex {
         _["summary_colours"] = summary_hex
       );
     }
+
     return colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
@@ -136,17 +141,10 @@ namespace colours_hex {
       std::string format_type = "numeric",
       int digits = 2) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
-
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
-    // Rcpp::Rcout << "alpha_type: " << alpha_type << std::endl;
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha2: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -170,12 +168,6 @@ namespace colours_hex {
       Rcpp::StringVector summary_hex = colour_values_to_hex(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha);
       Rcpp::StringVector full_hex = colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
 
-      // alpha_summary = colourvalues::summary::numeric_summary( alpha_full, n_summaries );
-      // Rcpp::Rcout << "alpha summary: " << alpha_summary << std::endl;
-      //
-
-      // Rcpp::StringVector summary_alpha_hex =
-
       return Rcpp::List::create(
         _["colours"] = full_hex,
         _["summary_values"] = summary_values,
@@ -191,6 +183,9 @@ namespace colours_hex {
       std::string& na_colour,
       bool include_alpha,
       bool summary = false) {
+
+    //Rcpp::Rcout << "colour_value_hex" << std::endl;
+    //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
 
     colourvalues::utils::matrix_palette_check( palette );
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
@@ -221,7 +216,7 @@ namespace colours_hex {
         _["summary_colours"] = summary_hex
       );
     }
-
+    //Rcpp::Rcout << "about to do the conversion - include_alpha: " << include_alpha << std::endl;
     return colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
@@ -233,15 +228,12 @@ namespace colours_hex {
       bool include_alpha,
       bool summary = false) {
 
-    // TODO(this throws an error on Travis)
-    // if(!is_hex_colour(na_colour)) {
-    //   Rcpp::stop("invalid NA Colour");
-    // }
+    //Rcpp::Rcout << "inside colours_hex::colour_value_hex" << std::endl;
+
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
-    // Rcpp::Rcout << "after validate_alpha3: " << alpha << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -254,7 +246,9 @@ namespace colours_hex {
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
     if ( summary ) {
+      //Rcpp::Rcout << "making summary " << std::endl;
       Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
+      //Rcpp::Rcout << "summary values " << summary_values << std::endl;
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
       int x_size = x.size();
@@ -262,7 +256,9 @@ namespace colours_hex {
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
       Rcpp::StringVector summary_hex = colour_values_to_hex( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
+      //Rcpp::Rcout << "summary_hex " << summary_hex << std::endl;
       Rcpp::StringVector full_hex = colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      //Rcpp::Rcout << "full_hex: " << full_hex << std::endl;
 
       return Rcpp::List::create(
         _["colours"] = full_hex,
