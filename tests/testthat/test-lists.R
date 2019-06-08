@@ -42,7 +42,7 @@ test_that("lists work", {
     , a = list( list( list( x = list( letters ) ) ) )
   )
 
-  res <- colourvalues:::colour_list( l )
+  res <- colour_values( l )
   expect_true( all( res[[2]] == res[[3]][[1]][[1]] ) )
   expect_true( all( res[[2]] == res[[4]][[1]][[1]][[1]][[1]] ) )
 
@@ -51,3 +51,83 @@ test_that("lists work", {
   expect_true( all( res[[1]] == colourvalues::colour_values(x)[1:100] ) )
 
 })
+
+
+test_that("lists of various types work",{
+
+  ## logical
+  l <- list( c(T,F) )
+  expect_true( all( colour_values( l )[[1]] == colour_values( l[[1]] ) ) )
+  l <- list( x = c(T, F), y = list(T, F))
+  res <- colour_values( l )
+  expect_true( all( res[[1]] == colour_values( l[[1]] ) ) )
+  expect_true( all( unlist( res[[2]] ) == unlist( colour_values( l[[2]] ) ) ) )
+
+  ## integer
+  l <- list(x = 1L:3L, y = list( 3L:5L ) )
+  v <- colour_values(c(1L:3L,3L:5L))
+  res <- colour_values( l )
+  expect_true( all( unlist( res ) == v ) )
+
+  ## numeric
+  l <- list(x = 1:3, y = list( 3:5 ) )
+  v <- colour_values(c(1:3,3:5))
+  res <- colour_values( l )
+  expect_true( all( unlist( res ) == v ) )
+
+  ## date
+  l <- list( as.Date("2018-01-01"), x = list( as.Date("2018-01-01" ) ) )
+  v <- colour_values( c(as.Date("2018-01-01"),as.Date("2018-01-01")))
+  expect_true( all( unlist( colour_values( l ) ) == v ) )
+
+  ## posixct
+  ## posixlt
+  ## character
+
+  ## Multi
+  l <- c(T,F,T)
+  i <- c(1L:5L)
+  n <- c(10:12)
+  d <- as.Date("2018-01-01")
+  pct <- c(as.POSIXct("2018-01-01"), as.POSIXct("2019-01-01") )
+  plt <- c(as.POSIXlt("2018-09-01"), as.POSIXlt("2019-09-01") )
+  ch <- letters
+
+  ## logical and integer
+  res <- colour_values( list(l, i) )
+  exp <- colour_values( c(l, i) )
+  expect_true( all( unlist( res ) == exp ) )
+
+  ## logical and character
+  res <- colour_values( list(l, y = list(x = list(ch))))
+  exp <- colour_values( c(l, ch))
+  expect_true( all( unlist( res ) == exp ) )
+
+  ## numeric and char
+  res <- colour_values( list( n, list( ch ), x = ch ) )
+  exp <- colour_values( c( n, ch, ch ) )
+  expect_true( all( unlist( res ) == exp ) )
+
+  ## Posixct and logical
+  res <- colour_values( list( pct, list( x = l ) ) )
+  exp <- colour_values( c( pct, l ) )
+  expect_true( all ( unlist( res ) == exp ) )
+
+})
+
+test_that("list produces summary",{
+
+  l <- list(x = 1:5, y = list( list( z = 2:6 ) ) )
+  expect_warning( colour_values( l, summary = T) )
+
+  res <- colour_values( l, n_summaries = 5 )
+  expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
+  expect_true( all( res$summary_values == c("1.00","2.25","3.50","4.75","6.00") ) )
+
+  res <- colour_values( l, n_summaries = 5, digits = 5 )
+  expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
+  expect_true( all( res$summary_values == c("1.00000","2.25000","3.50000","4.75000","6.00000") ) )
+
+  expect_warning( colour_values( list(letters),  n_summaries = 4) )
+})
+

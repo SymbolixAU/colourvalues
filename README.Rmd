@@ -89,11 +89,21 @@ LinkingTo:
     colourvalues
 ```
 
-And in a **c++** source file so you can `#include` a header and use the available functions
+And in a **c++** source file so you can `#include` the API header
 
 ```cpp
-#include "colourvalues/colours/colours_hex.hpp"
+#include "colourvalues/api.hpp"
 // [[Rcpp::depends(colourvalues)]]
+```
+
+And call 
+
+```cpp
+// return hex colours
+colourvalues::api::colour_values_hex()
+
+// return RGP matrix
+colourvalues::api::colour_values_rgb()
 ```
 
 **R**
@@ -241,6 +251,32 @@ For categorical values use `summary = TRUE` to return a uniqe set of the values,
 
 ```{r}
 colour_values(sample(letters, size = 50, replace = T), summary = T)
+```
+
+### I see you support lists, but how does it work?
+
+Basically, it's the same as un-listing the list to create a vector of all the values, then colouring them.
+
+So if your list contains different types, it will coerce all values to the same type and colour them.
+
+But it returns a list of the same structure. 
+
+For example,
+
+```{r}
+
+l <- list( x = 1:5, y = list(z = letters[1:5] ) )
+colour_values( l )
+
+x <- c( 1:5, letters[1:5] )
+colour_values( x )
+
+```
+
+What it doesn't do is treat each list element independently. For this you would use 
+
+```{r}
+lapply( l, colour_values ) 
 ```
 
 

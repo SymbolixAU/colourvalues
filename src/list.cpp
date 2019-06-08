@@ -14,7 +14,7 @@ int rcpp_vector_type( int new_type, int existing_type ) {
  * Anything outside those numbers is converted to STRSXP
  */
 // [[Rcpp::export]]
-Rcpp::List rcpp_list_size( const Rcpp::List& lst, double& total_size, int& existing_type ) {
+Rcpp::List rcpp_list_size( const Rcpp::List& lst, int& total_size, int& existing_type ) {
   return colourvalues::list::list_size( lst, total_size, existing_type );
 }
 

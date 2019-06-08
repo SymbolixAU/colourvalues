@@ -11,6 +11,85 @@
 namespace colourvalues {
 namespace api {
 
+  /*
+   * list with matrix palette
+   */
+  SEXP colour_list(
+      Rcpp::List lst,
+      Rcpp::NumericMatrix& palette,
+      Rcpp::NumericVector& alpha,
+      std::string na_colour = "#808080",
+      bool include_alpha = true,
+      bool format = false,
+      std::string format_type = "numeric",
+      int digits = 2,
+      bool summary = false,
+      int n_summaries = 0
+  ) {
+    int total_size = 0;
+    int existing_type = 10;
+
+    int position = 0;
+
+    Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type );
+
+    switch( existing_type ) {
+    case INTSXP: { } // 13
+    case REALSXP: { // 14
+      Rcpp::NumericVector colours( total_size );
+      colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
+
+      if( summary ) {
+        int option = 5;
+        Rcpp::warning("summary not valid for numeric values, using n_summaries = 5");
+        n_summaries = std::min( total_size, option );
+      }
+
+      SEXP coloured_values = colourvalues::colours_hex::colour_value_hex(
+        colours, palette, na_colour, include_alpha, n_summaries, format, format_type, digits
+      );
+
+      position = 0;
+      Rcpp::StringVector colour_vector;
+
+      if( n_summaries > 0 ) {
+        Rcpp::List res = Rcpp::as< Rcpp::List >( coloured_values );
+        colour_vector = res["colours"];
+        res["colours"] = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      } else {
+        colour_vector = Rcpp::as< Rcpp::StringVector >( coloured_values );
+        Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      }
+
+
+    }
+    default: {
+
+      if( n_summaries > 0 ) {
+        Rcpp::warning("n_summaries not valid for character values, using summary = T");
+        summary = true;
+      }
+
+      Rcpp::StringVector colours( total_size );
+      colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
+
+      Rcpp::StringVector colour_vector = colourvalues::colours_hex::colour_value_hex(
+        colours, palette, na_colour, include_alpha, summary
+      );
+
+      position = 0;
+      Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+      return res;
+    }
+    }
+    return Rcpp::List::create(); // never reaches
+  }
+
+  /*
+   * list with string palette
+   */
   SEXP colour_list(
       Rcpp::List lst,
       std::string& palette,
@@ -23,78 +102,73 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    double total_size = 0;
+    int total_size = 0;
     int existing_type = 10;
 
     int position = 0;
 
     Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type );
-
-    //return lst_sizes;
-
-    //Rcpp::Rcout << "total_size: " << total_size << std::endl;
-    //Rcpp::Rcout << "vector type: " << existing_type << std::endl;
-
-    // iterate again through the list and fill a vector with the values
-    // wrapping to the correct type
-    // the 'existing_type' is now the type of the vector which will go into 'colour_values_hex()'
-    //
     switch( existing_type ) {
-    /* logical treated as character
-     case LGLSXP: { // 10
-
-     }
-     */
     case INTSXP: { } // 13
     case REALSXP: { // 14
       Rcpp::NumericVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
 
-      //Rcpp::Rcout << "colours: " << colours << std::endl;
-      // TODO - 'colours' now goes into 'colour_values_hex()
-      // std::string palette = "viridis";
-      // std::string na_colour = "#808080";
-      // //Rcpp::NumericVector alpha( total_size, 255 );
-      // Rcpp::NumericVector alpha(1, 255.0);
-      // bool include_alpha = true;
-      // int n_summaries = 0;
-      // bool format = false;
-      // std::string format_type = "numeric";
-      // int digits = 2;
+      if( summary ) {
+        int option = 5;
+        Rcpp::warning("summary not valid for numeric values, using n_summaries = 5");
+        n_summaries = std::min( total_size, option );
+      }
 
-      Rcpp::StringVector colour_vector = colourvalues::colours_hex::colour_value_hex(
+      SEXP coloured_values = colourvalues::colours_hex::colour_value_hex(
         colours, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
       );
 
       position = 0;
-      Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
-      return res;
+      Rcpp::StringVector colour_vector;
+
+      if( n_summaries > 0 ) {
+        Rcpp::List res = Rcpp::as< Rcpp::List >( coloured_values );
+        colour_vector = res["colours"];
+        res["colours"] = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      } else {
+        colour_vector = Rcpp::as< Rcpp::StringVector >( coloured_values );
+        Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      }
 
     }
     default: {
+
+      if( n_summaries > 0 ) {
+        Rcpp::warning("n_summaries not valid for character values, using summary = T");
+        summary = true;
+      }
+
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
 
-      //Rcpp::Rcout << "colours: " << colours << std::endl;
-      // TODO - 'colours' now goes into 'colour_values_hex()
-      // std::string palette = "viridis";
-      // std::string na_colour = "#808080";
-      // //Rcpp::NumericVector alpha( total_size, 255 );
-      // Rcpp::NumericVector alpha(1, 255.0);
-      // bool include_alpha = true;
-      // bool summary = false;
-
-      Rcpp::StringVector colour_vector = colourvalues::colours_hex::colour_value_hex(
+      SEXP coloured_values = colourvalues::colours_hex::colour_value_hex(
         colours, palette, na_colour, alpha, include_alpha, summary
       );
 
       position = 0;
-      Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
-      Rcpp::Rcout << "done lists " << std::endl;
-      return res;
-    }
-    }
+      Rcpp::StringVector colour_vector;
 
+      if( summary ) {
+        Rcpp::List res = Rcpp::as< Rcpp::List >( coloured_values );
+        colour_vector = res["colours"];
+        res["colours"] = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      } else {
+        colour_vector = Rcpp::as< Rcpp::StringVector >( coloured_values );
+        Rcpp::List res = colourvalues::list::refil_list( lst_sizes, colour_vector, position );
+        return res;
+      }
+
+    }
+    }
     return Rcpp::List::create(); // never reaches
   }
 
@@ -213,8 +287,8 @@ namespace api {
     case VECSXP: { // list
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
       // TODO list
-      Rcpp::stop(" list not supported yet ");
-      //colour_list( lst, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries );
+      //Rcpp::stop(" list not supported yet ");
+      return colour_list( lst, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries );
 
     }
     case LGLSXP: {} // as.character
@@ -273,10 +347,7 @@ namespace api {
     }
     case VECSXP: { // list
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
-      //Rcpp::stop(" list not supported yet ");
-      //Rcpp::Rcout << "doing a list " << std::endl;
       return colour_list( lst, pal, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries );
-
     }
     case LGLSXP: {} // as.character
     default: {

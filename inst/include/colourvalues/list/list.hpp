@@ -57,7 +57,7 @@ namespace list {
       return 16;
    }
 
-   inline Rcpp::List list_size( const Rcpp::List& lst, double& total_size, int& existing_type ) {
+   inline Rcpp::List list_size( const Rcpp::List& lst, int& total_size, int& existing_type ) {
       std::size_t n = lst.size();
       Rcpp::List res( n ); // create a list to store the size corresponding to each list element
       std::size_t i;

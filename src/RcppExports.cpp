@@ -91,13 +91,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_list_size
-Rcpp::List rcpp_list_size(const Rcpp::List& lst, double& total_size, int& existing_type);
+Rcpp::List rcpp_list_size(const Rcpp::List& lst, int& total_size, int& existing_type);
 RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
-    Rcpp::traits::input_parameter< double& >::type total_size(total_sizeSEXP);
+    Rcpp::traits::input_parameter< int& >::type total_size(total_sizeSEXP);
     Rcpp::traits::input_parameter< int& >::type existing_type(existing_typeSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type));
     return rcpp_result_gen;
