@@ -20,7 +20,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false,
       int n_summaries = 0
@@ -45,7 +44,7 @@ namespace api {
       }
 
       SEXP coloured_values = colourvalues::colours_rgb::colour_value_rgb(
-        colours, palette, na_colour, include_alpha, n_summaries, format, format_type, digits
+        colours, palette, na_colour, include_alpha, n_summaries, format, digits
       );
 
       position = 0;
@@ -107,7 +106,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false,
       int n_summaries = 0
@@ -135,7 +133,7 @@ namespace api {
 
       //Rcpp::Rcout << "colouring values" << std::endl;
       SEXP coloured_values = colourvalues::colours_rgb::colour_value_rgb(
-        colours, palette, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
+        colours, palette, na_colour, alpha, include_alpha, n_summaries, format, digits
       );
       //Rcpp::Rcout << "coloured values" << std::endl;
 
@@ -197,7 +195,6 @@ namespace api {
       std::string& na_colour,
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       int n_summaries = 0
   ) {
@@ -211,7 +208,7 @@ namespace api {
       Rcpp::String s = sv[0];
       std::string pal = s;
       return colourvalues::colours_rgb::colour_value_rgb(
-        x, pal, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
+        x, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
       );
     }
     case INTSXP: {}
@@ -221,7 +218,7 @@ namespace api {
     }
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colourvalues::colours_rgb::colour_value_rgb(
-        x, pal, na_colour, include_alpha, n_summaries, format, format_type, digits
+        x, pal, na_colour, include_alpha, n_summaries, format, digits
       );
     }
     default: {
@@ -241,7 +238,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false
   ) {
@@ -283,7 +279,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false,
       int n_summaries = 0
@@ -296,7 +291,7 @@ namespace api {
     case REALSXP: {
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, palette, na_colour, include_alpha, n_summaries, format, format_type, digits
+        nv, palette, na_colour, include_alpha, n_summaries, format, digits
       );
     }
     case VECSXP: { // list
@@ -326,7 +321,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false,
       int n_summaries = 0
@@ -348,7 +342,7 @@ namespace api {
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
+        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
       );
     }
     }
@@ -356,13 +350,13 @@ namespace api {
       //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, format_type, digits
+        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
       );
     }
     case VECSXP: { // list
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
       //Rcpp::Rcout << "starting list " << std::endl;
-      return colour_values_rgb( lst, pal, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries );
+      return colour_values_rgb( lst, pal, alpha, na_colour, include_alpha, format, digits, summary, n_summaries );
 
     }
     case LGLSXP: {} // as.character
@@ -388,7 +382,6 @@ namespace api {
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2,
       bool summary = false,
       int n_summaries = 0
@@ -401,14 +394,14 @@ namespace api {
     case REALSXP: {
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colour_values_rgb(
-        x, pal, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
+        x, pal, alpha, na_colour, include_alpha, format, digits, summary, n_summaries
       );
       break;
     }
     case STRSXP: {
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( palette );
       return colour_values_rgb(
-        x, sv, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
+        x, sv, alpha, na_colour, include_alpha, format, digits, summary, n_summaries
       );
       break;
     }

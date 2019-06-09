@@ -10,7 +10,6 @@ SEXP rcpp_colour_values_hex(
     std::string na_colour = "#808080",
     bool include_alpha = true,
     bool format = false,
-    std::string format_type = "numeric",
     int digits = 2,
     bool summary = false,
     int n_summaries = 0
@@ -21,7 +20,7 @@ SEXP rcpp_colour_values_hex(
   //Rcpp::Rcout << "summary " << summary << std::endl;
 
   return colourvalues::api::colour_values_hex(
-    x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
+    x, palette, alpha, na_colour, include_alpha, format, digits, summary, n_summaries
   );
 }
 
@@ -34,14 +33,13 @@ SEXP rcpp_colour_values_rgb(
     std::string na_colour = "#808080",
     bool include_alpha = true,
     bool format = false,
-    std::string format_type = "numeric",
     int digits = 2,
     bool summary = false,
     int n_summaries = 0
 ) {
 
   return colourvalues::api::colour_values_rgb(
-    x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries
+    x, palette, alpha, na_colour, include_alpha, format, digits, summary, n_summaries
   );
 }
 

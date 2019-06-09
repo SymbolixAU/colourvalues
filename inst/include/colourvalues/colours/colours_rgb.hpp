@@ -88,7 +88,6 @@ namespace colours_rgb {
       bool include_alpha,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2
   ) {
 
@@ -113,7 +112,7 @@ namespace colours_rgb {
       n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
 
       if( format ) {
-        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+        summary_values = colourvalues::format::format_summary( summary_values, n_summaries, digits );
       }
 
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
@@ -139,7 +138,6 @@ namespace colours_rgb {
       bool include_alpha,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2) {
 
     int x_size = x.size();
@@ -160,7 +158,7 @@ namespace colours_rgb {
       n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
 
       if( format ) {
-        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
+        summary_values = colourvalues::format::format_summary( summary_values, n_summaries, digits );
       }
 
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
