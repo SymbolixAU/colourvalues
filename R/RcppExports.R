@@ -25,12 +25,16 @@ rcpp_get_format_type <- function(palette_type) {
     .Call(`_colourvalues_rcpp_get_format_type`, palette_type)
 }
 
+rcpp_get_r_class <- function(obj) {
+    .Call(`_colourvalues_rcpp_get_r_class`, obj)
+}
+
 rcpp_vector_type <- function(new_type, existing_type) {
     .Call(`_colourvalues_rcpp_vector_type`, new_type, existing_type)
 }
 
-rcpp_list_size <- function(lst, total_size, existing_type) {
-    .Call(`_colourvalues_rcpp_list_size`, lst, total_size, existing_type)
+rcpp_list_size <- function(lst, total_size, existing_type, format_type) {
+    .Call(`_colourvalues_rcpp_list_size`, lst, total_size, existing_type, format_type)
 }
 
 rcpp_refil_list <- function(lst_sizes, colours, vector_position) {

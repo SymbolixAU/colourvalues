@@ -87,6 +87,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_r_class
+Rcpp::CharacterVector rcpp_get_r_class(SEXP obj);
+RcppExport SEXP _colourvalues_rcpp_get_r_class(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_r_class(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_vector_type
 int rcpp_vector_type(int new_type, int existing_type);
 RcppExport SEXP _colourvalues_rcpp_vector_type(SEXP new_typeSEXP, SEXP existing_typeSEXP) {
@@ -100,15 +111,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_list_size
-Rcpp::List rcpp_list_size(const Rcpp::List& lst, int& total_size, int& existing_type);
-RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
+Rcpp::List rcpp_list_size(const Rcpp::List& lst, int& total_size, int& existing_type, std::string& format_type);
+RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP, SEXP format_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
     Rcpp::traits::input_parameter< int& >::type total_size(total_sizeSEXP);
     Rcpp::traits::input_parameter< int& >::type existing_type(existing_typeSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type));
+    Rcpp::traits::input_parameter< std::string& >::type format_type(format_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type, format_type));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -653,8 +665,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
     {"_colourvalues_rcpp_get_format_type", (DL_FUNC) &_colourvalues_rcpp_get_format_type, 1},
+    {"_colourvalues_rcpp_get_r_class", (DL_FUNC) &_colourvalues_rcpp_get_r_class, 1},
     {"_colourvalues_rcpp_vector_type", (DL_FUNC) &_colourvalues_rcpp_vector_type, 2},
-    {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 3},
+    {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 4},
     {"_colourvalues_rcpp_refil_list", (DL_FUNC) &_colourvalues_rcpp_refil_list, 3},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},

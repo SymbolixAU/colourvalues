@@ -18,13 +18,13 @@ namespace format {
    * Determins the type of formatting requried for summary values (legend)
    *
    */
-  inline std::string get_format_type( SEXP summary_values ) {
+  inline std::string get_format_type( SEXP x ) {
 
     std::string format_type;
 
-    Rcpp::CharacterVector cls = colourvalues::utils::getRClass( summary_values );
+    Rcpp::CharacterVector cls = colourvalues::utils::getRClass( x );
 
-    Rcpp::Rcout << "cls: " << cls << std::endl;
+    //Rcpp::Rcout << "cls: " << cls << std::endl;
 
     if( colourvalues::utils::is_in( "Date", cls ) ) {
       format_type = "Date";
@@ -92,9 +92,9 @@ namespace format {
     return sv;
   }
 
-  inline SEXP format_summary( SEXP summary_values, int n_summaries, int digits ) {
+  inline SEXP format_summary( SEXP summary_values, std::string& format_type, int n_summaries, int digits ) {
 
-    std::string format_type = get_format_type( summary_values );
+    //std::string format_type = get_format_type( summary_values );
 
     if (format_type == "numeric" ) {
       return colourvalues::format::numeric_to_string( summary_values, n_summaries, digits);

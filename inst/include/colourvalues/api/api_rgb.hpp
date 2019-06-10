@@ -29,7 +29,12 @@ namespace api {
 
     int position = 0;
 
-    Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type );
+
+    // TODO: get format_type depending on the type of list elements
+    std::string format_type = "character";
+
+    Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type, format_type );
+
     switch( existing_type ) {
     case INTSXP: { } // 13
     case REALSXP: { // 14
@@ -44,7 +49,7 @@ namespace api {
       }
 
       SEXP coloured_values = colourvalues::colours_rgb::colour_value_rgb(
-        colours, palette, na_colour, include_alpha, n_summaries, format, digits
+        colours, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
       );
 
       position = 0;
@@ -117,7 +122,12 @@ namespace api {
 
     //Rcpp::Rcout << "now doing list " << std::endl;
 
-    Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type );
+
+    // TODO: get format_type depending on the type of list elements
+    std::string format_type = "character";
+
+    Rcpp::List lst_sizes = colourvalues::list::list_size( lst, total_size, existing_type, format_type );
+
     switch( existing_type ) {
     case INTSXP: { } // 13
     case REALSXP: { // 14
@@ -133,7 +143,7 @@ namespace api {
 
       //Rcpp::Rcout << "colouring values" << std::endl;
       SEXP coloured_values = colourvalues::colours_rgb::colour_value_rgb(
-        colours, palette, na_colour, alpha, include_alpha, n_summaries, format, digits
+        colours, palette, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
       );
       //Rcpp::Rcout << "coloured values" << std::endl;
 
@@ -192,6 +202,7 @@ namespace api {
       Rcpp::NumericVector& x,
       SEXP palette,
       Rcpp::NumericVector& alpha,
+      std::string& format_type,
       std::string& na_colour,
       bool include_alpha = true,
       bool format = false,
@@ -208,7 +219,7 @@ namespace api {
       Rcpp::String s = sv[0];
       std::string pal = s;
       return colourvalues::colours_rgb::colour_value_rgb(
-        x, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
+        x, pal, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
       );
     }
     case INTSXP: {}
@@ -218,7 +229,7 @@ namespace api {
     }
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colourvalues::colours_rgb::colour_value_rgb(
-        x, pal, na_colour, include_alpha, n_summaries, format, digits
+        x, pal, na_colour, include_alpha, format_type, n_summaries, format, digits
       );
     }
     default: {
@@ -235,6 +246,7 @@ namespace api {
       Rcpp::StringVector& x,
       SEXP palette,
       Rcpp::NumericVector& alpha,
+      std::string& format_type,
       std::string na_colour = "#808080",
       bool include_alpha = true,
       bool format = false,
@@ -286,12 +298,14 @@ namespace api {
     //Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
     //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
 
+    std::string format_type = colourvalues::format::get_format_type( x );
+
     switch( TYPEOF( x ) ) {
     case INTSXP: {}
     case REALSXP: {
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, palette, na_colour, include_alpha, n_summaries, format, digits
+        nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
       );
     }
     case VECSXP: { // list
@@ -328,6 +342,7 @@ namespace api {
 
     //Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
     //Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+    std::string format_type = colourvalues::format::get_format_type( x );
 
     Rcpp::String p = palette[0];
     std::string pal = p;
@@ -342,7 +357,7 @@ namespace api {
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
+        nv, pal, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
       );
     }
     }
@@ -350,7 +365,7 @@ namespace api {
       //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb::colour_value_rgb(
-        nv, pal, na_colour, alpha, include_alpha, n_summaries, format, digits
+        nv, pal, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
       );
     }
     case VECSXP: { // list

@@ -109,6 +109,7 @@ namespace colours_hex {
     Rcpp::NumericMatrix& palette,
     std::string& na_colour,
     bool include_alpha,
+    std::string& format_type,
     int n_summaries = 0,
     bool format = false,
     int digits = 2
@@ -135,7 +136,7 @@ namespace colours_hex {
       n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
 
       if( format ) {
-        summary_values = colourvalues::format::format_summary( summary_values, n_summaries, digits );
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
 
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
@@ -156,6 +157,7 @@ namespace colours_hex {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
+      std::string& format_type,
       int n_summaries = 0,
       bool format = false,
       int digits = 2
@@ -179,7 +181,7 @@ namespace colours_hex {
       n_summaries = summary.size() < n_summaries ? summary.size() : n_summaries;
 
       if( format ) {
-        summary_values = colourvalues::format::format_summary( summary_values, n_summaries, digits );
+        summary_values = colourvalues::format::format_summary( summary_values, format_type, n_summaries, digits );
       }
 
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;

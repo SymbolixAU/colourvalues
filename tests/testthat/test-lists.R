@@ -134,6 +134,15 @@ test_that("list produces summary",{
   expect_true( all( res$summary_values == c("1.00000","2.25000","3.50000","4.75000","6.00000") ) )
 
   expect_warning( colour_values( list(letters),  n_summaries = 4) )
+
+  ## Mix
+  l <- list( x = 1, y = "a")
+  res <- colour_values( l, summary = T )
+  expect_true( all( res$summary_values == c("1","a") ) )
+
+  l <- list( x = as.Date("2018-01-01"), y = as.POSIXct("2018-01-01", tz = "GMT"))
+  res <- colour_values( l, n_summaries = 3 )
+  expect_true( all( res$summary_values == c("17532","1514764800")))
 })
 
 
