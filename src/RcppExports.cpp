@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // rcpp_colour_values_hex
-SEXP rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, std::string format_type, int digits, bool summary, int n_summaries);
-RcppExport SEXP _colourvalues_rcpp_colour_values_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP format_typeSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
+SEXP rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, int digits, bool summary, int n_summaries);
+RcppExport SEXP _colourvalues_rcpp_colour_values_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,17 +17,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
     Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
     Rcpp::traits::input_parameter< bool >::type format(formatSEXP);
-    Rcpp::traits::input_parameter< std::string >::type format_type(format_typeSEXP);
     Rcpp::traits::input_parameter< int >::type digits(digitsSEXP);
     Rcpp::traits::input_parameter< bool >::type summary(summarySEXP);
     Rcpp::traits::input_parameter< int >::type n_summaries(n_summariesSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_colour_values_hex(x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries));
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_values_hex(x, palette, alpha, na_colour, include_alpha, format, digits, summary, n_summaries));
     return rcpp_result_gen;
 END_RCPP
 }
 // rcpp_colour_values_rgb
-SEXP rcpp_colour_values_rgb(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, std::string format_type, int digits, bool summary, int n_summaries);
-RcppExport SEXP _colourvalues_rcpp_colour_values_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP format_typeSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
+SEXP rcpp_colour_values_rgb(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, int digits, bool summary, int n_summaries);
+RcppExport SEXP _colourvalues_rcpp_colour_values_rgb(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -37,11 +36,10 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type na_colour(na_colourSEXP);
     Rcpp::traits::input_parameter< bool >::type include_alpha(include_alphaSEXP);
     Rcpp::traits::input_parameter< bool >::type format(formatSEXP);
-    Rcpp::traits::input_parameter< std::string >::type format_type(format_typeSEXP);
     Rcpp::traits::input_parameter< int >::type digits(digitsSEXP);
     Rcpp::traits::input_parameter< bool >::type summary(summarySEXP);
     Rcpp::traits::input_parameter< int >::type n_summaries(n_summariesSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_colour_values_rgb(x, palette, alpha, na_colour, include_alpha, format, format_type, digits, summary, n_summaries));
+    rcpp_result_gen = Rcpp::wrap(rcpp_colour_values_rgb(x, palette, alpha, na_colour, include_alpha, format, digits, summary, n_summaries));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -78,6 +76,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_format_type
+std::string rcpp_get_format_type(SEXP palette_type);
+RcppExport SEXP _colourvalues_rcpp_get_format_type(SEXP palette_typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type palette_type(palette_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_format_type(palette_type));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_get_r_class
+Rcpp::CharacterVector rcpp_get_r_class(SEXP obj);
+RcppExport SEXP _colourvalues_rcpp_get_r_class(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_r_class(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_vector_type
 int rcpp_vector_type(int new_type, int existing_type);
 RcppExport SEXP _colourvalues_rcpp_vector_type(SEXP new_typeSEXP, SEXP existing_typeSEXP) {
@@ -91,15 +111,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_list_size
-Rcpp::List rcpp_list_size(const Rcpp::List& lst, int& total_size, int& existing_type);
-RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP) {
+Rcpp::List rcpp_list_size(const Rcpp::List& lst, int& total_size, int& existing_type, std::string& format_type);
+RcppExport SEXP _colourvalues_rcpp_list_size(SEXP lstSEXP, SEXP total_sizeSEXP, SEXP existing_typeSEXP, SEXP format_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::List& >::type lst(lstSEXP);
     Rcpp::traits::input_parameter< int& >::type total_size(total_sizeSEXP);
     Rcpp::traits::input_parameter< int& >::type existing_type(existing_typeSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type));
+    Rcpp::traits::input_parameter< std::string& >::type format_type(format_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_list_size(lst, total_size, existing_type, format_type));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -638,13 +659,15 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_colourvalues_rcpp_colour_values_hex", (DL_FUNC) &_colourvalues_rcpp_colour_values_hex, 10},
-    {"_colourvalues_rcpp_colour_values_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_values_rgb, 10},
+    {"_colourvalues_rcpp_colour_values_hex", (DL_FUNC) &_colourvalues_rcpp_colour_values_hex, 9},
+    {"_colourvalues_rcpp_colour_values_rgb", (DL_FUNC) &_colourvalues_rcpp_colour_values_rgb, 9},
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
+    {"_colourvalues_rcpp_get_format_type", (DL_FUNC) &_colourvalues_rcpp_get_format_type, 1},
+    {"_colourvalues_rcpp_get_r_class", (DL_FUNC) &_colourvalues_rcpp_get_r_class, 1},
     {"_colourvalues_rcpp_vector_type", (DL_FUNC) &_colourvalues_rcpp_vector_type, 2},
-    {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 3},
+    {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 4},
     {"_colourvalues_rcpp_refil_list", (DL_FUNC) &_colourvalues_rcpp_refil_list, 3},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},

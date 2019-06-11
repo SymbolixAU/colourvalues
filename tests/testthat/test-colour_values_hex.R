@@ -169,7 +169,7 @@ test_that("original vectors returned",{
   y <- 1L:10L
   invisible( colour_values(x) )
   expect_true( all(x == y) )
-  invisible( colour_values_rgb(x))
+  invisible( colour_values_rgb(x) )
   expect_true( all(x == y))
 
   set.seed(1)

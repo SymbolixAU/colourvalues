@@ -4,12 +4,43 @@
 #include <Rcpp.h>
 #include <iostream>
 #include <boost/date_time.hpp>
+
+#include "colourvalues/utils/utils.hpp"
+
 // #include <boost/lexical_cast.hpp>
 
 // [[Rcpp::depends(BH)]]
 
 namespace colourvalues {
 namespace format {
+
+  /*
+   * Determins the type of formatting requried for summary values (legend)
+   *
+   */
+  inline std::string get_format_type( SEXP x ) {
+
+    std::string format_type;
+
+    Rcpp::CharacterVector cls = colourvalues::utils::getRClass( x );
+
+    //Rcpp::Rcout << "cls: " << cls << std::endl;
+
+    if( colourvalues::utils::is_in( "Date", cls ) ) {
+      format_type = "Date";
+    } else if ( colourvalues::utils::is_in("POSIXct", cls) ) {
+      format_type = "POSIXct";
+    } else if ( colourvalues::utils::is_in("POSIXlt", cls) ) {
+      format_type = "POSIXct";
+    } else if ( colourvalues::utils::is_in("logical", cls) ) {
+      format_type = "character";
+    } else if ( colourvalues::utils::is_in("character", cls) ) {
+      format_type = "character";
+    } else {
+      format_type = "numeric";
+    }
+    return format_type;
+  }
 
   inline Rcpp::StringVector date_to_string( SEXP v, int n ) {
 
@@ -19,7 +50,7 @@ namespace format {
 
     for ( i = 0; i < n; i++ ) {
       Rcpp::Date d = nv[i];
-      boost::gregorian::date gd = boost::gregorian::date(d.getYear(), d.getMonth(), d.getDay());
+      boost::gregorian::date gd = boost::gregorian::date( d.getYear(), d.getMonth(), d.getDay() );
       std::string s = boost::gregorian::to_iso_extended_string( gd );
       sv[i] = s.c_str();
     }
@@ -61,7 +92,10 @@ namespace format {
     return sv;
   }
 
-  inline SEXP format_summary( SEXP summary_values, std::string format_type, int n_summaries, int digits ) {
+  inline SEXP format_summary( SEXP summary_values, std::string& format_type, int n_summaries, int digits ) {
+
+    //std::string format_type = get_format_type( summary_values );
+
     if (format_type == "numeric" ) {
       return colourvalues::format::numeric_to_string( summary_values, n_summaries, digits);
     // } else if ( format_type == "integer" ) {

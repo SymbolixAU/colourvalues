@@ -147,7 +147,6 @@ colour_values_to_hex.Date <-  function( x, palette, alpha, na_colour, include_al
     , include_alpha = include_alpha
     , n_summaries = n_summaries
     , format = format
-    , format_type = "Date"
     , digits = 0
   )
 }
@@ -165,7 +164,6 @@ colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include
     , include_alpha = include_alpha
     , n_summaries = n_summaries
     , format = format
-    , format_type = "POSIXct"
     , digits = 0
     )
 }
@@ -182,7 +180,6 @@ colour_values_to_hex.POSIXlt <-  function( x, palette, na_colour, alpha, include
     , include_alpha = include_alpha
     , n_summaries = n_summaries
     , format = format
-    , format_type = "POSIXct"
     , digits = 0
   )
 }
@@ -196,7 +193,6 @@ colour_values_to_hex.default <- function(
   na_colour,
   include_alpha,
   format = TRUE,
-  format_type = "numeric",
   digits = 2,
   summary = FALSE,
   n_summaries = 0
@@ -213,7 +209,6 @@ colour_values_to_hex.default <- function(
     , na_colour = na_colour
     , include_alpha = include_alpha
     , format = format
-    , format_type = format_type
     , digits = digits
     , summary = summary
     , n_summaries = n_summaries

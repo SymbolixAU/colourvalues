@@ -86,9 +86,9 @@ namespace colours_rgb {
       Rcpp::NumericMatrix& palette,
       std::string& na_colour,
       bool include_alpha,
+      std::string& format_type,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2
   ) {
 
@@ -137,9 +137,9 @@ namespace colours_rgb {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
+      std::string& format_type,
       int n_summaries = 0,
       bool format = false,
-      std::string format_type = "numeric",
       int digits = 2) {
 
     int x_size = x.size();

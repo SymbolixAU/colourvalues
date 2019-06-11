@@ -3,6 +3,7 @@
 #define R_COLOURVALUES_LIST
 
 #include <Rcpp.h>
+#include "colourvalues/format/format.hpp"
 //#include "colourvalues/colours/colours_hex.hpp"
 
 /*colouring a list
@@ -57,19 +58,24 @@ namespace list {
       return 16;
    }
 
-   inline Rcpp::List list_size( const Rcpp::List& lst, int& total_size, int& existing_type ) {
+   inline Rcpp::List list_size( const Rcpp::List& lst, int& total_size, int& existing_type, std::string& existing_format ) {
       std::size_t n = lst.size();
       Rcpp::List res( n ); // create a list to store the size corresponding to each list element
       std::size_t i;
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst[i] ) ) {
          case VECSXP: {
-            res[ i ] = list_size( lst[i], total_size, existing_type );
+            res[ i ] = list_size( lst[i], total_size, existing_type, existing_format );
             break;
          }
          default: {
             int n_elements = Rf_length( lst[i] );
             int new_type = TYPEOF( lst[i] );
+            std::string new_format = colourvalues::format::get_format_type( lst[i] );
+            //Rcpp::Rcout << "format_type : " << format_type << std::endl;
+            if( new_format != existing_format ) {
+               existing_format = "character";
+            }
             existing_type = vector_type( new_type, existing_type );
             res[i] = n_elements;
             total_size += n_elements;
@@ -161,7 +167,7 @@ namespace list {
    /*
     * @param lst - the original input list
     * @param lst_sizes - the dimensions of the list
-    * @param colorus - vector of values which will go into colour_values_hex()
+    * @param colours - vector of values which will go into colour_values_hex()
     */
    inline void unlist_list(
          const Rcpp::List& lst, const Rcpp::List& lst_sizes,
