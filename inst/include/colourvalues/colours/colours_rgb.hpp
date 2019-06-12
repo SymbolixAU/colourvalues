@@ -7,6 +7,7 @@
 #include "colourvalues/alpha/alpha.hpp"
 #include "colourvalues/summary/summary.hpp"
 #include "colourvalues/format/format.hpp"
+#include "colourvalues/colours/generate_colours.hpp"
 
 namespace colourvalues {
 namespace colours_rgb {
@@ -14,71 +15,6 @@ namespace colours_rgb {
 // if palette is a string; it's using in-built palettes; nothing to do
 // if palette is function or vectors, force rescaling
 
-  inline Rcpp::NumericMatrix colour_values_to_rgb(
-      Rcpp::NumericVector& x,
-      Rcpp::NumericVector& red,
-      Rcpp::NumericVector& green,
-      Rcpp::NumericVector& blue,
-      Rcpp::NumericVector& alpha,
-      int& alpha_type,
-      std::string& na_colour,
-      bool& include_alpha) {
-
-    int n = x.size();
-    double colours = red.size();
-
-    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
-
-    colourvalues::scale::rescale( x );
-    int cols = include_alpha ? 4 : 3;
-    Rcpp::NumericMatrix rgb_mat(n, cols);
-    double step = 1 / ( colours - 1 );  // TODO(test)
-
-    // cublic_b_spoine :: vec.start, vec.end, start.time, step
-    boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
-    boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
-    boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
-
-    double this_x;
-    int i, r, g, b;
-    std::string hex_str;
-
-    Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
-
-    for( i = 0; i < n; i++ ) {
-
-      this_x = x[i];
-
-      if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
-        rgb_mat(i, _) = na_mat;
-
-      } else {
-        r = round( spline_red( this_x ) * 255 ) ;
-        g = round( spline_green( this_x ) * 255 );
-        b = round( spline_blue( this_x ) * 255 );
-
-        r = colourvalues::palette_utils::validate_rgb_range( r );
-        g = colourvalues::palette_utils::validate_rgb_range( g );
-        b = colourvalues::palette_utils::validate_rgb_range( b );
-
-        if (include_alpha) {
-          int a;
-          if ( alpha_type == ALPHA_PALETTE ) {
-            a = round( spline_alpha( this_x ) * 255 );
-          } else if (alpha_type == ALPHA_VECTOR ){
-            a = alpha[i];
-          } else {
-            a = alpha[0];  // should be length 5, but all the same
-          }
-          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b,a);
-        } else {
-          rgb_mat(i, _) = Rcpp::NumericVector::create(r,g,b);
-        }
-      }
-    }
-    return rgb_mat;
-  }
 
   // in this function the colour vectors will already be scaled [0,1]
   inline SEXP colour_value_rgb(
@@ -119,8 +55,8 @@ namespace colours_rgb {
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(x, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
-      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(x, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
         _["summary_values"] = summary_values,
@@ -128,7 +64,7 @@ namespace colours_rgb {
       );
     }
 
-    return colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
   inline SEXP colour_value_rgb(
@@ -166,8 +102,8 @@ namespace colours_rgb {
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
-      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(summary, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
         _["summary_values"] = summary_values,
@@ -175,7 +111,7 @@ namespace colours_rgb {
       );
     }
 
-    return colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
   inline SEXP colour_value_rgb (
@@ -205,8 +141,8 @@ namespace colours_rgb {
       int n_alpha_summary = red_size < 5 ? 5 : red_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
-      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
         _["summary_values"] = lvls,
@@ -214,7 +150,7 @@ namespace colours_rgb {
       );
     }
 
-    return colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
   inline SEXP colour_value_rgb(
@@ -246,8 +182,8 @@ namespace colours_rgb {
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      Rcpp::NumericMatrix summary_rgb = colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
-      Rcpp::NumericMatrix full_rgb = colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb( nv, red, green, blue, alpha_summary, alpha_type, na_colour, include_alpha );
+      Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
       return Rcpp::List::create(
         _["colours"] = full_rgb,
         _["summary_values"] = lvls,
@@ -255,7 +191,7 @@ namespace colours_rgb {
       );
     }
 
-    return colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
 } // namespace colours

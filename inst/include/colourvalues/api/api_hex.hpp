@@ -284,7 +284,22 @@ namespace api {
     std::string format_type = colourvalues::format::get_format_type( x );
 
     switch( TYPEOF( x ) ) {
-    case INTSXP: {}
+    case INTSXP: {
+      if( Rf_isFactor( x ) ) {
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( iv );
+
+      return colourvalues::colours_hex::colour_value_hex(
+        sv, palette, na_colour, include_alpha, summary, true // is factor
+      );
+    } else {
+      Rcpp::NumericVector nv = Rcpp::clone(x);
+      return colourvalues::colours_hex::colour_value_hex(
+        nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+      );
+    }
+    }
     case REALSXP: {
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       return colourvalues::colours_hex::colour_value_hex(
@@ -332,9 +347,18 @@ namespace api {
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
-      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( iv );
+      Rcpp::StringVector lvls = iv.attr("levels");
+
+      // Rcpp::Rcout << "iv: " << iv << std::endl;
+      // Rcpp::Rcout << "sv: " << sv << std::endl;
+      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
+
       return colourvalues::colours_hex::colour_value_hex(
-        sv, pal, na_colour, alpha, include_alpha, summary
+        iv, pal, na_colour, alpha, include_alpha, lvls, summary,
+        true // is factor
       );
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
