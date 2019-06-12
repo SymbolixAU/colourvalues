@@ -279,12 +279,30 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    //Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
-    //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
+    // Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+    // Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     switch( TYPEOF( x ) ) {
-    case INTSXP: {}
+    case INTSXP: {
+      if( Rf_isFactor( x ) ) {
+
+      // Rcpp::Rcout << "is_factor " << std::endl;
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector lvls = iv.attr("levels");
+
+      return colourvalues::colours_hex::colour_value_hex(
+        iv, lvls, palette, na_colour, include_alpha, summary
+      );
+
+    } else {
+      Rcpp::NumericVector nv = Rcpp::clone(x);
+      return colourvalues::colours_hex::colour_value_hex(
+        nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+      );
+    }
+    }
     case REALSXP: {
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       return colourvalues::colours_hex::colour_value_hex(
@@ -322,8 +340,8 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
-    //Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+    // Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
+    // Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     Rcpp::String p = palette[0];
@@ -332,10 +350,19 @@ namespace api {
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
-      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
+
+      // Rcpp::Rcout << "is_factor " << std::endl;
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector lvls = iv.attr("levels");
+
+      // Rcpp::Rcout << "iv: " << iv << std::endl;
+      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
+
       return colourvalues::colours_hex::colour_value_hex(
-        sv, pal, na_colour, alpha, include_alpha, summary
+        iv, lvls, pal, na_colour, alpha, include_alpha, summary
       );
+
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_hex::colour_value_hex(

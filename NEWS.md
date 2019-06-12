@@ -1,5 +1,6 @@
 # v0.3
 
+* factor-level order maintained in summary
 * lists supported
 * Added palette row check function inside .hpp files 
 * BH -DBOOST_NO_AUTO_PTR flag
