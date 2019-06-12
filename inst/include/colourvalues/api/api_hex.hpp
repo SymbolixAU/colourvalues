@@ -288,11 +288,12 @@ namespace api {
       if( Rf_isFactor( x ) ) {
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
-      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( iv );
+      Rcpp::StringVector lvls = iv.attr("levels");
 
       return colourvalues::colours_hex::colour_value_hex(
-        sv, palette, na_colour, include_alpha, summary, true // is factor
+        iv, lvls, palette, na_colour, include_alpha, summary
       );
+
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_hex::colour_value_hex(
@@ -349,17 +350,12 @@ namespace api {
       if( Rf_isFactor( x ) ) {
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
-      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( iv );
       Rcpp::StringVector lvls = iv.attr("levels");
 
-      // Rcpp::Rcout << "iv: " << iv << std::endl;
-      // Rcpp::Rcout << "sv: " << sv << std::endl;
-      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
-
       return colourvalues::colours_hex::colour_value_hex(
-        iv, pal, na_colour, alpha, include_alpha, lvls, summary,
-        true // is factor
+        iv, lvls, pal, na_colour, alpha, include_alpha, summary
       );
+
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_hex::colour_value_hex(

@@ -301,7 +301,23 @@ namespace api {
     std::string format_type = colourvalues::format::get_format_type( x );
 
     switch( TYPEOF( x ) ) {
-    case INTSXP: {}
+    case INTSXP: {
+      if( Rf_isFactor( x ) ) {
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector lvls = iv.attr("levels");
+
+      return colourvalues::colours_rgb::colour_value_rgb(
+        iv, lvls, palette, na_colour, include_alpha, summary
+      );
+
+    } else {
+      Rcpp::NumericVector nv = Rcpp::clone(x);
+      return colourvalues::colours_rgb::colour_value_rgb(
+        nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+      );
+    }
+    }
     case REALSXP: {
       Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
       return colourvalues::colours_rgb::colour_value_rgb(
@@ -350,10 +366,14 @@ namespace api {
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
-      Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
+
+      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+      Rcpp::StringVector lvls = iv.attr("levels");
+
       return colourvalues::colours_rgb::colour_value_rgb(
-        sv, pal, na_colour, alpha, include_alpha, summary
+        iv, lvls, pal, na_colour, alpha, include_alpha, summary
       );
+
     } else {
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb::colour_value_rgb(

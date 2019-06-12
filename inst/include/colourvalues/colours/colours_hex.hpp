@@ -29,10 +29,6 @@ namespace colours_hex {
       std::string& na_colour,
       bool& include_alpha
   ) {
-
-    // Rcpp::Rcout << "summary: " << summary << std::endl;
-    // Rcpp::Rcout << "summary_values: " << summary_values << std::endl;
-
     Rcpp::StringVector full_hex = colourvalues::generate_colours::colour_values_to_hex(
       full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha
     );
@@ -176,12 +172,7 @@ namespace colours_hex {
     Rcpp::NumericVector alpha(palette.nrow(), 255.0);
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
-    Rcpp::StringVector lvls;
-    if( is_factor ) {
-      lvls = Rcpp::unique( x );
-    } else {
-      lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
-    }
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
     lvls = na_omit( lvls );
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
@@ -197,7 +188,7 @@ namespace colours_hex {
         out_nv, nv, lvls, red, green, blue, alpha, alpha_summary, alpha_type, na_colour, include_alpha
       );
     }
-    //Rcpp::Rcout << "about to do the conversion - include_alpha: " << include_alpha << std::endl;
+
     return colourvalues::generate_colours::colour_values_to_hex( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
   }
 
@@ -207,8 +198,7 @@ namespace colours_hex {
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      bool summary = false,
-      int is_factor = false
+      bool summary = false
   ) {
 
     int x_size = x.size();
@@ -222,13 +212,7 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-    Rcpp::StringVector lvls;
-    if( is_factor ) {
-      lvls = Rcpp::unique( x );
-    } else {
-      lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
-    }
-
+    Rcpp::StringVector lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary;
     lvls = na_omit( lvls );
     Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
 
@@ -248,26 +232,62 @@ namespace colours_hex {
     return colourvalues::generate_colours::colour_values_to_hex( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
+  /*
+   * i.e, factors
+   */
+  inline SEXP colour_value_hex(
+      Rcpp::IntegerVector& x,
+      Rcpp::StringVector lvls,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
+      bool include_alpha,
+      bool summary = false
+  ) {
+
+    Rcpp::NumericVector x_nv = Rcpp::as< Rcpp::NumericVector >( x );
+    colourvalues::utils::matrix_palette_check( palette );
+
+    int x_size = x.size();
+    int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
+
+    Rcpp::NumericVector red(256);
+    Rcpp::NumericVector green(256);
+    Rcpp::NumericVector blue(256);
+    Rcpp::NumericVector alpha( x.size(), 255.0 );
+
+    colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
+
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+
+    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
+
+    if ( summary ) {
+      int x_size = x.size();
+      int n_alpha_summary = x_size < 5 ? 5 : x_size;
+      Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      return colours_with_summary(
+        x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      );
+    }
+
+    return colourvalues::generate_colours::colour_values_to_hex( x_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+  }
 
   /*
    * i.e, factors
    */
   inline SEXP colour_value_hex(
       Rcpp::IntegerVector& x,
+      Rcpp::StringVector lvls,
       std::string& palette,
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      Rcpp::StringVector lvls,
-      bool summary = false,
-      int is_factor = false
+      bool summary = false
   ) {
 
-    if( !is_factor ) {
-      Rcpp::stop("expecting factors");
-    }
-
-    //Rcpp::Rcout << "lvls2 : " << lvls << std::endl;
     Rcpp::NumericVector x_nv = Rcpp::as< Rcpp::NumericVector >( x );
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
@@ -280,21 +300,10 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-    //Rcpp::StringVector lvls;
-    //if( is_factor ) {
-      Rcpp::IntegerVector summary_values = Rcpp::unique( x );
-      Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
-    // } else {
-    //   lvls = Rcpp::sort_unique( x ); // moved outside resolve so can use in a summary
-    // }
-
-    //lvls = na_omit( lvls );
-    //Rcpp::NumericVector out_nv = colourvalues::utils::resolve_string_vector( x, lvls );
+    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {
-      //Rcpp::IntegerVector summary_values = Rcpp::seq_len( lvls.length() );
-      //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( lvls );
-
       int x_size = x.size();
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
