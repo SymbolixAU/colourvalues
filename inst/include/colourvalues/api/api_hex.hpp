@@ -279,13 +279,15 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    //Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
-    //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
+    // Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+    // Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
+
+      // Rcpp::Rcout << "is_factor " << std::endl;
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
@@ -338,8 +340,8 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
-    //Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+    // Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
+    // Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     Rcpp::String p = palette[0];
@@ -349,8 +351,13 @@ namespace api {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
 
+      // Rcpp::Rcout << "is_factor " << std::endl;
+
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
+
+      // Rcpp::Rcout << "iv: " << iv << std::endl;
+      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
 
       return colourvalues::colours_hex::colour_value_hex(
         iv, lvls, pal, na_colour, alpha, include_alpha, summary

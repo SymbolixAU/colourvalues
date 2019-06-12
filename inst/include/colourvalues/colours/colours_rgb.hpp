@@ -281,7 +281,7 @@ namespace colours_rgb {
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
-    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {
@@ -322,7 +322,7 @@ namespace colours_rgb {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {

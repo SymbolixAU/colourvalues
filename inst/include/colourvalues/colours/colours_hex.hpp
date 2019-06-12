@@ -259,7 +259,7 @@ namespace colours_hex {
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
 
-    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {
@@ -300,13 +300,20 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-    Rcpp::IntegerVector summary_values = Rcpp::unique( x );
+    //Rcpp::Rcout << "x: " << x << std::endl;
+
+    Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
+    //Rcpp::Rcout << "summary_values: " << summary_values << std::endl;
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {
       int x_size = x.size();
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
+
+      // Rcpp::Rcout << "x_nv: " << x_nv << std::endl;
+      // Rcpp::Rcout << "summary_numbers: " << summary_numbers << std::endl;
+      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
 
       return colours_with_summary(
         x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha

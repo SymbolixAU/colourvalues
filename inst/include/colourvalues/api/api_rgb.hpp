@@ -356,8 +356,8 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
-    //Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
+    // Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
+    // Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     Rcpp::String p = palette[0];
@@ -366,6 +366,8 @@ namespace api {
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
+
+      //Rcpp::Rcout << "is factor " << std::endl;
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
