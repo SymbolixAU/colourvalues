@@ -54,7 +54,7 @@ namespace convert {
       const char* hex = this_hex.get_cstring();
 
       if ( strncmp(hex, "#", 1) != 0 ) {
-        Rcpp::stop("unknown hex string, expecting # symbol");
+        Rcpp::stop("colourvalues - unknown hex string, expecting # symbol");
       }
 
       switch( strlen( hex ) ) {
@@ -89,7 +89,7 @@ namespace convert {
         break;
       }
       default: {
-        Rcpp::stop("Unsupported hex string");
+        Rcpp::stop("colourvalues - Unsupported hex string");
       }
       }
 

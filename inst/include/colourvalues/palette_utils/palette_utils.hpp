@@ -37,11 +37,11 @@ namespace palette_utils {
 
     int n_col = palette.ncol();
     if ( n_col < 3 ) {
-      Rcpp::stop("Matrix palette needs either 3 (R, G, B) or 4 (R, G, B, A) columns");
+      Rcpp::stop("colourvalues - Matrix palette needs either 3 (R, G, B) or 4 (R, G, B, A) columns");
     }
 
     if ( n_col > 4 ) {
-      Rcpp::warning("Only using the first 4 columns of the palette (R, G, B, A) values");
+      Rcpp::warning("colourvalues - Only using the first 4 columns of the palette (R, G, B, A) values");
     }
 
     double scale = 1.0 / 255.0;
@@ -282,7 +282,7 @@ namespace palette_utils {
       green = colourvalues::palette::rainbow_hcl_green;
       blue = colourvalues::palette::rainbow_hcl_blue;
     } else {
-      Rcpp::stop("unknown palette");
+      Rcpp::stop("colourvalues - unknown palette");
     }
   }
 

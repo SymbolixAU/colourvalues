@@ -44,7 +44,7 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("summary not valid for numeric values, using n_summaries = 5");
+        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
@@ -70,7 +70,7 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-      Rcpp::warning("n_summaries not valid for character values, using summary = T");
+      Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
       summary = true;
     }
 
@@ -137,7 +137,7 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("summary not valid for numeric values, using n_summaries = 5");
+        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
@@ -165,7 +165,7 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-      Rcpp::warning("n_summaries not valid for character values, using summary = T");
+      Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
       summary = true;
     }
 
@@ -225,7 +225,7 @@ namespace api {
     case INTSXP: {}
     case REALSXP: {
       if( !Rf_isMatrix( palette ) ) {
-      Rcpp::stop("Unknown palette type - expecting a matrix");
+      Rcpp::stop("colourvalues - Unknown palette type - expecting a matrix");
     }
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colourvalues::colours_rgb::colour_value_rgb(
@@ -233,7 +233,7 @@ namespace api {
       );
     }
     default: {
-      Rcpp::stop("Unknown palette type");
+      Rcpp::stop("colourvalues - Unknown palette type");
     }
     }
 
@@ -267,7 +267,7 @@ namespace api {
     case INTSXP: {}
     case REALSXP: {
       if( !Rf_isMatrix( palette ) ) {
-      Rcpp::stop("Unknown palette type - expecting a matrix");
+      Rcpp::stop("colourvalues - Unknown palette type - expecting a matrix");
     }
       Rcpp::NumericMatrix pal = Rcpp::as< Rcpp::NumericMatrix >( palette );
       return colourvalues::colours_rgb::colour_value_rgb(
@@ -275,7 +275,7 @@ namespace api {
       );
     }
     default: {
-      Rcpp::stop("Unknown palette type");
+      Rcpp::stop("colourvalues - Unknown palette type");
     }
     }
 
@@ -327,7 +327,7 @@ namespace api {
     case VECSXP: { // list
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
       // TODO list
-      Rcpp::stop(" list not supported yet ");
+      Rcpp::stop("colourvalues -  list not supported yet ");
 
     }
     case LGLSXP: {} // as.character
@@ -443,7 +443,7 @@ namespace api {
       break;
     }
     default: {
-      Rcpp::stop("Unknown palette type");
+      Rcpp::stop("colourvalues - Unknown palette type");
     }
     }
 

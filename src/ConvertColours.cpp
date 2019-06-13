@@ -31,7 +31,7 @@ Rcpp::StringVector rcpp_convert_rgb_mat_to_hex( Rcpp::IntegerMatrix rgb ) {
     }
 
   } else {
-    Rcpp::stop("unknown RGB matrix");
+    Rcpp::stop("colourvalues - unknown RGB matrix");
   }
 
   return hex_strings;
@@ -45,7 +45,7 @@ Rcpp::StringVector rcpp_convert_rgb_vec_to_hex( Rcpp::IntegerVector rgb ) {
   } else if (n == 4) {
     return colourvalues::convert::convert_rgb_to_hex( rgb[0], rgb[1], rgb[2], rgb[3] );
   } else {
-    Rcpp::stop("unknown RGB vector");
+    Rcpp::stop("colourvalues - unknown RGB vector");
   }
   return ""; // never reached
 }

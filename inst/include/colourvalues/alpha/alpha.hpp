@@ -65,7 +65,7 @@ namespace alpha {
       return alpha;
 
     } else if ( alpha_type == ALPHA_UNKNOWN ) {
-      Rcpp::stop("Unknown alpha definition");
+      Rcpp::stop("colourvalues - Unknown alpha definition");
     }
     return 0;  // never reached
   }

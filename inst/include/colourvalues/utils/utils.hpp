@@ -49,7 +49,7 @@ namespace utils {
 
   inline void matrix_palette_check( Rcpp::NumericMatrix& pal ) {
     if( pal.nrow() < 5 ) {
-      Rcpp::stop("Matrix palettes must have at least 5 rows");
+      Rcpp::stop("colourvalues - Matrix palettes must have at least 5 rows");
     }
   }
 

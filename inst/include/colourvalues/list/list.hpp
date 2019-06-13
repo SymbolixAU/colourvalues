@@ -118,7 +118,7 @@ namespace list {
             break;
          }
          default: {
-            Rcpp::stop("Unknown list element type");
+            Rcpp::stop("colourvalues - Unknown list element type");
          }
          }
       }
@@ -157,7 +157,7 @@ namespace list {
             break;
          }
          default: {
-            Rcpp::stop("Unknown list element type");
+            Rcpp::stop("colourvalues - Unknown list element type");
          }
          }
       }
