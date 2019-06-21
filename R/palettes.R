@@ -1,3 +1,14 @@
+#' Get Palette
+#'
+#' Gets a palete
+#'
+#' @export
+get_palette <- function( palette ) {
+  if( !palette %in% colour_palettes() ) stop("not a valid palette")
+
+  return( rcpp_get_palette( palette ) )
+}
+
 
 #' Colour Palettes
 #'

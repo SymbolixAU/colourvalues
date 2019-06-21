@@ -1,6 +1,22 @@
 #include <Rcpp.h>
 #include "colourvalues/palettes.hpp"
+#include "colourvalues/palette_utils/palette_utils.hpp"
 using namespace Rcpp;
+
+// [[Rcpp::export]]
+Rcpp::NumericMatrix rcpp_get_palette( std::string& palette ) {
+  Rcpp::NumericVector red( 256 );
+  Rcpp::NumericVector green( 256 );
+  Rcpp::NumericVector blue( 256 );
+  colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
+
+  Rcpp::NumericMatrix nm(256, 3);
+  nm( Rcpp::_, 0 ) = red;
+  nm( Rcpp::_, 1 ) = green;
+  nm( Rcpp::_, 2 ) = blue;
+
+  return nm;
+}
 
 // [[Rcpp::export]]
 Rcpp::DataFrame rcpp_viridis() {

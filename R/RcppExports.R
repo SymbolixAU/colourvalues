@@ -41,6 +41,10 @@ rcpp_refil_list <- function(lst_sizes, colours, vector_position) {
     .Call(`_colourvalues_rcpp_refil_list`, lst_sizes, colours, vector_position)
 }
 
+rcpp_get_palette <- function(palette) {
+    .Call(`_colourvalues_rcpp_get_palette`, palette)
+}
+
 rcpp_viridis <- function() {
     .Call(`_colourvalues_rcpp_viridis`)
 }

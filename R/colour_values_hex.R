@@ -198,10 +198,6 @@ colour_values_to_hex.default <- function(
   n_summaries = 0
   ) {
 
-  # print("default")
-  # print( include_alpha )
-  # print( n_summaries )
-  # print( summary )
   rcpp_colour_values_hex(
     x = x
     , palette = palette
