@@ -33,8 +33,8 @@ colour_palettes <- function( colours = NULL ) {
       if( "viridis" %in% colours ) { viridis_palettes() }
       , if( "rcolorbrewer" %in% colours ) { c( rcolorbrewer_seq_palettes(), rcolorbrewer_div_palettes() ) }
       , if( "grdevices" %in% colours ) { grdevices_palettes() }
-      , if( grepl("colorspace|colourspace", colours ) ) { c( colorspace_seq_palettes(), colorspace_div_palettes() ) }
-      , if( grepl("colorramp|colourramp", colours ) ) { colorramp_palettes() }
+      , if( any( grepl("colorspace|colourspace", colours ) ) ) { c( colorspace_seq_palettes(), colorspace_div_palettes() ) }
+      , if( any( grepl("colorramp|colourramp", colours ) ) ) { colorramp_palettes() }
     )
   )
 }
