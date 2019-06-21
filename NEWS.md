@@ -1,5 +1,6 @@
 # v0.3
 
+* `get_palette()` for returning 256x3 matrix of colorus
 * factor-level order maintained in summary
 * lists supported
 * Added palette row check function inside .hpp files 
