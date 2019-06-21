@@ -1,6 +1,15 @@
 #' Get Palette
 #'
-#' Gets a palete
+#' retrieves one of the available palettes
+#'
+#' @param palette one of the available paletes. See \link{colour_palettes()}
+#'
+#' @examples
+#'
+#' get_palette( "viridis" )
+#' get_palette( "rainbow" )
+#'
+#' @return 256 row x 3 column matrix. Columns are in the order red, green, blue.
 #'
 #' @export
 get_palette <- function( palette ) {

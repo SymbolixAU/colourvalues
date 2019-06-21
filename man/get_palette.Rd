@@ -6,6 +6,18 @@
 \usage{
 get_palette(palette)
 }
+\arguments{
+\item{palette}{one of the available paletes. See \link{colour_palettes()}}
+}
+\value{
+256 row x 3 column matrix. Columns are in the order red, green, blue.
+}
 \description{
-Gets a palete
+retrieves one of the available palettes
+}
+\examples{
+
+get_palette( "viridis" )
+get_palette( "rainbow" )
+
 }

@@ -11,9 +11,9 @@ Rcpp::NumericMatrix rcpp_get_palette( std::string& palette ) {
   colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
   Rcpp::NumericMatrix nm(256, 3);
-  nm( Rcpp::_, 0 ) = red;
-  nm( Rcpp::_, 1 ) = green;
-  nm( Rcpp::_, 2 ) = blue;
+  nm( Rcpp::_, 0 ) = red * 255;
+  nm( Rcpp::_, 1 ) = green * 255;
+  nm( Rcpp::_, 2 ) = blue * 255;
 
   return nm;
 }
