@@ -25,6 +25,15 @@ library(colourvalues)
 
 # colourvalues
 
+```{r, echo = FALSE}
+bar_plot <- function(df) {
+  barplot( height = df[["a"]], col = df[["col"]], border = NA, space = 0, yaxt = 'n')
+}
+df <- data.frame(a = 10, x = 1:256)
+df$col <- colour_values(df$x, palette = "viridis")
+bar_plot( df )
+```
+
 ---
 
 ### What does it do?

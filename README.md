@@ -14,6 +14,8 @@ Stars](https://img.shields.io/github/stars/SymbolixAU/colourvalues.svg?style=soc
 
 # colourvalues
 
+<img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" height="200" />
+
 -----
 
 ### What does it do?
@@ -126,7 +128,7 @@ df$col <- colour_values(df$x, palette = "viridis")
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
 
 #### 5000 numbers on a non-linear scale
 
@@ -136,7 +138,7 @@ df$col <- colour_values(df$x, palette = "viridis")
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
 
 #### 1000 random numbers
 
@@ -146,7 +148,7 @@ df$col <- colour_values(df$x, palette = "inferno")
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
 
 Eurgh\!
 
@@ -155,7 +157,7 @@ df <- df[with(df, order(x)), ]
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="200" />
 
 That’s better\!
 
@@ -167,17 +169,19 @@ No, you can chose one from
 
 ``` r
 colour_palettes()
-# Warning in if (grepl("colorspace|colourspace", colours)) {: the condition
-# has length > 1 and only the first element will be used
-# Warning in if (grepl("colorramp|colourramp", colours)) {: the condition has
-# length > 1 and only the first element will be used
-#  [1] "viridis"  "cividis"  "magma"    "inferno"  "plasma"   "ylorrd"  
-#  [7] "ylorbr"   "ylgnbu"   "ylgn"     "reds"     "rdpu"     "purples" 
-# [13] "purd"     "pubugn"   "pubu"     "orrd"     "oranges"  "greys"   
-# [19] "greens"   "gnbu"     "bupu"     "bugn"     "blues"    "spectral"
-# [25] "rdylgn"   "rdylbu"   "rdgy"     "rdbu"     "puor"     "prgn"    
-# [31] "piyg"     "brbg"     "terrain"  "topo"     "heat"     "cm"      
-# [37] "rainbow"
+#  [1] "viridis"        "cividis"        "magma"          "inferno"       
+#  [5] "plasma"         "ylorrd"         "ylorbr"         "ylgnbu"        
+#  [9] "ylgn"           "reds"           "rdpu"           "purples"       
+# [13] "purd"           "pubugn"         "pubu"           "orrd"          
+# [17] "oranges"        "greys"          "greens"         "gnbu"          
+# [21] "bupu"           "bugn"           "blues"          "spectral"      
+# [25] "rdylgn"         "rdylbu"         "rdgy"           "rdbu"          
+# [29] "puor"           "prgn"           "piyg"           "brbg"          
+# [33] "terrain"        "topo"           "heat"           "cm"            
+# [37] "rainbow"        "terrain_hcl"    "heat_hcl"       "sequential_hcl"
+# [41] "rainbow_hcl"    "diverge_hcl"    "diverge_hsv"    "ygobb"         
+# [45] "matlab_like2"   "matlab_like"    "magenta2green"  "cyan2yellow"   
+# [49] "blue2yellow"    "green2red"      "blue2green"     "blue2red"
 ```
 
 And you can use `show_colours()` to view them all. Here’s what some of
@@ -185,13 +189,9 @@ them look like
 
 ``` r
 show_colours( colours = colour_palettes(c("viridis", "colorspace")))
-# Warning in if (grepl("colorspace|colourspace", colours)) {: the condition
-# has length > 1 and only the first element will be used
-# Warning in if (grepl("colorramp|colourramp", colours)) {: the condition has
-# length > 1 and only the first element will be used
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
 
 ## Do I have to use the in-built palettes?
 
@@ -206,7 +206,7 @@ df$col <- colour_values(df$x, palette = m)
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="200" />
 
 ## Do you support ‘alpha’ values
 
@@ -219,7 +219,7 @@ df$col <- colour_values(df$x, alpha = 50)
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="200" />
 
 Or use a vector of values the same length as `x`
 
@@ -229,7 +229,7 @@ df$col <- colour_values(df$x, alpha = df$y)
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="200" />
 
 Or include the alpha value as a 4th column in the palette matrix
 
@@ -243,7 +243,7 @@ df$col <- colour_values(df$x, palette = m)
 bar_plot( df )
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" height="200" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" height="200" />
 
 ## Some of my plotting functions don’t support alpha, can I exclude it?
 
@@ -285,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#66CC5DFF" "#32658EFF" "#31678EFF" "#5EC962FF" "#FDE725FF"
-#  [6] "#24878EFF" "#56C666FF" "#3B528BFF" "#52C569FF" "#440154FF"
+#  [1] "#2CB27DFF" "#5EC962FF" "#FDE725FF" "#440154FF" "#23898DFF"
+#  [6] "#3A538BFF" "#440154FF" "#ABDC31FF" "#1E9B8AFF" "#21908CFF"
 # 
 # $summary_values
-# [1] "-1.55" "0.17"  "1.88" 
+# [1] "-1.97" "-0.15" "1.66" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -339,27 +339,27 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#1FA088FF" "#41BE72FF" "#482072FF" "#1FA088FF" "#228B8DFF"
-#  [6] "#FDE725FF" "#1F958BFF" "#2F6B8EFF" "#FDE725FF" "#24AA83FF"
-# [11] "#471164FF" "#1F958BFF" "#39558CFF" "#1FA088FF" "#26808EFF"
-# [16] "#57C766FF" "#8AD647FF" "#34608DFF" "#30B47CFF" "#1FA088FF"
-# [21] "#26808EFF" "#440154FF" "#440154FF" "#E2E418FF" "#3F4989FF"
-# [26] "#6FCF58FF" "#471164FF" "#FDE725FF" "#34608DFF" "#482072FF"
-# [31] "#228B8DFF" "#2B768EFF" "#3F4989FF" "#A7DB34FF" "#2B768EFF"
-# [36] "#C5E022FF" "#433C84FF" "#39558CFF" "#A7DB34FF" "#41BE72FF"
-# [41] "#1FA088FF" "#26808EFF" "#472E7CFF" "#24AA83FF" "#26808EFF"
-# [46] "#1F958BFF" "#41BE72FF" "#2B768EFF" "#440154FF" "#57C766FF"
+#  [1] "#25858EFF" "#38588CFF" "#85D44AFF" "#46307EFF" "#50C469FF"
+#  [6] "#C2DF23FF" "#21908CFF" "#433E85FF" "#440154FF" "#471265FF"
+# [11] "#3BBB75FF" "#2BB07EFF" "#FDE725FF" "#32648EFF" "#46307EFF"
+# [16] "#482273FF" "#FDE725FF" "#A3DB37FF" "#32648EFF" "#3E4C8AFF"
+# [21] "#69CD5BFF" "#25858EFF" "#3BBB75FF" "#1E9B8AFF" "#3BBB75FF"
+# [26] "#C2DF23FF" "#21A685FF" "#297A8EFF" "#21908CFF" "#E0E318FF"
+# [31] "#46307EFF" "#1E9B8AFF" "#A3DB37FF" "#32648EFF" "#2D6F8EFF"
+# [36] "#3BBB75FF" "#2D6F8EFF" "#3E4C8AFF" "#69CD5BFF" "#21908CFF"
+# [41] "#85D44AFF" "#FDE725FF" "#3BBB75FF" "#433E85FF" "#3E4C8AFF"
+# [46] "#69CD5BFF" "#38588CFF" "#A3DB37FF" "#85D44AFF" "#32648EFF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-# [18] "r" "s" "t" "v" "x" "y" "z"
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "k" "l" "m" "n" "o" "q" "r" "s"
+# [18] "t" "u" "w" "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#471164FF" "#482072FF" "#472E7CFF" "#433C84FF"
-#  [6] "#3F4989FF" "#39558CFF" "#34608DFF" "#2F6B8EFF" "#2B768EFF"
-# [11] "#26808EFF" "#228B8DFF" "#1F958BFF" "#1FA088FF" "#24AA83FF"
-# [16] "#30B47CFF" "#41BE72FF" "#57C766FF" "#6FCF58FF" "#8AD647FF"
-# [21] "#A7DB34FF" "#C5E022FF" "#E2E418FF" "#FDE725FF"
+#  [1] "#440154FF" "#471265FF" "#482273FF" "#46307EFF" "#433E85FF"
+#  [6] "#3E4C8AFF" "#38588CFF" "#32648EFF" "#2D6F8EFF" "#297A8EFF"
+# [11] "#25858EFF" "#21908CFF" "#1E9B8AFF" "#21A685FF" "#2BB07EFF"
+# [16] "#3BBB75FF" "#50C469FF" "#69CD5BFF" "#85D44AFF" "#A3DB37FF"
+# [21] "#C2DF23FF" "#E0E318FF" "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -427,14 +427,14 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 3.325935 3.512659 4.169802 4.417923 4.589773 4.849371    25
-#        scales 6.254049 8.290376 8.260139 8.629479 8.766626 9.236977    25
+#  colourvalues 1.783367 1.811758 1.840805 1.827738 1.852317 1.945182    25
+#        scales 3.136375 3.177853 3.238426 3.216607 3.249433 3.794146    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-20-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-21-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
@@ -456,11 +456,11 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 375.0049 393.5553 398.7031 397.6235 405.7669 417.9495    25
-#        scales 639.1727 655.2213 686.7740 669.7334 696.7927 882.1402    25
+#  colourvalues 184.6126 187.7735 195.3336 190.7612 196.1226 255.1427    25
+#        scales 314.3542 335.7546 345.6469 339.4524 350.5859 388.7054    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-<img src="man/figures/README-unnamed-chunk-21-1.png" width="100%" height="400" />
+<img src="man/figures/README-unnamed-chunk-22-1.png" width="100%" height="400" />

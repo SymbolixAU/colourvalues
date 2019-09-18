@@ -33,6 +33,8 @@ test_that("convert_color and convert_colours work as per convert_colour", {
   expect_equal(convert_colour("#FA0"), convert_colours("#FA0"))
   expect_equal(convert_colour("#FA0"), convert_color("#FA0"))
   expect_equal(convert_colour("#FA0"), convert_colors("#FA0"))
+  expect_equal(convert_colour("#fa0"), convert_colors("#fa0"))
+  expect_equal(convert_colour("#FA0"), convert_colors("#fa0"))
 })
 
 test_that("RGB matrices converted to hex strings", {

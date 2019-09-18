@@ -137,6 +137,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_validate_rgb_range
+int rcpp_validate_rgb_range(int x);
+RcppExport SEXP _colourvalues_rcpp_validate_rgb_range(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_validate_rgb_range(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_validate_rgb_spline
+int rcpp_validate_rgb_spline(int x);
+RcppExport SEXP _colourvalues_rcpp_validate_rgb_spline(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_validate_rgb_spline(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_palette
 Rcpp::NumericMatrix rcpp_get_palette(std::string& palette);
 RcppExport SEXP _colourvalues_rcpp_get_palette(SEXP paletteSEXP) {
@@ -680,6 +702,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_vector_type", (DL_FUNC) &_colourvalues_rcpp_vector_type, 2},
     {"_colourvalues_rcpp_list_size", (DL_FUNC) &_colourvalues_rcpp_list_size, 4},
     {"_colourvalues_rcpp_refil_list", (DL_FUNC) &_colourvalues_rcpp_refil_list, 3},
+    {"_colourvalues_rcpp_validate_rgb_range", (DL_FUNC) &_colourvalues_rcpp_validate_rgb_range, 1},
+    {"_colourvalues_rcpp_validate_rgb_spline", (DL_FUNC) &_colourvalues_rcpp_validate_rgb_spline, 1},
     {"_colourvalues_rcpp_get_palette", (DL_FUNC) &_colourvalues_rcpp_get_palette, 1},
     {"_colourvalues_rcpp_viridis", (DL_FUNC) &_colourvalues_rcpp_viridis, 0},
     {"_colourvalues_rcpp_inferno", (DL_FUNC) &_colourvalues_rcpp_inferno, 0},

@@ -22,3 +22,14 @@ test_that("palettes are returned", {
   expect_silent(colour_values(1, palette = "cividis"))
 
 })
+
+test_that("first 4 columns of palette matrix used",{
+
+  dfv <- viridis()
+  dfp <- plasma()
+  m <- cbind( as.matrix(dfv), 0)
+  m <- cbind( m, as.matrix(dfp) )
+  expect_warning( colour_values(1:5, palette = m ) )
+
+
+})

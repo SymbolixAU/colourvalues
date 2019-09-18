@@ -368,6 +368,4 @@ test_that("summary values contain FF alphas", {
   expect_true( all( nchar( cv$summary_colours ) == 7 ) )
   cv <- colour_values( letters, summary = T, alpha = 1:26, palette = m, include_alpha = F )
   expect_true( all( nchar( cv$summary_colours ) == 7) )
-
-
 })

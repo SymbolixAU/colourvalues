@@ -41,6 +41,14 @@ rcpp_refil_list <- function(lst_sizes, colours, vector_position) {
     .Call(`_colourvalues_rcpp_refil_list`, lst_sizes, colours, vector_position)
 }
 
+rcpp_validate_rgb_range <- function(x) {
+    .Call(`_colourvalues_rcpp_validate_rgb_range`, x)
+}
+
+rcpp_validate_rgb_spline <- function(x) {
+    .Call(`_colourvalues_rcpp_validate_rgb_spline`, x)
+}
+
 rcpp_get_palette <- function(palette) {
     .Call(`_colourvalues_rcpp_get_palette`, palette)
 }

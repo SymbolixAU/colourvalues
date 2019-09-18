@@ -22,7 +22,7 @@ namespace alpha {
     } else if ( alpha_size == x_size ) {
       return ALPHA_VECTOR;
     }
-    return ALPHA_UNKNOWN;
+    return ALPHA_UNKNOWN;    // #nocov
   }
 
   inline Rcpp::NumericVector validate_alpha( Rcpp::NumericVector& a, int& alpha_type, int& x_size ) {
@@ -64,10 +64,10 @@ namespace alpha {
       }
       return alpha;
 
-    } else if ( alpha_type == ALPHA_UNKNOWN ) {
-      Rcpp::stop("colourvalues - Unknown alpha definition");
+    } else if ( alpha_type == ALPHA_UNKNOWN ) {                // #nocov
+      Rcpp::stop("colourvalues - Unknown alpha definition");   // #nocov
     }
-    return 0;  // never reached
+    return 0;  // #nocov never reached
   }
 
 } // namespace alpha
