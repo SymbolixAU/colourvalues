@@ -1,8 +1,8 @@
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/colourvalues)](http://cran.r-project.org/package=colourvalues)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/colourvalues)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/colourvalues)](http://cran.r-project.org/web/packages/colourvalues/index.html)
+downloads](http://cranlogs.r-pkg.org/badges/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
 [![Travis-CI Build
 Status](https://travis-ci.org/SymbolixAU/colourvalues.svg?branch=master)](https://travis-ci.org/SymbolixAU/colourvalues)
 [![Coverage
@@ -285,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#2CB27DFF" "#5EC962FF" "#FDE725FF" "#440154FF" "#23898DFF"
-#  [6] "#3A538BFF" "#440154FF" "#ABDC31FF" "#1E9B8AFF" "#21908CFF"
+#  [1] "#FDE725FF" "#3F4888FF" "#38578CFF" "#3C508BFF" "#2B768EFF"
+#  [6] "#2A778EFF" "#463580FF" "#440154FF" "#287C8EFF" "#2A778EFF"
 # 
 # $summary_values
-# [1] "-1.97" "-0.15" "1.66" 
+# [1] "-1.78" "0.53"  "2.84" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -339,27 +339,27 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#25858EFF" "#38588CFF" "#85D44AFF" "#46307EFF" "#50C469FF"
-#  [6] "#C2DF23FF" "#21908CFF" "#433E85FF" "#440154FF" "#471265FF"
-# [11] "#3BBB75FF" "#2BB07EFF" "#FDE725FF" "#32648EFF" "#46307EFF"
-# [16] "#482273FF" "#FDE725FF" "#A3DB37FF" "#32648EFF" "#3E4C8AFF"
-# [21] "#69CD5BFF" "#25858EFF" "#3BBB75FF" "#1E9B8AFF" "#3BBB75FF"
-# [26] "#C2DF23FF" "#21A685FF" "#297A8EFF" "#21908CFF" "#E0E318FF"
-# [31] "#46307EFF" "#1E9B8AFF" "#A3DB37FF" "#32648EFF" "#2D6F8EFF"
-# [36] "#3BBB75FF" "#2D6F8EFF" "#3E4C8AFF" "#69CD5BFF" "#21908CFF"
-# [41] "#85D44AFF" "#FDE725FF" "#3BBB75FF" "#433E85FF" "#3E4C8AFF"
-# [46] "#69CD5BFF" "#38588CFF" "#A3DB37FF" "#85D44AFF" "#32648EFF"
+#  [1] "#482575FF" "#440154FF" "#345F8DFF" "#DDE318FF" "#22A884FF"
+#  [6] "#43BF71FF" "#7AD151FF" "#25848EFF" "#21908CFF" "#440154FF"
+# [11] "#DDE318FF" "#482575FF" "#463480FF" "#7AD151FF" "#414487FF"
+# [16] "#5DC963FF" "#2A788EFF" "#DDE318FF" "#25848EFF" "#FDE725FF"
+# [21] "#BCDF27FF" "#414487FF" "#FDE725FF" "#1E9C89FF" "#482575FF"
+# [26] "#414487FF" "#21908CFF" "#7AD151FF" "#481466FF" "#2A788EFF"
+# [31] "#481466FF" "#414487FF" "#345F8DFF" "#3B528BFF" "#481466FF"
+# [36] "#5DC963FF" "#481466FF" "#5DC963FF" "#43BF71FF" "#9AD93DFF"
+# [41] "#BCDF27FF" "#414487FF" "#43BF71FF" "#43BF71FF" "#FDE725FF"
+# [46] "#463480FF" "#440154FF" "#2F6C8EFF" "#2A788EFF" "#2FB47CFF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "k" "l" "m" "n" "o" "q" "r" "s"
-# [18] "t" "u" "w" "x" "y" "z"
+#  [1] "a" "c" "d" "e" "f" "g" "h" "j" "k" "m" "n" "p" "q" "r" "s" "t" "v"
+# [18] "w" "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#471265FF" "#482273FF" "#46307EFF" "#433E85FF"
-#  [6] "#3E4C8AFF" "#38588CFF" "#32648EFF" "#2D6F8EFF" "#297A8EFF"
-# [11] "#25858EFF" "#21908CFF" "#1E9B8AFF" "#21A685FF" "#2BB07EFF"
-# [16] "#3BBB75FF" "#50C469FF" "#69CD5BFF" "#85D44AFF" "#A3DB37FF"
-# [21] "#C2DF23FF" "#E0E318FF" "#FDE725FF"
+#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF"
+#  [6] "#3B528BFF" "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF"
+# [11] "#21908CFF" "#1E9C89FF" "#22A884FF" "#2FB47CFF" "#43BF71FF"
+# [16] "#5DC963FF" "#7AD151FF" "#9AD93DFF" "#BCDF27FF" "#DDE318FF"
+# [21] "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -426,9 +426,9 @@ m <- microbenchmark(
 )
 m
 # Unit: seconds
-#          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.783367 1.811758 1.840805 1.827738 1.852317 1.945182    25
-#        scales 3.136375 3.177853 3.238426 3.216607 3.249433 3.794146    25
+#          expr      min       lq     mean   median       uq       max neval
+#  colourvalues 3.339203 3.664397 4.715676 5.026010 5.257869  6.226731    25
+#        scales 6.153397 7.201396 8.834126 9.468157 9.907154 12.748400    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
@@ -455,9 +455,9 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 184.6126 187.7735 195.3336 190.7612 196.1226 255.1427    25
-#        scales 314.3542 335.7546 345.6469 339.4524 350.5859 388.7054    25
+#          expr      min       lq     mean   median       uq       max neval
+#  colourvalues 447.7285 488.8479 519.8084 507.0384 526.8926  686.7764    25
+#        scales 888.0087 936.6404 972.2149 960.9733 997.1543 1133.9043    25
 
 autoplot(m)
 # Coordinate system already present. Adding new coordinate system, which will replace the existing one.
