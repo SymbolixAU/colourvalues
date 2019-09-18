@@ -2,7 +2,7 @@
 #'
 #' retrieves one of the available palettes
 #'
-#' @param palette one of the available paletes. See \link{colour_palettes()}
+#' @param palette one of the available paletes. See \link{colour_palettes}
 #'
 #' @examples
 #'

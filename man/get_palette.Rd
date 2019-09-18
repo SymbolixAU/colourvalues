@@ -7,7 +7,7 @@
 get_palette(palette)
 }
 \arguments{
-\item{palette}{one of the available paletes. See \link{colour_palettes()}}
+\item{palette}{one of the available paletes. See \link{colour_palettes}}
 }
 \value{
 256 row x 3 column matrix. Columns are in the order red, green, blue.
