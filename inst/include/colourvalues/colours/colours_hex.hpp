@@ -63,6 +63,9 @@ namespace colours_hex {
     return colourvalues::output::create_summary_output(full_hex, summary_values, summary_hex );
   }
 
+
+
+
   inline SEXP colour_value_hex(
     Rcpp::NumericVector& x,
     Rcpp::NumericMatrix& palette,
@@ -110,6 +113,25 @@ namespace colours_hex {
     return colourvalues::generate_colours::colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
+// TODO remove when spatialwidget 0.3 is on CRAN
+// this is so the old version can be installed
+inline SEXP colour_value_hex(
+    Rcpp::NumericVector& x,
+    Rcpp::NumericMatrix& palette,
+    std::string& na_colour,
+    bool include_alpha,
+    int n_summaries,
+    bool format,
+    std::string& format_type,
+    int digits = 2
+) {
+  return colour_value_hex(
+    x, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+  );
+}
+
+
+
   inline SEXP colour_value_hex(
       Rcpp::NumericVector& x,
       std::string& palette,
@@ -153,6 +175,27 @@ namespace colours_hex {
     }
     return colourvalues::generate_colours::colour_values_to_hex(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha);
   }
+
+
+// TODO remove when spatialwidget 0.3 is on CRAN
+// this is so the old version can be installed
+inline SEXP colour_value_hex(
+    Rcpp::NumericVector& x,
+    std::string& palette,
+    std::string& na_colour,
+    Rcpp::NumericVector& alpha,
+    bool include_alpha,
+    int n_summaries,
+    bool format,
+    std::string& format_type,
+    int digits = 2
+) {
+  return colour_value_hex(
+    x, palette, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
+  );
+}
+
+
 
   inline SEXP colour_value_hex (
       Rcpp::StringVector& x,
