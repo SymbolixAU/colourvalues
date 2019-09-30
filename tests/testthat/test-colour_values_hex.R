@@ -292,6 +292,7 @@ test_that("n_summaries is the min of 5 or length(x) ", {
 test_that("ints aren't formatted", {
 
   cv <- colour_values(1L:20L, n_summaries = 5, format = T)
+  expect_true(all(cv$summary_values == c("1.00","5.75","10.50","15.25","20.00")))
 
 })
 

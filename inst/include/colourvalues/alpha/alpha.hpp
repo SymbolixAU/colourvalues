@@ -27,6 +27,9 @@ namespace alpha {
 
   inline Rcpp::NumericVector validate_alpha( Rcpp::NumericVector& a, int& alpha_type, int& x_size ) {
 
+    if( a.size() < 1 ) {
+      Rcpp::stop("colourvalues - invalid alpha vector");
+    }
     // Issue 47
     Rcpp::NumericVector alpha = Rcpp::clone( a );
 
@@ -67,7 +70,8 @@ namespace alpha {
     } else if ( alpha_type == ALPHA_UNKNOWN ) {                // #nocov
       Rcpp::stop("colourvalues - Unknown alpha definition");   // #nocov
     }
-    return 0;  // #nocov never reached
+    Rcpp::NumericVector out;
+    return out;  // #nocov never reached
   }
 
 } // namespace alpha
