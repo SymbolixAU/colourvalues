@@ -2,10 +2,8 @@
 
 ## Release Notes
 
-* Patches v0.3 to v0.3.1
-  - valgrind issues https://cran.r-project.org/web/checks/check_results_colourvalues.html
-  - suggests a memory leak in inst/include/alpha/alpha.hpp , line 63, where it returns a vector
-  - I was unable to reproduce this using valgrind, but I have put an explicit check for an empty vector to handle this possible error.
+* Updates v0.3 to v0.3.1
+  - patches for valgrind issues https://cran.r-project.org/web/checks/check_results_colourvalues.html and invalid write size error.
   
   
 * CRAN Build Notes: Fedora Clang and OSX builds give notes
