@@ -42,3 +42,43 @@ test_that("alpha not updated by reference", {
   expect_equal( df$o, rep(5,5) )
 
 })
+
+
+test_that("alpha is validated",{
+
+  #define ALPHA_UNKNOWN  0
+  #define ALPHA_PALETTE  1  // the alpha is on the palette
+  #define ALPHA_VECTOR   2  // the alpha is a variable / vector
+  #define ALPHA_CONSTANT 3  // the alpha is a constant
+
+  x <- 1:5
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 1), 1:5 )
+
+  a <- colourvalues:::rcpp_validate_alpha(x, 2)
+  expect_true( a[1] == 0.0 )
+  expect_true( a[5] == 255.0 )
+
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 3), rep(1,5) )
+
+  x <- 1:3
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 1), 1:3 )
+
+  a <- colourvalues:::rcpp_validate_alpha(x, 2)     ## < 5 vals get filled with mean
+  b <- colourvalues:::rcpp_validate_alpha(c(1,2,3,2,2), 2)
+  expect_equal(a, b)
+
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 3), rep(1,5) )
+
+  x <- 1:10
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 1), 1:10 )
+
+  a <- colourvalues:::rcpp_validate_alpha(x, 2)
+  expect_true( a[1] == 0.0 )
+  expect_true( a[10] == 255.0 )
+
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 3), rep(1,5) )
+
+  x <- 3:4
+  expect_equal( colourvalues:::rcpp_validate_alpha(x, 3), rep(x[1], 5) )
+
+})

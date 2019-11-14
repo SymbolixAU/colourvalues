@@ -89,7 +89,7 @@ namespace colours_hex {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -147,7 +147,7 @@ inline SEXP colour_value_hex(
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -247,7 +247,7 @@ inline SEXP colour_value_hex(
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -300,7 +300,7 @@ inline SEXP colour_value_hex(
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
 
     Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
@@ -335,7 +335,7 @@ inline SEXP colour_value_hex(
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, x_size );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);

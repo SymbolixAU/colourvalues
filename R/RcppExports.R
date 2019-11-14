@@ -21,6 +21,10 @@ rcpp_convert_rgb_vec_to_hex <- function(rgb) {
     .Call(`_colourvalues_rcpp_convert_rgb_vec_to_hex`, rgb)
 }
 
+rcpp_validate_alpha <- function(alpha, alpha_type) {
+    .Call(`_colourvalues_rcpp_validate_alpha`, alpha, alpha_type)
+}
+
 rcpp_get_format_type <- function(palette_type) {
     .Call(`_colourvalues_rcpp_get_format_type`, palette_type)
 }

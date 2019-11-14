@@ -76,6 +76,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_validate_alpha
+Rcpp::NumericVector rcpp_validate_alpha(Rcpp::NumericVector alpha, int alpha_type);
+RcppExport SEXP _colourvalues_rcpp_validate_alpha(SEXP alphaSEXP, SEXP alpha_typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< int >::type alpha_type(alpha_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_validate_alpha(alpha, alpha_type));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_format_type
 std::string rcpp_get_format_type(SEXP palette_type);
 RcppExport SEXP _colourvalues_rcpp_get_format_type(SEXP palette_typeSEXP) {
@@ -697,6 +709,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_convert_hex_to_rgb", (DL_FUNC) &_colourvalues_rcpp_convert_hex_to_rgb, 1},
     {"_colourvalues_rcpp_convert_rgb_mat_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_mat_to_hex, 1},
     {"_colourvalues_rcpp_convert_rgb_vec_to_hex", (DL_FUNC) &_colourvalues_rcpp_convert_rgb_vec_to_hex, 1},
+    {"_colourvalues_rcpp_validate_alpha", (DL_FUNC) &_colourvalues_rcpp_validate_alpha, 2},
     {"_colourvalues_rcpp_get_format_type", (DL_FUNC) &_colourvalues_rcpp_get_format_type, 1},
     {"_colourvalues_rcpp_get_r_class", (DL_FUNC) &_colourvalues_rcpp_get_r_class, 1},
     {"_colourvalues_rcpp_vector_type", (DL_FUNC) &_colourvalues_rcpp_vector_type, 2},
