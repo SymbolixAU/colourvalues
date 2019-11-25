@@ -1,4 +1,9 @@
-# v0.3
+
+# v0.3.2
+
+* `get_palette()` gets a `rgb = TRUE` argument [issue 58](https://github.com/SymbolixAU/colourvalues/issues/58)
+
+# v0.3.1
 
 * `get_palette()` for returning 256x3 matrix of colorus
 * factor-level order maintained in summary
