@@ -370,3 +370,14 @@ test_that("summary values contain FF alphas", {
   cv <- colour_values( letters, summary = T, alpha = 1:26, palette = m, include_alpha = F )
   expect_true( all( nchar( cv$summary_colours ) == 7) )
 })
+
+
+test_that("issue #60 is fixed (similar to issue #24",{
+
+  x <- 1:5
+  y <- x
+  z <- colourvalues::colour_values(x = x, palette = get_palette("cividis")[256:1, ])
+  expect_equal( x, 1:5 )
+  expect_equal( y, 1:5 )
+
+})
