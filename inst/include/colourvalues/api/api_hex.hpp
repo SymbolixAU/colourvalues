@@ -304,7 +304,8 @@ namespace api {
     }
     }
     case REALSXP: {
-      Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+      //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+      Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_hex::colour_value_hex(
         nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
       );

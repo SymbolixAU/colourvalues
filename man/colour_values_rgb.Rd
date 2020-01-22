@@ -11,29 +11,80 @@
 \alias{colour_values_to_rgb.POSIXlt}
 \title{Colour Values RGB}
 \usage{
-colour_values_rgb(x, palette = "viridis", alpha = 255,
-  na_colour = "#808080FF", include_alpha = TRUE, ...)
+colour_values_rgb(
+  x,
+  palette = "viridis",
+  alpha = 255,
+  na_colour = "#808080FF",
+  include_alpha = TRUE,
+  ...
+)
 
-color_values_rgb(x, palette = "viridis", alpha = 255,
-  na_colour = "#808080FF", include_alpha = TRUE, ...)
+color_values_rgb(
+  x,
+  palette = "viridis",
+  alpha = 255,
+  na_colour = "#808080FF",
+  include_alpha = TRUE,
+  ...
+)
 
-\method{colour_values_to_rgb}{character}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_rgb}{character}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_rgb}{logical}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_rgb}{logical}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_rgb}{factor}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_rgb}{factor}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_rgb}{Date}(x, palette, alpha, na_colour,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_rgb}{Date}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 
-\method{colour_values_to_rgb}{POSIXct}(x, palette, alpha, na_colour,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_rgb}{POSIXct}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 
-\method{colour_values_to_rgb}{POSIXlt}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_rgb}{POSIXlt}(
+  x,
+  palette,
+  na_colour,
+  alpha,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}

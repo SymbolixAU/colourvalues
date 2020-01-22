@@ -11,29 +11,80 @@
 \alias{colour_values_to_hex.POSIXlt}
 \title{Colour Values}
 \usage{
-colour_values(x, palette = "viridis", alpha = 255,
-  na_colour = "#808080FF", include_alpha = TRUE, ...)
+colour_values(
+  x,
+  palette = "viridis",
+  alpha = 255,
+  na_colour = "#808080FF",
+  include_alpha = TRUE,
+  ...
+)
 
-color_values(x, palette = "viridis", alpha = 255,
-  na_colour = "#808080FF", include_alpha = TRUE, ...)
+color_values(
+  x,
+  palette = "viridis",
+  alpha = 255,
+  na_colour = "#808080FF",
+  include_alpha = TRUE,
+  ...
+)
 
-\method{colour_values_to_hex}{character}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_hex}{character}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_hex}{logical}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_hex}{logical}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_hex}{factor}(x, palette, alpha, na_colour,
-  include_alpha, summary = FALSE)
+\method{colour_values_to_hex}{factor}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  summary = FALSE
+)
 
-\method{colour_values_to_hex}{Date}(x, palette, alpha, na_colour,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_hex}{Date}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 
-\method{colour_values_to_hex}{POSIXct}(x, palette, alpha, na_colour,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_hex}{POSIXct}(
+  x,
+  palette,
+  alpha,
+  na_colour,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 
-\method{colour_values_to_hex}{POSIXlt}(x, palette, na_colour, alpha,
-  include_alpha, n_summaries = 0, format = TRUE)
+\method{colour_values_to_hex}{POSIXlt}(
+  x,
+  palette,
+  na_colour,
+  alpha,
+  include_alpha,
+  n_summaries = 0,
+  format = TRUE
+)
 }
 \arguments{
 \item{x}{vector of values to map to a colour}
