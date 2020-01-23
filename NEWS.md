@@ -1,6 +1,7 @@
 
 # v0.3.2
 
+* fixed updating-by-reference [issue 60](https://github.com/SymbolixAU/colourvalues/issues/60)
 * `get_palette()` gets a `rgb = TRUE` argument [issue 58](https://github.com/SymbolixAU/colourvalues/issues/58)
 
 # v0.3.1

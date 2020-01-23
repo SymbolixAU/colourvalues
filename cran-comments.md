@@ -2,9 +2,7 @@
 
 ## Release Notes
 
-* Updates v0.3 to v0.3.1
-  - patches for valgrind issues https://cran.r-project.org/web/checks/check_results_colourvalues.html and invalid write size error.
-  
+* Updates v0.3.1 to v0.3.2
   
 * CRAN Build Notes: Fedora Clang and OSX builds give notes
 "installed package size is 6.8Mb"
