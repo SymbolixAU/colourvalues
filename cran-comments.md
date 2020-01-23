@@ -3,7 +3,7 @@
 ## Release Notes
 
 * Updates v0.3.1 to v0.3.2
-  
+* removed invalid link from DESCRIPTION description field
 * CRAN Build Notes: Fedora Clang and OSX builds give notes
 "installed package size is 6.8Mb"
   - I can't reduce the libs directory as all the compiled source code is required
