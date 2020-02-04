@@ -7,7 +7,7 @@
 #include "colourvalues/convert/convert_colours.hpp"
 
 //[[Rcpp::depends(BH)]]
-#include <boost/math/interpolators/cubic_b_spline.hpp>
+#include <boost/math/interpolators/cardinal_cubic_b_spline.hpp>
 
 
 #endif

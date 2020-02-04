@@ -1,4 +1,8 @@
 
+# v0.3.3
+
+* updated `cubic_b_spline` to `cardinal_cubic_b_spline` -  [issue61](https://github.com/SymbolixAU/colourvalues/issues/61)
+
 # v0.3.2
 
 * fixed updating-by-reference [issue 60](https://github.com/SymbolixAU/colourvalues/issues/60)

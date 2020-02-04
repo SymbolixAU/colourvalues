@@ -30,10 +30,10 @@ namespace generate_colours {
     double step = 1 / ( colours - 1 );  // TODO(test)
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
-    boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
-    boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
-    boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(),  alpha.end(),  0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_alpha( alpha.begin(),  alpha.end(),  0, step );
 
     double this_x;
     int i, r, g, b;
@@ -93,10 +93,10 @@ namespace generate_colours {
     double step = 1 / ( colours - 1 );  // TODO(test)
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
-    boost::math::cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
-    boost::math::cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
-    boost::math::cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
-    boost::math::cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
 
     double this_x;
     int i, r, g, b;
