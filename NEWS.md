@@ -1,4 +1,8 @@
 
+# v0.3.4
+
+* removed Boost dates
+
 # v0.3.3
 
 * updated `cubic_b_spline` to `cardinal_cubic_b_spline` -  [issue61](https://github.com/SymbolixAU/colourvalues/issues/61)
