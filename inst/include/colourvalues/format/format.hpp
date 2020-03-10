@@ -3,13 +3,8 @@
 
 #include <Rcpp.h>
 #include <iostream>
-#include <boost/date_time.hpp>
 
 #include "colourvalues/utils/utils.hpp"
-
-// #include <boost/lexical_cast.hpp>
-
-// [[Rcpp::depends(BH)]]
 
 namespace colourvalues {
 namespace format {
@@ -42,17 +37,44 @@ namespace format {
     return format_type;
   }
 
+  inline std::string format_date( Rcpp::Date& d ) {
+    int yyyy = d.getYear();
+    int mm = d.getMonth();
+    int dd = d.getDay();
+    std::ostringstream os;
+    os << std::setfill('0') << std::setw(4) << yyyy << "-";
+    os << std::setfill('0') << std::setw(2) << mm << "-";
+    os << std::setfill('0') << std::setw(2) << dd;
+    return os.str();
+  }
+
+  inline std::string format_datetime( Rcpp::Datetime& d ) {
+    int yyyy = d.getYear();
+    int mm = d.getMonth();
+    int dd = d.getDay();
+    int h = d.getHours();
+    int m = d.getMinutes();
+    int s = d.getSeconds();
+    std::ostringstream os;
+    //sprintf( res, "%04d-%02d-%02dT%02d:%02d:%02d", yyyy, mm, dd, h, m, s);
+    os << std::setfill('0') << std::setw(4) << yyyy << "-";
+    os << std::setfill('0') << std::setw(2) << mm << "-";
+    os << std::setfill('0') << std::setw(2) << dd << "T";
+    os << std::setfill('0') << std::setw(2) << h << ":";
+    os << std::setfill('0') << std::setw(2) << m << ":";
+    os << std::setfill('0') << std::setw(2) << s;
+    return os.str();
+  }
+
   inline Rcpp::StringVector date_to_string( SEXP v, int n ) {
 
     int i;
     Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
     Rcpp::StringVector sv( n );
 
-    for ( i = 0; i < n; i++ ) {
+    for ( i = 0; i < n; ++i ) {
       Rcpp::Date d = nv[i];
-      boost::gregorian::date gd = boost::gregorian::date( d.getYear(), d.getMonth(), d.getDay() );
-      std::string s = boost::gregorian::to_iso_extended_string( gd );
-      sv[i] = s.c_str();
+      sv[i] = format_date( d );
     }
     return sv;
   }
@@ -63,17 +85,9 @@ namespace format {
     Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
     Rcpp::StringVector sv( n );
 
-    for ( i = 0; i < n; i++ ) {
-      Rcpp::Datetime d = nv[i];
-      boost::gregorian::date dt( d.getYear(), d.getMonth(), d.getDay() );
-      boost::posix_time::hours h( d.getHours() );
-      boost::posix_time::minutes mins( d.getMinutes() );
-      boost::posix_time::seconds sec( d.getSeconds() );
-      boost::posix_time::time_duration td = h + mins + sec;
-
-      boost::posix_time::ptime pt = boost::posix_time::ptime( dt, td );
-      std::string s = boost::posix_time::to_iso_extended_string( pt );
-      sv[i] = s.c_str();
+    for( i = 0; i < n; ++i ) {
+      Rcpp::Datetime d = nv[ i ];
+      sv[i] = format_datetime( d );
     }
     return sv;
   }
