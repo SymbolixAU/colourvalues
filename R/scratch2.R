@@ -1,6 +1,7 @@
 #
 #
 # library(Rcpp)
+# library(colourvalues)
 #
 # cppFunction(
 #   depends = "colourvalues"
@@ -62,40 +63,27 @@
 #   '
 # )
 #
+# red <- colourvalues::get_palette("viridis")[,1]
+# red <- red / 255
 #
-# # int n = x.size();
+# # x <- c(0.1, 0.4, 1.2, 1.8, 2.0)
+# # y <- c(0.1, 0.7, 0.6, 1.1, 0.9)
 # #
-# # Rcpp::NumericVector rng = minmax( x );
-# # Rcpp::NumericVector diff_from = Rcpp::diff( rng ); // should only be one value!
-# #
-# #   double this_diff = diff_from[0] == 0 ? 1.0 : diff_from[0];
-# #
-# # this_diff = 1 / this_diff;
-# # int i = 0;
-# # double this_range = rng[0];
-# #
-# # for (i = 0; i < n; i++) {
-# #   x[i] = ( x[i] - this_range ) * this_diff;
-# # }
-#
-# x <- c(0.1, 0.4, 1.2, 1.8, 2.0)
-# y <- c(0.1, 0.7, 0.6, 1.1, 0.9)
-#
-# tk_spline(x, y, 1.5)
-# bh_spline()
+# # tk_spline(x, y, 1.5)
+# # bh_spline()
 #
 # start <- red[1]
 # end <- red[ length( red ) ]
 # step = 1 / ( length(red) + 1)
 #
-# x <- seq(0, end, step)
+# x <- seq(0, 1, step)
 # y <- red
+# values <- 1:10
+# values <- colourvalues:::rcpp_scale( values )
+# tk_spline(x = x, colours = red, values = values)
+# bh_spline(values, red)
 #
-# tk_spline(x = x, colours = red, values = 1.3)
-# bh_spline(1.3, red)
 #
-# red <- colourvalues::get_palette("viridis")[,1]
-# red <- red / 255
 #
 # values <- 1:1e2
 # values <- c( values, rev(values) )
