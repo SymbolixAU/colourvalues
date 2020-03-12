@@ -38,12 +38,6 @@ namespace generate_colours {
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_alpha( alpha.begin(),  alpha.end(),  0, step );
 
-    // testing spline
-    std::vector< int > x_seq( n );
-    std::iota( std::begin( x_seq ), std::end( x_seq), 1 );
-
-
-
     double this_x;
     int i, r, g, b;
     std::string hex_str;

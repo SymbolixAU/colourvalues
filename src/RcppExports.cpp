@@ -702,6 +702,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_scale
+Rcpp::NumericVector rcpp_scale(Rcpp::NumericVector x);
+RcppExport SEXP _colourvalues_rcpp_scale(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_scale(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_colour_values_hex", (DL_FUNC) &_colourvalues_rcpp_colour_values_hex, 9},
@@ -770,6 +781,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_colourvalues_rcpp_heat_hcl", (DL_FUNC) &_colourvalues_rcpp_heat_hcl, 0},
     {"_colourvalues_rcpp_sequential_hcl", (DL_FUNC) &_colourvalues_rcpp_sequential_hcl, 0},
     {"_colourvalues_rcpp_rainbow_hcl", (DL_FUNC) &_colourvalues_rcpp_rainbow_hcl, 0},
+    {"_colourvalues_rcpp_scale", (DL_FUNC) &_colourvalues_rcpp_scale, 1},
     {NULL, NULL, 0}
 };
 

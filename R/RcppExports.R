@@ -265,3 +265,7 @@ rcpp_rainbow_hcl <- function() {
     .Call(`_colourvalues_rcpp_rainbow_hcl`)
 }
 
+rcpp_scale <- function(x) {
+    .Call(`_colourvalues_rcpp_scale`, x)
+}
+
