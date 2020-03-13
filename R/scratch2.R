@@ -64,6 +64,7 @@
 # )
 #
 # red <- colourvalues::get_palette("viridis")[,1]
+# ## the colours don't necessarily need to be scaled
 # red <- red / 255
 #
 # # x <- c(0.1, 0.4, 1.2, 1.8, 2.0)
@@ -74,14 +75,18 @@
 #
 # start <- red[1]
 # end <- red[ length( red ) ]
-# step = 1 / ( length(red) + 1)
+# step <- 1 / ( length(red) + 1)
 #
-# x <- seq(0, 1, step)
+# x <- seq(0, end, step)
 # y <- red
 # values <- 1:10
 # values <- colourvalues:::rcpp_scale( values )
-# tk_spline(x = x, colours = red, values = values)
-# bh_spline(values, red)
+#
+# tk_spline( x = x, colours = red, values = scaled )
+# bh_spline( scaled, red )
+#
+# round( tk_spline(x = x, colours = red, values = scaled)  )
+# round( bh_spline(scaled, red)  )
 #
 #
 #
