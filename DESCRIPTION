@@ -19,7 +19,8 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.3.0)
 SystemRequirements: C++11
-LinkingTo: 
+LinkingTo:
+    BH (>= 1.72.0-3),
     Rcpp
 Imports:
     graphics,

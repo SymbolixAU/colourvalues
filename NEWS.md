@@ -2,7 +2,7 @@
 # v0.3.4
 
 * removed Boost dates
-* running self-contained boost/math headers
+* running self-contained boost headers
 * removed ggplot2 from readme and suggests
 
 # v0.3.3

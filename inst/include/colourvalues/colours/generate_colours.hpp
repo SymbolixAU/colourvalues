@@ -8,7 +8,8 @@
 
 //#include "colourvalues/spline.hpp" // TODO
 
-#include "boost/math/interpolators/cardinal_cubic_b_spline.hpp"
+#include "cardinal_cubic_b_spline.hpp"
+//#include "boost/math/interpolators/cardinal_cubic_b_spline.hpp"
 
 namespace colourvalues {
 namespace generate_colours {
