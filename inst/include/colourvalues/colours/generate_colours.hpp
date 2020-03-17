@@ -6,7 +6,9 @@
 #include "colourvalues/alpha/alpha.hpp"
 //#include "colourvalues/scale/scale.hpp"
 
-#include "colourvalues/spline.hpp"
+//#include "colourvalues/spline.hpp" // TODO
+
+#include "boost/math/interpolators/cardinal_cubic_b_spline.hpp"
 
 namespace colourvalues {
 namespace generate_colours {

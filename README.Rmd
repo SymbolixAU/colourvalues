@@ -299,7 +299,6 @@ lapply( l, colour_values )
 
 ```{r, out.height=400}
 library(microbenchmark)
-library(ggplot2)
 library(scales)
 library(viridisLite)
 
@@ -313,7 +312,6 @@ m <- microbenchmark(
 )
 m
 
-autoplot(m)
 ```
 
 
@@ -321,7 +319,6 @@ autoplot(m)
 
 ```{r, out.height=400}
 library(microbenchmark)
-library(ggplot2)
 library(scales)
 library(viridisLite)
 
@@ -336,6 +333,5 @@ m <- microbenchmark(
 )
 m
 
-autoplot(m)
 ```
 

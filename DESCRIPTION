@@ -20,8 +20,7 @@ LazyData: true
 Depends: R (>= 3.3.0)
 SystemRequirements: C++11
 LinkingTo: 
-    Rcpp,
-    BH (>= 1.72.0-3)
+    Rcpp
 Imports:
     graphics,
     Rcpp
@@ -29,7 +28,6 @@ RoxygenNote: 7.0.2
 Suggests: 
     covr,
     microbenchmark,
-    ggplot2,
     scales,
     testthat,
     viridisLite
