@@ -283,11 +283,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#21908DFF" "#21908DFF" "#94D841FF" "#5FC961FF" "#440154FF" "#FDE725FF"
-#  [7] "#1F9E89FF" "#CBE11FFF" "#297A8EFF" "#98D83EFF"
+#  [1] "#2F6A8EFF" "#482575FF" "#F4E61EFF" "#EBE51AFF" "#BFDF25FF" "#FDE725FF"
+#  [7] "#440154FF" "#29AF80FF" "#61CA60FF" "#47C06FFF"
 # 
 # $summary_values
-# [1] "-1.13" "0.07"  "1.27" 
+# [1] "-1.68" "-0.23" "1.21" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -335,25 +335,25 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#1E9B8AFF" "#C2DF23FF" "#1E9B8AFF" "#50C469FF" "#21908CFF" "#69CD5BFF"
-#  [7] "#32648EFF" "#440154FF" "#21A685FF" "#25858EFF" "#85D44AFF" "#69CD5BFF"
-# [13] "#E0E318FF" "#A3DB37FF" "#21908CFF" "#21A685FF" "#46307EFF" "#85D44AFF"
-# [19] "#21908CFF" "#297A8EFF" "#471265FF" "#2D6F8EFF" "#1E9B8AFF" "#A3DB37FF"
-# [25] "#3BBB75FF" "#1E9B8AFF" "#50C469FF" "#433E85FF" "#38588CFF" "#E0E318FF"
-# [31] "#482273FF" "#1E9B8AFF" "#2D6F8EFF" "#21908CFF" "#FDE725FF" "#440154FF"
-# [37] "#C2DF23FF" "#297A8EFF" "#21908CFF" "#482273FF" "#297A8EFF" "#3E4C8AFF"
-# [43] "#2BB07EFF" "#3BBB75FF" "#32648EFF" "#21908CFF" "#25858EFF" "#440154FF"
-# [49] "#A3DB37FF" "#2BB07EFF"
+#  [1] "#7AD151FF" "#2A788EFF" "#9AD93DFF" "#2A788EFF" "#440154FF" "#2A788EFF"
+#  [7] "#22A884FF" "#440154FF" "#2FB47CFF" "#43BF71FF" "#463480FF" "#DDE318FF"
+# [13] "#9AD93DFF" "#22A884FF" "#2A788EFF" "#DDE318FF" "#2F6C8EFF" "#2F6C8EFF"
+# [19] "#3B528BFF" "#440154FF" "#463480FF" "#25848EFF" "#2FB47CFF" "#BCDF27FF"
+# [25] "#FDE725FF" "#2FB47CFF" "#2FB47CFF" "#345F8DFF" "#9AD93DFF" "#9AD93DFF"
+# [31] "#21908CFF" "#BCDF27FF" "#345F8DFF" "#BCDF27FF" "#FDE725FF" "#43BF71FF"
+# [37] "#1E9C89FF" "#481466FF" "#463480FF" "#BCDF27FF" "#482575FF" "#440154FF"
+# [43] "#21908CFF" "#25848EFF" "#414487FF" "#5DC963FF" "#463480FF" "#9AD93DFF"
+# [49] "#9AD93DFF" "#3B528BFF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "f" "h" "i" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "v"
-# [20] "w" "x" "y" "z"
+#  [1] "a" "b" "c" "d" "f" "g" "h" "i" "j" "k" "l" "n" "o" "p" "q" "r" "s" "u" "v"
+# [20] "w" "x"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#471265FF" "#482273FF" "#46307EFF" "#433E85FF" "#3E4C8AFF"
-#  [7] "#38588CFF" "#32648EFF" "#2D6F8EFF" "#297A8EFF" "#25858EFF" "#21908CFF"
-# [13] "#1E9B8AFF" "#21A685FF" "#2BB07EFF" "#3BBB75FF" "#50C469FF" "#69CD5BFF"
-# [19] "#85D44AFF" "#A3DB37FF" "#C2DF23FF" "#E0E318FF" "#FDE725FF"
+#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF" "#3B528BFF"
+#  [7] "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF" "#21908CFF" "#1E9C89FF"
+# [13] "#22A884FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF" "#7AD151FF" "#9AD93DFF"
+# [19] "#BCDF27FF" "#DDE318FF" "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -406,7 +406,6 @@ lapply( l, colour_values )
 
 ``` r
 library(microbenchmark)
-library(ggplot2)
 library(scales)
 library(viridisLite)
 
@@ -421,20 +420,14 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.696832 1.798449 1.874607 1.886462 1.941815 2.000076    25
-#        scales 3.564529 3.663947 3.836608 3.881610 3.926418 4.241790    25
-
-autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+#  colourvalues 1.658179 1.689560 1.757993 1.711841 1.860030 1.929216    25
+#        scales 3.462993 3.597533 3.684845 3.703637 3.743554 4.502379    25
 ```
-
-<img src="man/figures/README-unnamed-chunk-21-1.png" width="100%" height="400" />
 
 **1 million characters (26 unique values)**
 
 ``` r
 library(microbenchmark)
-library(ggplot2)
 library(scales)
 library(viridisLite)
 
@@ -450,11 +443,6 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 176.8613 180.8983 186.6636 183.9175 187.6013 252.8738    25
-#        scales 378.6153 412.8431 430.0804 421.6503 455.6107 486.6900    25
-
-autoplot(m)
-# Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+#  colourvalues 172.5591 175.9832 179.7883 177.0506 178.5656 239.3853    25
+#        scales 377.8148 409.4237 426.2436 412.8454 419.4030 530.0351    25
 ```
-
-<img src="man/figures/README-unnamed-chunk-22-1.png" width="100%" height="400" />
