@@ -59,9 +59,9 @@ namespace list {
    }
 
    inline Rcpp::List list_size( const Rcpp::List& lst, int& total_size, int& existing_type, std::string& existing_format ) {
-      std::size_t n = lst.size();
+      R_xlen_t n = lst.size();
       Rcpp::List res( n ); // create a list to store the size corresponding to each list element
-      std::size_t i;
+      R_xlen_t i;
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst[i] ) ) {
          case VECSXP: {
@@ -99,7 +99,7 @@ namespace list {
 
       size_t n = lst_sizes.size();
       Rcpp::List res( n );
-      std::size_t i;
+      R_xlen_t i;
 
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst_sizes[ i ] ) ) {
@@ -139,7 +139,7 @@ namespace list {
 
       size_t n = lst_sizes.size();
       Rcpp::List res( n );
-      std::size_t i;
+      R_xlen_t i;
 
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst_sizes[ i ] ) ) {
@@ -177,7 +177,7 @@ namespace list {
       // - extract each element and insert into 'colours'
       size_t n = lst.size();
       Rcpp::List res( n );
-      std::size_t i;
+      R_xlen_t i;
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst[i] ) ) {
          case VECSXP: {
@@ -205,7 +205,7 @@ namespace list {
       // - extract each element and insert into 'colours'
       size_t n = lst.size();
       Rcpp::List res( n );
-      std::size_t i;
+      R_xlen_t i;
       for( i = 0; i < n; i++ ) {
          switch( TYPEOF( lst[i] ) ) {
          case VECSXP: {
