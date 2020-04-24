@@ -1,5 +1,5 @@
-#ifndef R_COLOURVALUES_COLOURS_RGB_H
-#define R_COLOURVALUES_COLOURS_RGB_H
+#ifndef R_COLOURVALUES_COLOURS_RGB_INTERLEAVED_H
+#define R_COLOURVALUES_COLOURS_RGB_INTERLEAVED_H
 
 #include <Rcpp.h>
 #include "colourvalues/colours.hpp"
@@ -11,9 +11,9 @@
 #include "colourvalues/output/output.hpp"
 
 namespace colourvalues {
-namespace colours_rgb {
+namespace colours_rgb_interleaved {
 
-  inline SEXP colours_with_summary(
+  inline SEXP colours_with_summary_interleaved(
       Rcpp::NumericVector& full_values,
       Rcpp::NumericVector& summary,
       Rcpp::StringVector& summary_values,
@@ -24,20 +24,22 @@ namespace colours_rgb {
       Rcpp::NumericVector& summary_alpha,
       int& alpha_type,
       std::string& na_colour,
-      bool& include_alpha
+      bool& include_alpha,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours
   ) {
-    Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb(
-      full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha
+    Rcpp::IntegerVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha, repeats, total_colours
     );
     Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(
       summary, red, green, blue, summary_alpha, alpha_type, na_colour, include_alpha
     ); // uses full opacity
 
-    return colourvalues::output::create_summary_output(full_rgb, summary_values, summary_rgb );
+    return colourvalues::output::create_summary_output( full_rgb, summary_values, summary_rgb );
   }
 
 
-  inline SEXP colours_with_summary(
+  inline SEXP colours_with_summary_interleaved(
       Rcpp::NumericVector& full_values,
       Rcpp::NumericVector& summary,
       SEXP& summary_values,
@@ -48,10 +50,12 @@ namespace colours_rgb {
       Rcpp::NumericVector& summary_alpha,
       int& alpha_type,
       std::string& na_colour,
-      bool& include_alpha
+      bool& include_alpha,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours
   ) {
-    Rcpp::NumericMatrix full_rgb = colourvalues::generate_colours::colour_values_to_rgb(
-      full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha
+    Rcpp::IntegerVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha, repeats, total_colours
     );
     Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(
       summary, red, green, blue, summary_alpha, alpha_type, na_colour, include_alpha
@@ -61,12 +65,14 @@ namespace colours_rgb {
   }
 
   // in this function the colour vectors will already be scaled [0,1]
-  inline SEXP colour_value_rgb(
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::NumericVector& x,
       Rcpp::NumericMatrix& palette,
       std::string& na_colour,
       bool include_alpha,
       std::string& format_type,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
       int n_summaries = 0,
       bool format = false,
       int digits = 2
@@ -99,24 +105,30 @@ namespace colours_rgb {
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        x, summary, summary_values, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        x, summary, summary_values, red, green, blue, alpha_full, alpha_summary,
+        alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha, repeats, total_colours
+      );
   }
 
-  inline SEXP colour_value_rgb(
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::NumericVector& x,
       std::string& palette,
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
       std::string& format_type,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
       int n_summaries = 0,
       bool format = false,
-      int digits = 2) {
+      int digits = 2
+  ) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
@@ -142,20 +154,26 @@ namespace colours_rgb {
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        x, summary, summary_values, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        x, summary, summary_values, red, green, blue, alpha_full, alpha_summary,
+        alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb(x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha, repeats, total_colours
+      );
   }
 
-  inline SEXP colour_value_rgb (
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::StringVector& x,
       Rcpp::NumericMatrix& palette,
       std::string& na_colour,
       bool include_alpha,
-      bool summary = false ) {
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
+      bool summary = false
+  ) {
 
     colourvalues::utils::matrix_palette_check( palette );
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
@@ -177,21 +195,27 @@ namespace colours_rgb {
       int n_alpha_summary = red_size < 5 ? 5 : red_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        out_nv, nv, lvls, red, green, blue, alpha, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        out_nv, nv, lvls, red, green, blue, alpha, alpha_summary, alpha_type,
+        na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      out_nv, red, green, blue, alpha, alpha_type, na_colour, include_alpha, repeats, total_colours
+      );
   }
 
-  inline SEXP colour_value_rgb(
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::StringVector& x,
       std::string& palette,
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
-      bool summary = false ) {
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
+      bool summary = false
+  ) {
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
@@ -214,23 +238,29 @@ namespace colours_rgb {
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        out_nv, nv, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        out_nv, nv, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type,
+        na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb( out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      out_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha,
+      repeats, total_colours
+      );
   }
 
   /*
    * i.e, factors
    */
-  inline SEXP colour_value_rgb(
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::IntegerVector& x,
       Rcpp::StringVector lvls,
       Rcpp::NumericMatrix& palette,
       std::string& na_colour,
       bool include_alpha,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
       bool summary = false
   ) {
 
@@ -257,24 +287,30 @@ namespace colours_rgb {
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary,
+        alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb( x_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      x_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha,
+      repeats, total_colours
+      );
   }
 
   /*
    * i.e, factors
    */
-  inline SEXP colour_value_rgb(
+  inline SEXP colour_value_rgb_interleaved(
       Rcpp::IntegerVector& x,
       Rcpp::StringVector lvls,
       std::string& palette,
       std::string& na_colour,
       Rcpp::NumericVector& alpha,
       bool include_alpha,
+      Rcpp::IntegerVector& repeats,
+      R_xlen_t& total_colours,
       bool summary = false
   ) {
 
@@ -298,12 +334,16 @@ namespace colours_rgb {
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
-      return colours_with_summary(
-        x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
+      return colours_with_summary_interleaved(
+        x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary,
+        alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
 
-    return colourvalues::generate_colours::colour_values_to_rgb( x_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
+    return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+      x_nv, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha,
+      repeats, total_colours
+      );
   }
 
 } // namespace colours

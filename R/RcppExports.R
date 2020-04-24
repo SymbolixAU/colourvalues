@@ -9,6 +9,10 @@ rcpp_colour_values_rgb <- function(x, palette, alpha, na_colour = "#808080", inc
     .Call(`_colourvalues_rcpp_colour_values_rgb`, x, palette, alpha, na_colour, include_alpha, format, digits, summary, n_summaries)
 }
 
+rcpp_colour_values_rgb_interleaved <- function(x, palette, alpha, repeats, total_colours, na_colour = "#808080", include_alpha = TRUE, format = FALSE, digits = 2L, summary = FALSE, n_summaries = 0L) {
+    .Call(`_colourvalues_rcpp_colour_values_rgb_interleaved`, x, palette, alpha, repeats, total_colours, na_colour, include_alpha, format, digits, summary, n_summaries)
+}
+
 rcpp_convert_hex_to_rgb <- function(hex_strings) {
     .Call(`_colourvalues_rcpp_convert_hex_to_rgb`, hex_strings)
 }

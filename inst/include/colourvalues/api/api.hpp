@@ -5,5 +5,6 @@
 
 #include "colourvalues/api/api_hex.hpp"
 #include "colourvalues/api/api_rgb.hpp"
+#include "colourvalues/api/api_rgb_interleaved.hpp"
 
 #endif
