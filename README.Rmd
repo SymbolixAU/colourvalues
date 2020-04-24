@@ -2,10 +2,10 @@
 output: github_document
 ---
 
+[![R build status](https://github.com/SymbolixAU/colourvalues/workflows/R-CMD-check/badge.svg)](https://github.com/SymbolixAU/colourvalues/actions)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/colourvalues)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
-[![Travis-CI Build Status](https://travis-ci.org/SymbolixAU/colourvalues.svg?branch=master)](https://travis-ci.org/SymbolixAU/colourvalues)
 [![Github Stars](https://img.shields.io/github/stars/SymbolixAU/colourvalues.svg?style=social&label=Github)](https://github.com/SymbolixAU/colourvalues)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
