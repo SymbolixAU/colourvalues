@@ -2,17 +2,20 @@
 
 ## Release Notes
 
-* Updates v0.3.2 to v0.3.4
-* updated Boost dependency header files
+* Updates v0.3.4 to v0.3.5
+* patch for upcoming rdevel changes to c.POSIXct
 
 
 ## Test environments
 
-* local OS X install, R 3.6.1 and R 3.6.0
-* ubuntu 14.04 (on travis-ci), R 3.5.0
+* local OS X install, R 3.6.3
+* windows-latest 3.6
+* macOS-latest 3.6
+* macOS-latest (devel)
+* ubuntu-16.04 3.3, 3.4, 3.5, 3.6
+* rhub rdevel
 * rhub as-cran
 * rhub win devel
-* win-builder (devel and release)
 
 ## R CMD check results
 
