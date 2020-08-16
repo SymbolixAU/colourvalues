@@ -158,7 +158,7 @@ namespace generate_colours {
       int& alpha_type,
       std::string& na_colour,
       bool& include_alpha,
-      Rcpp::IntegerVector& repeats, // vector of ints, each one is how many times eahc colour is repeated
+      Rcpp::IntegerVector& repeats, // vector of ints, each one is how many times each colour is repeated
       R_xlen_t& total_colours
   ) {
 
