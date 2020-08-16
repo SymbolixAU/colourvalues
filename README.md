@@ -1,6 +1,8 @@
 
 [![R build
 status](https://github.com/SymbolixAU/colourvalues/workflows/R-CMD-check/badge.svg)](https://github.com/SymbolixAU/colourvalues/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/dcooley/colourvalues/branch/master/graph/badge.svg)](https://codecov.io/gh/dcooley/colourvalues?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/colourvalues)
 [![CRAN RStudio mirror
@@ -183,8 +185,7 @@ colour_palettes()
 ```
 
 And you can use `show_colours()` to view them all. Here’s what some of
-them look
-like
+them look like
 
 ``` r
 show_colours( colours = colour_palettes(c("viridis", "colorspace")))
@@ -284,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#3EBC74FF" "#46337FFF" "#450457FF" "#440154FF" "#3C4E8AFF" "#32648EFF"
-#  [7] "#25858EFF" "#277E8EFF" "#FDE725FF" "#38578CFF"
+#  [1] "#440154FF" "#FDE725FF" "#37598CFF" "#1E9D89FF" "#228C8DFF" "#20A486FF"
+#  [7] "#2E6D8EFF" "#482A79FF" "#23888EFF" "#21A685FF"
 # 
 # $summary_values
-# [1] "-0.67" "0.69"  "2.04" 
+# [1] "-1.97" "-0.12" "1.72" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -336,25 +337,25 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#3B528BFF" "#7AD151FF" "#DDE318FF" "#2F6C8EFF" "#2FB47CFF" "#BCDF27FF"
-#  [7] "#3B528BFF" "#440154FF" "#22A884FF" "#482575FF" "#2A788EFF" "#43BF71FF"
-# [13] "#3B528BFF" "#21908CFF" "#25848EFF" "#21908CFF" "#481466FF" "#7AD151FF"
-# [19] "#3B528BFF" "#345F8DFF" "#22A884FF" "#1E9C89FF" "#FDE725FF" "#481466FF"
-# [25] "#7AD151FF" "#5DC963FF" "#2A788EFF" "#5DC963FF" "#22A884FF" "#9AD93DFF"
-# [31] "#BCDF27FF" "#2A788EFF" "#BCDF27FF" "#481466FF" "#463480FF" "#2A788EFF"
-# [37] "#482575FF" "#9AD93DFF" "#3B528BFF" "#2A788EFF" "#DDE318FF" "#440154FF"
-# [43] "#482575FF" "#3B528BFF" "#43BF71FF" "#2FB47CFF" "#2FB47CFF" "#2A788EFF"
-# [49] "#414487FF" "#481466FF"
+#  [1] "#85D44AFF" "#440154FF" "#3BBB75FF" "#482273FF" "#32648EFF" "#2D6F8EFF"
+#  [7] "#3BBB75FF" "#A3DB37FF" "#471265FF" "#21A685FF" "#440154FF" "#32648EFF"
+# [13] "#471265FF" "#2BB07EFF" "#E0E318FF" "#32648EFF" "#50C469FF" "#25858EFF"
+# [19] "#2D6F8EFF" "#FDE725FF" "#69CD5BFF" "#482273FF" "#1E9B8AFF" "#440154FF"
+# [25] "#1E9B8AFF" "#297A8EFF" "#21908CFF" "#21908CFF" "#25858EFF" "#38588CFF"
+# [31] "#25858EFF" "#21908CFF" "#69CD5BFF" "#E0E318FF" "#2D6F8EFF" "#C2DF23FF"
+# [37] "#21A685FF" "#69CD5BFF" "#46307EFF" "#2D6F8EFF" "#297A8EFF" "#297A8EFF"
+# [43] "#3E4C8AFF" "#69CD5BFF" "#440154FF" "#297A8EFF" "#433E85FF" "#1E9B8AFF"
+# [49] "#38588CFF" "#433E85FF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "h" "j" "k" "l" "m" "o" "p" "q" "r" "s" "t" "u" "v" "x"
-# [20] "y" "z"
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "q" "r" "s" "t" "v"
+# [20] "w" "x" "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF" "#3B528BFF"
-#  [7] "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF" "#21908CFF" "#1E9C89FF"
-# [13] "#22A884FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF" "#7AD151FF" "#9AD93DFF"
-# [19] "#BCDF27FF" "#DDE318FF" "#FDE725FF"
+#  [1] "#440154FF" "#471265FF" "#482273FF" "#46307EFF" "#433E85FF" "#3E4C8AFF"
+#  [7] "#38588CFF" "#32648EFF" "#2D6F8EFF" "#297A8EFF" "#25858EFF" "#21908CFF"
+# [13] "#1E9B8AFF" "#21A685FF" "#2BB07EFF" "#3BBB75FF" "#50C469FF" "#69CD5BFF"
+# [19] "#85D44AFF" "#A3DB37FF" "#C2DF23FF" "#E0E318FF" "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -421,8 +422,8 @@ m <- microbenchmark(
 m
 # Unit: seconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 1.622644 1.686746 1.762074 1.767248 1.846088 1.881535    25
-#        scales 3.403781 3.549115 3.632887 3.576572 3.758701 4.112579    25
+#  colourvalues 1.688027 1.716678 1.783554 1.748481 1.791459 2.053913    25
+#        scales 3.550362 3.648509 3.727982 3.714984 3.777053 4.289538    25
 ```
 
 **1 million characters (26 unique values)**
@@ -444,6 +445,6 @@ m <- microbenchmark(
 m
 # Unit: milliseconds
 #          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 174.8044 178.7663 181.2752 179.7038 180.6311 208.8333    25
-#        scales 375.9720 391.3423 406.6993 403.6458 411.0125 450.1277    25
+#  colourvalues 181.7347 188.8082 190.2067 189.7437 192.0436 199.0016    25
+#        scales 381.8374 399.6990 414.8849 404.1820 407.4179 481.0148    25
 ```
