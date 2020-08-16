@@ -3,7 +3,7 @@ output: github_document
 ---
 
 [![R build status](https://github.com/SymbolixAU/colourvalues/workflows/R-CMD-check/badge.svg)](https://github.com/SymbolixAU/colourvalues/actions)
-[![Codecov test coverage](https://codecov.io/gh/dcooley/colourvalues/branch/master/graph/badge.svg)](https://codecov.io/gh/dcooley/colourvalues?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/symbolixau/colourvalues/branch/master/graph/badge.svg)](https://codecov.io/gh/symbolixau/colourvalues?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/colourvalues)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/colourvalues)](https://CRAN.R-project.org/package=colourvalues)
