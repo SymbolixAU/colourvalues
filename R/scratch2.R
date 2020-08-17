@@ -11,17 +11,21 @@
 #     Rcpp::NumericVector tk_spline( Rcpp::NumericVector x, Rcpp::NumericVector colours, Rcpp::NumericVector values ) {
 #
 #       R_xlen_t n = colours.size();
-#       std::vector< double > dbl_colours( n );
-#       std::vector< double > x_seq( n );
+#       std::vector< double > dbl_colours = Rcpp::as< std::vector< double > >( colours );
+#       std::vector< double > x_seq = Rcpp::as< std::vector< double > >( x );
 #       R_xlen_t i;
 #
-#       for( i = 0; i < n; ++i ) {
-#         dbl_colours[ i ] = colours[ i ];
-#         x_seq[ i ] = x[ i ];
-#       }
+#       //for( i = 0; i < n; ++i ) {
+#       //  dbl_colours[ i ] = colours[ i ];
+#       //  x_seq[ i ] = x[ i ];
+#       //}
+#
+#
 #
 #       tk::spline s;
 #       s.set_points( x_seq, dbl_colours );
+#       //s.set_points( x, colours );  // does not like this, has to be vector< double >
+#
 #
 #       //double y = 0.7;
 #       R_xlen_t vn = values.size();
@@ -38,14 +42,13 @@
 #
 # cppFunction(
 #   depends = c("BH", "colourvalues")
-#   , includes = c('#include "colourvalues/colours.hpp"')
+#   , includes = c('#include "colourvalues/colours/generate_colours.hpp"')
 #   , code = '
 #
 #     Rcpp::NumericVector bh_spline( Rcpp::NumericVector values, Rcpp::NumericVector red ) {
 #
 #       double colours = red.size();
 #       double step = 1 / ( colours - 1 );
-#
 #
 #       // cublic_b_spoine :: vec.start, vec.end, start.time, step
 #       boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red( red.begin(), red.end(), 0, step );
@@ -90,15 +93,15 @@
 #
 #
 #
-# values <- 1:1e2
-# values <- c( values, rev(values) )
-# scaled <- colourvalues:::rcpp_scale( values )
-#
-# tk_res <- tk_spline( scaled, red )
-# bh_res <- bh_spline( scaled, red )
-#
-#
-# all.equal( tk_res, bh_res )
+# # values <- 1:1e2
+# # values <- c( values, rev(values) )
+# # scaled <- colourvalues:::rcpp_scale( values )
+# #
+# # tk_res <- tk_spline( scaled, red )
+# # bh_res <- bh_spline( scaled, red )
+# #
+# #
+# # all.equal( tk_res, bh_res )
 #
 # microbenchmark::microbenchmark(
 #   bh = {
