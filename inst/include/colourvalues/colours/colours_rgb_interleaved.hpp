@@ -28,9 +28,12 @@ namespace colours_rgb_interleaved {
       Rcpp::IntegerVector& repeats,
       R_xlen_t& total_colours
   ) {
-    Rcpp::IntegerVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+    // Rcpp::Rcout << "colours_with_summary_interleaved 1" << std::endl;
+    // Rcpp::stop("stopping");
+    Rcpp::NumericVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
       full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha, repeats, total_colours
     );
+    // Rcpp::Rcout << "summary matrix" << std::endl;
     Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(
       summary, red, green, blue, summary_alpha, alpha_type, na_colour, include_alpha
     ); // uses full opacity
@@ -54,9 +57,14 @@ namespace colours_rgb_interleaved {
       Rcpp::IntegerVector& repeats,
       R_xlen_t& total_colours
   ) {
-    Rcpp::IntegerVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
+
+    // Rcpp::Rcout << "colours_with_summary_interleaved 2" << std::endl;
+    //Rcpp::stop("stopping");
+    Rcpp::NumericVector full_rgb = colourvalues::generate_colours::colour_values_to_rgb_interleaved(
       full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha, repeats, total_colours
     );
+    //Rcpp::stop("stopping");
+    // Rcpp::Rcout << "summary matrix" << std::endl;
     Rcpp::NumericMatrix summary_rgb = colourvalues::generate_colours::colour_values_to_rgb(
       summary, red, green, blue, summary_alpha, alpha_type, na_colour, include_alpha
     ); // uses full opacity
@@ -77,6 +85,9 @@ namespace colours_rgb_interleaved {
       bool format = false,
       int digits = 2
   ) {
+
+    // Rcpp::Rcout << "il1" << std::endl;
+    //Rcpp::stop("stopping");
 
     colourvalues::utils::matrix_palette_check( palette );
     int x_size = x.size();
@@ -130,10 +141,14 @@ namespace colours_rgb_interleaved {
       int digits = 2
   ) {
 
+    // Rcpp::Rcout << "il2" << std::endl;
+
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type );
+
+    // Rcpp::Rcout << "il2 2" << std::endl;
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -141,7 +156,10 @@ namespace colours_rgb_interleaved {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
+    // Rcpp::Rcout << "il2 3" << std::endl;
+
     if ( n_summaries > 0 ) {
+      // Rcpp::Rcout << "il2 4" << std::endl;
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
       SEXP summary_values = Rcpp::clone( summary );
 
@@ -154,12 +172,17 @@ namespace colours_rgb_interleaved {
       int n_alpha_summary = n_summaries < 5 ? 5 : n_summaries;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
 
+      // Rcpp::Rcout << "il2 5" << std::endl;
+      //Rcpp::stop("stopping");
+
       return colours_with_summary_interleaved(
         x, summary, summary_values, red, green, blue, alpha_full, alpha_summary,
         alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
 
+    // Rcpp::Rcout << "il2 generating colorus " << std::endl;
+    // Rcpp::stop("stopping");
     return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
       x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha, repeats, total_colours
       );
@@ -174,6 +197,9 @@ namespace colours_rgb_interleaved {
       R_xlen_t& total_colours,
       bool summary = false
   ) {
+
+    // Rcpp::Rcout << "il3" << std::endl;
+    // Rcpp::stop("stopping");
 
     colourvalues::utils::matrix_palette_check( palette );
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x.size(), palette.ncol() );
@@ -216,6 +242,9 @@ namespace colours_rgb_interleaved {
       R_xlen_t& total_colours,
       bool summary = false
   ) {
+
+    // Rcpp::Rcout << "il4" << std::endl;
+    // Rcpp::stop("stopping");
 
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
@@ -263,6 +292,9 @@ namespace colours_rgb_interleaved {
       R_xlen_t& total_colours,
       bool summary = false
   ) {
+
+    // Rcpp::Rcout << "il5" << std::endl;
+    // Rcpp::stop("stopping");
 
     Rcpp::NumericVector x_nv = Rcpp::as< Rcpp::NumericVector >( x );
     colourvalues::utils::matrix_palette_check( palette );
@@ -313,6 +345,9 @@ namespace colours_rgb_interleaved {
       R_xlen_t& total_colours,
       bool summary = false
   ) {
+
+    // Rcpp::Rcout << "il6" << std::endl;
+    // Rcpp::stop("stopping");
 
     Rcpp::NumericVector x_nv = Rcpp::as< Rcpp::NumericVector >( x );
     int x_size = x.size();

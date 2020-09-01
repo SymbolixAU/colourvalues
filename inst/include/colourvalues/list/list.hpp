@@ -170,8 +170,10 @@ namespace list {
     * @param colours - vector of values which will go into colour_values_hex()
     */
    inline void unlist_list(
-         const Rcpp::List& lst, const Rcpp::List& lst_sizes,
-         Rcpp::StringVector& colours, int& list_position
+         const Rcpp::List& lst,
+         const Rcpp::List& lst_sizes,
+         Rcpp::StringVector& colours,
+         int& list_position
    ) {
       // - iterate through original list
       // - extract each element and insert into 'colours'
@@ -198,8 +200,10 @@ namespace list {
    }
 
    inline void unlist_list(
-         const Rcpp::List& lst, const Rcpp::List& lst_sizes,
-         Rcpp::NumericVector& colours, int& list_position
+         const Rcpp::List& lst,
+         const Rcpp::List& lst_sizes,
+         Rcpp::NumericVector& colours,
+         int& list_position
    ) {
       // - iterate through original list
       // - extract each element and insert into 'colours'

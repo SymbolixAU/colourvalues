@@ -149,7 +149,134 @@ namespace generate_colours {
     return rgb_mat;
   }
 
-  inline Rcpp::IntegerVector colour_values_to_rgb_interleaved(
+  // where the 'x' doesn't have to be repeated
+  inline Rcpp::NumericVector colour_values_to_rgb_interleaved(
+      Rcpp::NumericVector& x,
+      Rcpp::NumericVector& red,
+      Rcpp::NumericVector& green,
+      Rcpp::NumericVector& blue,
+      Rcpp::NumericVector& alpha,
+      int& alpha_type,
+      std::string& na_colour,
+      bool& include_alpha
+  ) {
+
+    // Rcpp::Rcout << "colour_values_to_rgb_interleaved 1" << std::endl;
+    //Rcpp::stop("stopping");
+
+    // if( x.length() != repeats.length() ) {
+    //   Rcpp::stop("colourvalues - repeats vector must be the same length as x");
+    // }
+
+    R_xlen_t n = x.size();
+
+    // Rcpp::Rcout << "x: " << x << std::endl;
+
+    double colours = red.size();
+    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+
+    colourvalues::scale::rescale( x );
+    int cols = include_alpha ? 4 : 3;
+
+    R_xlen_t total_size = n * cols;
+    Rcpp::NumericVector rgb_vec( total_size );
+
+    // Rcpp::Rcout << "cols: " << cols << std::endl;
+    // Rcpp::Rcout << "n: " << n << std::endl;
+    // Rcpp::Rcout << "total_size: " << total_size << std::endl;
+    //Rcpp::NumericMatrix rgb_mat(n, cols);
+
+    // Rcpp::stop("stopping");
+
+    double step = 1 / ( colours - 1 );  // TODO(test)
+
+    // cublic_b_spoine :: vec.start, vec.end, start.time, step
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_blue(  blue.begin(),  blue.end(),  0, step );
+    boost::math::interpolators::cardinal_cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
+
+    double this_x;
+    double r, g, b;
+    std::string hex_str;
+    R_xlen_t i;
+
+    Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
+    Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
+    na_mat_d = na_mat_d / 255.0;
+    R_xlen_t position_counter = 0;
+
+    for( i = 0; i < n; ++i ) {
+
+      this_x = x[i];
+
+      //R_xlen_t n_reps = repeats[ i ];
+
+      if ( R_IsNA( this_x ) || R_IsNaN( this_x ) ) {
+        //rgb_mat(i, _) = na_mat;
+        rgb_vec[ position_counter ] = na_mat_d(0, 0);
+        rgb_vec[ position_counter + 1 ] = na_mat_d(0, 1);
+        rgb_vec[ position_counter + 2 ] = na_mat_d(0, 2);
+        if( cols == 4 ) {
+          rgb_vec[ position_counter + 3 ] = na_mat_d(0, 3);
+        }
+
+
+        // for( j = 0; j < n_reps; ++j ) {
+        //   rgb_vec[ position_counter ] = na_mat(0, 0);
+        //   rgb_vec[ position_counter + 1 ] = na_mat(0, 1);
+        //   rgb_vec[ position_counter + 2 ] = na_mat(0, 2);
+        //   if( cols == 4 ) {
+        //     rgb_vec[ position_counter + 3] = na_mat(0, 3);
+        //   }
+        //   position_counter = position_counter + cols;
+        // }
+
+      } else {
+        // r = round( spline_red( this_x ) * 255 ) ;
+        // g = round( spline_green( this_x ) * 255 );
+        // b = round( spline_blue( this_x ) * 255 );
+        //
+        // r = colourvalues::palette_utils::validate_rgb_range( r );
+        // g = colourvalues::palette_utils::validate_rgb_range( g );
+        // b = colourvalues::palette_utils::validate_rgb_range( b );
+
+        r = spline_red( this_x );
+        g = spline_green( this_x );
+        b = spline_blue( this_x );
+
+
+        //for( j = 0; j < n_reps; ++j ) {
+
+          rgb_vec[ position_counter ] = r;
+          rgb_vec[ position_counter + 1 ] = g;
+          rgb_vec[ position_counter + 2 ] = b;
+
+          if (include_alpha) {
+            double a;
+            if ( alpha_type == ALPHA_PALETTE ) {
+              //a = round( spline_alpha( this_x ) * 255 );
+              a = spline_alpha( this_x );
+            } else if (alpha_type == ALPHA_VECTOR ){
+              a = alpha[i];
+            } else {
+              a = alpha[0];  // should be length 5, but all the same
+            }
+
+            rgb_vec[ position_counter + 3 ] = a;
+          }
+
+          position_counter = position_counter + cols;
+
+        //} // for repeats
+      }
+    }
+    return rgb_vec;
+  }
+
+  // where each value needs to be repeated according to the number of elements
+  // which have to be coloured
+  inline Rcpp::NumericVector colour_values_to_rgb_interleaved(
       Rcpp::NumericVector& x,
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
@@ -162,9 +289,28 @@ namespace generate_colours {
       R_xlen_t& total_colours
   ) {
 
+    // Rcpp::Rcout << "colour_values_to_rgb_interleaved 2" << std::endl;
+
     if( x.length() != repeats.length() ) {
-      Rcpp::stop("colourvalues - repeats vector must be the same length as x");
+
+      // Rcpp::Rcout << "x and repeats are different" << std::endl;
+      // assume the vectors are correct?
+      return colour_values_to_rgb_interleaved(
+        x,
+        red,
+        green,
+        blue,
+        alpha,
+        alpha_type,
+        na_colour,
+        include_alpha
+      );
+      //Rcpp::stop("colourvalues - repeats vector must be the same length as x");
     }
+
+
+    // Rcpp::Rcout << "x; " << x << std::endl;
+    // Rcpp::Rcout << "repeates: " << repeats << std::endl;
 
     R_xlen_t n = x.size();
     double colours = red.size();
@@ -173,10 +319,12 @@ namespace generate_colours {
     colourvalues::scale::rescale( x );
     int cols = include_alpha ? 4 : 3;
 
-    Rcpp::IntegerVector rgb_vec( total_colours * cols );
+    Rcpp::NumericVector rgb_vec( total_colours * cols );
     //Rcpp::NumericMatrix rgb_mat(n, cols);
 
     double step = 1 / ( colours - 1 );  // TODO(test)
+
+    //Rcpp::stop("stopping");
 
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
@@ -185,11 +333,14 @@ namespace generate_colours {
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_alpha( alpha.begin(), alpha.end(), 0, step );
 
     double this_x;
-    int r, g, b;
+    double r, g, b;
     std::string hex_str;
     R_xlen_t i, j;
 
+    // TODO: divide this by 255
     Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
+    Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
+    na_mat_d = na_mat_d / 255.0;
 
     R_xlen_t position_counter = 0;
 
@@ -202,24 +353,27 @@ namespace generate_colours {
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
         //rgb_mat(i, _) = na_mat;
         for( j = 0; j < n_reps; ++j ) {
-          rgb_vec[ position_counter ] = na_mat(0, 0);
-          rgb_vec[ position_counter + 1 ] = na_mat(0, 1);
-          rgb_vec[ position_counter + 2 ] = na_mat(0, 2);
+          rgb_vec[ position_counter ] = na_mat_d(0, 0);
+          rgb_vec[ position_counter + 1 ] = na_mat_d(0, 1);
+          rgb_vec[ position_counter + 2 ] = na_mat_d(0, 2);
           if( cols == 4 ) {
-            rgb_vec[ position_counter + 2 ] = na_mat(0, 3);
+            rgb_vec[ position_counter + 3 ] = na_mat_d(0, 3);
           }
           position_counter = position_counter + cols;
         }
 
       } else {
-        r = round( spline_red( this_x ) * 255 ) ;
-        g = round( spline_green( this_x ) * 255 );
-        b = round( spline_blue( this_x ) * 255 );
+        // r = round( spline_red( this_x ) * 255 ) ;
+        // g = round( spline_green( this_x ) * 255 );
+        // b = round( spline_blue( this_x ) * 255 );
+        //
+        // r = colourvalues::palette_utils::validate_rgb_range( r );
+        // g = colourvalues::palette_utils::validate_rgb_range( g );
+        // b = colourvalues::palette_utils::validate_rgb_range( b );
 
-        r = colourvalues::palette_utils::validate_rgb_range( r );
-        g = colourvalues::palette_utils::validate_rgb_range( g );
-        b = colourvalues::palette_utils::validate_rgb_range( b );
-
+        r = spline_red( this_x );
+        g = spline_green( this_x );
+        b = spline_blue( this_x );
 
         for( j = 0; j < n_reps; ++j ) {
 
@@ -228,9 +382,10 @@ namespace generate_colours {
           rgb_vec[ position_counter + 2 ] = b;
 
           if (include_alpha) {
-            int a;
+            double a;
             if ( alpha_type == ALPHA_PALETTE ) {
-              a = round( spline_alpha( this_x ) * 255 );
+              //a = round( spline_alpha( this_x ) * 255 );
+              a = spline_alpha( this_x );
             } else if (alpha_type == ALPHA_VECTOR ){
               a = alpha[i];
             } else {

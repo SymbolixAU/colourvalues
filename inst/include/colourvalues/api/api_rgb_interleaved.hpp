@@ -26,6 +26,10 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
+
+    // Rcpp::Rcout << "colourvalues interleaved 1 " << std::endl;
+    // Rcpp::stop("stopping");
+
     int total_size = 0;
     int existing_type = 10;
 
@@ -119,12 +123,16 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
+
+    // Rcpp::Rcout << "colourvalues interleaved 2 " << std::endl;
+    // Rcpp::stop("stopping");
+
     int total_size = 0;
     int existing_type = 10;
 
     int position = 0;
 
-    //Rcpp::Rcout << "now doing list " << std::endl;
+    // Rcpp::Rcout << "now doing list " << std::endl;
 
 
     // TODO: get format_type depending on the type of list elements
@@ -216,7 +224,9 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
+    // Rcpp::Rcout << "colourvalues interleaved 3 " << std::endl;
+    // Rcpp::stop("stopping");
+    // Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     // STringVector - needs to get std::string
@@ -261,7 +271,10 @@ namespace api {
       int digits = 2,
       bool summary = false
   ) {
-    //Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
+
+    // Rcpp::Rcout << "colourvalues interleaved 4 " << std::endl;
+    // Rcpp::stop("stopping");
+    // Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case STRSXP: {
@@ -305,7 +318,10 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    //Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
+
+    // Rcpp::Rcout << "colourvalues interleaved 5 " << std::endl;
+    // Rcpp::stop("stopping");
+    // Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
     //Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
 
     std::string format_type = colourvalues::format::get_format_type( x );
@@ -368,9 +384,14 @@ namespace api {
       int n_summaries = 0
   ) {
 
+    // Rcpp::Rcout << "colourvalues interleaved 6 " << std::endl;
+    //Rcpp::stop("stopping");
     // Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
     // Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
+    // Rcpp::Rcout << "format_type: " << format_type << std::endl;
+    // Rcpp::Rcout << "palette length: " << palette.length() << std::endl;
+
 
     Rcpp::String p = palette[0];
     std::string pal = p;
@@ -380,6 +401,7 @@ namespace api {
       if( Rf_isFactor( x ) ) {
 
       //Rcpp::Rcout << "is factor " << std::endl;
+      // Rcpp::Rcout << "colourvalues interleaved 6.1 " << std::endl;
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
@@ -389,6 +411,7 @@ namespace api {
       );
 
     } else {
+      // Rcpp::Rcout << "colourvalues interleaved 6.2 " << std::endl;
       Rcpp::NumericVector nv = Rcpp::clone(x);
       return colourvalues::colours_rgb_interleaved::colour_value_rgb_interleaved(
         nv, pal, na_colour, alpha, include_alpha, format_type, repeats, total_colours, n_summaries, format, digits
@@ -397,12 +420,19 @@ namespace api {
     }
     case REALSXP: {
       //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+      // Rcpp::Rcout << "colourvalues interleaved 6.3 " << std::endl;
       Rcpp::NumericVector nv = Rcpp::clone(x);
+
+      // Rcpp::Rcout << "nv: " << nv << std::endl;
+
+      //Rcpp::stop("stopping");
+
       return colourvalues::colours_rgb_interleaved::colour_value_rgb_interleaved(
         nv, pal, na_colour, alpha, include_alpha, format_type, repeats, total_colours, n_summaries, format, digits
       );
     }
     case VECSXP: { // list
+      // Rcpp::Rcout << "colourvalues interleaved 6.4 " << std::endl;
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
       //Rcpp::Rcout << "starting list " << std::endl;
       return colour_values_rgb_interleaved(
@@ -412,6 +442,7 @@ namespace api {
     }
     case LGLSXP: {} // as.character
     default: {
+      // Rcpp::Rcout << "colourvalues interleaved 6.5 " << std::endl;
       Rcpp::StringVector sv = Rcpp::as< Rcpp::StringVector >( x );
       return colourvalues::colours_rgb_interleaved::colour_value_rgb_interleaved(
         sv, pal, na_colour, alpha, include_alpha, repeats, total_colours, summary
@@ -440,7 +471,9 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
+    //Rcpp::Rcout << "colourvalues interleaved 7 " << std::endl;
+    //Rcpp::stop("stopping");
+    // Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case INTSXP: {}
