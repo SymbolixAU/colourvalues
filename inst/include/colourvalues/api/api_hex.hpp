@@ -44,7 +44,7 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
+        //Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
@@ -71,7 +71,8 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-        Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
+        // issue 68
+        // Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
         summary = true;
       }
 
@@ -123,7 +124,7 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
+        //Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
@@ -149,9 +150,10 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-      Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
-      summary = true;
-    }
+        // issue 68
+        //Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
+        summary = true;
+      }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
@@ -194,8 +196,6 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "NumericVector x, SEXP palette " << std::endl;
-
     switch( TYPEOF( palette ) ) {
     // STringVector - needs to get std::string
     case STRSXP: {
@@ -237,7 +237,6 @@ namespace api {
       int digits = 2,
       bool summary = false
   ) {
-    //Rcpp::Rcout << "stringVector x, SEXP palette " << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case STRSXP: {
@@ -279,15 +278,12 @@ namespace api {
       bool summary = false,
       int n_summaries = 0
   ) {
-    // Rcpp::Rcout << "SEXP x, NumericMatrix palette " << std::endl;
-    // Rcpp::Rcout << "include_alpha: " << include_alpha << std::endl;
+
     std::string format_type = colourvalues::format::get_format_type( x );
 
     switch( TYPEOF( x ) ) {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
-
-      // Rcpp::Rcout << "is_factor " << std::endl;
 
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
@@ -341,8 +337,6 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    // Rcpp::Rcout << "SEXP x, StringVector palette " << std::endl;
-    // Rcpp::Rcout << "typeof x: " << TYPEOF( x ) << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
 
     Rcpp::String p = palette[0];
@@ -352,13 +346,8 @@ namespace api {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
 
-      // Rcpp::Rcout << "is_factor " << std::endl;
-
       Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
       Rcpp::StringVector lvls = iv.attr("levels");
-
-      // Rcpp::Rcout << "iv: " << iv << std::endl;
-      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
 
       return colourvalues::colours_hex::colour_value_hex(
         iv, lvls, pal, na_colour, alpha, include_alpha, summary
@@ -410,9 +399,7 @@ namespace api {
       int n_summaries = 0
   ) {
 
-    //Rcpp::Rcout << "SEXP x, SEXP palette " << std::endl;
     std::string format_type = colourvalues::format::get_format_type( x );
-    //Rcpp::Rcout << "format_type: " << format_type << std::endl;
 
     switch( TYPEOF( palette ) ) {
     case INTSXP: {}

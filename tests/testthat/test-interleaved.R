@@ -9,7 +9,6 @@ test_that("rgb vector returned", {
   expect_true(length(res) == totals * 4)
   m <- matrix( res, byrow = T, ncol = 4)
 
-
   x <- c(1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)
   y <- colour_values_rgb(x) / 255
   expect_equal( m, y )

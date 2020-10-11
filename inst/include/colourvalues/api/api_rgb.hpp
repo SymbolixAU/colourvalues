@@ -44,7 +44,10 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
+        // issue 68 - removing this warning, because the user may not have know what the input object
+        // was, so has no way of knowhing which 'summary' type was used
+        // this is particularly true if this is called from {spatialwidget}
+        //Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
@@ -70,9 +73,9 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-      Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
-      summary = true;
-    }
+        //Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
+        summary = true;
+      }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
@@ -120,9 +123,6 @@ namespace api {
 
     int position = 0;
 
-    //Rcpp::Rcout << "now doing list " << std::endl;
-
-
     // TODO: get format_type depending on the type of list elements
     std::string format_type = "character";
 
@@ -137,15 +137,14 @@ namespace api {
 
       if( summary ) {
         int option = 5;
-        Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
+        // issue 68
+        //Rcpp::warning("colourvalues - summary not valid for numeric values, using n_summaries = 5");
         n_summaries = std::min( total_size, option );
       }
 
-      //Rcpp::Rcout << "colouring values" << std::endl;
       SEXP coloured_values = colourvalues::colours_rgb::colour_value_rgb(
         colours, palette, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
       );
-      //Rcpp::Rcout << "coloured values" << std::endl;
 
       position = 0;
       Rcpp::NumericMatrix colour_matrix;
@@ -165,9 +164,9 @@ namespace api {
     default: {
 
       if( n_summaries > 0 ) {
-      Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
-      summary = true;
-    }
+        Rcpp::warning("colourvalues - n_summaries not valid for character values, using summary = T");
+        summary = true;
+      }
 
       Rcpp::StringVector colours( total_size );
       colourvalues::list::unlist_list( lst, lst_sizes, colours, position );
