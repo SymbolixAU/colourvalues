@@ -94,9 +94,7 @@ namespace colours_rgb_interleaved {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
-    int alpha_multiplier = 1;
-
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, alpha_multiplier );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -139,9 +137,7 @@ namespace colours_rgb_interleaved {
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    int alpha_multiplier = 1;
-
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, alpha_multiplier );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -228,8 +224,7 @@ namespace colours_rgb_interleaved {
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    int alpha_multiplier = 1;
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, alpha_multiplier );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);
@@ -286,8 +281,7 @@ namespace colours_rgb_interleaved {
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
-    int alpha_multiplier = 1;
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, alpha_multiplier );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
 
     Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
@@ -328,8 +322,7 @@ namespace colours_rgb_interleaved {
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( alpha.size(), x_size, 0 );
 
-    int alpha_multiplier = 1;
-    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, alpha_multiplier );
+    Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
 
     Rcpp::NumericVector red(256);
     Rcpp::NumericVector green(256);

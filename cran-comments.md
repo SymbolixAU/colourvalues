@@ -2,9 +2,8 @@
 
 ## Release Notes
 
-* Updates v0.3.4 to v0.3.5
-* patch for upcoming rdevel changes to c.POSIXct
-
+* Updates v0.3.5 to v0.3.6
+* added internal C++ function
 
 ## Test environments
 

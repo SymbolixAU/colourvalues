@@ -1,3 +1,6 @@
+# v0.3.6
+
+* updated interleave code
 
 # v0.3.5
 

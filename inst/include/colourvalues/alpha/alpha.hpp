@@ -28,11 +28,8 @@ namespace alpha {
   inline Rcpp::NumericVector validate_alpha(
       Rcpp::NumericVector& a,
       int& alpha_type,
-      int alpha_multiplier = 255
+      bool normalise
   ) {
-
-    // Rcpp::Rcout << "a: " << a << std::endl;
-    // Rcpp::Rcout << "alpha multiplier: " << alpha_multiplier << std::endl;
 
     if( a.size() < 1 ) {
       Rcpp::stop("colourvalues - invalid alpha vector");
@@ -49,8 +46,8 @@ namespace alpha {
     }
 
     if ( alpha_type == ALPHA_CONSTANT ) {
-      if ( alpha[0] >= 0 && alpha[0] < 1 ) {
-        alpha = alpha * alpha_multiplier;
+      if ( alpha[0] >= 0 && alpha[0] < 1 && !normalise ) {
+        alpha = alpha * 255;
       }
 
       Rcpp::NumericVector alpha_full( 5, alpha[0] ); // initialise with 5 vals (so i can create a spline object);
@@ -59,7 +56,10 @@ namespace alpha {
     } else if ( alpha_type == ALPHA_VECTOR ) {
 
       colourvalues::scale::rescale( alpha );
-      alpha = alpha * alpha_multiplier;
+
+      if( !normalise ) {
+        alpha = alpha * 255;
+      }
 
       // If length( alpha ) < 5; fill with mean
       int n_alpha = alpha.size();
