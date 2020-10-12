@@ -53,6 +53,12 @@ namespace utils {
     }
   }
 
+  inline void validate_hex( const char* hex ) {
+    if ( strncmp(hex, "#", 1) != 0 ) {
+      Rcpp::stop("colourvalues - unknown hex string, expecting # symbol");
+    }
+  }
+
   inline void replace_nas( Rcpp::IntegerVector& out, int na_value ) {
     int int_s = NA_INTEGER;
     std::replace( out.begin(), out.end(), na_value, int_s);

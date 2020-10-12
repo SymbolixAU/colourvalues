@@ -4,6 +4,7 @@
 #include <Rcpp.h>
 #include "colourvalues/colours.hpp"
 #include "colourvalues/alpha/alpha.hpp"
+#include "colourvalues/utils/utils.hpp"
 //#include "colourvalues/scale/scale.hpp"
 
 //#include "colourvalues/spline.hpp" // TODO
@@ -15,6 +16,9 @@ namespace colourvalues {
 namespace generate_colours {
 
   inline std::string validate_na_colour( std::string na_colour, bool& include_alpha ) {
+
+    colourvalues::utils::validate_hex( na_colour.c_str() );
+
     if( include_alpha && na_colour.length() == 9 ) {
       return na_colour;
     } else if ( include_alpha && na_colour.length() == 7 ) {

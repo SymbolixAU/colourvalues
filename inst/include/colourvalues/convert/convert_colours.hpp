@@ -5,6 +5,8 @@
 #include <string>
 #include <sstream>
 
+#include "colourvalues/utils/utils.hpp"
+
 // grDevices code
 // https://github.com/SurajGupta/r-source/blob/master/src/library/grDevices/src/colors.c
 
@@ -53,9 +55,7 @@ namespace convert {
       Rcpp::String this_hex = hex_strings[i];
       const char* hex = this_hex.get_cstring();
 
-      if ( strncmp(hex, "#", 1) != 0 ) {
-        Rcpp::stop("colourvalues - unknown hex string, expecting # symbol");
-      }
+      colourvalues::utils::validate_hex( hex );
 
       switch( strlen( hex ) ) {
       case 9: {
