@@ -1,4 +1,8 @@
 
+# v0.3.6
+
+* Bug fixed for `na_colour` when `include_alpha = FALSE` [issue 69](https://github.com/SymbolixAU/colourvalues/issues/69)
+
 # v0.3.5
 
 * return interleaved vectors (C++ only)
