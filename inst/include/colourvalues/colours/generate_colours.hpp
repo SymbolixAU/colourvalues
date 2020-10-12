@@ -42,7 +42,6 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
     na_colour = validate_na_colour( na_colour, include_alpha );
 
     colourvalues::scale::rescale( x );
@@ -111,7 +110,6 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
     na_colour = validate_na_colour( na_colour, include_alpha );
 
 
@@ -186,7 +184,6 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
     na_colour = validate_na_colour( na_colour, include_alpha );
 
     colourvalues::scale::rescale( x );
