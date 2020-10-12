@@ -14,6 +14,21 @@
 namespace colourvalues {
 namespace generate_colours {
 
+  inline std::string validate_na_colour( std::string na_colour, bool& include_alpha ) {
+    if( include_alpha && na_colour.length() == 9 ) {
+      return na_colour;
+    } else if ( include_alpha && na_colour.length() == 7 ) {
+      return na_colour + "FF";
+    } else if ( !include_alpha && na_colour.length() == 7 ) {
+      return na_colour;
+    } else if ( !include_alpha && na_colour.length() == 9 ) {
+      na_colour.pop_back();
+      na_colour.pop_back();
+      return na_colour;
+    }
+    Rcpp::stop("colourvalues - unknown na_colour hex string");
+  }
+
   inline Rcpp::StringVector colour_values_to_hex(
       Rcpp::NumericVector& x,
       Rcpp::NumericVector& red,
@@ -27,7 +42,8 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    na_colour = validate_na_colour( na_colour, include_alpha );
 
     colourvalues::scale::rescale( x );
     Rcpp::StringVector hex_strings( n );
@@ -95,7 +111,9 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    na_colour = validate_na_colour( na_colour, include_alpha );
+
 
     colourvalues::scale::rescale( x );
     int cols = include_alpha ? 4 : 3;
@@ -168,7 +186,8 @@ namespace generate_colours {
 
     R_xlen_t n = x.size();
     double colours = red.size();
-    na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    //na_colour = na_colour.length() == 9 ? na_colour : na_colour + "FF";
+    na_colour = validate_na_colour( na_colour, include_alpha );
 
     colourvalues::scale::rescale( x );
     int cols = include_alpha ? 4 : 3;
