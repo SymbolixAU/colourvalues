@@ -151,6 +151,7 @@ color_palettes <- colour_palettes
 #'
 #' @export
 show_colours <- function( colours = colour_palettes() ) {
+  ## nocov start
   graphics::par(mar = c(0, 0, 0, 0) + 0.1)
 
   graphics::plot(0, 0, type = "n", axes = FALSE, bty = "n", xlab = "", ylab = "",
@@ -166,6 +167,7 @@ show_colours <- function( colours = colour_palettes() ) {
          ytop = - 0.15-i, ybottom = -0.8-i,
          col = cols, border = NA)
   }
+  ## nocov end
 }
 
 #' Viridis
