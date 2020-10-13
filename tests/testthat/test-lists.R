@@ -125,7 +125,7 @@ test_that("lists of various types work",{
 test_that("list produces summary",{
 
   l <- list(x = 1:5, y = list( list( z = 2:6 ) ) )
-  expect_warning( colour_values( l, summary = T) )
+  # expect_warning( colour_values( l, summary = T) )
 
   res <- colour_values( l, n_summaries = 5 )
   expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
@@ -135,7 +135,7 @@ test_that("list produces summary",{
   expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
   expect_true( all( res$summary_values == c("1.00000","2.25000","3.50000","4.75000","6.00000") ) )
 
-  expect_warning( colour_values( list(letters),  n_summaries = 4) )
+  # expect_warning( colour_values( list(letters),  n_summaries = 4) )
 
   ## Mix
   l <- list( x = 1, y = "a")
