@@ -82,6 +82,8 @@ namespace colours_rgb_interleaved {
       int digits = 2
   ) {
 
+    // Rcpp::Rcout << "interleaved matrix palette" << std::endl;
+
     colourvalues::utils::matrix_palette_check( palette );
     int x_size = x.size();
     int alpha_type = colourvalues::alpha::make_alpha_type( 0, x_size, palette.ncol() );
@@ -91,10 +93,11 @@ namespace colours_rgb_interleaved {
     Rcpp::NumericVector blue(256);
     Rcpp::NumericVector alpha(x.size(), 1.0);
 
-
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue, alpha );
 
     Rcpp::NumericVector alpha_full = colourvalues::alpha::validate_alpha( alpha, alpha_type, true );
+
+    // Rcpp::Rcout << "alpha full: " << alpha_full << std::endl;
 
     if ( n_summaries > 0 ) {
       Rcpp::NumericVector summary = colourvalues::summary::numeric_summary( x, n_summaries );
@@ -114,6 +117,12 @@ namespace colours_rgb_interleaved {
         alpha_type, na_colour, include_alpha, repeats, total_colours
       );
     }
+
+    // Rcpp::Rcout << "red: " << red << std::endl;
+    // Rcpp::Rcout << "green: " << green << std::endl;
+    // Rcpp::Rcout << "blue: " << blue << std::endl;
+    // Rcpp::Rcout << "alpha-full: " << alpha_full << std::endl;
+    // Rcpp::Rcout << "alpha-type: " << alpha_type << std::endl;
 
     return colourvalues::generate_colours::colour_values_to_rgb_interleaved(
       x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha, repeats, total_colours

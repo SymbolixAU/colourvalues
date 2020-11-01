@@ -326,7 +326,7 @@ namespace api {
     case VECSXP: { // list
       Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
       // TODO list
-      Rcpp::stop("colourvalues -  list not supported yet ");
+      Rcpp::stop("colourvalues - list not supported yet ");
 
     }
     case LGLSXP: {} // as.character

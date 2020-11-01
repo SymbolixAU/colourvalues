@@ -11,7 +11,7 @@ namespace colourvalues {
 namespace api {
 
   /*
-   * list with string palette
+   * list with matrix palette
    */
   inline SEXP colour_values_rgb_interleaved(
       Rcpp::List lst,
@@ -270,8 +270,9 @@ namespace api {
       }
       case VECSXP: { // list
         Rcpp::List lst = Rcpp::as< Rcpp::List >( x );
-        // TODO list
-        Rcpp::stop("colourvalues -  list not supported yet ");
+        return colour_values_rgb_interleaved(
+          lst, palette, alpha, repeats, total_colours, na_colour, include_alpha, format, digits, summary, n_summaries
+        );
 
       }
       case LGLSXP: {} // as.character
