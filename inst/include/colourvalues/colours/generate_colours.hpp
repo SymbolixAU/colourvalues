@@ -184,6 +184,7 @@ namespace generate_colours {
     double r, g, b;
     std::string hex_str;
     R_xlen_t i;
+    int digits = 10000000;
 
     Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
     Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
@@ -205,9 +206,10 @@ namespace generate_colours {
 
       } else {
 
-        r = spline_red( this_x );
-        g = spline_green( this_x );
-        b = spline_blue( this_x );
+        r = roundf( spline_red( this_x ) * digits ) / digits;
+        g = roundf( spline_green( this_x ) * digits ) / digits;
+        b = roundf( spline_blue( this_x ) * digits ) / digits;
+
 
         rgb_vec[ position_counter ] = r;
         rgb_vec[ position_counter + 1 ] = g;
@@ -216,7 +218,7 @@ namespace generate_colours {
         if (include_alpha) {
           double a;
           if ( alpha_type == ALPHA_PALETTE ) {
-            a = spline_alpha( this_x );
+            a = roundf( spline_alpha( this_x ) * digits ) / digits;
           } else if (alpha_type == ALPHA_VECTOR ){
             a = alpha[i];
           } else {
@@ -249,7 +251,7 @@ namespace generate_colours {
 
     if( x.length() != repeats.length() ) {
 
-      // Rcpp::Rcout << "x and repeats are different" << std::endl;
+      //Rcpp::Rcout << "x and repeats are different" << std::endl;
       // assume the vectors are correct?
       Rcpp::NumericVector res = colour_values_to_rgb_interleaved(
         x,
@@ -285,6 +287,7 @@ namespace generate_colours {
     double r, g, b;
     std::string hex_str;
     R_xlen_t i, j;
+    int digits = 10000000;
 
     Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
     Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
@@ -312,9 +315,9 @@ namespace generate_colours {
 
       } else {
 
-        r = spline_red( this_x );
-        g = spline_green( this_x );
-        b = spline_blue( this_x );
+        r = roundf( spline_red( this_x ) * digits ) / digits;
+        g = roundf( spline_green( this_x ) * digits ) / digits;
+        b = roundf( spline_blue( this_x ) * digits ) / digits;
 
         for( j = 0; j < n_reps; ++j ) {
 

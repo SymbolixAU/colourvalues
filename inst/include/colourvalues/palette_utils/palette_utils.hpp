@@ -33,7 +33,8 @@ namespace palette_utils {
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
       Rcpp::NumericVector& blue,
-      Rcpp::NumericVector& alpha ) {
+      Rcpp::NumericVector& alpha
+  ) {
 
     int n_col = palette.ncol();
     if ( n_col < 3 ) {
@@ -49,6 +50,7 @@ namespace palette_utils {
     red = palette(_, 0);
     green = palette(_, 1);
     blue = palette(_, 2);
+
     red = red * scale;
     green = green * scale;
     blue = blue * scale;
