@@ -87,4 +87,128 @@ test_that("interleaved supports lists and matrix palette", {
 
 })
 
+test_that("interleaved API is covered",{
 
+  str_pal <- "viridis"
+  mat_pal <- colourvalues::get_palette("viridis")
+  unk_pal <- list()
+
+  iv <- 1L:5L
+  nv <- c(1.1,2.2,3.3,4.4,5.5)
+  sv <- letters[1:5]
+  lst <- list(1:5)
+  fv <- as.factor( iv )
+  lv <- c(TRUE, FALSE)
+
+  alpha = 1L
+
+  # exp <- colourvalues::colour_values_rgb(1:5)
+  # exp <- t(exp)
+  # dim(exp) <- NULL
+  # exp / 255
+
+  expect_error(
+    colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = lst
+      , palette = unk_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+    , "colourvalues - Unknown palette type"
+  )
+
+  ## String Palette
+  res <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = fv
+    , palette = str_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+  )
+
+  ## mat palette
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = fv
+      , palette = mat_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## iv & str pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = iv
+      , palette = str_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## iv & mat_pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = iv
+      , palette = mat_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## nv & str_pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = nv
+      , palette = str_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## nv & mat pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = nv
+      , palette = mat_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## sv & str_pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = sv
+      , palette = str_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+  ## sv & mat pal
+  expect_equal(
+    res
+    , colourvalues:::rcpp_colour_values_rgb_interleaved(
+      x = sv
+      , palette = mat_pal
+      , alpha = alpha
+      , repeats = 1
+      , total_colours = 5
+    )
+  )
+
+})
