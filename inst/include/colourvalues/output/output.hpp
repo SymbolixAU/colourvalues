@@ -12,9 +12,9 @@ namespace output {
       Rcpp::StringVector& summary_hex
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_hex,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_hex
+      Rcpp::_["colours"] = full_hex,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_hex
     );
   }
 
@@ -24,9 +24,9 @@ namespace output {
       Rcpp::StringVector& summary_hex
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_hex,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_hex
+      Rcpp::_["colours"] = full_hex,
+      Rcpp:: _["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_hex
     );
   }
 
@@ -36,9 +36,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 
@@ -48,9 +48,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 
@@ -60,9 +60,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 
@@ -72,9 +72,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 
@@ -84,9 +84,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 
@@ -96,9 +96,9 @@ namespace output {
       Rcpp::NumericMatrix& summary_rgb
   ) {
     return Rcpp::List::create(
-      _["colours"] = full_rgb,
-      _["summary_values"] = summary_values,
-      _["summary_colours"] = summary_rgb
+      Rcpp::_["colours"] = full_rgb,
+      Rcpp::_["summary_values"] = summary_values,
+      Rcpp::_["summary_colours"] = summary_rgb
     );
   }
 

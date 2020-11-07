@@ -29,6 +29,7 @@ namespace colours_hex {
       std::string& na_colour,
       bool& include_alpha
   ) {
+
     Rcpp::StringVector full_hex = colourvalues::generate_colours::colour_values_to_hex(
       full_values, red, green, blue, full_alpha, alpha_type, na_colour, include_alpha
     );
@@ -113,22 +114,22 @@ namespace colours_hex {
     return colourvalues::generate_colours::colour_values_to_hex( x, red, green, blue, alpha_full, alpha_type, na_colour, include_alpha );
   }
 
-// TODO remove when spatialwidget 0.3 is on CRAN
-// this is so the old version can be installed
-inline SEXP colour_value_hex(
-    Rcpp::NumericVector& x,
-    Rcpp::NumericMatrix& palette,
-    std::string& na_colour,
-    bool include_alpha,
-    int n_summaries,
-    bool format,
-    std::string& format_type,
-    int digits = 2
-) {
-  return colour_value_hex(
-    x, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
-  );
-}
+  // TODO remove when spatialwidget 0.3 is on CRAN
+  // this is so the old version can be installed
+  inline SEXP colour_value_hex(
+      Rcpp::NumericVector& x,
+      Rcpp::NumericMatrix& palette,
+      std::string& na_colour,
+      bool include_alpha,
+      int n_summaries,
+      bool format,
+      std::string& format_type,
+      int digits = 2
+  ) {
+    return colour_value_hex(
+      x, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+    );
+  }
 
 
 
@@ -177,25 +178,23 @@ inline SEXP colour_value_hex(
   }
 
 
-// TODO remove when spatialwidget 0.3 is on CRAN
-// this is so the old version can be installed
-inline SEXP colour_value_hex(
-    Rcpp::NumericVector& x,
-    std::string& palette,
-    std::string& na_colour,
-    Rcpp::NumericVector& alpha,
-    bool include_alpha,
-    int n_summaries,
-    bool format,
-    std::string& format_type,
-    int digits = 2
-) {
-  return colour_value_hex(
-    x, palette, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
-  );
-}
-
-
+  // TODO remove when spatialwidget 0.3 is on CRAN
+  // this is so the old version can be installed
+  inline SEXP colour_value_hex(
+      Rcpp::NumericVector& x,
+      std::string& palette,
+      std::string& na_colour,
+      Rcpp::NumericVector& alpha,
+      bool include_alpha,
+      int n_summaries,
+      bool format,
+      std::string& format_type,
+      int digits = 2
+  ) {
+    return colour_value_hex(
+      x, palette, na_colour, alpha, include_alpha, format_type, n_summaries, format, digits
+    );
+  }
 
   inline SEXP colour_value_hex (
       Rcpp::StringVector& x,
@@ -343,20 +342,13 @@ inline SEXP colour_value_hex(
 
     colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-    //Rcpp::Rcout << "x: " << x << std::endl;
-
     Rcpp::IntegerVector summary_values = Rcpp::sort_unique( x );
-    //Rcpp::Rcout << "summary_values: " << summary_values << std::endl;
     Rcpp::NumericVector summary_numbers = Rcpp::as< Rcpp::NumericVector >( summary_values );
 
     if ( summary ) {
       int x_size = x.size();
       int n_alpha_summary = x_size < 5 ? 5 : x_size;
       Rcpp::NumericVector alpha_summary( n_alpha_summary, 255.0 );
-
-      // Rcpp::Rcout << "x_nv: " << x_nv << std::endl;
-      // Rcpp::Rcout << "summary_numbers: " << summary_numbers << std::endl;
-      // Rcpp::Rcout << "lvls: " << lvls << std::endl;
 
       return colours_with_summary(
         x_nv, summary_numbers, lvls, red, green, blue, alpha_full, alpha_summary, alpha_type, na_colour, include_alpha
