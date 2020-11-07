@@ -31,6 +31,8 @@ namespace alpha {
       bool normalise
   ) {
 
+    // Rcpp::Rcout << "a1: " << a << std::endl;
+
     if( a.size() < 1 ) {
       Rcpp::stop("colourvalues - invalid alpha vector");
     }
@@ -42,15 +44,23 @@ namespace alpha {
     // Issue 47
     Rcpp::NumericVector alpha = Rcpp::clone( a );
     if ( alpha_type == ALPHA_PALETTE ) {
+      // Rcpp::Rcout << "returning alpha palette " << alpha << std::endl;
       return alpha;
     }
 
     if ( alpha_type == ALPHA_CONSTANT ) {
       if ( alpha[0] >= 0 && alpha[0] < 1 && !normalise ) {
+        // Rcpp::Rcout << "* 255" << std::endl;
         alpha = alpha * 255;
+      } else if ( alpha[0] > 1 && normalise ) {
+        //
+        //double initial_alpha = alpha[0];
+        //initial_alpha = initial_alpha / 255.0;
+        alpha = alpha / 255.0;
       }
 
       Rcpp::NumericVector alpha_full( 5, alpha[0] ); // initialise with 5 vals (so i can create a spline object);
+      // Rcpp::Rcout << "returning alpha_full: " << alpha_full << std::endl;
       return alpha_full;
 
     } else if ( alpha_type == ALPHA_VECTOR ) {
@@ -71,8 +81,10 @@ namespace alpha {
         for ( i = 0; i < n_alpha; i++ ) {
           alpha_fill[i] = alpha[i];
         }
+        // Rcpp::Rcout << "returning alpha_fill: " << alpha_fill << std::endl;
         return alpha_fill;
       }
+      // Rcpp::Rcout << "returning alpha: " << alpha << std::endl;
       return alpha;
     }
 

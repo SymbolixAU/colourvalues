@@ -208,7 +208,7 @@ namespace generate_colours {
 
     Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
     Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
-    na_mat_d = na_mat_d / 255.0;
+    na_mat_d = na_mat_d / 1.0;
     R_xlen_t position_counter = 0;
 
     for( i = 0; i < n; ++i ) {
@@ -311,7 +311,7 @@ namespace generate_colours {
 
     Rcpp::IntegerMatrix na_mat = colourvalues::convert::convert_hex_to_rgb( na_colour );
     Rcpp::NumericMatrix na_mat_d = Rcpp::as< Rcpp::NumericMatrix >( na_mat );
-    na_mat_d = na_mat_d / 255.0;
+    na_mat_d = na_mat_d / 1.0;
 
     R_xlen_t position_counter = 0;
 
