@@ -12,6 +12,7 @@ test_that("hex api covered",{
   nv <- c(1.1,2.2,3.3,4.4,5.5)
   sv <- letters[1:5]
   lst <- list(1:5)
+  lst_nv <- list(nv)
   fv <- as.factor( iv )
   lv <- c(FALSE, TRUE)
 
@@ -51,16 +52,34 @@ test_that("hex api covered",{
 
   ## lists get summaries
   res_lst1 <- colourvalues:::rcpp_colour_values_hex(
-    x = lst, palette = mat_pal, alpha = 255.0, n_summaries = 5
+    x = lst, palette = mat_pal, alpha = 255.0, n_summaries = 5, format = FALSE
   )
 
   res_lst2 <- colourvalues:::rcpp_colour_values_hex(
-    x = list(letters[1:5]), palette = mat_pal, alpha = 255.0, n_summaries = 3
+    x = list(letters[1:5]), palette = mat_pal, alpha = 255.0, n_summaries = 3, format = FALSE
   )
 
   expect_equal( res_lst1$summary_colours, res_lst2$summary_colours )
   expect_equal( res_lst1$colours, res_lst2$colours )
 
+  res <- colourvalues:::rcpp_colour_values_hex(
+    x = lst_nv, palette = mat_pal, alpha = 255.0, summary = TRUE, format = FALSE
+  )
+
+  expect_equal(
+    res$colours[[1]]
+    , colour_values(nv, n_summaries = 5, format = FALSE)$colours
+  )
+
+  expect_equal(
+    res$summary_values
+    , colour_values(nv, n_summaries = 5, format = FALSE)$summary_values
+  )
+
+  expect_equal(
+    res$summary_colours
+    , colour_values(nv, n_summaries = 5, format = FALSE)$summary_colours
+  )
 
 
 })

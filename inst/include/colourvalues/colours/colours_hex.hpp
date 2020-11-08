@@ -64,9 +64,6 @@ namespace colours_hex {
     return colourvalues::output::create_summary_output(full_hex, summary_values, summary_hex );
   }
 
-
-
-
   inline SEXP colour_value_hex(
     Rcpp::NumericVector& x,
     Rcpp::NumericMatrix& palette,
