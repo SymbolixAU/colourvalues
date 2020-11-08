@@ -63,8 +63,6 @@ test_that("hex api covered",{
     x = list(letters[1:5]), palette = mat_pal, alpha = 255.0, n_summaries = 0, format = FALSE
   )
 
-  expect_equal( res_lst4,  )
-
   expect_equal( res_lst1$summary_colours, res_lst2$summary_colours )
   expect_equal( res_lst1$colours, res_lst2$colours )
   expect_equal( res_lst1$colours, res_lst )
