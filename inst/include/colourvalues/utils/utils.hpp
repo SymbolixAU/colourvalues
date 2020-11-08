@@ -28,21 +28,21 @@ namespace utils {
   inline Rcpp::CharacterVector getRClass( SEXP obj ) {
 
     switch( TYPEOF( obj ) ) {
-    case REALSXP:
-      return rClass< REALSXP >( obj );
-      //return "numeric";
-    case VECSXP:
-      return rClass< VECSXP >( obj );
-      //return "character";
-    case INTSXP:
-      return rClass< INTSXP >( obj );
-      //return "numeric";
-    case LGLSXP:
-      //return rClass< LGLSXP >( obj );
-      return "logical";
-    case STRSXP:
-      //return rClass< STRSXP >( obj );
-      return "character";
+      case REALSXP:
+        return rClass< REALSXP >( obj );
+      case VECSXP:
+        return rClass< VECSXP >( obj );
+      case INTSXP: {
+          Rcpp::CharacterVector intcls = rClass< INTSXP >( obj );
+          if( intcls.size() == 1 && intcls[0] == "" ) {
+            return "integer";
+          }
+          return intcls;
+      }
+      case LGLSXP:
+        return "logical";
+      case STRSXP:
+        return "character";
     }
     return "";
   }

@@ -19,8 +19,6 @@ namespace format {
 
     Rcpp::CharacterVector cls = colourvalues::utils::getRClass( x );
 
-    //Rcpp::Rcout << "cls: " << cls << std::endl;
-
     if( colourvalues::utils::is_in( "Date", cls ) ) {
       format_type = "Date";
     } else if ( colourvalues::utils::is_in("POSIXct", cls) ) {
@@ -31,6 +29,8 @@ namespace format {
       format_type = "character";
     } else if ( colourvalues::utils::is_in("character", cls) ) {
       format_type = "character";
+    } else if ( colourvalues::utils::is_in("integer", cls) ) {
+      format_type = "integer";
     } else {
       format_type = "numeric";
     }
@@ -96,7 +96,6 @@ namespace format {
     int i;
     Rcpp::StringVector sv( n );
     Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( v );
-    // TODO( implement decimal-places )
     for ( i = 0; i < n; i++ ) {
       std::ostringstream os;
       os << std::fixed << std::setprecision( dp ) << nv[i];
@@ -110,7 +109,7 @@ namespace format {
 
     //std::string format_type = get_format_type( summary_values );
 
-    if (format_type == "numeric" ) {
+    if (format_type == "numeric" || format_type == "integer" ) {
       return colourvalues::format::numeric_to_string( summary_values, n_summaries, digits);
     // } else if ( format_type == "integer" ) {
     //   return summary_values; // ints are nice already

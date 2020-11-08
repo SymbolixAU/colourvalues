@@ -52,8 +52,6 @@ namespace generate_colours {
     Rcpp::StringVector hex_strings( n );
     double step = 1 / ( colours - 1 );  // TODO(test)
 
-    // Rcpp::Rcout << red << std::endl;
-
     // cublic_b_spoine :: vec.start, vec.end, start.time, step
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_red(   red.begin(),   red.end(),   0, step );
     boost::math::interpolators::cardinal_cubic_b_spline< double > spline_green( green.begin(), green.end(), 0, step );
@@ -75,9 +73,6 @@ namespace generate_colours {
         r = round( spline_red( this_x ) * 255 ) ;
         g = round( spline_green( this_x ) * 255 );
         b = round( spline_blue( this_x ) * 255 );
-
-        // Rcpp::Rcout << "this_x: " << this_x << std::endl;
-        // Rcpp::Rcout << "splined_r: " << r << std::endl;
 
         colourvalues::palette_utils::validate_rgb_spline(r);
         colourvalues::palette_utils::validate_rgb_spline(g);
@@ -271,7 +266,6 @@ namespace generate_colours {
 
     if( x.length() != repeats.length() ) {
 
-      //Rcpp::Rcout << "x and repeats are different" << std::endl;
       // assume the vectors are correct?
       Rcpp::NumericVector res = colour_values_to_rgb_interleaved(
         x,

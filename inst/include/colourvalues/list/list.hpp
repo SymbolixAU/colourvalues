@@ -72,7 +72,7 @@ namespace list {
             int n_elements = Rf_length( lst[i] );
             int new_type = TYPEOF( lst[i] );
             std::string new_format = colourvalues::format::get_format_type( lst[i] );
-            //Rcpp::Rcout << "format_type : " << format_type << std::endl;
+
             if( new_format != existing_format ) {
                existing_format = "character";
             }

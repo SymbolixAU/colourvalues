@@ -1,4 +1,4 @@
-
+context("lists")
 
 test_that("list vector types correctly calculated", {
 
@@ -129,11 +129,11 @@ test_that("list produces summary",{
 
   res <- colour_values( l, n_summaries = 5 )
   expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
-  expect_true( all( res$summary_values == c("1.00","2.25","3.50","4.75","6.00") ) )
+  expect_true( all( res$summary_values == c("1","2.25","3.5","4.75","6") ) )
 
   res <- colour_values( l, n_summaries = 5, digits = 5 )
   expect_true( all( unlist( res$colours ) == colour_values( c(1:5, 2:6 ) ) ) )
-  expect_true( all( res$summary_values == c("1.00000","2.25000","3.50000","4.75000","6.00000") ) )
+  expect_true( all( res$summary_values == c("1","2.25","3.5","4.75","6") ) )
 
   # expect_warning( colour_values( list(letters),  n_summaries = 4) )
 
@@ -150,7 +150,6 @@ test_that("list produces summary",{
 
 test_that("lists return rgb values", {
 
-
   l <- list(1:2, x = list(y = 1:2) )
   res <- colour_values_rgb( l )
   expect_equal( res[[1]], res[[2]][[1]] )
@@ -160,6 +159,11 @@ test_that("lists return rgb values", {
   exp <- colour_values_rgb( c(1:2, letters) )
   expect_equal( rbind( res[[1]], res[[2]] ), exp )
 
+  ## test lists with numeric matrix palette
+  l2 <- list(1:2, letters)
+  res <- colour_values_rgb( l, palette = colourvalues::get_palette("viridis") )
+
+  expect_equal(l, l2)
 })
 
 

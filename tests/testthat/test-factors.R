@@ -37,9 +37,10 @@ test_that("factor order is maintained - hex",{
   expect_equal( res$colours, colour_values(c(2,1,2,3) ))
   expect_equal( res$summary_colours, colour_values( c(1,2,3) ) )
 
-  ## TODO
   ## test using numbers as factors
-
+  x <- factor(c(2L,1L,3L))
+  res <- colour_values(x, summary = T)
+  expect_equal( res, colour_values(c(2L,1L,3L), n_summaries = 3, digits = 0 ) )
 
 })
 

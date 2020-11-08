@@ -219,6 +219,7 @@ test_that("summary hex values are formatted", {
              as.POSIXct("2018-02-01 00:00:00", tz = "Australia/Melbourne"),
              by = 60 * 60 * 24)
   cv <- colour_values( psx, n_summaries = 5, format = T)
+
   ## TODO( timezones! )
   expect_true(all(cv$summary_values == c("2017-12-31T13:00:00", "2018-01-08T07:00:00", "2018-01-16T01:00:00",
                              "2018-01-23T19:00:00", "2018-01-31T13:00:00")))
