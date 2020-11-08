@@ -59,12 +59,26 @@ test_that("hex api covered",{
     x = list(letters[1:5]), palette = mat_pal, alpha = 255.0, n_summaries = 3, format = FALSE
   )
 
+  res_lst3 <- colourvalues:::rcpp_colour_values_hex(
+    x = list(letters[1:5]), palette = mat_pal, alpha = 255.0, n_summaries = 0, format = FALSE
+  )
+
+  expect_equal( res_lst4,  )
+
   expect_equal( res_lst1$summary_colours, res_lst2$summary_colours )
   expect_equal( res_lst1$colours, res_lst2$colours )
+  expect_equal( res_lst1$colours, res_lst )
+  expect_null( res_lst3$summary_values )
 
   res <- colourvalues:::rcpp_colour_values_hex(
     x = lst_nv, palette = mat_pal, alpha = 255.0, summary = TRUE, format = FALSE
   )
+
+  res2 <- colourvalues:::rcpp_colour_values_hex(
+    x = lst_nv, palette = str_pal, alpha = 255.0, n_summaries = 5, format = FALSE
+  )
+
+  expect_equal( res, res2 )
 
   expect_equal(
     res$colours[[1]]
@@ -80,6 +94,7 @@ test_that("hex api covered",{
     res$summary_colours
     , colour_values(nv, n_summaries = 5, format = FALSE)$summary_colours
   )
+
 
 
 })
