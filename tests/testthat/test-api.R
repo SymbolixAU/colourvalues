@@ -92,7 +92,85 @@ test_that("hex api covered",{
     res$summary_colours
     , colour_values(nv, n_summaries = 5, format = FALSE)$summary_colours
   )
+})
+
+test_that("interleaved api covered",{
+
+  str_pal <- "viridis"
+  mat_pal <- colourvalues::get_palette("viridis")
+  int_mat_pal <- matrix( as.integer( mat_pal ), ncol = 4, byrow = TRUE )
+  nv_mat_pal <- matrix( as.numeric( as.integer( mat_pal ) ), ncol = 4, byrow = T )
+  unk_pal <- list()
+
+  iv <- 1L:5L
+  nv <- c(1.1,2.2,3.3,4.4,5.5)
+  sv <- letters[1:5]
+  lst <- list(1:5)
+  lst_nv <- list(nv)
+  lst_iv <- list(1L:5L)
+  lst_str <- list(letters[1:5])
+  fv <- as.factor( iv )
+  lv <- c(FALSE, TRUE)
+
+  alpha = 1L
+
+  res1 <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = lst_nv
+    , palette = nv_mat_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+    , summary = TRUE
+  )
+
+  res2 <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = lst_str
+    , palette = nv_mat_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+    , n_summaries = 5
+  )
+
+  expect_equal( res1$colours, res2$colours )
+  expect_equal( res1$summary_colours, res2$summary_colours )
 
 
+  res1 <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = lst_nv
+    , palette = str_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+    , summary = TRUE
+  )
+
+  res2 <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = lst_str
+    , palette = str_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+    , n_summaries = 5
+  )
+
+  res3 <- colourvalues:::rcpp_colour_values_rgb_interleaved(
+    x = lst_iv
+    , palette = str_pal
+    , alpha = alpha
+    , repeats = 1
+    , total_colours = 5
+    , n_summaries = 5
+  )
+
+  expect_equal( res1$colours, res2$colours )
+  expect_equal( res1$summary_colours, res2$summary_colours )
+
+  expect_equal( res1$colours, res3$colours )
+  expect_equal( res1$summary_colours, res3$summary_colours )
 
 })
+
+
+
+
