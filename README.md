@@ -49,7 +49,7 @@ packages.
 ### Why do you spell colour with a ‘u’?
 
 Because it’s correct, and [R tells us
-to](http://developer.r-project.org/Rds.html)
+to](https://developer.r-project.org/Rds.html)
 
 > For consistency, aim to use British (rather than American) spelling
 
