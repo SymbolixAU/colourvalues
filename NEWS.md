@@ -1,3 +1,8 @@
+
+# v0.3.7
+
+* fixed gcc-ASAN valgrind error
+
 # v0.3.6
 
 * updated interleave code

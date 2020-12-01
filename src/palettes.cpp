@@ -5,12 +5,13 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_get_palette( std::string& palette ) {
-  Rcpp::NumericVector red( 256 );
-  Rcpp::NumericVector green( 256 );
-  Rcpp::NumericVector blue( 256 );
+  int n = 256;
+  Rcpp::NumericVector red( 255.0, n );
+  Rcpp::NumericVector green( 255.0, n );
+  Rcpp::NumericVector blue( 255.0, n );
   colourvalues::palette_utils::resolve_palette( palette, red, green, blue );
 
-  Rcpp::NumericMatrix nm(256, 3);
+  Rcpp::NumericMatrix nm( n, 3 );
   nm( Rcpp::_, 0 ) = red * 255;
   nm( Rcpp::_, 1 ) = green * 255;
   nm( Rcpp::_, 2 ) = blue * 255;

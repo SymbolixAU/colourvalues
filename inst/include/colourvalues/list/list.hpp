@@ -97,7 +97,7 @@ namespace list {
 
       // iterate through the list, if size > 0, fill with that many values from the vector
 
-      size_t n = lst_sizes.size();
+      R_xlen_t n = lst_sizes.size();
       Rcpp::List res( n );
       R_xlen_t i;
 
@@ -137,7 +137,7 @@ namespace list {
 
       // iterate through the list, if size > 0, fill with that many values from the vector
 
-      size_t n = lst_sizes.size();
+      R_xlen_t n = lst_sizes.size();
       Rcpp::List res( n );
       R_xlen_t i;
 
@@ -177,7 +177,7 @@ namespace list {
    ) {
       // - iterate through original list
       // - extract each element and insert into 'colours'
-      size_t n = lst.size();
+      R_xlen_t n = lst.size();
       Rcpp::List res( n );
       R_xlen_t i;
       for( i = 0; i < n; i++ ) {
@@ -207,7 +207,7 @@ namespace list {
    ) {
       // - iterate through original list
       // - extract each element and insert into 'colours'
-      size_t n = lst.size();
+      R_xlen_t n = lst.size();
       Rcpp::List res( n );
       R_xlen_t i;
       for( i = 0; i < n; i++ ) {
