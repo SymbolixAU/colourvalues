@@ -13,7 +13,7 @@ get_palette(palette, rgb = TRUE)
 \code{TRUE}, or a vector of hex strings \code{FALSE}}
 }
 \value{
-256 row x 3 column matrix if \code{rgb = TRUE}, otherwise a 256-length vector.
+3 column matrix if \code{rgb = TRUE}, otherwise a 256-length vector.
 }
 \description{
 retrieves one of the available palettes

@@ -69,7 +69,8 @@ namespace palette_utils {
       std::string& palette,
       Rcpp::NumericVector& red,
       Rcpp::NumericVector& green,
-      Rcpp::NumericVector& blue ) {
+      Rcpp::NumericVector& blue
+  ) {
 
     if( palette == "viridis" ) {
       red = colourvalues::palette::viridis_red;

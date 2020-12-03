@@ -11,7 +11,7 @@
 #' get_palette( "viridis" )
 #' get_palette( "rainbow" )
 #'
-#' @return 256 row x 3 column matrix if \code{rgb = TRUE}, otherwise a 256-length vector.
+#' @return 3 column matrix if \code{rgb = TRUE}, otherwise a 256-length vector.
 #'
 #' @export
 get_palette <- function( palette, rgb = TRUE ) {
