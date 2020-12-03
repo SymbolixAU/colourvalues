@@ -25,11 +25,13 @@ namespace palette {
     0.270588235294118,0.172549019607843,0.105882352941176
   };
 
-const Rcpp::List bugn = Rcpp::List::create(
-  _["r"] = bugn_red,
-  _["g"] = bugn_green,
-  _["b"] = bugn_blue
-);
+  // inline Rcpp::DataFrame bugn() {
+  //     Rcpp::List::create(
+  //     _["r"] = bugn_red,
+  //     _["g"] = bugn_green,
+  //     _["b"] = bugn_blue
+  //   );
+  // }
 } // namespace palette
 } // namepsace colourvalues
 

@@ -208,11 +208,11 @@ namespace palette {
     0,0,0,0
   };
 
-const Rcpp::List matlab_like2 = Rcpp::List::create(
-  _["r"] = matlab_like2_red,
-  _["g"] = matlab_like2_green,
-  _["b"] = matlab_like2_blue
-);
+  // const Rcpp::List matlab_like2 = Rcpp::List::create(
+  //   _["r"] = matlab_like2_red,
+  //   _["g"] = matlab_like2_green,
+  //   _["b"] = matlab_like2_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

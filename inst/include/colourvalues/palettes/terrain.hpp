@@ -183,11 +183,11 @@ namespace palette {
     0.949019607843137
   };
 
-  const Rcpp::List terrain = Rcpp::List::create(
-    Rcpp::_["r"] = terrain_red,
-    Rcpp::_["g"] = terrain_green,
-    Rcpp::_["b"] = terrain_blue
-  );
+  // const Rcpp::List terrain = Rcpp::List::create(
+  //   Rcpp::_["r"] = terrain_red,
+  //   Rcpp::_["g"] = terrain_green,
+  //   Rcpp::_["b"] = terrain_blue
+  // );
 
 } // namespace palette
 } // namepsace colourvalues

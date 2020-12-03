@@ -25,11 +25,11 @@ namespace palette {
     0.615686274509804,0.486274509803922,0.294117647058824
   };
 
-const Rcpp::List bupu = Rcpp::List::create(
-  _["r"] = bupu_red,
-  _["g"] = bupu_green,
-  _["b"] = bupu_blue
-);
+  // const Rcpp::List bupu = Rcpp::List::create(
+  //   _["r"] = bupu_red,
+  //   _["g"] = bupu_green,
+  //   _["b"] = bupu_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

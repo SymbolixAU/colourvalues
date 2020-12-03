@@ -172,11 +172,11 @@ namespace palette {
     0.131325517
   };
 
-  const Rcpp::List plasma = Rcpp::List::create(
-    Rcpp::_["r"] = plasma_red,
-    Rcpp::_["g"] = plasma_green,
-    Rcpp::_["b"] = plasma_blue
-  );
+  // const Rcpp::List plasma = Rcpp::List::create(
+  //   Rcpp::_["r"] = plasma_red,
+  //   Rcpp::_["g"] = plasma_green,
+  //   Rcpp::_["b"] = plasma_blue
+  // );
 
 } // namespace palette
 } // namepsace colourvalues

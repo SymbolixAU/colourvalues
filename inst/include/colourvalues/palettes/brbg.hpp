@@ -49,11 +49,13 @@ namespace palette {
     0.188235294117647
   };
 
-const Rcpp::List brbg = Rcpp::List::create(
-  _["r"] = brbg_red,
-  _["g"] = brbg_green,
-  _["b"] = brbg_blue
-);
+  // inline Rcpp::DataFrame brbg() {
+  //   return Rcpp::DataFrame::create(
+  //     _["r"] = brbg_red,
+  //     _["g"] = brbg_green,
+  //     _["b"] = brbg_blue
+  //   );
+  // }
 } // namespace palette
 } // namepsace colourvalues
 

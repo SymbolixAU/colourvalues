@@ -172,11 +172,11 @@ namespace palette {
     0.644924005
   };
 
-  const Rcpp::List inferno = Rcpp::List::create(
-    Rcpp::_["r"] = inferno_red,
-    Rcpp::_["g"] = inferno_green,
-    Rcpp::_["b"] = inferno_blue
-  );
+  // const Rcpp::List inferno = Rcpp::List::create(
+  //   Rcpp::_["r"] = inferno_red,
+  //   Rcpp::_["g"] = inferno_green,
+  //   Rcpp::_["b"] = inferno_blue
+  // );
 
 } // namespace palette
 } // namepsace colourvalues

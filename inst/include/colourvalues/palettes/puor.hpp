@@ -49,11 +49,11 @@ namespace palette {
     0.294117647058824
   };
 
-const Rcpp::List puor = Rcpp::List::create(
-  _["r"] = puor_red,
-  _["g"] = puor_green,
-  _["b"] = puor_blue
-);
+  // const Rcpp::List puor = Rcpp::List::create(
+  //   _["r"] = puor_red,
+  //   _["g"] = puor_green,
+  //   _["b"] = puor_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

@@ -208,11 +208,13 @@ namespace palette {
     0,0,0,0
   };
 
-const Rcpp::List blue2red = Rcpp::List::create(
-  _["r"] = blue2red_red,
-  _["g"] = blue2red_green,
-  _["b"] = blue2red_blue
-);
+  // inline Rcpp::DataFrame blue2red() {
+  //   return Rcpp::DataFrame::create(
+  //     _["r"] = blue2red_red,
+  //     _["g"] = blue2red_green,
+  //     _["b"] = blue2red_blue
+  //   );
+  // }
 } // namespace palette
 } // namepsace colourvalues
 

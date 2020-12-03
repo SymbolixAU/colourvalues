@@ -25,11 +25,11 @@ namespace palette {
     0.494117647058824,0.466666666666667,0.415686274509804
   };
 
-const Rcpp::List rdpu = Rcpp::List::create(
-  _["r"] = rdpu_red,
-  _["g"] = rdpu_green,
-  _["b"] = rdpu_blue
-);
+  // const Rcpp::List rdpu = Rcpp::List::create(
+  //   _["r"] = rdpu_red,
+  //   _["g"] = rdpu_green,
+  //   _["b"] = rdpu_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

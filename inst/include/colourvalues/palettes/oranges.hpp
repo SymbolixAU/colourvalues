@@ -25,11 +25,11 @@ namespace palette {
     0.00392156862745098,0.0117647058823529,0.0156862745098039
   };
 
-const Rcpp::List oranges = Rcpp::List::create(
-  _["r"] = oranges_red,
-  _["g"] = oranges_green,
-  _["b"] = oranges_blue
-);
+  // const Rcpp::List oranges = Rcpp::List::create(
+  //   _["r"] = oranges_red,
+  //   _["g"] = oranges_green,
+  //   _["b"] = oranges_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

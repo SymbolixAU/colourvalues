@@ -208,11 +208,11 @@ namespace palette {
     0.670588235294118,0.662745098039216,0.658823529411765,0.650980392156863
   };
 
-const Rcpp::List rainbow_hcl = Rcpp::List::create(
-  _["r"] = rainbow_hcl_red,
-  _["g"] = rainbow_hcl_green,
-  _["b"] = rainbow_hcl_blue
-);
+  // const Rcpp::List rainbow_hcl = Rcpp::List::create(
+  //   _["r"] = rainbow_hcl_red,
+  //   _["g"] = rainbow_hcl_green,
+  //   _["b"] = rainbow_hcl_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

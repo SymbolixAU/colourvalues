@@ -145,11 +145,11 @@ namespace palette {
     0.11812832, 0.12394051, 0.13021494, 0.13689671, 0.1439362
   };
 
-  const Rcpp::List viridis = Rcpp::List::create(
-    Rcpp::_["r"] = viridis_red,
-    Rcpp::_["g"] = viridis_green,
-    Rcpp::_["b"] = viridis_blue
-  );
+  // const Rcpp::List viridis = Rcpp::List::create(
+  //   Rcpp::_["r"] = viridis_red,
+  //   Rcpp::_["g"] = viridis_green,
+  //   Rcpp::_["b"] = viridis_blue
+  // );
 
 } // namespace palette
 } // namepsace colourvalues

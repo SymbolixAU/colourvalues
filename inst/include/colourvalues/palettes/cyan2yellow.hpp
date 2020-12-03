@@ -208,11 +208,11 @@ namespace palette {
     0.0117647058823529,0.00784313725490196,0.00392156862745098,0
   };
 
-const Rcpp::List cyan2yellow = Rcpp::List::create(
-  _["r"] = cyan2yellow_red,
-  _["g"] = cyan2yellow_green,
-  _["b"] = cyan2yellow_blue
-);
+  // const Rcpp::List cyan2yellow = Rcpp::List::create(
+  //   _["r"] = cyan2yellow_red,
+  //   _["g"] = cyan2yellow_green,
+  //   _["b"] = cyan2yellow_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

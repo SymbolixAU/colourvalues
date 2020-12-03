@@ -49,11 +49,11 @@ namespace palette {
     0.101960784313725
   };
 
-const Rcpp::List rdgy = Rcpp::List::create(
-  _["r"] = rdgy_red,
-  _["g"] = rdgy_green,
-  _["b"] = rdgy_blue
-);
+  // const Rcpp::List rdgy = Rcpp::List::create(
+  //   _["r"] = rdgy_red,
+  //   _["g"] = rdgy_green,
+  //   _["b"] = rdgy_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

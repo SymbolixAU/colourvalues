@@ -208,11 +208,11 @@ namespace palette {
     0.905882352941176,0.913725490196078,0.917647058823529,0.945098039215686
   };
 
-const Rcpp::List terrain_hcl = Rcpp::List::create(
-  _["r"] = terrain_hcl_red,
-  _["g"] = terrain_hcl_green,
-  _["b"] = terrain_hcl_blue
-);
+  // const Rcpp::List terrain_hcl = Rcpp::List::create(
+  //   _["r"] = terrain_hcl_red,
+  //   _["g"] = terrain_hcl_green,
+  //   _["b"] = terrain_hcl_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

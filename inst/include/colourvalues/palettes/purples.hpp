@@ -25,11 +25,11 @@ namespace palette {
     0.63921568627451,0.56078431372549,0.490196078431373
   };
 
-const Rcpp::List purples = Rcpp::List::create(
-  _["r"] = purples_red,
-  _["g"] = purples_green,
-  _["b"] = purples_blue
-);
+  // const Rcpp::List purples = Rcpp::List::create(
+  //   _["r"] = purples_red,
+  //   _["g"] = purples_green,
+  //   _["b"] = purples_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

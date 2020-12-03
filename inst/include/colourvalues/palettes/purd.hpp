@@ -25,11 +25,11 @@ namespace palette {
     0.337254901960784,0.262745098039216,0.12156862745098
   };
 
-const Rcpp::List purd = Rcpp::List::create(
-  _["r"] = purd_red,
-  _["g"] = purd_green,
-  _["b"] = purd_blue
-);
+  // const Rcpp::List purd = Rcpp::List::create(
+  //   _["r"] = purd_red,
+  //   _["g"] = purd_green,
+  //   _["b"] = purd_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

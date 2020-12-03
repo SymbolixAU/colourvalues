@@ -208,11 +208,11 @@ namespace palette {
     0.164705882352941,0.133333333333333,0.0862745098039216,0
   };
 
-const Rcpp::List diverge_hsv = Rcpp::List::create(
-  _["r"] = diverge_hsv_red,
-  _["g"] = diverge_hsv_green,
-  _["b"] = diverge_hsv_blue
-);
+  // const Rcpp::List diverge_hsv = Rcpp::List::create(
+  //   _["r"] = diverge_hsv_red,
+  //   _["g"] = diverge_hsv_green,
+  //   _["b"] = diverge_hsv_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

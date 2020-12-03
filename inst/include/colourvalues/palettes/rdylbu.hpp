@@ -49,11 +49,11 @@ namespace palette {
     0.584313725490196
   };
 
-const Rcpp::List rdylbu = Rcpp::List::create(
-  _["r"] = rdylbu_red,
-  _["g"] = rdylbu_green,
-  _["b"] = rdylbu_blue
-);
+  // const Rcpp::List rdylbu = Rcpp::List::create(
+  //   _["r"] = rdylbu_red,
+  //   _["g"] = rdylbu_green,
+  //   _["b"] = rdylbu_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

@@ -208,11 +208,11 @@ namespace palette {
     0.674509803921569,0.682352941176471,0.690196078431373,0.701960784313725
   };
 
-const Rcpp::List topo = Rcpp::List::create(
-  _["r"] = topo_red,
-  _["g"] = topo_green,
-  _["b"] = topo_blue
-);
+  // const Rcpp::List topo = Rcpp::List::create(
+  //   _["r"] = topo_red,
+  //   _["g"] = topo_green,
+  //   _["b"] = topo_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

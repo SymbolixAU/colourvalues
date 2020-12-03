@@ -49,11 +49,11 @@ namespace palette {
     0.380392156862745
   };
 
-const Rcpp::List rdbu = Rcpp::List::create(
-  _["r"] = rdbu_red,
-  _["g"] = rdbu_green,
-  _["b"] = rdbu_blue
-);
+  // const Rcpp::List rdbu = Rcpp::List::create(
+  //   _["r"] = rdbu_red,
+  //   _["g"] = rdbu_green,
+  //   _["b"] = rdbu_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

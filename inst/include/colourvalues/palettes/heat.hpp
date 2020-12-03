@@ -208,11 +208,11 @@ namespace palette {
     0.945098039215686,0.96078431372549,0.976470588235294,0.992156862745098
   };
 
-const Rcpp::List heat = Rcpp::List::create(
-  _["r"] = heat_red,
-  _["g"] = heat_green,
-  _["b"] = heat_blue
-);
+  // const Rcpp::List heat = Rcpp::List::create(
+  //   _["r"] = heat_red,
+  //   _["g"] = heat_green,
+  //   _["b"] = heat_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

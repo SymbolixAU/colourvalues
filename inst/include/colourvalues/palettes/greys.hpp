@@ -25,11 +25,11 @@ namespace palette {
     0.32156862745098,0.145098039215686,0
   };
 
-const Rcpp::List greys = Rcpp::List::create(
-  _["r"] = greys_red,
-  _["g"] = greys_green,
-  _["b"] = greys_blue
-);
+  // const Rcpp::List greys = Rcpp::List::create(
+  //   _["r"] = greys_red,
+  //   _["g"] = greys_green,
+  //   _["b"] = greys_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

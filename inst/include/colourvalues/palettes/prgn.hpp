@@ -49,11 +49,11 @@ namespace palette {
     0.105882352941176
   };
 
-const Rcpp::List prgn = Rcpp::List::create(
-  _["r"] = prgn_red,
-  _["g"] = prgn_green,
-  _["b"] = prgn_blue
-);
+  // const Rcpp::List prgn = Rcpp::List::create(
+  //   _["r"] = prgn_red,
+  //   _["g"] = prgn_green,
+  //   _["b"] = prgn_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

@@ -25,11 +25,13 @@ namespace palette {
     0.709803921568627,0.611764705882353,0.419607843137255
   };
 
-const Rcpp::List blues = Rcpp::List::create(
-  _["r"] = blues_red,
-  _["g"] = blues_green,
-  _["b"] = blues_blue
-);
+  // inline Rcpp::DataFrame blues() {
+  //   return Rcpp::DataFrame::create(
+  //     _["r"] = blues_red,
+  //     _["g"] = blues_green,
+  //     _["b"] = blues_blue
+  //   );
+  // }
 } // namespace palette
 } // namepsace colourvalues
 

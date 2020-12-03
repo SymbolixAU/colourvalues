@@ -208,11 +208,11 @@ namespace palette {
     0,0,0,0
   };
 
-const Rcpp::List green2red = Rcpp::List::create(
-  _["r"] = green2red_red,
-  _["g"] = green2red_green,
-  _["b"] = green2red_blue
-);
+  // const Rcpp::List green2red = Rcpp::List::create(
+  //   _["r"] = green2red_red,
+  //   _["g"] = green2red_green,
+  //   _["b"] = green2red_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

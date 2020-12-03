@@ -110,11 +110,11 @@ namespace palette {
     0.2708, 0.2655, 0.26, 0.2593, 0.2634, 0.268, 0.2731
   };
 
-  const Rcpp::List cividis = Rcpp::List::create(
-    Rcpp::_["r"] = cividis_red,
-    Rcpp::_["g"] = cividis_green,
-    Rcpp::_["b"] = cividis_blue
-  );
+  // const Rcpp::List cividis = Rcpp::List::create(
+  //   Rcpp::_["r"] = cividis_red,
+  //   Rcpp::_["g"] = cividis_green,
+  //   Rcpp::_["b"] = cividis_blue
+  // );
 
 } // namespace palette
 } // namepsace colourvalues

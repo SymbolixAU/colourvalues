@@ -208,11 +208,11 @@ namespace palette {
     0.254901960784314,0.247058823529412,0.23921568627451,0.231372549019608
   };
 
-const Rcpp::List diverge_hcl = Rcpp::List::create(
-  _["r"] = diverge_hcl_red,
-  _["g"] = diverge_hcl_green,
-  _["b"] = diverge_hcl_blue
-);
+  // const Rcpp::List diverge_hcl = Rcpp::List::create(
+  //   _["r"] = diverge_hcl_red,
+  //   _["g"] = diverge_hcl_green,
+  //   _["b"] = diverge_hcl_blue
+  // );
 } // namespace palette
 } // namepsace colourvalues
 

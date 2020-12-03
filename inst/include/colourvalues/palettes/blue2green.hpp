@@ -208,11 +208,13 @@ namespace palette {
     0.0117647058823529,0.00784313725490196,0.00392156862745098,0
   };
 
-const Rcpp::List blue2green = Rcpp::List::create(
-  _["r"] = blue2green_red,
-  _["g"] = blue2green_green,
-  _["b"] = blue2green_blue
-);
+  // inline Rcpp::DataFrame blue2green() {
+  //   return Rcpp::DataFrame::create(
+  //     _["r"] = blue2green_red,
+  //     _["g"] = blue2green_green,
+  //     _["b"] = blue2green_blue
+  //   );
+  // }
 } // namespace palette
 } // namepsace colourvalues
 
