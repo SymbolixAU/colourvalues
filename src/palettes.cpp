@@ -4,7 +4,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_get_palette( std::string& palette ) {
+Rcpp::NumericMatrix rcpp_get_palette( std::string palette ) {
   int n = 256;
   Rcpp::NumericVector red( 255.0, n );
   Rcpp::NumericVector green( 255.0, n );

@@ -193,12 +193,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_get_palette
-Rcpp::NumericMatrix rcpp_get_palette(std::string& palette);
+Rcpp::NumericMatrix rcpp_get_palette(std::string palette);
 RcppExport SEXP _colourvalues_rcpp_get_palette(SEXP paletteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string& >::type palette(paletteSEXP);
+    Rcpp::traits::input_parameter< std::string >::type palette(paletteSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_palette(palette));
     return rcpp_result_gen;
 END_RCPP
