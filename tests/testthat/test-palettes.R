@@ -7,8 +7,8 @@ test_that("palettes are returned", {
   all_palettes <- color_palettes()
   expect_true( length(all_palettes) == 52 )
 
-  for( palette in all_palettes[10:length(all_palettes)] ) {
-    # print(palette)
+  for( palette in all_palettes[1:7] ) {
+    #print(palette)
     expect_silent( colour_values(1, palette = palette ))
     res <- colourvalues::get_palette( palette )
     expect_true( ncol( res ) == 3 & nrow( res ) == 256 )
