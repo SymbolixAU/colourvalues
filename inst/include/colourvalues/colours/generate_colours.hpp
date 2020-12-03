@@ -70,9 +70,12 @@ namespace generate_colours {
       if ( R_IsNA( this_x) || R_IsNaN( this_x ) ) {
         hex_strings[i] = na_colour;
       } else {
-        r = round( spline_red( this_x ) * 255 ) ;
-        g = round( spline_green( this_x ) * 255 );
-        b = round( spline_blue( this_x ) * 255 );
+        double spl_red = spline_red( this_x );
+        double spl_green = spline_green( this_x );
+        double spl_blue = spline_blue( this_x );
+        r = round( spl_red * 255.0 ) ;
+        g = round( spl_green * 255.0 );
+        b = round( spl_blue * 255.0 );
 
         colourvalues::palette_utils::validate_rgb_spline(r);
         colourvalues::palette_utils::validate_rgb_spline(g);
@@ -138,9 +141,12 @@ namespace generate_colours {
         rgb_mat(i, _) = na_mat;
 
       } else {
-        r = round( spline_red( this_x ) * 255 ) ;
-        g = round( spline_green( this_x ) * 255 );
-        b = round( spline_blue( this_x ) * 255 );
+        double spl_red = spline_red( this_x );
+        double spl_green = spline_green( this_x );
+        double spl_blue = spline_blue( this_x );
+        r = round( spl_red * 255.0 ) ;
+        g = round( spl_green * 255.0 );
+        b = round( spl_blue * 255.0 );
 
         r = colourvalues::palette_utils::validate_rgb_range( r );
         g = colourvalues::palette_utils::validate_rgb_range( g );
