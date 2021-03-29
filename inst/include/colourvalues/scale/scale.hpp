@@ -6,14 +6,18 @@
 namespace colourvalues {
 namespace scale {
 
-  inline Rcpp::NumericVector minmax( Rcpp::NumericVector& x ) {
-    int n = x.size();
+  template< int RTYPE >
+  inline Rcpp::Vector< RTYPE > minmax( Rcpp::Vector< RTYPE >& x ) {
+    R_xlen_t n = x.size();
 
-    double min = 0;
-    double max = 0;
+    typedef typename Rcpp::traits::storage_type< RTYPE >::type T;
+
+    T min = 0;
+    T max = 0;
     bool first_value = false;
 
-    for( int i = 0; i < n; i++) {
+    R_xlen_t i;
+    for( i = 0; i < n; i++) {
 
       if( !ISNAN( x[i] ) ) {
         if( !first_value ) {
@@ -29,11 +33,12 @@ namespace scale {
         }
       }
     }
-    return Rcpp::NumericVector::create(min, max);
+    return Rcpp::Vector< RTYPE >::create( min, max );
   }
 
   // Always rescales to (0, 1)
   // used for variables
+  // iff input is INTSXP; the output will be REALSXP
   inline void rescale( Rcpp::NumericVector& x ) {
     int n = x.size();
 
