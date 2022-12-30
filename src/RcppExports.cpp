@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // rcpp_colour_values_hex
 SEXP rcpp_colour_values_hex(SEXP x, SEXP palette, Rcpp::NumericVector& alpha, std::string na_colour, bool include_alpha, bool format, int digits, bool summary, int n_summaries);
 RcppExport SEXP _colourvalues_rcpp_colour_values_hex(SEXP xSEXP, SEXP paletteSEXP, SEXP alphaSEXP, SEXP na_colourSEXP, SEXP include_alphaSEXP, SEXP formatSEXP, SEXP digitsSEXP, SEXP summarySEXP, SEXP n_summariesSEXP) {
