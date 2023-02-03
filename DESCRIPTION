@@ -18,7 +18,7 @@ BugReports: https://github.com/SymbolixAU/colourvalues/issues
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.3.0)
-SystemRequirements: C++14
+SystemRequirements: C++17
 LinkingTo:
     BH (>= 1.81.0),
     Rcpp (>= 1.0.10)
