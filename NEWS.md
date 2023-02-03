@@ -1,4 +1,9 @@
 
+# v0.3.8
+
+* Updated tests to [appease Boost (BH)](https://github.com/SymbolixAU/colourvalues/pull/77)
+* Updated Rcpp and BH dependency requirements
+
 # v0.3.7
 
 * fixed gcc-ASAN valgrind error
