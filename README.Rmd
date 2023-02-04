@@ -59,7 +59,7 @@ I also want it available at the `src` (C/C++) level for linking to other package
 
 ### Why do you spell colour with a 'u'?
 
-Because it's correct, and [R tells us to](http://developer.r-project.org/Rds.html)
+Because it's correct, and [R tells us to](https://developer.R-project.org/Rds.html)
 
 > For consistency, aim to use British (rather than American) spelling
 
