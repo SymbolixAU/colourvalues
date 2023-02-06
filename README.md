@@ -49,7 +49,7 @@ packages.
 ### Why do you spell colour with a ‘u’?
 
 Because it’s correct, and [R tells us
-to](http://developer.r-project.org/Rds.html)
+to](https://developer.R-project.org/Rds.html)
 
 > For consistency, aim to use British (rather than American) spelling
 
@@ -285,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#48196BFF" "#2E6D8EFF" "#1E9B8AFF" "#482777FF" "#46337FFF" "#3E4A89FF"
-#  [7] "#440154FF" "#238A8DFF" "#FDE725FF" "#470D60FF"
+#  [1] "#31688EFF" "#34608DFF" "#2AAF7FFF" "#26838EFF" "#2F6A8EFF" "#21A585FF"
+#  [7] "#482576FF" "#FDE725FF" "#440154FF" "#3E4A89FF"
 # 
 # $summary_values
-# [1] "-1.04" "0.78"  "2.60" 
+# [1] "-2.29" "-0.30" "1.68" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -337,25 +337,25 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#31688EFF" "#440154FF" "#35B779FF" "#26AC81FF" "#1FA187FF" "#440154FF"
-#  [7] "#1FA187FF" "#46327FFF" "#3C4F8AFF" "#424186FF" "#471365FF" "#BFDF25FF"
-# [13] "#31688EFF" "#46327FFF" "#482374FF" "#365C8DFF" "#80D34DFF" "#FDE725FF"
-# [19] "#DFE318FF" "#482374FF" "#BFDF25FF" "#277F8EFF" "#277F8EFF" "#63CB5FFF"
-# [25] "#BFDF25FF" "#1F968BFF" "#482374FF" "#DFE318FF" "#FDE725FF" "#4AC26DFF"
-# [31] "#1FA187FF" "#1FA187FF" "#35B779FF" "#2C748EFF" "#365C8DFF" "#3C4F8AFF"
-# [37] "#238A8DFF" "#482374FF" "#3C4F8AFF" "#1F968BFF" "#63CB5FFF" "#9FDA3AFF"
-# [43] "#424186FF" "#365C8DFF" "#471365FF" "#63CB5FFF" "#424186FF" "#440154FF"
-# [49] "#35B779FF" "#424186FF"
+#  [1] "#22A884FF" "#3B528BFF" "#2FB47CFF" "#414487FF" "#2F6C8EFF" "#7AD151FF"
+#  [7] "#345F8DFF" "#3B528BFF" "#5DC963FF" "#481466FF" "#9AD93DFF" "#3B528BFF"
+# [13] "#DDE318FF" "#2F6C8EFF" "#482575FF" "#21908CFF" "#1E9C89FF" "#21908CFF"
+# [19] "#5DC963FF" "#22A884FF" "#414487FF" "#FDE725FF" "#BCDF27FF" "#481466FF"
+# [25] "#481466FF" "#1E9C89FF" "#25848EFF" "#22A884FF" "#43BF71FF" "#345F8DFF"
+# [31] "#2A788EFF" "#482575FF" "#DDE318FF" "#414487FF" "#2A788EFF" "#7AD151FF"
+# [37] "#345F8DFF" "#440154FF" "#22A884FF" "#414487FF" "#440154FF" "#440154FF"
+# [43] "#FDE725FF" "#414487FF" "#7AD151FF" "#2A788EFF" "#7AD151FF" "#481466FF"
+# [49] "#2FB47CFF" "#463480FF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "d" "e" "f" "g" "i" "j" "k" "l" "m" "n" "o" "p" "r" "s" "t" "u"
-# [20] "v" "w" "x"
+#  [1] "a" "b" "c" "e" "f" "g" "h" "i" "k" "m" "n" "o" "p" "r" "s" "t" "u" "w" "x"
+# [20] "y" "z"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#471365FF" "#482374FF" "#46327FFF" "#424186FF" "#3C4F8AFF"
-#  [7] "#365C8DFF" "#31688EFF" "#2C748EFF" "#277F8EFF" "#238A8DFF" "#1F968BFF"
-# [13] "#1FA187FF" "#26AC81FF" "#35B779FF" "#4AC26DFF" "#63CB5FFF" "#80D34DFF"
-# [19] "#9FDA3AFF" "#BFDF25FF" "#DFE318FF" "#FDE725FF"
+#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF" "#3B528BFF"
+#  [7] "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF" "#21908CFF" "#1E9C89FF"
+# [13] "#22A884FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF" "#7AD151FF" "#9AD93DFF"
+# [19] "#BCDF27FF" "#DDE318FF" "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -419,13 +419,11 @@ m <- microbenchmark(
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
-# Warning in microbenchmark(colourvalues = {: less accurate nanosecond times to
-# avoid potential integer overflows
 m
-# Unit: milliseconds
-#          expr       min        lq      mean    median        uq       max neval
-#  colourvalues  790.1633  811.2024  829.2027  821.5352  844.3787  907.0718    25
-#        scales 1802.5748 1888.0222 1938.6483 1938.3914 1968.8013 2179.9656    25
+# Unit: seconds
+#          expr      min       lq    mean   median       uq      max neval
+#  colourvalues 1.627894 1.701427 1.77096 1.738952 1.794650 2.208553    25
+#        scales 3.490133 3.570589 3.66930 3.622581 3.714103 4.094268    25
 ```
 
 **1 million characters (26 unique values)**
@@ -446,7 +444,7 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#          expr       min        lq      mean    median        uq      max neval
-#  colourvalues  89.13195  89.97118  92.19782  90.29438  93.67758 103.2665    25
-#        scales 194.76115 199.95524 208.87886 202.63537 216.81128 254.6731    25
+#          expr      min       lq     mean   median       uq      max neval
+#  colourvalues 176.1218 178.7141 186.3045 184.7679 188.3816 223.6415    25
+#        scales 375.1857 394.0583 411.6228 406.9435 423.1733 485.9965    25
 ```
