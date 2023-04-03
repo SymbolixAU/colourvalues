@@ -17,7 +17,10 @@ colour_values_rgb(
   alpha = 255,
   na_colour = "#808080FF",
   include_alpha = TRUE,
-  ...
+  summary = FALSE,
+  n_summaries = 0,
+  format = TRUE,
+  digits = 2
 )
 
 color_values_rgb(
@@ -26,7 +29,10 @@ color_values_rgb(
   alpha = 255,
   na_colour = "#808080FF",
   include_alpha = TRUE,
-  ...
+  summary = FALSE,
+  n_summaries = 0,
+  format = TRUE,
+  digits = 2
 )
 
 \method{colour_values_to_rgb}{character}(
@@ -35,7 +41,10 @@ color_values_rgb(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_rgb}{logical}(
@@ -44,7 +53,10 @@ color_values_rgb(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_rgb}{factor}(
@@ -53,7 +65,10 @@ color_values_rgb(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_rgb}{Date}(
@@ -62,8 +77,10 @@ color_values_rgb(
   alpha,
   na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_rgb}{POSIXct}(
@@ -72,18 +89,22 @@ color_values_rgb(
   alpha,
   na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_rgb}{POSIXlt}(
   x,
   palette,
-  na_colour,
   alpha,
+  na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 }
 \arguments{
@@ -102,8 +123,6 @@ If a matrix palette is supplied this argument is ignored.}
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
 
-\item{...}{other arguments possed to methods}
-
 \item{summary}{logical indicating if a summary of the colours should be returned as
 well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
 
@@ -111,10 +130,12 @@ well as the full colour mapping. This will be the unique elements of \code{x} ma
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 and their associated colours. If a non-numeric \code{x} is used this value is ignored}
 
-\item{format}{logical indicating if the summary values should be formatted. See details}
+\item{format}{logical indicating if the summary values should be formatted.}
+
+\item{digits}{number of decimal places to show in the summary}
 }
 \description{
-Maps colours to variables, returning a matrix of RGB(A) values
+Maps colours to values, returning a matrix of RGB(A) values
 }
 \details{
 The palette can either be

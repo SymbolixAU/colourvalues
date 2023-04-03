@@ -285,11 +285,11 @@ summary
 ``` r
 colour_values(rnorm(n = 10), n_summaries = 3, digits = 2)
 # $colours
-#  [1] "#31688EFF" "#34608DFF" "#2AAF7FFF" "#26838EFF" "#2F6A8EFF" "#21A585FF"
-#  [7] "#482576FF" "#FDE725FF" "#440154FF" "#3E4A89FF"
+#  [1] "#FDE725FF" "#440154FF" "#5CC863FF" "#3F4889FF" "#443A83FF" "#1E9D89FF"
+#  [7] "#1E9C89FF" "#77D153FF" "#4EC36BFF" "#2D718EFF"
 # 
 # $summary_values
-# [1] "-2.29" "-0.30" "1.68" 
+# [1] "-1.27" "0.36"  "1.99" 
 # 
 # $summary_colours
 # [1] "#440154FF" "#21908CFF" "#FDE725FF"
@@ -337,25 +337,25 @@ values, and their associated colours
 ``` r
 colour_values(sample(letters, size = 50, replace = T), summary = T)
 # $colours
-#  [1] "#22A884FF" "#3B528BFF" "#2FB47CFF" "#414487FF" "#2F6C8EFF" "#7AD151FF"
-#  [7] "#345F8DFF" "#3B528BFF" "#5DC963FF" "#481466FF" "#9AD93DFF" "#3B528BFF"
-# [13] "#DDE318FF" "#2F6C8EFF" "#482575FF" "#21908CFF" "#1E9C89FF" "#21908CFF"
-# [19] "#5DC963FF" "#22A884FF" "#414487FF" "#FDE725FF" "#BCDF27FF" "#481466FF"
-# [25] "#481466FF" "#1E9C89FF" "#25848EFF" "#22A884FF" "#43BF71FF" "#345F8DFF"
-# [31] "#2A788EFF" "#482575FF" "#DDE318FF" "#414487FF" "#2A788EFF" "#7AD151FF"
-# [37] "#345F8DFF" "#440154FF" "#22A884FF" "#414487FF" "#440154FF" "#440154FF"
-# [43] "#FDE725FF" "#414487FF" "#7AD151FF" "#2A788EFF" "#7AD151FF" "#481466FF"
-# [49] "#2FB47CFF" "#463480FF"
+#  [1] "#277F8EFF" "#63CB5FFF" "#63CB5FFF" "#1FA187FF" "#3C4F8AFF" "#365C8DFF"
+#  [7] "#FDE725FF" "#365C8DFF" "#1FA187FF" "#471365FF" "#365C8DFF" "#DFE318FF"
+# [13] "#238A8DFF" "#3C4F8AFF" "#80D34DFF" "#46327FFF" "#35B779FF" "#471365FF"
+# [19] "#440154FF" "#26AC81FF" "#1FA187FF" "#2C748EFF" "#63CB5FFF" "#FDE725FF"
+# [25] "#80D34DFF" "#46327FFF" "#1F968BFF" "#BFDF25FF" "#3C4F8AFF" "#2C748EFF"
+# [31] "#9FDA3AFF" "#31688EFF" "#4AC26DFF" "#4AC26DFF" "#3C4F8AFF" "#4AC26DFF"
+# [37] "#35B779FF" "#9FDA3AFF" "#1FA187FF" "#26AC81FF" "#482374FF" "#1F968BFF"
+# [43] "#26AC81FF" "#FDE725FF" "#4AC26DFF" "#3C4F8AFF" "#277F8EFF" "#35B779FF"
+# [49] "#80D34DFF" "#424186FF"
 # 
 # $summary_values
-#  [1] "a" "b" "c" "e" "f" "g" "h" "i" "k" "m" "n" "o" "p" "r" "s" "t" "u" "w" "x"
-# [20] "y" "z"
+#  [1] "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "m" "n" "o" "p" "q" "r" "s" "u" "v"
+# [20] "w" "x" "y"
 # 
 # $summary_colours
-#  [1] "#440154FF" "#481466FF" "#482575FF" "#463480FF" "#414487FF" "#3B528BFF"
-#  [7] "#345F8DFF" "#2F6C8EFF" "#2A788EFF" "#25848EFF" "#21908CFF" "#1E9C89FF"
-# [13] "#22A884FF" "#2FB47CFF" "#43BF71FF" "#5DC963FF" "#7AD151FF" "#9AD93DFF"
-# [19] "#BCDF27FF" "#DDE318FF" "#FDE725FF"
+#  [1] "#440154FF" "#471365FF" "#482374FF" "#46327FFF" "#424186FF" "#3C4F8AFF"
+#  [7] "#365C8DFF" "#31688EFF" "#2C748EFF" "#277F8EFF" "#238A8DFF" "#1F968BFF"
+# [13] "#1FA187FF" "#26AC81FF" "#35B779FF" "#4AC26DFF" "#63CB5FFF" "#80D34DFF"
+# [19] "#9FDA3AFF" "#BFDF25FF" "#DFE318FF" "#FDE725FF"
 ```
 
 ### I see you support lists, but how does it work?
@@ -419,11 +419,13 @@ m <- microbenchmark(
   scales = { col_numeric(palette = rgb(subset(viridis.map, opt=="D")[, 1:3]), domain = range(df$x))(df$x) },
   times = 25
 )
+# Warning in microbenchmark(colourvalues = {: less accurate nanosecond times to
+# avoid potential integer overflows
 m
-# Unit: seconds
-#          expr      min       lq    mean   median       uq      max neval
-#  colourvalues 1.627894 1.701427 1.77096 1.738952 1.794650 2.208553    25
-#        scales 3.490133 3.570589 3.66930 3.622581 3.714103 4.094268    25
+# Unit: milliseconds
+#          expr       min        lq      mean    median        uq       max neval
+#  colourvalues  789.3592  797.2215  808.1314  805.4144  810.2691  866.7162    25
+#        scales 1696.3621 1761.6745 1820.4097 1793.3245 1865.7442 2118.4543    25
 ```
 
 **1 million characters (26 unique values)**
@@ -444,7 +446,7 @@ m <- microbenchmark(
 )
 m
 # Unit: milliseconds
-#          expr      min       lq     mean   median       uq      max neval
-#  colourvalues 176.1218 178.7141 186.3045 184.7679 188.3816 223.6415    25
-#        scales 375.1857 394.0583 411.6228 406.9435 423.1733 485.9965    25
+#          expr       min        lq      mean    median        uq      max neval
+#  colourvalues  90.27962  90.81623  91.88558  90.93574  91.61257 104.2933    25
+#        scales 195.65930 198.46062 203.90773 200.45052 204.15282 228.5454    25
 ```

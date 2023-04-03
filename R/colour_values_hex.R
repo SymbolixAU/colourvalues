@@ -1,6 +1,6 @@
 #' Colour Values
 #'
-#' maps colours to values
+#' maps colours to values, returning a vector of hex strings
 #'
 #' @param x vector of values to map to a colour
 #' @param palette colour palette. See details and examples
@@ -12,7 +12,13 @@
 #' If a matrix palette is supplied this argument is ignored.
 #' @param include_alpha logical indicating if the returned hex or matrix should include
 #' the alpha values. Defaults to \code{TRUE}.
-#' @param ... other arguments possed to methods
+#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
+#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
+#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
+#' @param summary logical indicating if a summary of the colours should be returned as
+#' well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.
+#' @param format logical indicating if the summary values should be formatted.
+#' @param digits number of decimal places to show in the summary
 #'
 #' @seealso colour_values_rgb
 #'
@@ -65,8 +71,19 @@
 #' ## returning a summary palette
 #' colour_values(-10:10, n_summaries = 5)
 #'
+# ## controlling the number of digits in the summary
+#' colour_values(x = runif(20, 0, 1), n_summaries = 3, digits = 2)
+#' colour_values(x = runif(20, 0, 1), n_summaries = 3, digits = 10)
+#'
+#' ## Formatting output
+#' ## default is TRUE
+#' colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5)
+#' colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5, format = FALSE)
+#'
 #' @export
-colour_values <- function( x, palette = "viridis", alpha = 255, na_colour = "#808080FF", include_alpha = TRUE, ... ) {
+colour_values <- function( x, palette = "viridis", alpha = 255, na_colour = "#808080FF",
+                           include_alpha = TRUE, summary = FALSE, n_summaries = 0,
+                           format = TRUE, digits = 2) {
   palette <- palette_check( palette )
   colour_values_to_hex(
     x = x
@@ -74,7 +91,10 @@ colour_values <- function( x, palette = "viridis", alpha = 255, na_colour = "#80
     , alpha = alpha
     , na_colour = na_colour
     , include_alpha = include_alpha
-    , ...
+    , summary = summary
+    , n_summaries = n_summaries
+    , format = format
+    , digits = digits
   )
 }
 
@@ -83,18 +103,14 @@ colour_values <- function( x, palette = "viridis", alpha = 255, na_colour = "#80
 #' @export
 color_values <- colour_values
 
-colour_values_to_hex <- function( x, palette = "viridis", na_colour, alpha, include_alpha, ... ) {
+colour_values_to_hex <- function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
   UseMethod("colour_values_to_hex")
 }
 
 #' @rdname colour_values
-#' @param summary logical indicating if a summary of the colours should be returned as
-#' well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.
 #' @export
-colour_values_to_hex.character <- function( x, palette, alpha, na_colour, include_alpha, summary = FALSE ) {
-  # rcpp_colour_values_hex( palette, x, na_colour, alpha, include_alpha, summary )
-  # print( ".character" )
-  # print( include_alpha )
+colour_values_to_hex.character <- function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
+
   colour_values_to_hex.default(
     x = x
     , palette = palette
@@ -102,12 +118,15 @@ colour_values_to_hex.character <- function( x, palette, alpha, na_colour, includ
     , na_colour = na_colour
     , include_alpha = include_alpha
     , summary = summary
+    , n_summaries = n_summaries
+    , format = format
+    , digits = digits
   )
 }
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.logical <- function( x, palette, alpha, na_colour, include_alpha, summary = FALSE ) {
+colour_values_to_hex.logical <- function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
   colour_values_to_hex.default(
     x = x
     , palette = palette
@@ -115,12 +134,15 @@ colour_values_to_hex.logical <- function( x, palette, alpha, na_colour, include_
     , na_colour = na_colour
     , include_alpha = include_alpha
     , summary = summary
+    , n_summaries = n_summaries
+    , format = format
+    , digits = digits
   )
 }
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.factor <- function( x, palette, alpha, na_colour, include_alpha, summary = FALSE ) {
+colour_values_to_hex.factor <- function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
   colour_values_to_hex.default(
     x = x
     , palette = palette
@@ -128,23 +150,23 @@ colour_values_to_hex.factor <- function( x, palette, alpha, na_colour, include_a
     , na_colour = na_colour
     , include_alpha = include_alpha
     , summary = summary
+    , n_summaries = n_summaries
+    , format = format
+    , digits = digits
   )
 }
 
 #' @rdname colour_values
-#' @param n_summaries positive integer. If supplied a summary colour palette will be returned
-#' in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
-#' and their associated colours. If a non-numeric \code{x} is used this value is ignored
-#' @param format logical indicating if the summary values should be formatted. See details
 #' @export
-colour_values_to_hex.Date <-  function( x, palette, alpha, na_colour, include_alpha, n_summaries = 0, format = TRUE ) {
-  # colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "Date", 0 )
+colour_values_to_hex.Date <-  function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
+
   colour_values_to_hex.default(
     x = x
     , palette = palette
     , alpha = alpha
     , na_colour = na_colour
     , include_alpha = include_alpha
+    , summary = summary
     , n_summaries = n_summaries
     , format = format
     , digits = 0
@@ -153,8 +175,7 @@ colour_values_to_hex.Date <-  function( x, palette, alpha, na_colour, include_al
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include_alpha, n_summaries = 0, format = TRUE ) {
-  #colour_num_values_with_palette_hex( palette, x, na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
+colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
 
   colour_values_to_hex.default(
     x = x
@@ -162,6 +183,7 @@ colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include
     , alpha = alpha
     , na_colour = na_colour
     , include_alpha = include_alpha
+    , summary = summary
     , n_summaries = n_summaries
     , format = format
     , digits = 0
@@ -170,14 +192,15 @@ colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.POSIXlt <-  function( x, palette, na_colour, alpha, include_alpha, n_summaries = 0, format = TRUE ) {
-  # colour_num_values_with_palette_hex( palette, as.POSIXct(x), na_colour, alpha, include_alpha, n_summaries, format, "POSIXct", 0 )
+colour_values_to_hex.POSIXlt <-  function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
+
   colour_values_to_hex.default(
     x = as.POSIXct( x )
     , palette = palette
     , alpha = alpha
     , na_colour = na_colour
     , include_alpha = include_alpha
+    , summary = summary
     , n_summaries = n_summaries
     , format = format
     , digits = 0
@@ -192,10 +215,10 @@ colour_values_to_hex.default <- function(
   alpha,
   na_colour,
   include_alpha,
-  format = TRUE,
-  digits = 2,
-  summary = FALSE,
-  n_summaries = 0
+  summary,
+  n_summaries,
+  format,
+  digits
   ) {
 
   rcpp_colour_values_hex(

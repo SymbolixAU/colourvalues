@@ -1,4 +1,8 @@
 
+# v0.3.9
+
+* Udpated S3 methods to be consistent
+
 # v0.3.8
 
 * Updated tests to [appease Boost (BH)](https://github.com/SymbolixAU/colourvalues/pull/77)

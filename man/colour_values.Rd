@@ -17,7 +17,10 @@ colour_values(
   alpha = 255,
   na_colour = "#808080FF",
   include_alpha = TRUE,
-  ...
+  summary = FALSE,
+  n_summaries = 0,
+  format = TRUE,
+  digits = 2
 )
 
 color_values(
@@ -26,7 +29,10 @@ color_values(
   alpha = 255,
   na_colour = "#808080FF",
   include_alpha = TRUE,
-  ...
+  summary = FALSE,
+  n_summaries = 0,
+  format = TRUE,
+  digits = 2
 )
 
 \method{colour_values_to_hex}{character}(
@@ -35,7 +41,10 @@ color_values(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_hex}{logical}(
@@ -44,7 +53,10 @@ color_values(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_hex}{factor}(
@@ -53,7 +65,10 @@ color_values(
   alpha,
   na_colour,
   include_alpha,
-  summary = FALSE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_hex}{Date}(
@@ -62,8 +77,10 @@ color_values(
   alpha,
   na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_hex}{POSIXct}(
@@ -72,18 +89,22 @@ color_values(
   alpha,
   na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 
 \method{colour_values_to_hex}{POSIXlt}(
   x,
   palette,
-  na_colour,
   alpha,
+  na_colour,
   include_alpha,
-  n_summaries = 0,
-  format = TRUE
+  summary,
+  n_summaries,
+  format,
+  digits
 )
 }
 \arguments{
@@ -102,8 +123,6 @@ If a matrix palette is supplied this argument is ignored.}
 \item{include_alpha}{logical indicating if the returned hex or matrix should include
 the alpha values. Defaults to \code{TRUE}.}
 
-\item{...}{other arguments possed to methods}
-
 \item{summary}{logical indicating if a summary of the colours should be returned as
 well as the full colour mapping. This will be the unique elements of \code{x} mapped to the colour.}
 
@@ -111,10 +130,12 @@ well as the full colour mapping. This will be the unique elements of \code{x} ma
 in a list, containing \code{n_summaries} equally spaced values of \code{x} in the range \code{[min(x),max(x)]},
 and their associated colours. If a non-numeric \code{x} is used this value is ignored}
 
-\item{format}{logical indicating if the summary values should be formatted. See details}
+\item{format}{logical indicating if the summary values should be formatted.}
+
+\item{digits}{number of decimal places to show in the summary}
 }
 \description{
-maps colours to values
+maps colours to values, returning a vector of hex strings
 }
 \details{
 The palette can either be
@@ -163,6 +184,14 @@ barplot(height = df$a, col = df$col, border = NA, space = 0)
 
 ## returning a summary palette
 colour_values(-10:10, n_summaries = 5)
+
+colour_values(x = runif(20, 0, 1), n_summaries = 3, digits = 2)
+colour_values(x = runif(20, 0, 1), n_summaries = 3, digits = 10)
+
+## Formatting output
+## default is TRUE
+colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5)
+colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5, format = FALSE)
 
 }
 \seealso{
