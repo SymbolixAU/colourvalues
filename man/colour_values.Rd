@@ -190,8 +190,15 @@ colour_values(x = runif(20, 0, 1), n_summaries = 3, digits = 10)
 
 ## Formatting output
 ## default is TRUE
-colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5)
-colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5, format = FALSE)
+colour_values(
+  x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1)
+  , n_summaries = 5
+)
+colour_values(
+  x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1)
+  , n_summaries = 5
+  , format = FALSE
+)
 
 }
 \seealso{

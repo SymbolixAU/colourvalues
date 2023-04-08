@@ -49,12 +49,17 @@ test_that("posix values mapped to colours", {
 })
 
 test_that("matrix palette accepted", {
-  ##
-  m <- grDevices::colorRamp(c("red","green","blue"))(0:4/4)
-  expect_true(all(colour_values(c(1:5), palette = m) == c("#FF0000FF", "#807F00FF","#00FF00FF", "#008080FF", "#0000FFFF")))
-  ## This doesn't exactly equal
-  #grDevices::colorRampPalette(c("red","green","blue"))(5)
-  ## I 'think' because of boost's interpolation
+
+  m <- matrix(c(255, 0, 0, 127, 127, 0, 0, 255, 0, 0, 127, 127, 0, 0, 255), ncol = 3, byrow = T)
+
+  res <- colour_values(c(1:5), palette = m)
+  expect_equal(res[1], "#FF0000FF")
+  expect_equal(res[2], "#7F7F00FF")
+  expect_equal(res[3], "#00FF00FF")
+  expect_equal(res[4], "#007F7FFF")
+  expect_equal(res[5], "#0000FFFF")
+
+
 
   expect_error(
     colour_values(1:5, palette = m[,1:2])
@@ -62,11 +67,15 @@ test_that("matrix palette accepted", {
     )
 
   alpha <- c(0, 100, 150, 200, 255)
-  m <- cbind( grDevices::colorRamp(c("red","green","blue"))(0:4/4), alpha )
-  expect_true(all(colour_values(c(1:5), palette = m) == c("#FF000000", "#807F0064","#00FF0096", "#008080C8", "#0000FFFF")))
+  m <- cbind(m, alpha)
 
   ## string data
-  expect_true( all( colour_values(letters[1:5], palette = m) == colour_values(1:5, palette = m) ) )
+  res <- colour_values(letters[1:5], palette = m)
+  expect_equal(res[1], "#FF000000")
+  expect_equal(res[2], "#7F7F0064")
+  expect_equal(res[3], "#00FF0096")
+  expect_equal(res[4], "#007F7FC8")
+  expect_equal(res[5], "#0000FFFF")
 
   m <- grDevices::colorRamp(c("red","green","blue"))(0:3/3)
   expect_error(

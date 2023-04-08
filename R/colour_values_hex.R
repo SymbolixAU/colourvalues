@@ -77,14 +77,24 @@
 #'
 #' ## Formatting output
 #' ## default is TRUE
-#' colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5)
-#' colour_values(x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1), n_summaries = 5, format = FALSE)
+#' colour_values(
+#'   x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1)
+#'   , n_summaries = 5
+#' )
+#' colour_values(
+#'   x = seq(as.Date("2023-01-01"), as.Date("2023-01-31"), by = 1)
+#'   , n_summaries = 5
+#'   , format = FALSE
+#' )
 #'
 #' @export
 colour_values <- function( x, palette = "viridis", alpha = 255, na_colour = "#808080FF",
                            include_alpha = TRUE, summary = FALSE, n_summaries = 0,
                            format = TRUE, digits = 2) {
   palette <- palette_check( palette )
+
+
+
   colour_values_to_hex(
     x = x
     , palette = palette
@@ -192,7 +202,7 @@ colour_values_to_hex.POSIXct <-  function( x, palette, alpha, na_colour, include
 
 #' @rdname colour_values
 #' @export
-colour_values_to_hex.POSIXlt <-  function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
+colour_values_to_hex.POSIXlt <- function( x, palette, alpha, na_colour, include_alpha, summary, n_summaries, format, digits ) {
 
   colour_values_to_hex.default(
     x = as.POSIXct( x )
