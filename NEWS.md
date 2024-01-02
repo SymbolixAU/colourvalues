@@ -1,4 +1,8 @@
 
+# v0.3.10
+
+* removed local copy of `cardinal_cubic_b_spline.hpp`
+
 # v0.3.9
 
 * Udpated S3 methods to be consistent
