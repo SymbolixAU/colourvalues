@@ -296,19 +296,19 @@ namespace api {
     case INTSXP: {
       if( Rf_isFactor( x ) ) {
 
-      Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
-      Rcpp::StringVector lvls = iv.attr("levels");
+        Rcpp::IntegerVector iv = Rcpp::as< Rcpp::IntegerVector >( x );
+        Rcpp::StringVector lvls = iv.attr("levels");
 
-      return colourvalues::colours_hex::colour_value_hex(
-        iv, lvls, palette, na_colour, include_alpha, summary
-      );
+        return colourvalues::colours_hex::colour_value_hex(
+          iv, lvls, palette, na_colour, include_alpha, summary
+        );
 
-    } else {
-      Rcpp::NumericVector nv = Rcpp::clone(x);
-      return colourvalues::colours_hex::colour_value_hex(
-        nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
-      );
-    }
+      } else {
+        Rcpp::NumericVector nv = Rcpp::clone(x);
+        return colourvalues::colours_hex::colour_value_hex(
+          nv, palette, na_colour, include_alpha, format_type, n_summaries, format, digits
+        );
+      }
     }
     case REALSXP: {
       //Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );

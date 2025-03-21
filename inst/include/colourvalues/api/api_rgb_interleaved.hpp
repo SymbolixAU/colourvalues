@@ -263,7 +263,8 @@ namespace api {
         }
       }
       case REALSXP: {
-        Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+        // Rcpp::NumericVector nv = Rcpp::as< Rcpp::NumericVector >( x );
+        Rcpp::NumericVector nv = Rcpp::clone(x);
         return colourvalues::colours_rgb_interleaved::colour_value_rgb_interleaved(
           nv, palette, na_colour, include_alpha, format_type, repeats, total_colours, n_summaries, format, digits
         );
