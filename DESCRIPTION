@@ -26,6 +26,7 @@ Imports:
     graphics,
     Rcpp (>= 1.0.10)
 RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
 Suggests: 
     covr,
     microbenchmark,

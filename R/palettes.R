@@ -36,16 +36,14 @@ get_palette <- function( palette, rgb = TRUE ) {
 #' "viridis","rcolorbrewer","grdevices","colorspace","colorramp". NULL will reutrn all palettes.
 #'
 #' @details
-#' The palettes avaialble in \code{colourvalues} have been derived from those avaialble in
+#' The palettes available in \code{colourvalues} have been derived from those in
 #' the libraries
 #'
-#' \itemize{
-#'   \item{viridis}
-#'   \item{RColorBrewer}
-#'   \item{grDevices}
-#'   \item{colorspaces}
-#'   \item{colorRamp}
-#' }
+#'  * viridis
+#'  * RColorBrewer
+#'  * grDevices
+#'  * colorspaces
+#'  * colorRamp
 #'
 #' @examples
 #' colour_palettes()
