@@ -1,4 +1,8 @@
 
+# v0.3.11
+
+* Added missing `Rcpp::clone()` calls
+
 # v0.3.10
 
 * removed local copy of `cardinal_cubic_b_spline.hpp`
